@@ -1,0 +1,38 @@
+{
+  "name": "mobywatel-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Clickable PWA prototype of a new mObywatel app for the mobywatel.ai challenge (unofficial, fictional data).",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @mobywatel/pwa dev",
+    "preview": "pnpm --filter @mobywatel/pwa preview",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test": "turbo run test:unit && pnpm run test:tools",
+    "test:unit": "turbo run test:unit",
+    "test:e2e": "pnpm --filter @mobywatel/pwa test:e2e",
+    "test:tools": "node --test tools/__tests__/*.test.mjs",
+    "audit:harness": "node tools/harness-audit.mjs",
+    "audit:guardrails": "node tools/guardrails-audit.mjs",
+    "format": "prettier --check --ignore-path .gitignore --ignore-path .prettierignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore .",
+    "ci:quality": "pnpm run format && turbo run lint typecheck test:unit build && pnpm run test:tools && pnpm run audit:harness && pnpm run audit:guardrails",
+    "cache:clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules .turbo apps/*/.turbo packages/*/.turbo apps/*/dist && echo 'Caches cleared. Run pnpm install.'",
+    "prepare": "husky"
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "packageManager": "pnpm@10.22.0",
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "turbo": "^2.11.10",
+    "typescript": "^7.0.2"
+  }
+}

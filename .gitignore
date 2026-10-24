@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dev-dist/
+.turbo/
+coverage/
+playwright-report/
+test-results/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+.vercel/
+.claude/worktrees/
+.claude/settings.local.json
