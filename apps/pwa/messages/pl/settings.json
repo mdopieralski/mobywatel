@@ -1,0 +1,22 @@
+{
+  "title": "Ustawienia",
+  "senior": {
+    "title": "Większy tekst",
+    "label": "Tryb dla seniora",
+    "hint": "Większe litery i przyciski."
+  },
+  "theme": {
+    "title": "Wygląd",
+    "system": "Jak w telefonie",
+    "light": "Jasny",
+    "dark": "Ciemny"
+  },
+  "reset": {
+    "title": "Demo od nowa",
+    "body": "Usuniemy przykładowe sprawy i postęp. Ustawienia zostaną.",
+    "button": "Zresetuj demo",
+    "confirmQuestion": "Na pewno zacząć od nowa?",
+    "confirm": "Tak, zresetuj",
+    "cancel": "Anuluj"
+  }
+}

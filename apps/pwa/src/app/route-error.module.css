@@ -1,0 +1,12 @@
+.page {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + var(--space-6)) var(--space-4) var(--space-6);
+}
+
+.page a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  font-weight: 600;
+}

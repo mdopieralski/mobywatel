@@ -1,0 +1,57 @@
+.stack {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.card {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.card legend {
+  padding: 0 var(--space-1);
+}
+
+.legendHeading {
+  margin: 0;
+}
+
+.confirm p:focus {
+  outline: none;
+}
+
+.switchRow,
+.radioRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--target-min);
+  cursor: pointer;
+}
+
+.switchRow input,
+.radioRow input {
+  width: 1.5em;
+  height: 1.5em;
+  accent-color: var(--accent);
+}
+
+.hint {
+  margin: var(--space-2) 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.confirm p {
+  flex-basis: 100%;
+}

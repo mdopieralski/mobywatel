@@ -210,7 +210,7 @@ const REMINDERS = [
     id: 'plain-polish',
     test: (rel) => /messages\/.+\.json$|\/copy\.ts$|\/content\//.test(rel),
     message:
-      'User-facing copy: plain Polish (short sentences, no officialese, one action per screen); run it past the content-designer or the plain-polish skill.',
+      'User-facing copy: plain Polish (short sentences, no officialese, one action per screen); run it past the service-designer agent or the plain-polish skill.',
   },
   {
     id: 'a11y',

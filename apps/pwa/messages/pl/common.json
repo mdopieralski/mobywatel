@@ -1,0 +1,24 @@
+{
+  "skipToContent": "Przejdź do treści",
+  "prototypeBadge": "Prototyp",
+  "mainNavigation": "Menu główne",
+  "nav": {
+    "start": "Start",
+    "settings": "Ustawienia"
+  },
+  "notFound": {
+    "title": "Nie ma takiej strony",
+    "body": "Ten adres jest błędny albo strona została usunięta.",
+    "back": "Wróć na start"
+  },
+  "pwa": {
+    "updateAvailable": "Jest nowa wersja aplikacji.",
+    "reload": "Odśwież",
+    "later": "Później"
+  },
+  "error": {
+    "title": "Coś poszło nie tak",
+    "body": "Ten ekran nie zadziałał. To nasz błąd, nie Twój.",
+    "back": "Wróć na start"
+  }
+}

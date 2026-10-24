@@ -47,18 +47,19 @@ Decision record: `docs/decisions/stack-2026-10-24.md`.
 - **App** `apps/pwa` (`@mobywatel/pwa`): Vite + React + TypeScript strict, `vite-plugin-pwa` (Workbox) for the
   manifest and service worker, client-side routing, mobile-first layout that also reads well on a desktop
   (phone frame).
-- **Shared packages** (planned): `@mobywatel/core` (pure TS: matters as state machines, reminders, assistant
-  scenario engine, ports; no React), `@mobywatel/content` (fictional personas, scenario scripts, service
-  knowledge in plain Polish), `@mobywatel/brand` (tokens, copy, disclaimer), `@mobywatel/ui` (accessible React
-  components).
+- **Shared packages**: `@mobywatel/core` (pure TS: matters as state machines, reminders, assistant scenario
+  engine, ports; no React), `@mobywatel/content` (fictional personas, scenario scripts, service knowledge in
+  plain Polish), `@mobywatel/brand` (tokens, copy, disclaimer), `@mobywatel/ui` (accessible React components).
 - **Tests**: Vitest + Testing Library (unit), Playwright + axe (E2E on phone viewports), and `node --test` for
   `tools/`.
 - **Hosting**: Vercel (static build, plus an optional serverless function for the LLM proxy).
 - **Library versions change. Don't trust your training data.** Read the installed version in `package.json` /
-  `node_modules`, then that version's docs. Note: root `typescript` is 7.x (the Go port). Check that Vite,
-  ESLint and other tooling support it before relying on it, and pin 5.x/6.x per workspace if they don't.
+  `node_modules`, then that version's docs. TypeScript is pinned to 6.0.x repo-wide (TS 7 breaks
+  `typescript-eslint`); lint is oxlint. Details: the stack decision record.
+- **Packages are source-only TS** (no build step). `apps/pwa/vite.config.ts` imports brand by relative path on
+  purpose (Node can't load `.ts` workspace packages from the config).
 
-## Layout (planned; created by the `scaffold-app` skill)
+## Layout (scaffolded 2026-10-24; feature folders fill in as we build)
 
 ```
 apps/pwa/                 @mobywatel/pwa: the PWA

@@ -28,7 +28,7 @@ pnpm view typescript dist-tags
 Read the release notes or docs for each major version you get (vite.dev, vite-pwa-org.netlify.app,
 reactrouter.com, vitest.dev, playwright.dev). Cite what you checked in the PR.
 
-### TypeScript 7 check
+### TypeScript version check (settled: 6.0.x, see the stack decision record)
 
 The root has `typescript@7` (the Go port). Before relying on it in a workspace:
 
