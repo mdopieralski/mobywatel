@@ -1,0 +1,30 @@
+[
+  {
+    "id": "document-check",
+    "name": "Dokument z ptaszkiem",
+    "idea": "A plain sheet of paper with a check mark: your paperwork, done.",
+    "pros": "Reads as \"official matters\" at once; the folded corner makes it a sheet, not an ID card.",
+    "cons": "Document-plus-check icons are common in to-do and form apps, so it is less distinctive."
+  },
+  {
+    "id": "speech-bubble",
+    "name": "Dymek z ptaszkiem",
+    "idea": "A speech bubble with a check mark: you sort out matters by talking to the assistant.",
+    "pros": "Tells our main idea (matters through conversation) and is the boldest shape at 32 px.",
+    "cons": "Can look like a messaging app; says less about public services on its own."
+  },
+  {
+    "id": "monogram-s",
+    "name": "Litera S",
+    "idea": "A bold, rounded S for the name Sprawnie.",
+    "pros": "Simplest and most distinctive; very sharp at 32 px; ties the icon to the name.",
+    "cons": "Says nothing about what the app does; a single letter needs a wider trademark check."
+  },
+  {
+    "id": "path-steps",
+    "name": "Mniej kroków",
+    "idea": "Two small steps and then a check: fewer steps to get a matter done.",
+    "pros": "Shows our promise (simpler, fewer steps) and is the only option with a sense of motion.",
+    "cons": "The dots get small at 32 px and can read as \"typing…\" or \"loading\"."
+  }
+]

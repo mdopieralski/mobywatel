@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { contrastRatio } from './contrast.ts';
 import { themeCss } from './css.ts';
 import { COLORS, CONTRAST_PAIRS, type ThemeName } from './tokens.ts';
-import { UNOFFICIAL_DISCLAIMER, WORKING_NAME } from './copy.ts';
+import { TAGLINES, UNOFFICIAL_DISCLAIMER, UNOFFICIAL_DISCLAIMERS, WORKING_NAME } from './copy.ts';
+import { LOCALE_NAMES, LOCALES } from './locales.ts';
 
 describe('contrast', () => {
   it('matches known WCAG values', () => {
@@ -38,5 +39,18 @@ describe('copy guardrails', () => {
   });
   it('working name is not the mObywatel name', () => {
     expect(WORKING_NAME.toLowerCase()).not.toContain('obywatel');
+  });
+});
+
+describe('locales', () => {
+  it('every locale has a name, a tagline and a full disclaimer', () => {
+    for (const locale of LOCALES) {
+      expect(LOCALE_NAMES[locale]).toBeTruthy();
+      expect(TAGLINES[locale]).toBeTruthy();
+      // The meaning must survive: the challenge and the app it is not are named in every language.
+      expect(UNOFFICIAL_DISCLAIMERS[locale]).toContain('mobywatel.ai');
+      expect(UNOFFICIAL_DISCLAIMERS[locale]).toContain('mObywatel');
+    }
+    expect(UNOFFICIAL_DISCLAIMERS.pl).toBe(UNOFFICIAL_DISCLAIMER);
   });
 });

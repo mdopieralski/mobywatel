@@ -1,4 +1,4 @@
-import { UNOFFICIAL_DISCLAIMER } from '@mobywatel/brand';
+import { UNOFFICIAL_DISCLAIMER, UNOFFICIAL_DISCLAIMERS } from '@mobywatel/brand';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
@@ -23,5 +23,10 @@ describe('Disclaimer', () => {
     const { container } = render(<Disclaimer />);
     expect(screen.getByText(UNOFFICIAL_DISCLAIMER)).toBeTruthy();
     expect(container.querySelector('[data-disclaimer]')).not.toBeNull();
+  });
+
+  it('follows the UI language', () => {
+    render(<Disclaimer locale="uk" />);
+    expect(screen.getByText(UNOFFICIAL_DISCLAIMERS.uk)).toBeTruthy();
   });
 });
