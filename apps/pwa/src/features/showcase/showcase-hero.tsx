@@ -1,16 +1,17 @@
 import type { CategoryId, MatterId } from '@mobywatel/content';
 import { WORKING_NAME } from '@mobywatel/brand';
-import { Disclaimer } from '@mobywatel/ui';
 import { useSyncExternalStore } from 'react';
 import { useTranslations } from 'use-intl';
 
+import { INTRO, introStyle, useIntroDelay } from '../../app/boot-loader.ts';
+import intro from '../../app/intro.module.css';
 import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { CATEGORY_VIEWS, MATTERS } from '../categories/categories.tsx';
-import { PHONE_FRAME, TRY_ID } from './showcase-mode.ts';
+import { TRY_ID } from './showcase-mode.ts';
 import styles from './showcase.module.css';
 
-/** What the hero puts first, and where its link opens in the phone: a category, or one matter in it. */
+/** What the hero puts first: a category, or one matter in it (its icon). */
 const HIGHLIGHTS: readonly { id: 'zus' | 'tickets'; category: CategoryId; matter?: MatterId }[] = [
   { id: 'zus', category: 'zus' },
   { id: 'tickets', category: 'travel', matter: 'cityTicket' },
@@ -33,39 +34,35 @@ function useShowPreview(): boolean {
 
 /**
  * First screen of the showcase: ZUS and city tickets are what is new in this prototype, next to a preview
- * of the app. `openInPhone` moves the app in the working phone below (without reloading it) and brings it
- * into view; without it, the link just reloads the phone's frame. `onTry` brings the phone into view.
+ * of the app.  `onTry` brings the phone into view.
  */
-export function ShowcaseHero({
-  openInPhone,
-  onTry,
-}: {
-  openInPhone: (path: string) => boolean;
-  onTry: () => void;
-}) {
+export function ShowcaseHero({ onTry }: { onTry: () => void }) {
   const t = useTranslations('showcase.hero');
   const tShowcase = useTranslations('showcase');
-  const locale = useAppLocale();
   const showPreview = useShowPreview();
+  const locale = useAppLocale();
+  // Entrance after the header: each part rises in turn (INTRO.heroAt).
+  const heroDelay = useIntroDelay(INTRO.heroAt);
+  const rise = (step: number) => introStyle(heroDelay + step * INTRO.heroStepMs);
   return (
-    <section className={styles.hero} aria-labelledby="showcase-hero">
+    <section className={`${styles.hero} ${styles.drawingGrid}`} aria-labelledby="showcase-hero">
+      {/* Centred across the whole hero, above the text and the preview. */}
+      <h1 id="showcase-hero" className={`${styles.heroTitle} ${intro.rise}`} style={rise(0)}>
+        {t.rich('title', { name: (chunks) => <span className={styles.heroName}>{chunks}</span> })}
+      </h1>
       <div className={styles.heroInner}>
         <div className={styles.heroText}>
-          {/* Visibly unofficial from the first screen (prototype-guardrails skill). */}
-          <p className={styles.badge}>{tShowcase('badge')}</p>
-          <h1 id="showcase-hero" className={styles.heroTitle}>
-            {t('title')}
-          </h1>
-          <p className={styles.heroLead}>{t('lead')}</p>
+          <p className={`${styles.heroLead} ${intro.rise}`} style={rise(1)}>
+            {t('lead')}
+          </p>
           <ul className={styles.highlights}>
-            {HIGHLIGHTS.map(({ id, category: categoryId, matter }) => {
+            {HIGHLIGHTS.map(({ id, category: categoryId, matter }, index) => {
               const category = CATEGORY_VIEWS.find((c) => c.id === categoryId);
               if (!category) {
                 return null;
               }
-              const path = `${PATHS.categories}/${category.slug}${matter ? `/${MATTERS[matter].slug}` : ''}`;
               return (
-                <li key={id} className={styles.highlight}>
+                <li key={id} className={`${styles.highlight} ${intro.rise}`} style={rise(2 + index)}>
                   <svg
                     className={styles.highlightIcon}
                     aria-hidden="true"
@@ -77,48 +74,22 @@ export function ShowcaseHero({
                   </svg>
                   <h2 className={styles.highlightTitle}>{t(`${id}.title`)}</h2>
                   <p className={styles.highlightBody}>{t(`${id}.body`)}</p>
-                  <a
-                    className={styles.highlightLink}
-                    href={path}
-                    target={PHONE_FRAME}
-                    onClick={(event) => {
-                      if (openInPhone(path)) {
-                        event.preventDefault();
-                      }
-                    }}
-                  >
-                    {t('open', { name: t(`${id}.title`) })}
-                  </a>
                 </li>
               );
             })}
-          </ul>
-          <div className={styles.heroActions}>
-            <a
-              className={styles.heroCta}
-              href={`#${TRY_ID}`}
-              onClick={(event) => {
-                event.preventDefault();
-                onTry();
-              }}
-            >
-              {t('cta')}
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
-                <path d="M12 5v14M6 13l6 6 6-6" />
-              </svg>
-            </a>
-            <Disclaimer variant="inline" locale={locale} />
-          </div>
+          </ul>{' '}
         </div>
 
         {/* A look at the app: the start screen, where ZUS and Tickets already are. Only a picture: it can't
             be focused or clicked, and screen readers skip it (the working phone is below). */}
         {showPreview ? (
-          <div className={styles.preview} aria-hidden="true" inert>
+          <div className={`${styles.preview} ${intro.rise}`} style={rise(1)} aria-hidden="true" inert>
             <div className={styles.previewScreen}>
+              {/* key: a language picked in the working phone reloads this picture in that language. */}
               <iframe
+                key={locale}
                 className={styles.previewApp}
-                src="/"
+                src={PATHS.start}
                 title={tShowcase('phoneLabel', { name: WORKING_NAME })}
                 tabIndex={-1}
               />
@@ -126,6 +97,21 @@ export function ShowcaseHero({
           </div>
         ) : null}
       </div>
+      {/* Centred across the whole hero, under the text and the preview. */}
+      <a
+        className={`${styles.heroCta} ${intro.rise}`}
+        style={rise(2 + HIGHLIGHTS.length)}
+        href={`#${TRY_ID}`}
+        onClick={(event) => {
+          event.preventDefault();
+          onTry();
+        }}
+      >
+        {t('cta')}
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M12 5v14M6 13l6 6 6-6" />
+        </svg>
+      </a>
     </section>
   );
 }

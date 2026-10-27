@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, Navigate, useLocation } from 'react-router';
 
 import { CategoryScreen } from '../features/categories/category-screen.tsx';
 import { MatterScreen } from '../features/categories/matter-screen.tsx';
@@ -9,7 +9,7 @@ import { RemindersScreen } from '../features/reminders/reminders-screen.tsx';
 import { SettingsScreen } from '../features/settings/settings-screen.tsx';
 import { Layout } from './layout.tsx';
 import { NotFound } from './not-found.tsx';
-import { PATHS } from './paths.ts';
+import { PATHS, PROTOTYPE } from './paths.ts';
 import { RouteError } from './route-error.tsx';
 
 export { PATHS };
@@ -23,7 +23,12 @@ export const routes = [
       return { Component: BrandVoicePage };
     },
   },
+  // "/" in the app: only when a desktop window on the landing page is made narrow (on load, entry-url.ts
+  // sends phones and tablets to /prototype). Show the start screen without changing the address, so
+  // widening the window brings the landing page back.
+  { path: PATHS.landing, element: <Layout />, children: [{ index: true, element: <StartScreen /> }] },
   {
+    path: PROTOTYPE,
     element: <Layout />,
     errorElement: <RouteError />,
     children: [
@@ -40,6 +45,13 @@ export const routes = [
       { path: '*', element: <NotFound /> },
     ],
   },
+  // A path from before /prototype existed: the same screen under it (entry-url.ts does this on load).
+  { path: '*', element: <MoveUnderPrototype /> },
 ];
+
+function MoveUnderPrototype() {
+  const { pathname, search, hash } = useLocation();
+  return <Navigate to={`${PROTOTYPE}${pathname}${search}${hash}`} replace />;
+}
 
 export const router = createBrowserRouter(routes);

@@ -4,12 +4,11 @@
     "prototype": "Prototipas",
     "news": "Naujienos"
   },
-  "badge": "Neoficialus prototipas",
   "lead": "Paspaudžiamas programėlės oficialiems reikalams prototipas. Išbandyk jį telefone aukščiau. Čia rašome, ką darome kitaip.",
   "phoneLabel": "Programėlė {name} telefono ekrane",
   "hero": {
-    "title": "ZUS ir miesto bilietai vienoje programėlėje",
-    "lead": "Be oficialių reikalų, čia bus ir ZUS (socialinis draudimas) bei viešojo transporto bilietai. Abi kategorijos jau yra pradžios ekrane. Reikalus jose kaip tik pridedame.",
+    "title": "ZUS ir miesto bilietai programėlėje <name>mObywatel</name>",
+    "lead": "ZUS (socialinis draudimas) ir viešojo transporto bilietai telefone. Tai mūsų pagrindiniai pasiūlymai konkurse mObywatel.ai challenge ir daug kitų.",
     "zus": {
       "title": "ZUS",
       "body": "Įmokos, pensija ir nedarbingumo pažymos šalia kitų jūsų reikalų."
@@ -18,8 +17,7 @@
       "title": "Miesto bilietai",
       "body": "Autobuso ir tramvajaus bilietas bet kuriame mieste, be atskiros programėlės."
     },
-    "open": "Atidaryti „{name}“ telefone",
-    "cta": "Išbandyti prototipą"
+    "cta": "Peržiūrėti prototipą"
   },
   "newTitle": "Kas nauja mūsų versijoje",
   "tryLabel": "Išbandyk:",
@@ -69,11 +67,5 @@
       "body": "Sava piktograma ir spalvos, be valstybės herbo ir be tikrų dokumentų išvaizdos. Duomenys išgalvoti, o kiekvienas dokumentas turi žymą „PROTOTYP – nie jest dokumentem”.",
       "try": "Atidaryk asmens tapatybės kortelę kategorijoje Saugumas."
     }
-  },
-  "challenge": {
-    "eyebrow": "Konkursas mobywatel.ai",
-    "title": "Mūsų paraiška konkursui",
-    "body": "Konkursas ieško paprastesnės programėlės oficialiems reikalams. 10 geriausių prototipų autoriai juos pristatys Lenkijos Seime.",
-    "link": "Peržiūrėti konkursą"
   }
 }

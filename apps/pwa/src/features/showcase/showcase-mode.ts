@@ -1,8 +1,11 @@
-// Desktop showcase: on a wide screen the start URL shows a page with the app inside a phone frame
-// (an iframe of the same URL). Phones, installed apps and the framed copy itself get the app directly.
+// Desktop pages: on a desktop "/" is the landing page and /prototype/* shows the app inside a phone mockup
+// (an iframe of the same URL). Phones, tablets, installed apps and the framed copy itself get the app.
 import { useSyncExternalStore } from 'react';
 
-const SHOWCASE_QUERY = '(min-width: 64rem) and (min-height: 40rem)';
+import { isPrototypePath, PATHS } from '../../app/paths.ts';
+
+/** A desktop: a big window and a mouse or trackpad. Tablets (touch first) get the app full screen. */
+const SHOWCASE_QUERY = '(min-width: 64rem) and (min-height: 40rem) and (hover: hover) and (pointer: fine)';
 const STANDALONE_QUERY = '(display-mode: standalone)';
 const ROUTE_MESSAGE = 'sprawnie:route';
 const NAVIGATE_MESSAGE = 'sprawnie:navigate';
@@ -13,6 +16,9 @@ export const PHONE_FRAME = 'phone';
 /** Id of the section with the working phone: the hero's button scrolls there. */
 export const TRY_ID = 'wyprobuj';
 
+/** Id of the landing page's third section (what is new). */
+export const NEWS_ID = 'nowosci';
+
 export function isEmbedded(): boolean {
   return typeof window !== 'undefined' && window.self !== window.top;
 }
@@ -21,16 +27,30 @@ function wideScreen(): boolean {
   return window.matchMedia(SHOWCASE_QUERY).matches && !window.matchMedia(STANDALONE_QUERY).matches;
 }
 
+/** This document shows a desktop page (landing or phone mockup), not the bare app. */
+export function isDesktopPage(): boolean {
+  return wideScreen() && !isEmbedded();
+}
+
 function subscribe(listener: () => void): () => void {
   const mql = window.matchMedia(SHOWCASE_QUERY);
   mql.addEventListener('change', listener);
   return () => mql.removeEventListener('change', listener);
 }
 
-/** True when this document should render the showcase page instead of the app. */
-export function useShowcaseMode(fullPagePaths: readonly string[]): boolean {
+export type PageKind = 'landing' | 'mockup' | 'app';
+
+/** What this document renders; follows the window across the desktop breakpoint. */
+export function usePageKind(): PageKind {
   const wide = useSyncExternalStore(subscribe, wideScreen, () => false);
-  return wide && !isEmbedded() && !fullPagePaths.includes(window.location.pathname);
+  const { pathname } = window.location;
+  if (!wide || isEmbedded()) {
+    return 'app';
+  }
+  if (pathname === PATHS.landing) {
+    return 'landing';
+  }
+  return isPrototypePath(pathname) ? 'mockup' : 'app';
 }
 
 type Place = { location: { pathname: string; search: string; hash: string } };
@@ -58,7 +78,8 @@ export function reportRouteToShowcase(router: {
       event.source === window.parent &&
       data?.type === NAVIGATE_MESSAGE &&
       typeof data.path === 'string' &&
-      data.path.startsWith('/')
+      data.path.startsWith('/') &&
+      !data.path.startsWith('//')
     ) {
       void router.navigate(data.path);
     }
@@ -84,7 +105,8 @@ export function onShowcaseRoute(frame: () => HTMLIFrameElement | null, handle: (
       event.source === frame()?.contentWindow &&
       data?.type === ROUTE_MESSAGE &&
       typeof data.path === 'string' &&
-      data.path.startsWith('/')
+      data.path.startsWith('/') &&
+      !data.path.startsWith('//')
     ) {
       handle(data.path);
     }

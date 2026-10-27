@@ -1,7 +1,6 @@
 import { UNOFFICIAL_DISCLAIMER, WORKING_NAME } from '@mobywatel/brand';
 import { useEffect, type ComponentPropsWithoutRef } from 'react';
 import Markdown from 'react-markdown';
-import { Link } from 'react-router';
 import remarkGfm from 'remark-gfm';
 
 // The guide itself, bundled at build time so this page never drifts from the doc.
@@ -40,9 +39,9 @@ export function BrandVoicePage() {
         <img className={styles.icon} src="/icons/favicon.svg" alt="" width={32} height={32} />
         <span className={styles.brand}>{WORKING_NAME}</span>
         <span className={styles.badge}>Team docs</span>
-        <Link className={styles.back} to="/">
+        <a className={styles.back} href="/">
           Back to the app
-        </Link>
+        </a>
       </header>
 
       <main className={styles.main}>

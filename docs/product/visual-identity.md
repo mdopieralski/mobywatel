@@ -83,6 +83,12 @@ costs no download and works offline from the first load.
 An option for review is self-hosted **Inter** (latin-ext, weights 400/600/700, precached) for one identical
 look on every device. It costs extra bytes on the jury's first open. Recommendation: stay on the system stack.
 
+**Compact labels** (`FONT_FAMILY_COMPACT`, `--font-family-compact`): self-hosted **Inter Tight** variable
+(OFL-1.1, `@fontsource-variable/inter-tight`), with the system stack as fallback. It is used only for the
+desktop showcase's uppercase section nav, where the system font ran wide. Only the Latin, Latin Extended and
+Cyrillic subsets ship (about 150 KB, precached), and the browser fetches a subset only when its characters are
+on screen. The app itself stays on the system stack. Added 2026-10-27.
+
 **Scale** (px; senior mode in brackets; rem-based, so it follows the user's system text size):
 
 - Hints: `sm` 15 (19).

@@ -1,6 +1,7 @@
 import { Disclaimer } from '@mobywatel/ui';
 import { useTranslations } from 'use-intl';
 
+import { PATHS } from './paths.ts';
 import styles from './route-error.module.css';
 
 // Replaces React Router's English developer screen. A juror who hits a bug still sees Polish,
@@ -12,7 +13,7 @@ export function RouteError() {
       <h1>{t('title')}</h1>
       <p>{t('body')}</p>
       <p>
-        <a href="/">{t('back')}</a>
+        <a href={PATHS.start}>{t('back')}</a>
       </p>
       <Disclaimer variant="inline" />
     </main>

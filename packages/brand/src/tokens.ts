@@ -121,6 +121,12 @@ export const FONT_SIZE = {
 export const FONT_FAMILY =
   "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif";
 
+/**
+ * Compact face for short uppercase labels (the showcase's section nav). Inter Tight (OFL) is self-hosted by
+ * the PWA, so it works offline; until it loads, or if it can't, the system stack takes over.
+ */
+export const FONT_FAMILY_COMPACT = `'Inter Tight Variable', ${FONT_FAMILY}`;
+
 export const LINE_HEIGHT = { tight: 1.25, body: 1.5 } as const;
 
 /** 4-px grid. */
@@ -133,6 +139,9 @@ export const RADIUS = { sm: 8, md: 12, lg: 16, pill: 999 } as const;
 export const DURATION = { fast: 120, base: 200, slow: 320 } as const;
 
 export const EASING = { standard: 'cubic-bezier(0.2, 0, 0, 1)' } as const;
+
+/** The app icon's tile and tick: fixed in every theme, like the installed icon (favicon.svg). */
+export const LOGO_COLORS = { tile: COLORS.light.accent, tick: COLORS.light.accentText } as const;
 
 /** Manifest / meta colours. */
 export const THEME_COLOR = COLORS.light.accent;

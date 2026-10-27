@@ -4,12 +4,11 @@
     "prototype": "Prototype",
     "news": "What's new"
   },
-  "badge": "Unofficial prototype",
   "lead": "A clickable prototype of an app for official matters. Try it on the phone above. Here is what we do differently.",
   "phoneLabel": "The {name} app on a phone screen",
   "hero": {
-    "title": "ZUS and city tickets in one app",
-    "lead": "Besides official matters, the app will also cover ZUS (social insurance) and public transport tickets. Both categories are already on the start screen. We are adding their matters now.",
+    "title": "ZUS and city tickets in <name>mObywatel</name>",
+    "lead": "ZUS (social insurance) and public transport tickets on your phone. These are our key proposals in the mObywatel.ai challenge, and many more.",
     "zus": {
       "title": "ZUS",
       "body": "Contributions, pension and sick leave next to your other matters."
@@ -18,8 +17,7 @@
       "title": "City tickets",
       "body": "A bus and tram ticket in any city, without a separate app."
     },
-    "open": "Open {name} on the phone",
-    "cta": "Try the prototype"
+    "cta": "See the prototype"
   },
   "newTitle": "What's new in our version",
   "tryLabel": "Try it:",
@@ -69,11 +67,5 @@
       "body": "Our own icon and colours, no state emblem and no real document designs. The data is fictional, and every document carries the mark „PROTOTYP – nie jest dokumentem”.",
       "try": "Open the ID card in the Security category."
     }
-  },
-  "challenge": {
-    "eyebrow": "mobywatel.ai challenge",
-    "title": "Our entry to the challenge",
-    "body": "The challenge is looking for a simpler app for official matters. The authors of the 10 best prototypes will present them in the Sejm, the Polish parliament.",
-    "link": "See the challenge"
   }
 }

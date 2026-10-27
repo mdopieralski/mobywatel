@@ -1,17 +1,16 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 
-// A juror on a laptop: the start URL shows the app in a phone frame next to an explanation. Runs in the
-// desktop-chrome and desktop-safari projects (playwright.config.ts).
+// A juror on a laptop: "/" is the landing page with the app in a phone frame; /prototype/* is the app in a
+// phone mockup with an address per screen. Runs in the desktop-chrome and desktop-safari projects
+// (playwright.config.ts).
 
 test.describe('desktop showcase', () => {
-  test('shows the app in a phone frame, the disclaimer and the address bar follows the app', async ({
+  test('the landing page shows the app in a phone frame and the disclaimer, and keeps its address', async ({
     page,
   }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-      'ZUS i bilety miejskie w jednej aplikacji'
-    );
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('ZUS i bilety miejskie w mObywatel');
     await expect(page.locator('[data-disclaimer]').first()).toContainText('fikcyjne');
 
     const app = page.frameLocator('iframe[name="phone"]');
@@ -20,27 +19,51 @@ test.describe('desktop showcase', () => {
       .getByRole('navigation', { name: 'Menu główne' })
       .getByRole('link', { name: 'Ustawienia' })
       .click();
-    await expect(page).toHaveURL(/\/ustawienia$/);
+    await expect(app.getByRole('heading', { level: 1, name: 'Ustawienia' })).toBeVisible();
+    await expect(page).toHaveURL(/\/$/);
   });
 
-  test('the hero leads with ZUS and city tickets, and its links open them inside the phone', async ({
+  test('/prototype shows the app in a phone mockup, and the address bar follows the app', async ({
+    page,
+  }) => {
+    await page.goto('/prototype');
+    await expect(page.getByRole('heading', { level: 1, name: 'Prototyp' })).toBeAttached();
+    await expect(page.locator('[data-disclaimer]').first()).toBeVisible();
+    const nav = page.getByRole('navigation', { name: 'Sekcje strony' });
+    await expect(nav.getByRole('link', { name: 'Prototyp' })).toHaveAttribute('aria-current', 'page');
+    const app = page.frameLocator('iframe[name="phone"]');
+    await expect(app.getByRole('heading', { level: 1 })).toHaveText('Twoje sprawy');
+    await app
+      .getByRole('navigation', { name: 'Menu główne' })
+      .getByRole('link', { name: 'Ustawienia' })
+      .click();
+    await expect(page).toHaveURL(/\/prototype\/ustawienia$/);
+  });
+
+  test('"Nowości" on /prototype goes back to that section of the landing page', async ({ page }) => {
+    await page.goto('/prototype');
+    await page.getByRole('link', { name: 'Nowości' }).click();
+    await expect(page).toHaveURL(/\/#nowosci$/);
+    await expect(page.getByRole('heading', { name: 'Co nowego w naszej wersji' })).toBeInViewport();
+  });
+
+  test('the hero leads with ZUS and city tickets', async ({ page }) => {
+    await page.goto('/');
+    const hero = page.getByRole('region', { name: 'ZUS i bilety miejskie w mObywatel' });
+    await expect(hero.getByRole('heading', { level: 2 })).toHaveText(['ZUS', 'Bilety miejskie']);
+  });
+
+  test('the "Zobacz prototyp" button in the hero brings the working phone into view and moves focus there', async ({
     page,
   }) => {
     await page.goto('/');
-    const hero = page.getByRole('region', { name: 'ZUS i bilety miejskie w jednej aplikacji' });
-    await expect(hero.getByRole('heading', { level: 2 })).toHaveText(['ZUS', 'Bilety miejskie']);
-    await hero.getByRole('link', { name: 'Otwórz Bilety miejskie w telefonie' }).click();
-    await expect(
-      page.frameLocator('iframe[name="phone"]').getByRole('heading', { level: 1, name: 'Bilet miejski' })
-    ).toBeVisible();
-    await expect(page).toHaveURL(/\/kategorie\/podroz\/bilet-miejski$/);
-  });
-
-  test('"Wypróbuj prototyp" brings the working phone into view and moves focus there', async ({ page }) => {
-    await page.goto('/');
     const phone = page.locator('iframe[name="phone"]');
     await expect(phone).not.toBeInViewport();
-    await page.getByRole('link', { name: 'Wypróbuj prototyp' }).click();
+    // Scoped to the hero: the header nav has a "Prototyp" link too.
+    await page
+      .getByRole('region', { name: /^ZUS i bilety/ })
+      .getByRole('link', { name: 'Zobacz prototyp' })
+      .click();
     await expect(page.locator('#wyprobuj')).toBeFocused();
     await expect(phone).toBeInViewport({ ratio: 0.5 });
   });
@@ -60,12 +83,12 @@ test.describe('desktop showcase', () => {
     await expect(nav.getByRole('link', { name: 'Nowości' })).not.toHaveAttribute('aria-current');
   });
 
-  test('the first screen says it is an unofficial prototype', async ({ page }) => {
+  test('the page and the app in the phone say it is an unofficial prototype', async ({ page }) => {
     await page.goto('/');
-    const hero = page.getByRole('region', { name: 'ZUS i bilety miejskie w jednej aplikacji' });
-    await expect(hero.getByText('Nieoficjalny prototyp', { exact: true })).toBeInViewport();
-    await expect(hero.locator('[data-disclaimer]')).toBeInViewport();
-    await expect(page.getByRole('heading', { level: 1 })).not.toContainText('mObywatel');
+    // The page footer (the hero no longer carries it: user choice 2026-10-27).
+    await expect(page.getByRole('contentinfo').locator('[data-disclaimer]')).toContainText('fikcyjne');
+    // The app's own start screen inside the phone.
+    await expect(page.frameLocator('iframe[name="phone"]').locator('[data-disclaimer]')).toBeAttached();
   });
 
   test('the app preview is not loaded where it is hidden (narrow window)', async ({ page }) => {
@@ -88,11 +111,17 @@ test.describe('desktop showcase', () => {
     await page.keyboard.press('Enter');
     await expect(page.locator('main')).toBeFocused();
 
-    const link = page.getByRole('link', { name: 'Zobacz konkurs' });
+    // From the bottom of the page, focus a link further up: it must scroll in below the pinned header.
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    const link = page
+      .getByRole('region', { name: /^ZUS i bilety/ })
+      .getByRole('link', { name: 'Zobacz prototyp' });
     await link.focus();
     const header = await page.locator('header').first().boundingBox();
-    const box = await link.boundingBox();
-    expect(box?.y ?? 0).toBeGreaterThanOrEqual((header?.y ?? 0) + (header?.height ?? 0));
+    // Wait out smooth scrolling.
+    await expect
+      .poll(async () => (await link.boundingBox())?.y ?? -1)
+      .toBeGreaterThanOrEqual((header?.y ?? 0) + (header?.height ?? 0));
   });
 
   test('the phone section has a heading, so moving by headings finds it', async ({ page }) => {
@@ -103,16 +132,24 @@ test.describe('desktop showcase', () => {
   });
 
   test('a deep link opens that screen inside the phone', async ({ page }) => {
+    await page.goto('/prototype/ustawienia');
+    await expect(
+      page.frameLocator('iframe[name="phone"]').getByRole('heading', { level: 1, name: 'Ustawienia' })
+    ).toBeVisible();
+  });
+
+  test('an old link from before /prototype opens the same screen under it', async ({ page }) => {
     await page.goto('/ustawienia');
+    await expect(page).toHaveURL(/\/prototype\/ustawienia$/);
     await expect(
       page.frameLocator('iframe[name="phone"]').getByRole('heading', { level: 1, name: 'Ustawienia' })
     ).toBeVisible();
   });
 
   test('a language picked inside the phone also changes the page around it', async ({ page }) => {
-    await page.goto('/ustawienia');
+    await page.goto('/prototype/ustawienia');
     await page.frameLocator('iframe[name="phone"]').getByRole('radio', { name: 'English' }).check();
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('ZUS and city tickets in one app');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Prototype');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   });
 
@@ -127,12 +164,30 @@ test.describe('desktop showcase', () => {
     expect(box?.y).toBeGreaterThanOrEqual(0);
   });
 
-  test('axe: no WCAG A/AA violations on the showcase page', async ({ page }) => {
+  for (const path of ['/', '/prototype']) {
+    test(`axe: no WCAG A/AA violations on ${path}`, async ({ page }) => {
+      // Never mid-intro: faded-in elements give false passes or contrast flakes.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto(path);
+      await page.frameLocator('iframe[name="phone"]').getByRole('heading', { level: 1 }).waitFor();
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+        .analyze();
+      expect(results.violations).toEqual([]);
+    });
+  }
+});
+
+// A tablet is a big screen with touch: it gets the app full screen, like a phone.
+test.describe('tablet', () => {
+  test.use({ viewport: { width: 1180, height: 820 }, hasTouch: true });
+
+  test('/prototype and "/" open the app itself, not the phone mockup', async ({ page }) => {
+    await page.goto('/prototype');
+    await expect(page.locator('iframe')).toHaveCount(0);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Twoje sprawy');
     await page.goto('/');
-    await page.frameLocator('iframe[name="phone"]').getByRole('heading', { level: 1 }).waitFor();
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
-      .analyze();
-    expect(results.violations).toEqual([]);
+    await expect(page).toHaveURL(/\/prototype$/);
+    await expect(page.locator('iframe')).toHaveCount(0);
   });
 });

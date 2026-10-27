@@ -4,12 +4,11 @@
     "prototype": "Prototyp",
     "news": "Novinky"
   },
-  "badge": "Neoficiální prototyp",
   "lead": "Proklikávací prototyp aplikace pro úřední záležitosti. Vyzkoušej ho v telefonu výše. Tady píšeme, co děláme jinak.",
   "phoneLabel": "Aplikace {name} na displeji telefonu",
   "hero": {
-    "title": "ZUS a městské jízdenky v jedné aplikaci",
-    "lead": "Kromě úředních záležitostí tu bude také ZUS (sociální pojištění) a jízdenky na městskou dopravu. Obě kategorie už jsou na úvodní obrazovce. Záležitosti v nich právě přidáváme.",
+    "title": "ZUS a městské jízdenky v <name>mObywatel</name>",
+    "lead": "ZUS (sociální pojištění) a jízdenky na městskou dopravu v telefonu. To jsou naše hlavní návrhy v soutěži mObywatel.ai challenge a mnoho dalších.",
     "zus": {
       "title": "ZUS",
       "body": "Pojistné, důchod a neschopenky vedle vašich dalších záležitostí."
@@ -18,8 +17,7 @@
       "title": "Městské jízdenky",
       "body": "Jízdenka na autobus a tramvaj v každém městě, bez zvláštní aplikace."
     },
-    "open": "Otevřít {name} v telefonu",
-    "cta": "Vyzkoušet prototyp"
+    "cta": "Zobrazit prototyp"
   },
   "newTitle": "Co je v naší verzi nového",
   "tryLabel": "Vyzkoušej:",
@@ -69,11 +67,5 @@
       "body": "Vlastní ikona a barvy, bez státního znaku a bez vzhledu skutečných dokladů. Data jsou smyšlená a každý doklad nese značku „PROTOTYP – nie jest dokumentem”.",
       "try": "Otevři občanku v kategorii Bezpečnost."
     }
-  },
-  "challenge": {
-    "eyebrow": "Soutěž mobywatel.ai",
-    "title": "Náš příspěvek do soutěže",
-    "body": "Soutěž hledá jednodušší aplikaci pro úřední záležitosti. Autoři 10 nejlepších prototypů je představí v polském Sejmu.",
-    "link": "Zobrazit soutěž"
   }
 }

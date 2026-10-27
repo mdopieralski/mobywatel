@@ -1,14 +1,14 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 
 // Someone who doesn't read Polish: find the language switch, pick theirs, and the whole app follows.
 test.describe('languages', () => {
   test('the header switch leads to the picker; Ukrainian applies everywhere and persists', async ({
     page,
   }) => {
-    await page.goto('/');
+    await page.goto('/prototype');
     await page.getByRole('link', { name: /Zmień język/ }).click();
-    await expect(page).toHaveURL(/\/ustawienia$/);
+    await expect(page).toHaveURL(/\/prototype\/ustawienia$/);
 
     await page.getByRole('radio', { name: 'Українська' }).check();
     await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
@@ -25,7 +25,7 @@ test.describe('languages', () => {
   });
 
   test('a shared link with ?lang= opens in that language', async ({ page }) => {
-    await page.goto('/?lang=de');
+    await page.goto('/prototype?lang=de');
     await expect(page.locator('html')).toHaveAttribute('lang', 'de');
     await expect(page.locator('[data-disclaimer]')).toContainText('Inoffizieller Prototyp');
     await expect(page).toHaveTitle('Deine Anliegen – Sprawnie');
@@ -33,11 +33,13 @@ test.describe('languages', () => {
 
   for (const locale of ['en', 'uk', 'de', 'cs', 'sk', 'lt', 'be']) {
     test(`axe: no WCAG A/AA violations in ${locale}`, async ({ page }) => {
+      // Never mid-intro: faded-in elements give false passes or contrast flakes.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.addInitScript(
         (l) => localStorage.setItem('settings:v1', JSON.stringify({ locale: l })),
         locale
       );
-      for (const path of ['/', '/ustawienia']) {
+      for (const path of ['/prototype', '/prototype/ustawienia']) {
         await page.goto(path);
         await expect(page.locator('html')).toHaveAttribute('lang', locale);
         const results = await new AxeBuilder({ page })
@@ -53,7 +55,7 @@ test.describe('languages', () => {
     await page.addInitScript(() =>
       localStorage.setItem('settings:v1', JSON.stringify({ locale: 'lt', senior: true }))
     );
-    await page.goto('/ustawienia');
+    await page.goto('/prototype/ustawienia');
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );

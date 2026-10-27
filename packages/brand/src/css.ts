@@ -3,7 +3,9 @@ import {
   DURATION,
   EASING,
   FONT_FAMILY,
+  FONT_FAMILY_COMPACT,
   FONT_SIZE,
+  LOGO_COLORS,
   LINE_HEIGHT,
   RADIUS,
   SPACE,
@@ -43,6 +45,9 @@ export function themeCss(): string {
   return `:root {
   color-scheme: light dark;
   --font-family: ${FONT_FAMILY};
+  --font-family-compact: ${FONT_FAMILY_COMPACT};
+  --logo-tile: ${LOGO_COLORS.tile};
+  --logo-tick: ${LOGO_COLORS.tick};
   --line-height-tight: ${LINE_HEIGHT.tight};
   --line-height-body: ${LINE_HEIGHT.body};
   ${space}

@@ -1,5 +1,7 @@
 /* Desktop showcase. Everything from tokens; the phone is our own neutral drawing, no real device art. */
 .page {
+  /* For blocks that fill the rest of the first screen. */
+  --header-height: calc(var(--target-min) + 2 * var(--space-4) + 1px);
   min-height: 100dvh;
   display: grid;
   align-content: start;
@@ -53,7 +55,7 @@
   gap: var(--space-4);
   padding: var(--space-4) var(--space-8);
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  background: var(--surface); /* white in the light theme */
 }
 
 /* Links to the page's sections. Pulled out by their padding, so the text lines up 48 px in. */
@@ -70,19 +72,44 @@
   padding: 0 var(--space-4);
   border-radius: var(--radius-pill);
   color: var(--text);
+  font-family: var(--font-family-compact);
   font-size: var(--font-sm);
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
   text-decoration: none;
+  position: relative;
+  transition:
+    color var(--duration-slow) var(--easing-standard),
+    background-color var(--duration-slow) var(--easing-standard);
 }
 
-/* The section on screen: accent colour and a bar under the text, so it isn't colour alone. */
+/* Bar under the text. It grows from the centre when the link becomes current and shrinks back when it
+   stops; the motion tokens drop to 0 ms with prefers-reduced-motion. */
+.sectionLink::after {
+  content: '';
+  position: absolute;
+  left: var(--space-4);
+  right: var(--space-4);
+  top: calc(50% + 0.85em);
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0);
+  transition:
+    transform var(--duration-slow) var(--easing-standard),
+    opacity var(--duration-base) var(--easing-standard);
+}
+
+/* The section on screen: accent colour and the bar, so it isn't colour alone. */
 .sectionLink[aria-current] {
   color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.5em;
+}
+
+.sectionLink[aria-current]::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .sectionLink:hover {
@@ -118,6 +145,37 @@
   letter-spacing: -0.01em;
 }
 
+/* A dot after the name, drawn, so screen readers do not read it. In the accent colour. */
+.brandName::after {
+  content: '';
+  display: inline-block;
+  width: 0.22em;
+  height: 0.22em;
+  margin-left: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  /* Hidden until the name has appeared (its reveal takes 900 ms), then blinks in like a cursor and stays
+     on. 4 × 1.2 s stays under 5 s, so no pause control is needed (WCAG 2.2.2). */
+  animation: brand-dot-blink 1.2s steps(1, end) calc(var(--intro-delay, 0ms) + 900ms) 4 backwards;
+}
+
+/* Each cycle starts off, then on: with `backwards` the dot is off during the delay too. */
+@keyframes brand-dot-blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brandName::after {
+    animation: none;
+  }
+}
+
 /* Sections sit edge to edge, each with the same padding: 120 px top and bottom, 48 px at the sides. */
 .main {
   display: grid;
@@ -126,21 +184,44 @@
 /* Hero: a full-width band right under the header.
    It fills the first screen and leads with what the prototype adds: ZUS and city tickets. */
 .hero {
-  --header-height: calc(var(--target-min) + 2 * var(--space-4) + 1px);
   display: grid;
+  /* One centred column, 9 of 12 columns wide. */
+  grid-template-columns: minmax(0, calc(100% * 9 / 12));
+  justify-content: center;
   align-items: center;
+  align-content: center;
+  gap: var(--space-8);
   min-height: calc(100dvh - var(--header-height));
   /* 120 px like the other sections where the window is tall enough; less on short laptop screens, so the
      button and the disclaimer stay on the first screen. */
   padding: clamp(var(--space-7), 9vh, var(--space-9)) var(--space-8);
   border-bottom: 1px solid var(--border);
-  background: var(--accent-soft);
+  background-color: var(--surface); /* white in the light theme, under the grid */
+}
+
+/* Technical-drawing grid behind the hero and the prototype section: fine lines every 24 px, stronger
+   ones every 96 px. Ink colour at 2.5% and 5%, so it works in both themes. */
+.drawingGrid {
+  --grid-minor: color-mix(in srgb, var(--text) 2.5%, transparent);
+  --grid-major: color-mix(in srgb, var(--text) 5%, transparent);
+  background-image:
+    linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-minor) 1px, transparent 1px);
+  background-size:
+    96px 96px,
+    96px 96px,
+    24px 24px,
+    24px 24px;
+  background-position: center top;
 }
 
 .heroInner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
+  /* The text and the phone start at the same height. */
+  align-items: start;
   gap: clamp(var(--space-7), 5vw, 6rem);
   width: 100%;
 }
@@ -149,33 +230,23 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-5);
+  gap: var(--space-8);
+  /* The whole column next to the preview: the paragraph and the boxes take their width from it. */
+  justify-self: stretch;
+  min-width: 0;
 }
 
 .heroText p {
   margin: 0;
 }
 
-/* On the hero's tinted band the badge needs its own surface to read as a badge. */
-.hero .badge {
-  background: var(--surface);
-}
-
-/* The main button with the disclaimer beside it (below it when there is no room). */
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3) var(--space-5);
-}
-
-.heroActions > :last-child {
-  flex: 1 1 18rem;
-  max-width: 32rem;
-}
-
 .heroTitle {
   margin: 0;
+  /* Centred across the whole hero, like the button at the bottom. */
+  justify-self: center;
+  max-width: 100%;
+  padding-block: var(--space-7);
+  text-align: center;
   /* Larger than the type scale on purpose: the one headline of the page. */
   font-size: clamp(var(--font-3xl), 4.2vw, 4rem);
   font-weight: 800;
@@ -183,27 +254,50 @@
   letter-spacing: -0.03em;
 }
 
+/* The app name in the headline, in the accent colour. Plain text, not a logo. */
+.heroName {
+  color: var(--accent);
+}
+
+/* A dot after the name, like the one after our name in the header. Drawn, so screen readers skip it. */
+.heroName::after {
+  content: '';
+  display: inline-block;
+  width: 0.16em;
+  height: 0.16em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 .heroLead {
-  max-width: 40rem;
+  /* No width of its own (contain), so it wraps at the headline's width. */
+  contain: inline-size;
+  align-self: stretch;
   font-size: var(--font-xl);
   line-height: var(--line-height-body);
 }
 
 .highlights {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  /* One under the other, as wide as the headline. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
-  width: 100%;
+  align-self: stretch;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+/* Icon on the left, as tall as the title and the description together (square); both texts start at
+   the same line to its right. */
 .highlight {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2);
+  --title-line: calc(var(--font-xl) * var(--line-height-tight));
+  --body-line: calc(var(--font-md) * var(--line-height-body));
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-1) var(--space-4);
   padding: var(--space-5);
   border: 2px solid var(--border);
   border-radius: var(--radius-lg);
@@ -211,8 +305,11 @@
 }
 
 .highlightIcon {
-  box-sizing: content-box;
-  padding: var(--space-2);
+  grid-row: 1 / 3;
+  box-sizing: border-box;
+  width: calc(var(--title-line) + var(--space-1) + var(--body-line));
+  height: calc(var(--title-line) + var(--space-1) + var(--body-line));
+  padding: var(--space-3);
   border-radius: var(--radius-md);
   background: var(--accent);
   color: var(--accent-text);
@@ -224,18 +321,22 @@
 }
 
 .highlightTitle {
-  margin: var(--space-1) 0 0;
+  margin: 0;
   font-size: var(--font-xl);
+  line-height: var(--line-height-tight);
   font-weight: 800;
 }
 
 .highlightBody {
   margin: 0;
+  font-size: var(--font-md);
+  line-height: var(--line-height-body);
   color: var(--text-muted);
 }
 
 /* The main action: down to the working phone. */
 .heroCta {
+  justify-self: center; /* centred across the whole hero */
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
@@ -269,43 +370,55 @@
 /* App preview: the real app, scaled down in a plain bezel. */
 .preview {
   --preview-scale: 0.78;
+  --preview-bezel: var(--text);
   padding: var(--space-3);
   border-radius: 3rem;
-  background: var(--text);
+  background: var(--preview-bezel);
   box-shadow: 0 2rem 4rem -1.5rem color-mix(in srgb, var(--text) 45%, transparent);
-  transform: rotate(2deg);
 }
 
 :global(:root[data-theme='dark']) .preview {
-  background: var(--bg);
+  --preview-bezel: var(--bg);
   box-shadow: 0 0 0 2px var(--border-strong);
 }
 
 @media (prefers-color-scheme: dark) {
   :global(:root:not([data-theme='light'])) .preview {
-    background: var(--bg);
+    --preview-bezel: var(--bg);
     box-shadow: 0 0 0 2px var(--border-strong);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .preview {
-    transform: none;
-  }
-}
-
+/* Same space above the app as the working phone's status bar (3rem), so the app's header clears the
+   rounded corners. The camera island sits in it. */
 .previewScreen {
+  --preview-bar: 3rem;
+  position: relative;
+  box-sizing: border-box;
   width: calc(390px * var(--preview-scale));
   height: calc(844px * var(--preview-scale));
+  padding-top: calc(var(--preview-bar) * var(--preview-scale));
   overflow: hidden;
   border-radius: calc(3rem - var(--space-3));
   background: var(--bg);
 }
 
+.previewScreen::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-3) * var(--preview-scale));
+  left: 50%;
+  width: calc(6.5rem * var(--preview-scale));
+  height: calc(1.75rem * var(--preview-scale));
+  transform: translateX(-50%);
+  border-radius: var(--radius-pill);
+  background: var(--preview-bezel);
+}
+
 .previewApp {
   display: block;
   width: 390px;
-  height: 844px;
+  height: calc(844px - var(--preview-bar));
   border: 0;
   transform: scale(var(--preview-scale));
   transform-origin: 0 0;
@@ -324,23 +437,23 @@
 }
 
 /* Opens the category inside the phone (the link targets the phone's frame). */
-.highlightLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--target-min);
-  margin-top: auto;
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* Second section: only the working phone, centred. */
+/* Heading centred above the phone. */
 .prototype {
-  /* Anchors the hidden heading here, not to the page. */
-  position: relative;
   outline: none;
+  background-color: var(--bg);
   display: grid;
   justify-items: center;
+  /* Same space above the heading (section padding) as between it and the phone. */
+  gap: var(--space-9);
   padding: var(--space-9) var(--space-8);
+  text-align: center;
+}
+
+/* Big section heading (Prototyp, Sprawnie): twice the other titles, in the accent colour. Two classes, so it
+   wins over .title further down. */
+.title.sectionHeading {
+  color: var(--accent);
+  font-size: calc(2 * var(--font-3xl));
 }
 
 /* Phone: bezel in the ink colour (light theme), near-black with an outline in the dark theme. */
@@ -450,6 +563,14 @@
   outline: none;
 }
 
+/* Across both columns, centred, with the same 120 px below it as above (row gap + margin). */
+.title.panelHeading {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-bottom: calc(var(--space-9) - var(--space-6));
+  text-align: center;
+}
+
 .intro {
   position: sticky;
   /* Below the pinned header, with a gap. */
@@ -460,33 +581,8 @@
   gap: var(--space-4);
 }
 
-.challenge,
-.wide {
-  grid-column: 1 / -1;
-}
-
 .panel p {
   margin: 0;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-pill);
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: var(--font-xs);
-  font-weight: 700;
-}
-
-.badge::before {
-  content: '';
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: currentColor;
 }
 
 .title {
@@ -582,46 +678,11 @@
   color: var(--text);
 }
 
-/* Inverted card: ink background, page colour text. Works in both themes. */
-.challenge {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2);
-  width: 100%;
-  padding: var(--space-5);
-  border-radius: var(--radius-lg);
-  background: var(--text);
-  color: var(--bg);
-}
-
-.challengeEyebrow {
-  font-size: var(--font-xs);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.challengeTitle {
-  margin: 0;
-  font-size: var(--font-lg);
-}
-
-.challengeLink {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--target-min);
-  margin-top: var(--space-2);
-  padding: 0 var(--space-5);
-  border-radius: var(--radius-md);
-  background: var(--accent);
-  color: var(--accent-text);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.challengeLink:focus-visible {
-  outline-color: var(--bg);
+/* Footer: the unofficial-prototype notice, white like the header, with a line above. */
+.footer {
+  padding: var(--space-6) var(--space-8);
+  border-top: 1px solid var(--border);
+  background: var(--surface); /* white in the light theme */
 }
 
 /* Read by screen readers, not shown. */
@@ -632,4 +693,14 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* /prototype on a desktop: the phone mockup alone, centred, with the disclaimer under it. */
+.mockup {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: var(--space-6);
+  min-height: calc(100dvh - var(--header-height));
+  padding: var(--space-8);
 }

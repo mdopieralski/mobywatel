@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslations } from 'use-intl';
 
+import { PATHS } from '../../app/paths.ts';
 import { resetDemo } from '../../platform/demo-state.ts';
 import { updateSettings, useSettings, type ThemeChoice } from '../../platform/settings.ts';
 import styles from './settings-screen.module.css';
@@ -113,7 +114,7 @@ export function SettingsScreen() {
               onClick={async () => {
                 await resetDemo();
                 // Back to a fresh start screen; the layout moves focus to its heading.
-                void navigate('/', { state: { demoReset: true } });
+                void navigate(PATHS.start, { state: { demoReset: true } });
               }}
             >
               {t('reset.confirm')}

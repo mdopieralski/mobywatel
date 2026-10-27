@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 
 // After the first visit the prototype must work without network (pwa-platform skill).
 test('works offline after the first load, including deep links', async ({ page, context }) => {
-  await page.goto('/');
+  await page.goto('/prototype');
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
@@ -13,10 +13,10 @@ test('works offline after the first load, including deep links', async ({ page, 
   await context.setOffline(true);
   await page.reload();
   await expect(page.locator('[data-disclaimer]')).toBeVisible();
-  await page.goto('/ustawienia');
+  await page.goto('/prototype/ustawienia');
   await expect(page.getByRole('heading', { level: 1, name: 'Ustawienia' })).toBeVisible();
   // The city list for Bilet miejski loads on its own, never opened before: it is in the cache too.
-  await page.goto('/kategorie/podroz/bilet-miejski');
+  await page.goto('/prototype/kategorie/podroz/bilet-miejski');
   await page.getByRole('searchbox', { name: 'Nazwa miasta' }).fill('gdyn');
   await expect(page.getByRole('button', { name: /^Gdynia/ })).toBeVisible();
 });

@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
 
 // Team page: the brand voice guide rendered from docs/product/brand-voice.md.
 test.describe('brand voice page', () => {
@@ -23,6 +23,8 @@ test.describe('brand voice page', () => {
   });
 
   test('axe: no WCAG A/AA violations', async ({ page }) => {
+    // Never mid-intro: faded-in elements give false passes or contrast flakes.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/brand-voice');
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])

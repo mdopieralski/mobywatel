@@ -12,8 +12,69 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="%APP_NAME%" />
+    <!-- Boot loader: on screen from the first paint, gone after BOOT_LOADER in src/app/boot-loader.ts (pure CSS, so it can't get stuck).
+         Decorative only: hidden from screen readers and clicks pass through. Not shown inside the
+         desktop showcase's phone frames, which sit under the page's own loader. -->
+    <style>
+      #boot-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        display: grid;
+        place-items: center;
+        background: %LOADER_BG%;
+        pointer-events: none;
+        animation: boot-loader-out %LOADER_FADE% ease-out %LOADER_HOLD% forwards;
+      }
+      #boot-loader .ring {
+        box-sizing: border-box;
+        width: 92px;
+        height: 92px;
+        border: 3px solid %LOADER_TRACK%;
+        border-top-color: %THEME_COLOR%;
+        border-radius: 50%;
+        animation: boot-loader-spin 2000ms linear infinite;
+      }
+      @media (prefers-color-scheme: dark) {
+        #boot-loader {
+          background: %LOADER_BG_DARK%;
+        }
+        #boot-loader .ring {
+          border-color: %LOADER_TRACK_DARK%;
+          border-top-color: %THEME_COLOR%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot-loader {
+          animation-delay: 0s;
+          animation-duration: 1ms;
+        }
+        #boot-loader .ring {
+          animation: none;
+        }
+      }
+      html[data-embedded] #boot-loader {
+        display: none;
+      }
+      @keyframes boot-loader-spin {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      @keyframes boot-loader-out {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    </style>
+    <!-- A file, not inline: the production CSP allows only scripts from this site (vercel.json). -->
+    <script src="/boot.js"></script>
   </head>
   <body>
+    <div id="boot-loader" aria-hidden="true">
+      <div class="ring"></div>
+    </div>
     <div id="root"></div>
     <noscript>Ta aplikacja wymaga włączonego JavaScriptu.</noscript>
     <script type="module" src="/src/main.tsx"></script>

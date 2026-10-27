@@ -5,6 +5,9 @@ import { useTranslations } from 'use-intl';
 
 import { useAppLocale } from '../platform/i18n.ts';
 import { UpdatePrompt } from '../pwa/update-prompt.tsx';
+import { AppMark } from './app-mark.tsx';
+import { INTRO, introStyle, useIntroDelay } from './boot-loader.ts';
+import intro from './intro.module.css';
 import styles from './layout.module.css';
 import { PATHS } from './paths.ts';
 
@@ -51,6 +54,11 @@ export function Layout() {
     heading?.focus();
   }, [pathname]);
 
+  // Header entrance after the boot loader: name, then each shortcut in turn (INTRO).
+  const nameDelay = introStyle(useIntroDelay(INTRO.nameAt));
+  const navDelay = useIntroDelay(INTRO.navAt);
+  const revealAt = (index: number) => introStyle(navDelay + index * INTRO.navStepMs);
+
   const shortcutClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? `${styles.shortcut} ${styles.shortcutActive}` : styles.shortcut;
 
@@ -65,12 +73,19 @@ export function Layout() {
       <header className={styles.header}>
         {/* Home: our own icon and name (never official marks). */}
         <Link className={styles.home} to={PATHS.start}>
-          <img className={styles.logo} src="/icons/favicon.svg" alt="" width={40} height={40} />
-          <span className={styles.name}>{WORKING_NAME}</span>
+          <AppMark className={styles.logo} />
+          <span className={`${styles.name} ${intro.reveal}`} style={nameDelay}>
+            {WORKING_NAME}
+          </span>
         </Link>
         <nav className={styles.shortcuts} aria-label={t('header.actions')}>
-          {SHORTCUTS.map(({ to, label, icon }) => (
-            <NavLink key={to} to={to} className={shortcutClass}>
+          {SHORTCUTS.map(({ to, label, icon }, index) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={(state) => `${shortcutClass(state)} ${intro.reveal}`}
+              style={revealAt(index)}
+            >
               <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24">
                 {icon}
               </svg>
@@ -78,7 +93,11 @@ export function Layout() {
             </NavLink>
           ))}
           {/* Visible in every language, so the switch is findable without reading the UI. */}
-          <Link className={styles.language} to={PATHS.settings}>
+          <Link
+            className={`${styles.language} ${intro.reveal}`}
+            to={PATHS.settings}
+            style={revealAt(SHORTCUTS.length)}
+          >
             <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
               <circle cx="12" cy="12" r="9" />
               <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />

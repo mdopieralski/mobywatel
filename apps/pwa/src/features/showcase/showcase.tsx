@@ -3,15 +3,17 @@ import { Disclaimer } from '@mobywatel/ui';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'use-intl';
 
+import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
-import { reloadSettings, SETTINGS_KEY } from '../../platform/settings.ts';
+import { useFollowPhoneSettings } from './follow-phone-settings.ts';
+import { useSectionSnap } from './section-snap.ts';
+import { PhoneFrame } from './phone-frame.tsx';
 import { ShowcaseHero } from './showcase-hero.tsx';
-import { navigatePhone, onShowcaseRoute, PHONE_FRAME, TRY_ID } from './showcase-mode.ts';
+import { NEWS_ID, TRY_ID } from './showcase-mode.ts';
+import { SiteHeader } from './site-header.tsx';
+import './compact-font.css';
 import styles from './showcase.module.css';
 
-const CHALLENGE_URL = 'https://mobywatel.ai';
-/** Id of the third section (what is new): the header's "Nowości" link scrolls there. */
-const NEWS_ID = 'nowosci';
 /**
  * What is new compared with the reference prototype (docs/product/reference-analysis.md §5). Only claims
  * the app already keeps, each backed by a test: offline.spec, the axe runs, the i18n test, guardrails.
@@ -46,25 +48,17 @@ const NEW: { key: string; icon: ReactNode }[] = [
   { key: 'unofficial', icon: <path d="M3.5 12.5V4h8.5l8.5 8.5-8 8zM7.5 7.5h.01" /> },
 ];
 
-/** Desktop page: the app in a phone frame on the left, what this is and what to try on the right. */
+/**
+ * Desktop landing page ("/"): the hero, the working app in a phone mockup, then what is new. The phone
+ * opens /prototype; this page's address stays "/" (the app's own page with an address per screen is
+ * /prototype, see prototype-page.tsx).
+ */
 export function Showcase() {
   const t = useTranslations('showcase');
   const tCommon = useTranslations('common');
   const frame = useRef<HTMLIFrameElement>(null);
   const trySection = useRef<HTMLElement>(null);
   const newsSection = useRef<HTMLDivElement>(null);
-  // The frame opens the URL the visitor came in on, so deep links keep working.
-  const [src] = useState(() => window.location.pathname + window.location.search + window.location.hash);
-
-  useEffect(
-    () =>
-      onShowcaseRoute(
-        () => frame.current,
-        (path) => window.history.replaceState(null, '', path)
-      ),
-    []
-  );
-
   const locale = useAppLocale();
 
   // Bring a section into view and move focus there, so the next Tab continues from it.
@@ -103,21 +97,24 @@ export function Showcase() {
     return () => observer.disconnect();
   }, []);
 
-  const sectionLinks = [
-    { id: TRY_ID, label: t('nav.prototype'), section: trySection },
-    { id: NEWS_ID, label: t('nav.news'), section: newsSection },
-  ];
-
-  // Theme, senior mode or language changed inside the phone: follow it on this page too.
+  // Arriving with #nowosci (the link on /prototype): the page renders after load, so scroll here.
   useEffect(() => {
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === SETTINGS_KEY) {
-        reloadSettings();
-      }
-    };
-    window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
+    const target = document.getElementById(window.location.hash.slice(1));
+    if (target === trySection.current || target === newsSection.current) {
+      target?.scrollIntoView({ block: 'start' });
+    }
   }, []);
+
+  useFollowPhoneSettings();
+
+  // Scrolling settles on the nearest section (GSAP ScrollTrigger snap).
+  const main = useRef<HTMLElement>(null);
+  useSectionSnap(main, () => document.querySelector('header'));
+
+  const sectionLinks = [
+    { id: TRY_ID, label: t('nav.prototype') },
+    { id: NEWS_ID, label: t('nav.news') },
+  ];
 
   return (
     <div className={styles.page}>
@@ -125,68 +122,39 @@ export function Showcase() {
       <a className={styles.skip} href="#main">
         {tCommon('skipToContent')}
       </a>
-      <header className={styles.header}>
-        <a className={styles.home} href="/">
-          <img className={styles.logo} src="/icons/favicon.svg" alt="" width={40} height={40} />
-          <span className={styles.brandName}>{WORKING_NAME}</span>
-        </a>
-        <nav className={styles.sectionNav} aria-label={t('nav.label')}>
-          {sectionLinks.map(({ id, label, section }) => (
-            <a
-              key={id}
-              className={styles.sectionLink}
-              href={`#${id}`}
-              aria-current={current === id ? 'location' : undefined}
-              onClick={(event) => {
-                event.preventDefault();
-                goTo(section.current);
-              }}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-      </header>
-      <main id="main" tabIndex={-1} className={styles.main}>
-        <ShowcaseHero
-          onTry={goToPhone}
-          openInPhone={(path) => {
-            const moved = navigatePhone(frame.current, path);
-            if (moved) {
-              goToPhone();
-            }
-            return moved;
-          }}
-        />
-        {/* Second section: only the working prototype. Its heading is for screen readers (people moving by
-            headings land here); on screen the phone speaks for itself. */}
+      <SiteHeader
+        links={sectionLinks.map(({ id, label }) => ({
+          href: `#${id}`,
+          label,
+          current: current === id ? 'location' : undefined,
+          onClick: (event) => {
+            event.preventDefault();
+            goTo(document.getElementById(id));
+          },
+        }))}
+      />
+      <main id="main" ref={main} tabIndex={-1} className={styles.main}>
+        <ShowcaseHero onTry={goToPhone} />
+        {/* Second section: the working prototype under its heading. */}
         <section
           id={TRY_ID}
           ref={trySection}
           tabIndex={-1}
-          className={styles.prototype}
+          className={`${styles.prototype} ${styles.drawingGrid}`}
           aria-labelledby="showcase-prototype"
         >
-          <h2 id="showcase-prototype" className={styles.visuallyHidden}>
+          <h2 id="showcase-prototype" className={`${styles.title} ${styles.sectionHeading}`}>
             {t('nav.prototype')}
           </h2>
-          <div className={styles.device}>
-            <div className={styles.screen}>
-              <StatusBar />
-              <iframe
-                ref={frame}
-                name={PHONE_FRAME}
-                className={styles.app}
-                src={src}
-                title={t('phoneLabel', { name: WORKING_NAME })}
-              />
-              <div className={styles.homeBar} aria-hidden="true" />
-            </div>
-          </div>
+          <PhoneFrame ref={frame} src={PATHS.start} />
         </section>
 
         {/* Third section: what this is and what is new. */}
         <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>
+          {/* Our name as the section heading, like "Prototyp" above. A name, so the same in every language. */}
+          <h2 className={`${styles.title} ${styles.sectionHeading} ${styles.panelHeading}`}>
+            {WORKING_NAME}
+          </h2>
           <div className={styles.intro}>
             <h2 className={styles.title}>{TAGLINES[locale]}</h2>
             <p className={styles.lead}>{t('lead')}</p>
@@ -219,57 +187,12 @@ export function Showcase() {
               ))}
             </ul>
           </section>
-
-          <section className={styles.challenge} aria-labelledby="showcase-challenge">
-            <p className={styles.challengeEyebrow}>{t('challenge.eyebrow')}</p>
-            <h2 id="showcase-challenge" className={styles.challengeTitle}>
-              {t('challenge.title')}
-            </h2>
-            <p>{t('challenge.body')}</p>
-            <a className={styles.challengeLink} href={CHALLENGE_URL}>
-              {t('challenge.link')}
-            </a>
-          </section>
-
-          <div className={styles.wide}>
-            <Disclaimer variant="inline" locale={locale} />
-          </div>
         </div>
       </main>
-    </div>
-  );
-}
-
-function useClock(): string {
-  const locale = useAppLocale();
-  const [now, setNow] = useState(() => new Date());
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(new Date()), 15_000);
-    return () => window.clearInterval(id);
-  }, []);
-  return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(now);
-}
-
-/** Decorative phone status bar: hidden from screen readers. */
-function StatusBar() {
-  const time = useClock();
-  return (
-    <div className={styles.statusBar} aria-hidden="true">
-      <span>{time}</span>
-      <span className={styles.island} />
-      <span className={styles.icons}>
-        <svg viewBox="0 0 18 12" width="18" height="12">
-          <rect x="0" y="8" width="3" height="4" rx="1" />
-          <rect x="5" y="5" width="3" height="7" rx="1" />
-          <rect x="10" y="2.5" width="3" height="9.5" rx="1" />
-          <rect x="15" y="0" width="3" height="12" rx="1" />
-        </svg>
-        <svg viewBox="0 0 26 12" width="26" height="12">
-          <rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor" />
-          <rect x="2.5" y="2.5" width="16" height="7" rx="1.5" />
-          <rect x="23.5" y="4" width="2" height="4" rx="1" />
-        </svg>
-      </span>
+      {/* Footer: the unofficial-prototype notice (prototype-guardrails skill). */}
+      <footer className={styles.footer}>
+        <Disclaimer variant="inline" locale={locale} />
+      </footer>
     </div>
   );
 }

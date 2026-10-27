@@ -4,12 +4,11 @@
     "prototype": "Prototyp",
     "news": "Novinky"
   },
-  "badge": "Neoficiálny prototyp",
   "lead": "Klikateľný prototyp aplikácie na úradné veci. Vyskúšaj ho v telefóne vyššie. Tu píšeme, čo robíme inak.",
   "phoneLabel": "Aplikácia {name} na displeji telefónu",
   "hero": {
-    "title": "ZUS a mestské lístky v jednej aplikácii",
-    "lead": "Okrem úradných vecí tu bude aj ZUS (sociálne poistenie) a lístky na mestskú dopravu. Obe kategórie už sú na úvodnej obrazovke. Veci v nich práve pridávame.",
+    "title": "ZUS a mestské lístky v <name>mObywatel</name>",
+    "lead": "ZUS (sociálne poistenie) a lístky na mestskú dopravu v telefóne. To sú naše hlavné návrhy v súťaži mObywatel.ai challenge a mnoho ďalších.",
     "zus": {
       "title": "ZUS",
       "body": "Odvody, dôchodok a PN vedľa vašich ďalších vecí."
@@ -18,8 +17,7 @@
       "title": "Mestské lístky",
       "body": "Lístok na autobus a električku v každom meste, bez samostatnej aplikácie."
     },
-    "open": "Otvoriť {name} v telefóne",
-    "cta": "Vyskúšať prototyp"
+    "cta": "Pozrieť prototyp"
   },
   "newTitle": "Čo je v našej verzii nové",
   "tryLabel": "Vyskúšaj:",
@@ -69,11 +67,5 @@
       "body": "Vlastná ikona a farby, bez štátneho znaku a bez vzhľadu skutočných dokladov. Údaje sú vymyslené a každý doklad nesie značku „PROTOTYP – nie jest dokumentem”.",
       "try": "Otvor občiansky preukaz v kategórii Bezpečnosť."
     }
-  },
-  "challenge": {
-    "eyebrow": "Súťaž mobywatel.ai",
-    "title": "Náš príspevok do súťaže",
-    "body": "Súťaž hľadá jednoduchšiu aplikáciu na úradné veci. Autori 10 najlepších prototypov ich predstavia v poľskom Sejme.",
-    "link": "Pozrieť súťaž"
   }
 }

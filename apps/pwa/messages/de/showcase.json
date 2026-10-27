@@ -4,12 +4,11 @@
     "prototype": "Prototyp",
     "news": "Neuigkeiten"
   },
-  "badge": "Inoffizieller Prototyp",
   "lead": "Ein klickbarer Prototyp einer App für Behördengänge. Probier ihn im Handy oben aus. Hier steht, was wir anders machen.",
   "phoneLabel": "Die App {name} auf einem Handybildschirm",
   "hero": {
-    "title": "ZUS und Stadttickets in einer App",
-    "lead": "Neben Behördenangelegenheiten gibt es hier bald auch ZUS (Sozialversicherung) und Tickets für den Nahverkehr. Beide Kategorien sind schon auf dem Startbildschirm. Die Angelegenheiten darin fügen wir gerade hinzu.",
+    "title": "ZUS und Stadttickets in <name>mObywatel</name>",
+    "lead": "ZUS (Sozialversicherung) und Tickets für den Nahverkehr auf dem Handy. Das sind unsere wichtigsten Vorschläge in der mObywatel.ai challenge – und viele mehr.",
     "zus": {
       "title": "ZUS",
       "body": "Beiträge, Rente und Krankschreibungen neben deinen anderen Angelegenheiten."
@@ -18,8 +17,7 @@
       "title": "Stadttickets",
       "body": "Ein Bus- und Straßenbahnticket in jeder Stadt, ohne eigene App."
     },
-    "open": "{name} im Telefon öffnen",
-    "cta": "Prototyp ausprobieren"
+    "cta": "Prototyp ansehen"
   },
   "newTitle": "Was in unserer Version neu ist",
   "tryLabel": "Probier es aus:",
@@ -69,11 +67,5 @@
       "body": "Eigenes Symbol und eigene Farben, kein Staatswappen und keine echten Dokumentvorlagen. Die Daten sind erfunden, und jedes Dokument trägt den Vermerk „PROTOTYP – nie jest dokumentem”.",
       "try": "Öffne den Ausweis in der Kategorie Sicherheit."
     }
-  },
-  "challenge": {
-    "eyebrow": "Wettbewerb mobywatel.ai",
-    "title": "Unser Beitrag zum Wettbewerb",
-    "body": "Der Wettbewerb sucht eine einfachere App für Behördensachen. Die Teams der 10 besten Prototypen stellen sie im polnischen Sejm vor.",
-    "link": "Zum Wettbewerb"
   }
 }

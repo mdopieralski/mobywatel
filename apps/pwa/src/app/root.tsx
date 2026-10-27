@@ -1,31 +1,32 @@
 import { lazy, Suspense } from 'react';
 import { IntlProvider } from 'use-intl';
 
-import { useShowcaseMode } from '../features/showcase/showcase-mode.ts';
+import { usePageKind } from '../features/showcase/showcase-mode.ts';
 import { MESSAGES, TIME_ZONE } from '../platform/i18n.ts';
 import { useSettings } from '../platform/settings.ts';
 import { App } from './app.tsx';
-import { PATHS } from './router.tsx';
 
-// Desktop-only page, so phones never download it.
+// Desktop-only pages, so phones and tablets never download them.
 const Showcase = lazy(() =>
   import('../features/showcase/showcase.tsx').then((m) => ({ default: m.Showcase }))
 );
+const PrototypePage = lazy(() =>
+  import('../features/showcase/prototype-page.tsx').then((m) => ({ default: m.PrototypePage }))
+);
 
-// Pages that stay full width on a desktop instead of going into the phone frame.
-const FULL_PAGE_PATHS = [PATHS.brandVoice];
-
-/** Wide screen: the showcase page with the app in a phone frame. Otherwise: the app. */
+/**
+ * Desktop: "/" is the landing page, /prototype/* the app in a phone mockup. Phones, tablets, the installed
+ * app and the framed copy inside the mockup: the app itself.
+ */
 export function Root() {
   const { locale } = useSettings();
-  if (!useShowcaseMode(FULL_PAGE_PATHS)) {
+  const kind = usePageKind();
+  if (kind === 'app') {
     return <App />;
   }
   return (
     <IntlProvider locale={locale} messages={MESSAGES[locale]} timeZone={TIME_ZONE}>
-      <Suspense fallback={null}>
-        <Showcase />
-      </Suspense>
+      <Suspense fallback={null}>{kind === 'landing' ? <Showcase /> : <PrototypePage />}</Suspense>
     </IntlProvider>
   );
 }
