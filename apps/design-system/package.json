@@ -1,0 +1,30 @@
+{
+  "name": "@mobywatel/design-system",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev --port 6006 --no-open --ci",
+    "serve": "storybook dev --port 6006 --no-open --ci",
+    "build": "storybook build --output-dir storybook-static",
+    "typecheck": "tsc --noEmit -p .",
+    "lint": "oxlint src .storybook"
+  },
+  "dependencies": {
+    "@mobywatel/brand": "workspace:*",
+    "@mobywatel/ui": "workspace:*",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "10.6.3",
+    "@storybook/addon-docs": "10.6.3",
+    "@storybook/react-vite": "10.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "oxlint": "^1.89.0",
+    "storybook": "10.6.3",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.5"
+  }
+}

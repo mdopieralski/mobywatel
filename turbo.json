@@ -1,10 +1,19 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "tasks": {
-    "build": { "dependsOn": ["^build"], "outputs": ["dist/**"] },
+    "build": { "dependsOn": ["^build"], "outputs": ["dist/**", "storybook-static/**"] },
     "typecheck": { "dependsOn": ["^build"] },
     "lint": {},
     "test:unit": { "dependsOn": ["^build"] },
-    "dev": { "cache": false, "persistent": true }
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["PORTLESS", "PORTLESS_*", "DESIGN_SYSTEM_PORT"]
+    },
+    "serve": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["PORTLESS", "PORTLESS_*", "DESIGN_SYSTEM_PORT"]
+    }
   }
 }
