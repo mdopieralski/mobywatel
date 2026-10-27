@@ -1,12 +1,10 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-// A juror on a laptop: the start URL shows the app in a phone frame next to an explanation.
-test.use({ viewport: { width: 1440, height: 900 }, isMobile: false, hasTouch: false });
+// A juror on a laptop: the start URL shows the app in a phone frame next to an explanation. Runs in the
+// desktop-chrome and desktop-safari projects (playwright.config.ts).
 
 test.describe('desktop showcase', () => {
-  test.skip(({ browserName }) => browserName !== 'chromium', 'one desktop run is enough');
-
   test('shows the app in a phone frame, the disclaimer and the address bar follows the app', async ({
     page,
   }) => {
@@ -79,10 +77,11 @@ test.describe('desktop showcase', () => {
     await expect(page.locator('iframe')).toHaveCount(2);
   });
 
-  test('skip link jumps past the header, and focus never hides under it', async ({ page }) => {
+  test('skip link jumps past the header, and focus never hides under it', async ({ page, browserName }) => {
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    await page.keyboard.press('Tab');
+    // Safari on a Mac moves to links with Option+Tab (plain Tab only visits form fields by default).
+    await page.keyboard.press(browserName === 'webkit' ? 'Alt+Tab' : 'Tab');
     const skip = page.getByRole('link', { name: 'Przejdź do treści' });
     await expect(skip).toBeFocused();
     await expect(skip).toBeInViewport();
@@ -94,6 +93,13 @@ test.describe('desktop showcase', () => {
     const header = await page.locator('header').first().boundingBox();
     const box = await link.boundingBox();
     expect(box?.y ?? 0).toBeGreaterThanOrEqual((header?.y ?? 0) + (header?.height ?? 0));
+  });
+
+  test('the phone section has a heading, so moving by headings finds it', async ({ page }) => {
+    await page.goto('/');
+    const section = page.getByRole('region', { name: 'Prototyp' });
+    await expect(section.getByRole('heading', { level: 2, name: 'Prototyp' })).toBeAttached();
+    await expect(section.locator('iframe[name="phone"]')).toBeAttached();
   });
 
   test('a deep link opens that screen inside the phone', async ({ page }) => {
