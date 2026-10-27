@@ -31,7 +31,8 @@ visual taste the `frontend-design` and `ui-ux-pro-max` skills help, but this ski
 - **Type scale:** `--font-xs … --font-3xl`, with a **senior scale** that raises the base to ≥ 20 px and every
   step proportionally. Line height ≥ 1.5 for body. One UI typeface with good Polish diacritics (ą ę ł ń ó ś ź
   ż) and tabular numbers; self-hosted, with no font CDN.
-- **Spacing:** 4-px grid (`--space-1 … --space-8`). **Targets:** `--target-min` 48 px (56 px in senior).
+- **Spacing:** 4-px grid (`--space-1 … --space-9`; `--space-9` is 120 px, for page sections). **Targets:**
+  `--target-min` 48 px (56 px in senior).
 - **Radii, elevation, motion:** `--radius-*`, `--shadow-*`, `--duration-*` and `--easing-*`. All motion is
   zero under `prefers-reduced-motion`.
 

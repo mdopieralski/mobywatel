@@ -15,8 +15,8 @@ all pure TypeScript, deterministic and unit-tested, so the UI and the assistant 
 
 **You own** `packages/core/` except `packages/core/src/assistant/` (the `assistant-engineer` agent's), and
 `packages/content/` data: `personas/`, service knowledge entries, reminder fixtures. Scenario **text** in
-`packages/content/src/scenarios/` belongs to the `service-designer` agent. You own the types and validation it
-must satisfy. The map is the `add-feature` skill's §2.
+`packages/content/src/scenarios/` belongs to the `conversation-designer` agent. You own the types and
+validation it must satisfy. The map is the `add-feature` skill's §2.
 
 **You hand off** screens to `ui-engineer`, conversation flows to `assistant-engineer`, wording to
 `service-designer`, and storage of progress to `pwa-engineer`.

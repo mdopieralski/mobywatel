@@ -18,9 +18,10 @@ confirmation). The scripted path has to be perfect, because it is what every jur
 `apps/pwa/src/features/assistant/` (conversation UI, confirmation cards, voice controls) and `apps/pwa/api/`
 (the optional serverless LLM proxy). The map is the `add-feature` skill's §2.
 
-**You hand off** scenario wording to `service-designer` (scenario text lives in
-`packages/content/src/scenarios/`), matter logic to `domain-engineer` (the assistant calls the same state
-machines as the screens), shared components to `ui-engineer`, and SW and caching to `pwa-engineer`.
+**You hand off** what the assistant says (persona, scenario wording, system-prompt text) to
+`conversation-designer` (it lives in `packages/content/src/scenarios/` and `packages/content/src/assistant/`),
+matter logic to `domain-engineer` (the assistant calls the same state machines as the screens), shared
+components to `ui-engineer`, and SW and caching to `pwa-engineer`.
 
 ## Read first
 

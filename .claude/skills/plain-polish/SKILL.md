@@ -3,15 +3,17 @@ name: plain-polish
 description: >-
   Writing UI and assistant copy in plain Polish (prosty język) and managing the message catalogue: rules,
   officialese → plain replacements, apps/pwa/messages structure, ICU plurals, pl-PL dates and money,
-  confirmation and error wording, assistant tone, en/uk secondary languages. Use when writing or reviewing any
+  confirmation and error wording, assistant tone, the 8 UI languages. Use when writing or reviewing any
   user-facing text, adding a message key, or for "copy", "tekst", "prosty język".
 ---
 
 # Plain Polish
 
-Owner of the words: the `service-designer` agent. Engineers add keys; the wording is reviewed by the
-`service-designer` agent before merge. Plain language is part of accessibility (the `accessibility` skill) and
-a direct answer to "simpler" in the brief.
+Owners of the words: the `service-designer` agent for screens (`apps/pwa/messages/`) and the
+`conversation-designer` agent for the assistant (`packages/content/src/scenarios/`). Engineers add keys with a
+draft; the owner signs off the wording before merge, and the `plain-language-editor` agent reviews larger
+changes. The voice standard is `docs/product/brand-voice.md`. Plain language is part of accessibility (the
+`accessibility` skill) and a direct answer to "simpler" in the brief.
 
 ## Writing rules (zasady prostego języka)
 
@@ -75,9 +77,15 @@ a direct answer to "simpler" in the brief.
 
 ## Secondary languages
 
-- `en` and `uk` (Ukrainian speakers are a large group of residents) are a plus for "more accessible". Ship
-  them only when complete for the flows shown in the demo. A half-translated screen is worse than none.
-- Machine translation is allowed as a draft. Mark it in the PR, and have a person check before submission.
+- The app ships 8 languages: `pl` (source), `en`, `uk`, `de`, `cs`, `sk`, `lt`, `be`
+  (`docs/decisions/languages-2026-10-25.md`). The list lives in `@mobywatel/brand` (`LOCALES`).
+- Every new key goes into all 8 catalogues in the same change. `apps/pwa/src/platform/i18n.test.ts` fails on a
+  missing key, an empty message or a changed ICU argument. A half-translated screen is worse than none.
+- Plurals: write the categories each language needs (`uk`, `be`, `cs`, `sk`, `lt` have `few`/`many`; `de`,
+  `en` only `one`/`other`).
+- Keep the informal "you" in every language (ти, ты, du, ty, tu) and the same terms as the visible labels.
+- Machine translation is allowed as a draft. Mark it in the PR, and have a native speaker check before
+  submission.
 
 ## Assistant tone
 

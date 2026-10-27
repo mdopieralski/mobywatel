@@ -7,7 +7,8 @@ description: >-
   product-manager`.
 tools: >-
   Read, Grep, Glob, Bash, Write, Edit, WebSearch, WebFetch, Skill, AskUserQuestion, Agent(pwa-architect,
-  service-designer, brand-designer, qa-engineer, accessibility-auditor)
+  service-designer, conversation-designer, brand-designer, plain-language-editor, qa-engineer,
+  accessibility-auditor)
 model: opus
 color: purple
 memory: project

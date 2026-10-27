@@ -39,19 +39,25 @@ its own code.
 | `apps/pwa/src/{app,pwa,platform}/`, `apps/pwa/vite.config.ts`, `apps/pwa/index.html`, `apps/pwa/public/` (except `icons/`), `apps/pwa/vercel.json`, app `package.json`           | `pwa-engineer`                              | pwa-platform, scaffold-app                |
 | `packages/ui/`, `apps/pwa/src/features/*` (except `assistant/`)                                                                                                                  | `ui-engineer`                               | design-system, accessibility              |
 | `packages/brand/`, `apps/pwa/public/icons/`                                                                                                                                      | `brand-designer`                            | design-system, prototype-guardrails       |
-| `docs/services/`, `apps/pwa/messages/` (wording), `packages/content/src/scenarios/` (text)                                                                                       | `service-designer`                          | service-journeys, plain-polish            |
+| `docs/services/`, `apps/pwa/messages/` (wording), voice sections of `docs/product/brand-voice.md`                                                                                | `service-designer`                          | service-journeys, plain-polish            |
+| `packages/content/src/scenarios/` (text), `packages/content/src/assistant/` (persona, prompt text)                                                                               | `conversation-designer`                     | ai-assistant, plain-polish                |
 | `docs/product/`                                                                                                                                                                  | `product-manager`                           | product-knowledge, competition-submission |
 | `apps/pwa/e2e/`, `docs/quality/`                                                                                                                                                 | `qa-engineer`                               | verify-change, accessibility              |
 | `.claude/`, `tools/`, `.github/`, `.husky/`, root configs (`package.json`, `turbo.json`, `pnpm-workspace.yaml`, `.prettierrc.json`, `commitlint.config.mjs`), `packages/config/` | `harness-engineer`                          | ai-harness                                |
 | `docs/decisions/`                                                                                                                                                                | the owner of the area the decision is about |                                           |
 
-Read-only roles: the `pwa-architect` agent (plans), the `code-reviewer` agent (diff review) and the
-`accessibility-auditor` agent (a11y audits). They report and never fix.
+Read-only roles: the `pwa-architect` agent (plans), the `code-reviewer` agent (diff review), the
+`accessibility-auditor` agent (a11y audits) and the `plain-language-editor` agent (copy review). They report
+and never fix.
 
 Shared seams:
 
 - **Scenario files** in `packages/content/src/scenarios/`: structure and machine wiring belong to the
-  `domain-engineer` agent, and the words to the `service-designer` agent. Agree on the turn format first.
+  `domain-engineer` agent, and the words to the `conversation-designer` agent. Agree on the turn format first.
+- **`docs/product/brand-voice.md`** is shared by section: values with the `product-manager` agent, voice, tone
+  and word list with the `service-designer` agent, the assistant section with the `conversation-designer`
+  agent. `docs/product/visual-identity.md` belongs to the `brand-designer` agent. Each edits only its own
+  part.
 - **Message keys:** engineers add keys with a draft Polish text. The `service-designer` agent owns the final
   wording.
 - **Integration** (commit, PR) is done by the main session (the `ship-branch` skill); the user merges.
@@ -72,7 +78,8 @@ screenshots you actually look at, the Playwright flow with axe, and senior mode 
 
 - The `code-reviewer` agent on the diff. Fix **blocking** findings and re-run the checks.
 - UI changes: the `accessibility-auditor` agent too.
-- New copy: the `service-designer` agent signs off the wording.
+- New copy: the owner signs off the wording (`service-designer` for screens, `conversation-designer` for the
+  assistant), and the `plain-language-editor` agent reviews it against `docs/product/brand-voice.md`.
 
 ## 5. Close out
 

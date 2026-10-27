@@ -28,8 +28,9 @@ logo or marks.
 - **Accessible by default.** WCAG 2.2 AA as the floor. Large-text / senior mode, screen readers, keyboard, 48
   px targets, `prefers-reduced-motion`. Accessibility is one of the judging angles, not polish
   (`accessibility` skill).
-- **Plain Polish.** Polish is the source language. Short sentences, no officialese, one action per screen, and
-  the assistant asks for confirmation before anything is "sent" (`plain-polish` skill).
+- **Plain Polish.** Polish is the source language; the UI also ships in 7 more languages, always complete
+  (`docs/decisions/languages-2026-10-25.md`). Short sentences, no officialese, one action per screen, and the
+  assistant asks for confirmation before anything is "sent" (`plain-polish` skill).
 - **Assistant without a backend by default.** Scripted scenarios run fully in the browser (like the
   reference's web version). A live LLM (OpenAI-compatible, so Bielik or PLLuM can plug in) is an optional
   layer behind a server-side proxy. API keys never reach the client (`ai-assistant` skill).
@@ -67,9 +68,10 @@ apps/pwa/                 @mobywatel/pwa: the PWA
   src/pwa/                SW registration, update prompt, install prompt
   src/platform/           storage (IndexedDB), i18n runtime, settings (senior mode, text size)
   src/features/<area>/    home, documents, matters/<matter>, assistant, reminders, privacy, settings
-  messages/pl/*.json      UI copy (Polish source); en/, uk/ follow
+  messages/<locale>/*.json  UI copy: pl (source) + en uk de cs sk lt be, all complete
   e2e/                    Playwright flows (phone viewports, axe)
   api/                    optional serverless LLM proxy (keys server-side only)
+apps/design-system/       @mobywatel/design-system: Storybook for @mobywatel/ui (stories in src/)
 packages/core/            @mobywatel/core: domain, no React
 packages/content/         @mobywatel/content: fictional personas + scenario scripts
 packages/brand/           @mobywatel/brand: tokens, copy, UNOFFICIAL_DISCLAIMER
@@ -85,20 +87,22 @@ tools/                    harness + audits (node --test)
 
 The ownership map with paths is in the `add-feature` skill (§2). In short:
 
-| Agent                   | Owns                                                                           |
-| ----------------------- | ------------------------------------------------------------------------------ |
-| `product-manager`       | concept, competition strategy, pitch and submission text (`docs/product/`)     |
-| `service-designer`      | matter journeys (`docs/services/`), Polish copy (`messages/`), scenario text   |
-| `brand-designer`        | `packages/brand`, name, icons, visual identity without official marks          |
-| `pwa-architect`         | plans only (read-only)                                                         |
-| `pwa-engineer`          | `apps/pwa` shell, router, `src/pwa/`, `src/platform/`, Vite/PWA config, deploy |
-| `ui-engineer`           | `packages/ui`, feature screens in `apps/pwa/src/features/` (not assistant)     |
-| `domain-engineer`       | `packages/core` (not assistant), `packages/content` data                       |
-| `assistant-engineer`    | assistant engine, `features/assistant`, voice, `apps/pwa/api/` LLM proxy       |
-| `accessibility-auditor` | audits and reports (read-only on code)                                         |
-| `qa-engineer`           | `apps/pwa/e2e/`, `docs/quality/`, acceptance runs                              |
-| `code-reviewer`         | reviews diffs (read-only)                                                      |
-| `harness-engineer`      | `.claude/`, `tools/`, CI, root configs                                         |
+| Agent                   | Owns                                                                              |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| `product-manager`       | concept, competition strategy, pitch and submission text (`docs/product/`)        |
+| `service-designer`      | matter journeys (`docs/services/`), Polish copy (`messages/`), voice and tone     |
+| `conversation-designer` | assistant persona and dialogue, scenario text (`packages/content/src/scenarios/`) |
+| `brand-designer`        | `packages/brand`, name, icons, visual identity without official marks             |
+| `pwa-architect`         | plans only (read-only)                                                            |
+| `pwa-engineer`          | `apps/pwa` shell, router, `src/pwa/`, `src/platform/`, Vite/PWA config, deploy    |
+| `ui-engineer`           | `packages/ui`, feature screens in `apps/pwa/src/features/` (not assistant)        |
+| `domain-engineer`       | `packages/core` (not assistant), `packages/content` data                          |
+| `assistant-engineer`    | assistant engine, `features/assistant`, voice, `apps/pwa/api/` LLM proxy          |
+| `accessibility-auditor` | audits and reports (read-only on code)                                            |
+| `plain-language-editor` | plain-Polish review of all user-facing text (read-only)                           |
+| `qa-engineer`           | `apps/pwa/e2e/`, `docs/quality/`, acceptance runs                                 |
+| `code-reviewer`         | reviews diffs (read-only)                                                         |
+| `harness-engineer`      | `.claude/`, `tools/`, CI, root configs                                            |
 
 Workflow: `add-feature` (plan → build → verify → review), `verify-change` (which checks prove what),
 `ship-branch` (commit, PR), `competition-submission` (deploy, final checklist).
@@ -107,8 +111,10 @@ Workflow: `add-feature` (plan → build → verify → review), `verify-change` 
 
 ```bash
 pnpm install
-pnpm dev                     # PWA dev server (no service worker in dev)
-pnpm run build && pnpm preview   # the real PWA: service worker, offline, install
+pnpm dev                     # https://mobywatel.local (PWA dev, no SW) + /design-system (Storybook)
+pnpm run build && pnpm preview   # same URLs, the real PWA: service worker, offline, install
+PORTLESS=0 pnpm dev          # without portless: plain Vite on localhost
+pnpm run dev:design-system   # Storybook alone on http://127.0.0.1:6006
 pnpm run typecheck           # tsc in every workspace (turbo)
 pnpm test                    # unit tests (turbo) + tool tests
 pnpm run test:e2e            # Playwright flows on phone viewports

@@ -25,7 +25,6 @@ export function auditHarness(root) {
   // Skills provided by the user's global or plugin setup, allowed to be referenced but not present here.
   const externalSkills = new Set([
     'frontend-design',
-    'ui-ux-pro-max',
     'web-vitals-a11y-audit',
     'data-privacy-reviewer',
     'skill-creator',

@@ -2,3 +2,7 @@ pnpm-lock.yaml
 dist
 dev-dist
 .turbo
+
+# Vendored third-party skills: keep upstream formatting (see each SOURCE.md)
+.claude/skills/ui-ux-pro-max
+.claude/skills/gsap-*

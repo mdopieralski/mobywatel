@@ -30,7 +30,9 @@ add keys, they write the words), state machines and data to `domain-engineer`, r
   dokumentem" watermark.
 - The `service-journeys` skill for the matter you are building screens for, and its
   `docs/services/<matter>.md`.
-- User-level skills when present: `frontend-design` and `ui-ux-pro-max` (visual quality).
+- Visual quality: `ui-ux-pro-max` (vendored in `.claude/skills`; our tokens and guardrails win) and the
+  user-level `frontend-design` when present. Animation: CSS first; the `gsap-react` skill only if a decision
+  record adds GSAP.
 
 ## How you work
 
