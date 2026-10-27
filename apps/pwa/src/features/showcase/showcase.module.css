@@ -1,0 +1,623 @@
+/* Desktop showcase. Everything from tokens; the phone is our own neutral drawing, no real device art. */
+.page {
+  min-height: 100dvh;
+  display: grid;
+  align-content: start;
+  background: var(--bg);
+}
+
+/* Anything scrolled to (a section, a focused link) stops below the pinned header, never under it
+   (WCAG 2.4.11 Focus Not Obscured). The header is one 48 px row plus padding and its border. */
+:global(html):has(.page) {
+  scroll-padding-top: calc(var(--target-min) + 2 * var(--space-4) + 1px);
+}
+
+/* Section links and anchors glide to their section, unless the visitor asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html):has(.page) {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Skip link: hidden until focused, then above the header. */
+.skip {
+  position: absolute;
+  top: -100px;
+  left: var(--space-8);
+  z-index: 2;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.skip:focus {
+  top: var(--space-2);
+}
+
+.main:focus {
+  outline: none;
+}
+
+/* Page header: our icon and name on the left, links to the page's sections on the right. Full width,
+   48 px in from each side. Pinned to the top while the page scrolls. */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* Links to the page's sections. Pulled out by their padding, so the text lines up 48 px in. */
+.sectionNav {
+  display: flex;
+  gap: var(--space-2);
+  margin-right: calc(-1 * var(--space-4));
+}
+
+.sectionLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  font-size: var(--font-sm);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* The section on screen: accent colour and a bar under the text, so it isn't colour alone. */
+.sectionLink[aria-current] {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.5em;
+}
+
+.sectionLink:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.sectionLink:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.home {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--target-min);
+  color: var(--text);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+}
+
+.logo {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 22%; /* same rounding as the icon's tile */
+}
+
+.brandName {
+  font-size: var(--font-xl);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Sections sit edge to edge, each with the same padding: 120 px top and bottom, 48 px at the sides. */
+.main {
+  display: grid;
+}
+
+/* Hero: a full-width band right under the header.
+   It fills the first screen and leads with what the prototype adds: ZUS and city tickets. */
+.hero {
+  --header-height: calc(var(--target-min) + 2 * var(--space-4) + 1px);
+  display: grid;
+  align-items: center;
+  min-height: calc(100dvh - var(--header-height));
+  /* 120 px like the other sections where the window is tall enough; less on short laptop screens, so the
+     button and the disclaimer stay on the first screen. */
+  padding: clamp(var(--space-7), 9vh, var(--space-9)) var(--space-8);
+  border-bottom: 1px solid var(--border);
+  background: var(--accent-soft);
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(var(--space-7), 5vw, 6rem);
+  width: 100%;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.heroText p {
+  margin: 0;
+}
+
+/* On the hero's tinted band the badge needs its own surface to read as a badge. */
+.hero .badge {
+  background: var(--surface);
+}
+
+/* The main button with the disclaimer beside it (below it when there is no room). */
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+}
+
+.heroActions > :last-child {
+  flex: 1 1 18rem;
+  max-width: 32rem;
+}
+
+.heroTitle {
+  margin: 0;
+  /* Larger than the type scale on purpose: the one headline of the page. */
+  font-size: clamp(var(--font-3xl), 4.2vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.heroLead {
+  max-width: 40rem;
+  font-size: var(--font-xl);
+  line-height: var(--line-height-body);
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-4);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.highlightIcon {
+  box-sizing: content-box;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--accent-text);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.highlightTitle {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-xl);
+  font-weight: 800;
+}
+
+.highlightBody {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* The main action: down to the working phone. */
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: calc(var(--target-min) + var(--space-3));
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: var(--font-lg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.heroCta svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.heroCta:hover {
+  background: color-mix(in srgb, var(--accent) 88%, var(--text));
+}
+
+.heroCta:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* App preview: the real app, scaled down in a plain bezel. */
+.preview {
+  --preview-scale: 0.78;
+  padding: var(--space-3);
+  border-radius: 3rem;
+  background: var(--text);
+  box-shadow: 0 2rem 4rem -1.5rem color-mix(in srgb, var(--text) 45%, transparent);
+  transform: rotate(2deg);
+}
+
+:global(:root[data-theme='dark']) .preview {
+  background: var(--bg);
+  box-shadow: 0 0 0 2px var(--border-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .preview {
+    background: var(--bg);
+    box-shadow: 0 0 0 2px var(--border-strong);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview {
+    transform: none;
+  }
+}
+
+.previewScreen {
+  width: calc(390px * var(--preview-scale));
+  height: calc(844px * var(--preview-scale));
+  overflow: hidden;
+  border-radius: calc(3rem - var(--space-3));
+  background: var(--bg);
+}
+
+.previewApp {
+  display: block;
+  width: 390px;
+  height: 844px;
+  border: 0;
+  transform: scale(var(--preview-scale));
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+/* Narrow desktop windows: drop the preview, the working phone is right below. */
+@media (max-width: 72rem) {
+  .heroInner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .preview {
+    display: none;
+  }
+}
+
+/* Opens the category inside the phone (the link targets the phone's frame). */
+.highlightLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  margin-top: auto;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Second section: only the working phone, centred. */
+.prototype {
+  outline: none;
+  display: grid;
+  justify-items: center;
+  padding: var(--space-9) var(--space-8);
+}
+
+/* Phone: bezel in the ink colour (light theme), near-black with an outline in the dark theme. */
+.device {
+  --device-color: var(--text);
+  /* The screen inside is a fixed 390×844 (iPhone 13–16); the bezel adds the padding. */
+  padding: var(--space-3);
+  border-radius: 3.5rem;
+  background: var(--device-color);
+  box-shadow:
+    0 0 0 2px var(--border),
+    0 2rem 4rem -1.5rem color-mix(in srgb, var(--text) 40%, transparent);
+}
+
+:global(:root[data-theme='dark']) .device {
+  --device-color: var(--bg);
+  box-shadow: 0 0 0 2px var(--border-strong);
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .device {
+    --device-color: var(--bg);
+    box-shadow: 0 0 0 2px var(--border-strong);
+  }
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  height: 844px;
+  overflow: hidden;
+  border-radius: calc(3.5rem - var(--space-3));
+  background: var(--bg);
+}
+
+.statusBar {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  padding: 0 var(--space-7);
+  color: var(--text);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.island {
+  position: absolute;
+  top: var(--space-3);
+  left: 50%;
+  width: 6.5rem;
+  height: 1.75rem;
+  transform: translateX(-50%);
+  border-radius: var(--radius-pill);
+  background: var(--device-color);
+}
+
+.icons {
+  display: flex;
+  gap: var(--space-2);
+  fill: currentColor;
+}
+
+.app {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  display: block;
+}
+
+.homeBar {
+  flex-shrink: 0;
+  position: relative;
+  height: 1.5rem;
+  background: var(--surface);
+}
+
+.homeBar::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-2);
+  width: 8rem;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: var(--radius-pill);
+  background: var(--text);
+}
+
+/* Panel */
+/* Third section: heading and description on the left (they stay in view), the full list of what is new
+   on the right, one card per row; the competition card and the disclaimer span both. Full width with 48 px in, like the
+   hero. */
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  column-gap: clamp(var(--space-7), 5vw, 6rem);
+  row-gap: var(--space-6);
+  padding: var(--space-9) var(--space-8);
+  border-top: 1px solid var(--border);
+  outline: none;
+}
+
+.intro {
+  position: sticky;
+  /* Below the pinned header, with a gap. */
+  top: calc(var(--target-min) + 2 * var(--space-4) + 1px + var(--space-6));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.challenge,
+.wide {
+  grid-column: 1 / -1;
+}
+
+.panel p {
+  margin: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: var(--font-xs);
+  font-weight: 700;
+}
+
+.badge::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--font-3xl);
+  line-height: var(--line-height-tight);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  color: var(--text-muted);
+  font-size: var(--font-lg);
+}
+
+/* Narrow desktop windows: one column, the list under the heading. */
+@media (max-width: 72rem) {
+  .panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .intro {
+    position: static;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.news {
+  width: 100%;
+}
+
+/* What is new: icon tile, title, one or two sentences and what to tap in the phone. */
+.features {
+  display: grid;
+  /* One card per row. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.featureIcon {
+  box-sizing: content-box;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  color: var(--accent);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--text-muted);
+}
+
+.featureTitle {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--font-md);
+}
+
+.featureTry {
+  margin-top: var(--space-1);
+  font-size: var(--font-sm);
+}
+
+.featureTry strong {
+  color: var(--text);
+}
+
+/* Inverted card: ink background, page colour text. Works in both themes. */
+.challenge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.challengeEyebrow {
+  font-size: var(--font-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.challengeTitle {
+  margin: 0;
+  font-size: var(--font-lg);
+}
+
+.challengeLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  margin-top: var(--space-2);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.challengeLink:focus-visible {
+  outline-color: var(--bg);
+}
