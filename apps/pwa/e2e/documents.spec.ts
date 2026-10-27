@@ -53,6 +53,17 @@ test.describe('categories and documents', () => {
     await expect(page.getByRole('heading', { level: 1, name: 'mStłuczka' })).toBeFocused();
   });
 
+  test('ZUS lists its 5 matters in order', async ({ page }) => {
+    await page.goto('/kategorie/zus');
+    await expect(page.getByRole('navigation', { name: 'Co możesz załatwić' }).getByRole('link')).toHaveText([
+      'Składki',
+      'Emerytura',
+      'Zwolnienie lekarskie',
+      '800 plus',
+      'Wizyta w ZUS',
+    ]);
+  });
+
   test('an unknown matter is a not-found page', async ({ page }) => {
     await page.goto('/kategorie/pojazdy/zastrzez-pesel');
     await expect(page.getByRole('heading', { level: 1 })).not.toHaveText('Zastrzeż PESEL');
@@ -135,6 +146,7 @@ test.describe('categories and documents', () => {
     '/',
     '/kategorie/pojazdy',
     '/kategorie/podroz',
+    '/kategorie/zus',
     '/kategorie/bezpieczenstwo/zastrzez-pesel',
     '/dokumenty/dowod',
     '/do-zalatwienia',

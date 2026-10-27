@@ -57,7 +57,12 @@
       "safeBus": "Bezpečný autobus",
       "trainTickets": "Bilkom",
       "cityCard": "Karta MKA",
-      "cityTicket": "Městská jízdenka"
+      "cityTicket": "Městská jízdenka",
+      "contributions": "Odvody",
+      "pension": "Důchod",
+      "sickLeave": "Neschopenka",
+      "familyBenefit": "800 plus",
+      "zusVisit": "Návštěva ZUS"
     },
     "descriptions": {
       "blockPesel": "Zablokovaný PESEL ztíží vzít si úvěr na tvé údaje. Blokaci zrušíš, kdy budeš chtít.",
@@ -77,7 +82,12 @@
       "safeBus": "Před výletem ověřte, jestli má autobus platnou technickou kontrolu a povinné ručení (OC).",
       "trainTickets": "Kupte si jízdenku na vlak různých dopravců na jednom místě.",
       "cityCard": "Dobijte si jízdenku na Malopolskou aglomerační kartu (MKA), např. na tramvaj a autobus v Krakově.",
-      "cityTicket": "Kupte si jízdenku na autobus a tramvaj ve svém městě, bez zvláštní aplikace dopravce."
+      "cityTicket": "Kupte si jízdenku na autobus a tramvaj ve svém městě, bez zvláštní aplikace dopravce.",
+      "contributions": "Podívejte se, jaké odvody za vás platí zaměstnavatel a jestli všechny dorazily do ZUS.",
+      "pension": "Zjistěte, kolik už máte na účtu v ZUS a jaký může být váš důchod.",
+      "sickLeave": "Podívejte se na své neschopenky: od kdy, do kdy a jestli je dostal zaměstnavatel.",
+      "familyBenefit": "Podejte žádost o 800 plus na dítě a zjistěte, kdy přijdou peníze.",
+      "zusVisit": "Objednejte se na pobočku ZUS nebo na videohovor s úředníkem."
     }
   },
   "cityPicker": {

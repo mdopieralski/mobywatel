@@ -57,7 +57,12 @@
       "safeBus": "Sicherer Bus",
       "trainTickets": "Bilkom",
       "cityCard": "MKA-Karte",
-      "cityTicket": "Stadtticket"
+      "cityTicket": "Stadtticket",
+      "contributions": "Beiträge",
+      "pension": "Rente",
+      "sickLeave": "Krankschreibung",
+      "familyBenefit": "800 plus (Kindergeld)",
+      "zusVisit": "Termin bei ZUS"
     },
     "descriptions": {
       "blockPesel": "Eine gesperrte PESEL erschwert Kredite auf deinen Namen. Du kannst die Sperre jederzeit aufheben.",
@@ -77,7 +82,12 @@
       "safeBus": "Prüf vor dem Ausflug, ob der Bus eine gültige Hauptuntersuchung und Haftpflichtversicherung (OC) hat.",
       "trainTickets": "Kauf Bahntickets verschiedener Anbieter an einem Ort.",
       "cityCard": "Lade ein Ticket auf die Kleinpolnische Agglomerationskarte (MKA), z. B. für Straßenbahn und Bus in Krakau.",
-      "cityTicket": "Kauf ein Bus- und Straßenbahnticket in deiner Stadt, ohne eigene App des Verkehrsbetriebs."
+      "cityTicket": "Kauf ein Bus- und Straßenbahnticket in deiner Stadt, ohne eigene App des Verkehrsbetriebs.",
+      "contributions": "Sieh nach, welche Sozialbeiträge dein Arbeitgeber für dich zahlt und ob alle bei ZUS angekommen sind.",
+      "pension": "Prüf, wie viel du schon auf deinem ZUS-Konto hast und wie hoch deine Rente sein kann.",
+      "sickLeave": "Sieh deine Krankschreibungen: von wann, bis wann und ob dein Arbeitgeber sie bekommen hat.",
+      "familyBenefit": "Beantrage 800 plus für dein Kind und prüf, wann das Geld kommt.",
+      "zusVisit": "Vereinbare einen Termin in einer ZUS-Stelle oder ein Videogespräch."
     }
   },
   "cityPicker": {

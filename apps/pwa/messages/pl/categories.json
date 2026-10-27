@@ -57,7 +57,12 @@
       "safeBus": "Bezpieczny autobus",
       "trainTickets": "Bilkom",
       "cityCard": "Karta MKA",
-      "cityTicket": "Bilet miejski"
+      "cityTicket": "Bilet miejski",
+      "contributions": "Składki",
+      "pension": "Emerytura",
+      "sickLeave": "Zwolnienie lekarskie",
+      "familyBenefit": "800 plus",
+      "zusVisit": "Wizyta w ZUS"
     },
     "descriptions": {
       "blockPesel": "Zastrzeżony PESEL utrudnia wzięcie kredytu na Twoje dane. Cofniesz zastrzeżenie, kiedy zechcesz.",
@@ -77,7 +82,12 @@
       "safeBus": "Przed wycieczką sprawdź, czy autobus ma ważne badanie techniczne i OC.",
       "trainTickets": "Kup bilet na pociąg różnych przewoźników w jednym miejscu.",
       "cityCard": "Doładuj bilet na Małopolskiej Karcie Aglomeracyjnej, np. na tramwaj i autobus w Krakowie.",
-      "cityTicket": "Kup bilet na autobus i tramwaj w swoim mieście, bez osobnej aplikacji przewoźnika."
+      "cityTicket": "Kup bilet na autobus i tramwaj w swoim mieście, bez osobnej aplikacji przewoźnika.",
+      "contributions": "Zobacz, jakie składki płaci za Ciebie pracodawca i czy wszystkie doszły do ZUS.",
+      "pension": "Sprawdź, ile masz już na koncie w ZUS i jaka może być Twoja emerytura.",
+      "sickLeave": "Zobacz swoje zwolnienia od lekarza: od kiedy, do kiedy i czy pracodawca je dostał.",
+      "familyBenefit": "Złóż wniosek o 800 plus na dziecko i sprawdź, kiedy przyjdą pieniądze.",
+      "zusVisit": "Umów się na wizytę w placówce ZUS albo na rozmowę wideo z urzędnikiem."
     }
   },
   "cityPicker": {

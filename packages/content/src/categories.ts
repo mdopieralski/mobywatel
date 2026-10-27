@@ -37,7 +37,12 @@ export type MatterId =
   | 'safeBus'
   | 'trainTickets'
   | 'cityCard'
-  | 'cityTicket';
+  | 'cityTicket'
+  | 'contributions'
+  | 'pension'
+  | 'sickLeave'
+  | 'familyBenefit'
+  | 'zusVisit';
 
 export interface Category {
   id: CategoryId;
@@ -70,7 +75,13 @@ export const CATEGORIES: readonly Category[] = [
     matters: ['collision', 'checkInsurance', 'penaltyPoints', 'driverLicence', 'vehicleHistory', 'fines'],
   },
   { id: 'taxes', documents: [], reminders: ['tax-letter', 'property-tax'], matters: [] },
-  { id: 'zus', documents: [], reminders: [], matters: [] },
+  {
+    id: 'zus',
+    documents: [],
+    reminders: [],
+    // Draft order (2026-10-27), following the category description.
+    matters: ['contributions', 'pension', 'sickLeave', 'familyBenefit', 'zusVisit'],
+  },
   { id: 'studentCards', documents: [], reminders: [], matters: [] },
   {
     id: 'travel',

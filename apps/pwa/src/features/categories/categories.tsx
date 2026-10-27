@@ -257,6 +257,48 @@ export const MATTERS: Record<MatterId, { slug: string; icon: ReactNode }> = {
       </>
     ),
   },
+  contributions: {
+    slug: 'skladki',
+    icon: (
+      <>
+        <ellipse cx="9" cy="6.5" rx="5.5" ry="2.5" />
+        <path d="M3.5 6.5v4c0 1.4 2.5 2.5 5.5 2.5s5.5-1.1 5.5-2.5v-4M3.5 10.5v4c0 1.4 2.5 2.5 5.5 2.5" />
+        <path d="M14 14.5h7M17.5 11v7" />
+      </>
+    ),
+  },
+  pension: {
+    slug: 'emerytura',
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 7v5l3.5 2M7.5 20.5h9" />
+      </>
+    ),
+  },
+  sickLeave: {
+    slug: 'zwolnienie-lekarskie',
+    icon: <path d="M7 3h7l4 4v14H7zM14 3v4h4M9 14h2l1-2.5 2 5 1-2.5h1" />,
+  },
+  familyBenefit: {
+    slug: '800-plus',
+    icon: (
+      <>
+        <circle cx="8" cy="6.5" r="2.5" />
+        <circle cx="16.5" cy="10" r="2" />
+        <path d="M3.5 20v-3.5A4.5 4.5 0 0 1 8 12a4.5 4.5 0 0 1 4.5 4.5V20M13.5 20v-2.5a3 3 0 0 1 6 0V20" />
+      </>
+    ),
+  },
+  zusVisit: {
+    slug: 'wizyta-w-zus',
+    icon: (
+      <>
+        <rect x="3.5" y="5" width="17" height="15" rx="2" />
+        <path d="M3.5 10h17M8 3v4M16 3v4M9 14.5l2 2 4-4" />
+      </>
+    ),
+  },
   cityTicket: {
     slug: 'bilet-miejski',
     icon: <path d="M3.5 7.5h17v3a2 2 0 0 0 0 3v3h-17v-3a2 2 0 0 0 0-3zM14 8.5v1.5M14 11.25v1.5M14 14v1.5" />,

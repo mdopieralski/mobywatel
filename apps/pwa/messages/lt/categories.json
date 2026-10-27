@@ -57,7 +57,12 @@
       "safeBus": "Saugus autobusas",
       "trainTickets": "Bilkom",
       "cityCard": "MKA kortelė",
-      "cityTicket": "Miesto bilietas"
+      "cityTicket": "Miesto bilietas",
+      "contributions": "Įmokos",
+      "pension": "Pensija",
+      "sickLeave": "Nedarbingumas",
+      "familyBenefit": "800 plus",
+      "zusVisit": "Vizitas į ZUS"
     },
     "descriptions": {
       "blockPesel": "Užblokuotas PESEL apsunkina paskolos ėmimą tavo vardu. Blokavimą atšauksi, kada panorėsi.",
@@ -77,7 +82,12 @@
       "safeBus": "Prieš ekskursiją patikrinkite, ar autobusas turi galiojančią techninę apžiūrą ir draudimą (OC).",
       "trainTickets": "Įsigykite įvairių vežėjų traukinio bilietus vienoje vietoje.",
       "cityCard": "Papildykite bilietą Mažosios Lenkijos aglomeracijos kortelėje (MKA), pvz., tramvajui ir autobusui Krokuvoje.",
-      "cityTicket": "Įsigykite autobuso ir tramvajaus bilietą savo mieste, be atskiros vežėjo programėlės."
+      "cityTicket": "Įsigykite autobuso ir tramvajaus bilietą savo mieste, be atskiros vežėjo programėlės.",
+      "contributions": "Pažiūrėkite, kokias įmokas už jus moka darbdavys ir ar visos pasiekė ZUS.",
+      "pension": "Patikrinkite, kiek jau turite ZUS sąskaitoje ir kokia gali būti jūsų pensija.",
+      "sickLeave": "Peržiūrėkite savo nedarbingumo pažymas: nuo kada, iki kada ir ar jas gavo darbdavys.",
+      "familyBenefit": "Pateikite prašymą dėl 800 plus vaikui ir patikrinkite, kada ateis pinigai.",
+      "zusVisit": "Užsiregistruokite vizitui ZUS skyriuje arba vaizdo pokalbiui su darbuotoju."
     }
   },
   "cityPicker": {

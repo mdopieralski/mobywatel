@@ -57,7 +57,12 @@
       "safeBus": "Safe coach check",
       "trainTickets": "Bilkom",
       "cityCard": "MKA card",
-      "cityTicket": "City ticket"
+      "cityTicket": "City ticket",
+      "contributions": "Contributions",
+      "pension": "Pension",
+      "sickLeave": "Sick leave",
+      "familyBenefit": "800 plus child benefit",
+      "zusVisit": "Visit ZUS"
     },
     "descriptions": {
       "blockPesel": "A restricted PESEL makes it harder to take out a loan in your name. You can lift it whenever you want.",
@@ -77,7 +82,12 @@
       "safeBus": "Before a trip, check that the coach has a valid technical inspection and insurance (OC).",
       "trainTickets": "Buy train tickets from different carriers in one place.",
       "cityCard": "Top up a ticket on the Małopolska Agglomeration Card (MKA), e.g. for trams and buses in Kraków.",
-      "cityTicket": "Buy a bus and tram ticket in your city, without a separate operator app."
+      "cityTicket": "Buy a bus and tram ticket in your city, without a separate operator app.",
+      "contributions": "See which social insurance contributions your employer pays for you and whether they all reached ZUS.",
+      "pension": "Check how much you already have in your ZUS account and what your pension may be.",
+      "sickLeave": "See your sick notes from the doctor: from when, until when, and whether your employer got them.",
+      "familyBenefit": "Apply for the 800 plus benefit for your child and check when the money will arrive.",
+      "zusVisit": "Book a visit at a ZUS office or a video call with an officer."
     }
   },
   "cityPicker": {
