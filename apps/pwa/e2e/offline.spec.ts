@@ -15,6 +15,10 @@ test('works offline after the first load, including deep links', async ({ page, 
   await expect(page.locator('[data-disclaimer]')).toBeVisible();
   await page.goto('/ustawienia');
   await expect(page.getByRole('heading', { level: 1, name: 'Ustawienia' })).toBeVisible();
+  // The city list for Bilet miejski loads on its own, never opened before: it is in the cache too.
+  await page.goto('/kategorie/podroz/bilet-miejski');
+  await page.getByRole('searchbox', { name: 'Nazwa miasta' }).fill('gdyn');
+  await expect(page.getByRole('button', { name: /^Gdynia/ })).toBeVisible();
 });
 
 test('the web app manifest is valid for install', async ({ request }) => {

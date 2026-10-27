@@ -1,23 +1,44 @@
 import type { RelativeDate } from './dates.ts';
+import type { Sex } from './pesel.ts';
 
 // Shapes for FICTIONAL demo personas. Which personas and matters we cover is a product decision
-// (product-manager); data lives in @mobywatel/content.
+// (product-manager); data lives in @mobywatel/content. Labels are message keys, not text, so every UI
+// language can show them (apps/pwa/messages/<locale>/documents.json).
 
-export type DocumentKind = 'id-card' | 'driving-licence' | 'vehicle' | 'family-card' | 'student-card';
+export type DocumentKind = 'id-card' | 'driving-licence' | 'family-card' | 'vehicle';
+
+export type FieldKey =
+  | 'firstName'
+  | 'lastName'
+  | 'pesel'
+  | 'birthDate'
+  | 'documentNumber'
+  | 'validUntil'
+  | 'categories'
+  | 'penaltyPoints'
+  | 'cardNumber'
+  | 'model'
+  | 'plate'
+  | 'insuranceUntil'
+  | 'inspectionUntil';
+
+/** A value is shown as is (`text`) or formatted for the UI language (`date`, ISO yyyy-mm-dd). */
+export type FieldValue = { text: string } | { date: string };
 
 export interface PersonaDocument {
   kind: DocumentKind;
-  /** Display rows, already in plain Polish, e.g. ['Ważny do', '20.05.2031']. */
-  rows: ReadonlyArray<readonly [label: string, value: string]>;
-  validUntil?: RelativeDate;
+  /** Date the wallet card shows as its status: valid until, or OC until for a vehicle. Absent = no end. */
+  statusDate?: string;
+  fields: ReadonlyArray<readonly [FieldKey, FieldValue]>;
 }
+
+export type ReminderKind = 'tax-letter' | 'insurance-ends' | 'property-tax';
 
 export interface Reminder {
   id: string;
-  title: string;
+  kind: ReminderKind;
   due: RelativeDate;
-  /** Matter that resolves it, e.g. 'id-renewal'. */
-  matter?: string;
+  urgent?: boolean;
 }
 
 export interface Persona {
@@ -25,6 +46,7 @@ export interface Persona {
   id: string;
   firstName: string;
   lastName: string;
+  sex: Sex;
   /** One line for the persona switcher, e.g. "Lublin, 58 lat, opiekuje się mamą". */
   summary: string;
   pesel: string;

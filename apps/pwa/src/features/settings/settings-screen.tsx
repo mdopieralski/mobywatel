@@ -1,3 +1,4 @@
+import { LOCALE_NAMES, LOCALES } from '@mobywatel/brand';
 import { Button } from '@mobywatel/ui';
 import { useEffect, useId, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -15,6 +16,7 @@ export function SettingsScreen() {
   const navigate = useNavigate();
   const [confirmReset, setConfirmReset] = useState(false);
   const seniorHint = useId();
+  const languageHint = useId();
   const resetButton = useRef<HTMLButtonElement>(null);
   const confirmQuestion = useRef<HTMLParagraphElement>(null);
   const touched = useRef(false);
@@ -31,6 +33,37 @@ export function SettingsScreen() {
   return (
     <div className={styles.stack}>
       <h1>{t('title')}</h1>
+
+      {/* First, so someone who can't read the current language finds it. Each name is in its own
+          language and marked with lang, so screen readers pronounce it right (WCAG 3.1.2). */}
+      <fieldset className={styles.card} aria-describedby={languageHint}>
+        <legend>
+          <h2 className={styles.legendHeading}>
+            {t('language.title')}
+            {settings.locale === 'en' ? null : (
+              <span className={styles.legendAlt} lang="en">
+                {' '}
+                · Language
+              </span>
+            )}
+          </h2>
+        </legend>
+        <p id={languageHint} className={styles.hint}>
+          {t('language.hint')}
+        </p>
+        {LOCALES.map((locale) => (
+          <label key={locale} className={styles.radioRow}>
+            <input
+              type="radio"
+              name="locale"
+              value={locale}
+              checked={settings.locale === locale}
+              onChange={() => updateSettings({ locale })}
+            />
+            <span lang={locale}>{LOCALE_NAMES[locale]}</span>
+          </label>
+        ))}
+      </fieldset>
 
       <section className={styles.card} aria-labelledby="senior-heading">
         <h2 id="senior-heading">{t('senior.title')}</h2>

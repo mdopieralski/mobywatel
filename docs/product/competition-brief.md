@@ -70,7 +70,7 @@ From the downloadable package (MIT code; see exclusions below):
   portfel", "Miałam stłuczkę", "Mój dowód traci ważność").
 - A "komputer" screen for handing data over with a code.
 
-Its likely weak spots, where we can be better (to be validated):
+Measured weak spots and strengths: `reference-analysis.md` (2026-10-25). The first guesses were:
 
 - A chat-first interface hides what the app can do. Seniors and screen-reader users may prefer clear choices
   to an empty prompt.

@@ -13,20 +13,25 @@ describe('settings', () => {
 
   it('defaults when storage is empty or corrupt', () => {
     localStorage.setItem(SETTINGS_KEY, '{not json');
-    expect(readSettings()).toEqual({ senior: false, theme: 'system' });
+    expect(readSettings()).toEqual({ senior: false, theme: 'system', locale: 'pl' });
   });
 
   it('ignores unknown values', () => {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ senior: 'yes', theme: 'neon' }));
-    expect(readSettings()).toEqual({ senior: false, theme: 'system' });
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ senior: 'yes', theme: 'neon', locale: 'xx' }));
+    expect(readSettings()).toEqual({ senior: false, theme: 'system', locale: 'pl' });
   });
 
   it('persists and applies as attributes on <html>', () => {
-    updateSettings({ senior: true, theme: 'dark' });
-    expect(JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}')).toEqual({ senior: true, theme: 'dark' });
+    updateSettings({ senior: true, theme: 'dark', locale: 'uk' });
+    expect(JSON.parse(localStorage.getItem(SETTINGS_KEY) ?? '{}')).toEqual({
+      senior: true,
+      theme: 'dark',
+      locale: 'uk',
+    });
     expect(document.documentElement.dataset.senior).toBe('true');
     expect(document.documentElement.dataset.theme).toBe('dark');
-    applySettings({ senior: false, theme: 'system' });
+    expect(document.documentElement.lang).toBe('uk');
+    applySettings({ senior: false, theme: 'system', locale: 'pl' });
     expect(document.documentElement.hasAttribute('data-theme')).toBe(false);
   });
 

@@ -5,11 +5,25 @@ import { expect, test } from '@playwright/test';
 test.describe('smoke', () => {
   test('start screen shows the name and the unofficial-prototype disclaimer', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Sprawnie');
+    await expect(page.getByRole('banner')).toContainText('Sprawnie');
     await expect(page.locator('[data-disclaimer]')).toContainText('Nieoficjalny prototyp');
     await expect(page.locator('[data-disclaimer]')).toContainText('fikcyjne');
-    await expect(page).toHaveTitle(/prototyp/);
+    await expect(page).toHaveTitle('Twoje sprawy – Sprawnie');
   });
+
+  // Only the content area scrolls; the page itself never does, so the tab bar stays at the bottom.
+  // (A visually hidden label once escaped the scroll area and stretched the page.)
+  for (const path of ['/', '/kategorie/bezpieczenstwo', '/dokumenty/dowod', '/do-zalatwienia']) {
+    test(`the page itself does not scroll on ${path}`, async ({ page }) => {
+      await page.goto(path);
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      const { scroll, viewport } = await page.evaluate(() => ({
+        scroll: document.documentElement.scrollHeight,
+        viewport: window.innerHeight,
+      }));
+      expect(scroll).toBeLessThanOrEqual(viewport);
+    });
+  }
 
   test('no login wall: settings reachable from the bottom navigation', async ({ page }) => {
     await page.goto('/');

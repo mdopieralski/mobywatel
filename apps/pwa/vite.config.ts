@@ -25,11 +25,55 @@ function brandHtml(): Plugin {
   };
 }
 
+// Storybook (apps/design-system) runs on its own port. The PWA dev/preview server proxies it under
+// /design-system, so with portless both live on one host: mobywatel.local and mobywatel.local/design-system.
+const DESIGN_SYSTEM_PATH = '/design-system';
+const designSystemTarget = `http://127.0.0.1:${process.env.DESIGN_SYSTEM_PORT ?? '6006'}`;
+const designSystemProxy = {
+  [`^${DESIGN_SYSTEM_PATH}/`]: {
+    target: designSystemTarget,
+    changeOrigin: true,
+    ws: true,
+    // Storybook serves its UI from the root, so strip the prefix. Its Vite HMR socket is the exception:
+    // Storybook's Vite has base /design-system/ and expects the socket there.
+    rewrite: (path: string) =>
+      path.startsWith(`${DESIGN_SYSTEM_PATH}/?token=`) ? path : path.slice(DESIGN_SYSTEM_PATH.length),
+  },
+  // A few Storybook requests ignore the base and go to the root.
+  '^/(storybook-server-channel|vite-inject-mocker-entry\\.js|@id/__x00__virtual:/@storybook/)': {
+    target: designSystemTarget,
+    changeOrigin: true,
+    ws: true,
+  },
+};
+
+// Storybook's UI uses relative URLs, so /design-system needs its trailing slash.
+function designSystemSlash(): Plugin {
+  const redirect = (req: { url?: string }, res: import('node:http').ServerResponse, next: () => void) => {
+    if (req.url === DESIGN_SYSTEM_PATH || req.url?.startsWith(`${DESIGN_SYSTEM_PATH}?`)) {
+      res.writeHead(301, { Location: req.url.replace(DESIGN_SYSTEM_PATH, `${DESIGN_SYSTEM_PATH}/`) });
+      res.end();
+      return;
+    }
+    next();
+  };
+  return {
+    name: 'design-system-slash',
+    configureServer: (server) => void server.middlewares.use(redirect),
+    configurePreviewServer: (server) => void server.middlewares.use(redirect),
+  };
+}
+// portless --lan serves the app as mobywatel.local; Vite only trusts localhost by default.
+const allowedHosts = ['mobywatel.local', '.localhost'];
+
 // https://vite.dev/config/ · PWA details: the pwa-platform skill
 export default defineConfig({
+  server: { allowedHosts, proxy: designSystemProxy },
+  preview: { allowedHosts, proxy: designSystemProxy },
   plugins: [
     react(),
     brandHtml(),
+    designSystemSlash(),
     VitePWA({
       registerType: 'prompt',
       injectRegister: false,
@@ -59,7 +103,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
         navigateFallback: '/index.html',
-        navigateFallbackDenylist: [/^\/api\//],
+        // /design-system is Storybook behind the local proxy, not a PWA route.
+        navigateFallbackDenylist: [/^\/api\//, /^\/design-system(\/|$)/],
         cleanupOutdatedCaches: true,
       },
       devOptions: { enabled: false },

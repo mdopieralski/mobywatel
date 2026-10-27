@@ -1,31 +1,58 @@
 import { WORKING_NAME } from '@mobywatel/brand';
 import { useEffect, useRef } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router';
+import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import { useTranslations } from 'use-intl';
 
+import { useAppLocale } from '../platform/i18n.ts';
 import { UpdatePrompt } from '../pwa/update-prompt.tsx';
 import styles from './layout.module.css';
+import { PATHS } from './paths.ts';
+
+// Header shortcuts, our own line icons (24 px grid). Each opens a screen, even before its feature exists.
+const SHORTCUTS = [
+  {
+    to: PATHS.inbox,
+    label: 'inbox',
+    icon: <path d="M3.5 13.5h5l1.5 2.5h4l1.5-2.5h5M5.5 5h13l2 8.5V19h-17v-5.5z" />,
+  },
+  {
+    to: PATHS.notifications,
+    label: 'notifications',
+    icon: <path d="M18 16.5H6l1.5-2.5v-4a4.5 4.5 0 0 1 9 0v4zM10 19.5a2 2 0 0 0 4 0" />,
+  },
+] as const;
 
 export function Layout() {
   const t = useTranslations('common');
+  const locale = useAppLocale();
   const main = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
-  const first = useRef(true);
+  const shown = useRef(pathname);
 
-  // Route change: title per screen (WCAG 2.4.2), and focus on the new heading so screen readers
-  // announce it (not on first load: the browser handles that).
+  // Title per screen (WCAG 2.4.2), also after a language switch.
   useEffect(() => {
-    const heading = main.current?.querySelector<HTMLElement>('h1');
-    const screen = heading?.firstChild?.textContent?.trim();
+    const screen = main.current?.querySelector('h1')?.firstChild?.textContent?.trim();
     document.title =
-      screen && screen !== WORKING_NAME ? `${screen} – ${WORKING_NAME}` : `${WORKING_NAME} (prototyp)`;
-    if (first.current) {
-      first.current = false;
+      screen && screen !== WORKING_NAME
+        ? `${screen} – ${WORKING_NAME}`
+        : t('appTitle', { name: WORKING_NAME });
+  }, [pathname, t]);
+
+  // Route change: focus the new heading so screen readers announce it (not on first load: the browser
+  // handles that). Compared by path, not a first-run flag: StrictMode runs effects twice in dev, and a
+  // stray focus inside the showcase's phone scrolls the whole page down to it.
+  useEffect(() => {
+    if (shown.current === pathname) {
       return;
     }
+    shown.current = pathname;
+    const heading = main.current?.querySelector<HTMLElement>('h1');
     heading?.setAttribute('tabindex', '-1');
     heading?.focus();
   }, [pathname]);
+
+  const shortcutClass = ({ isActive }: { isActive: boolean }) =>
+    isActive ? `${styles.shortcut} ${styles.shortcutActive}` : styles.shortcut;
 
   const navClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? `${styles.navLink} ${styles.active}` : styles.navLink;
@@ -36,17 +63,39 @@ export function Layout() {
         {t('skipToContent')}
       </a>
       <header className={styles.header}>
-        <span className={styles.brand}>{WORKING_NAME}</span>
-        <span className={styles.badge}>{t('prototypeBadge')}</span>
+        {/* Home: our own icon and name (never official marks). */}
+        <Link className={styles.home} to={PATHS.start}>
+          <img className={styles.logo} src="/icons/favicon.svg" alt="" width={40} height={40} />
+          <span className={styles.name}>{WORKING_NAME}</span>
+        </Link>
+        <nav className={styles.shortcuts} aria-label={t('header.actions')}>
+          {SHORTCUTS.map(({ to, label, icon }) => (
+            <NavLink key={to} to={to} className={shortcutClass}>
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24">
+                {icon}
+              </svg>
+              <span className={styles.visuallyHidden}>{t(`header.${label}`)}</span>
+            </NavLink>
+          ))}
+          {/* Visible in every language, so the switch is findable without reading the UI. */}
+          <Link className={styles.language} to={PATHS.settings}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />
+            </svg>
+            <span>{locale.toUpperCase()}</span>
+            <span className={styles.visuallyHidden}> – {t('changeLanguage')}</span>
+          </Link>
+        </nav>
       </header>
       <main id="main" ref={main} className={styles.main} tabIndex={-1}>
         <Outlet />
       </main>
       <nav className={styles.nav} aria-label={t('mainNavigation')}>
-        <NavLink to="/" end className={navClass}>
+        <NavLink to={PATHS.start} end className={navClass}>
           {t('nav.start')}
         </NavLink>
-        <NavLink to="/ustawienia" className={navClass}>
+        <NavLink to={PATHS.settings} className={navClass}>
           {t('nav.settings')}
         </NavLink>
       </nav>

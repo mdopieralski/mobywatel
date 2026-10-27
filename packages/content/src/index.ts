@@ -1,5 +1,11 @@
 // @mobywatel/content: fictional personas, scenario scripts and service knowledge (plain Polish).
-// Empty on purpose: the personas and matters are chosen with the product-manager agent first.
 import type { Persona } from '@mobywatel/core';
 
-export const PERSONAS: readonly Persona[] = [];
+import { KATARZYNA } from './personas/katarzyna.ts';
+
+export const PERSONAS: readonly Persona[] = [KATARZYNA];
+
+/** The persona a juror sees first. */
+export const DEFAULT_PERSONA: Persona = KATARZYNA;
+
+export { CATEGORIES, type Category, type CategoryId, type MatterId } from './categories.ts';

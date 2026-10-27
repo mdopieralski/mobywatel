@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./cities": "./src/cities.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p .",
-    "test:unit": "vitest run --passWithNoTests"
+    "test:unit": "vitest run --passWithNoTests",
+    "build:cities": "node scripts/build-cities.mjs"
   },
   "devDependencies": {
     "vitest": "^5.0.5"

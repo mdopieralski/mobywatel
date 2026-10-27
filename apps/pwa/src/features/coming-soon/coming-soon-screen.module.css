@@ -1,0 +1,29 @@
+.stack {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.stack h1 {
+  margin: 0;
+}
+
+.stack p {
+  margin: 0;
+}
+
+.badge {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  font-weight: 600;
+}
