@@ -51,7 +51,7 @@ export function Showcase() {
   const t = useTranslations('showcase');
   const tCommon = useTranslations('common');
   const frame = useRef<HTMLIFrameElement>(null);
-  const trySection = useRef<HTMLDivElement>(null);
+  const trySection = useRef<HTMLElement>(null);
   const newsSection = useRef<HTMLDivElement>(null);
   // The frame opens the URL the visitor came in on, so deep links keep working.
   const [src] = useState(() => window.location.pathname + window.location.search + window.location.hash);
@@ -158,8 +158,18 @@ export function Showcase() {
             return moved;
           }}
         />
-        {/* Second section: only the working prototype. */}
-        <div id={TRY_ID} ref={trySection} tabIndex={-1} className={styles.prototype}>
+        {/* Second section: only the working prototype. Its heading is for screen readers (people moving by
+            headings land here); on screen the phone speaks for itself. */}
+        <section
+          id={TRY_ID}
+          ref={trySection}
+          tabIndex={-1}
+          className={styles.prototype}
+          aria-labelledby="showcase-prototype"
+        >
+          <h2 id="showcase-prototype" className={styles.visuallyHidden}>
+            {t('nav.prototype')}
+          </h2>
           <div className={styles.device}>
             <div className={styles.screen}>
               <StatusBar />
@@ -173,7 +183,7 @@ export function Showcase() {
               <div className={styles.homeBar} aria-hidden="true" />
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Third section: what this is and what is new. */}
         <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>

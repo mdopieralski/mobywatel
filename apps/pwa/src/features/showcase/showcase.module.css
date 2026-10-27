@@ -335,6 +335,8 @@
 
 /* Second section: only the working phone, centred. */
 .prototype {
+  /* Anchors the hidden heading here, not to the page. */
+  position: relative;
   outline: none;
   display: grid;
   justify-items: center;
@@ -620,4 +622,14 @@
 
 .challengeLink:focus-visible {
   outline-color: var(--bg);
+}
+
+/* Read by screen readers, not shown. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
