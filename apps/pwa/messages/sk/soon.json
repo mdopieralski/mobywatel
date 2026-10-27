@@ -1,0 +1,16 @@
+{
+  "badge": "Čoskoro",
+  "back": "Späť na úvod",
+  "inbox": {
+    "title": "Schránka",
+    "body": "Sem prídu listy z úradov a potvrdenia tvojich vecí. Zatiaľ je schránka prázdna."
+  },
+  "notifications": {
+    "title": "Upozornenia",
+    "body": "Tu uvidíš pripomienky termínov, napríklad koniec platnosti občianskeho preukazu. Zatiaľ tu nič nie je."
+  },
+  "assistant": {
+    "title": "Asistent",
+    "body": "Tu napíšeš alebo povieš, čo potrebuješ vybaviť. Asistent ťa prevedie krok za krokom a pred odoslaním čohokoľvek ťa požiada o potvrdenie."
+  }
+}

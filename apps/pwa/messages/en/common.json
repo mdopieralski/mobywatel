@@ -1,0 +1,31 @@
+{
+  "skipToContent": "Skip to content",
+  "prototypeBadge": "Prototype",
+  "appTitle": "{name} (prototype)",
+  "changeLanguage": "Change language",
+  "mainNavigation": "Main menu",
+  "nav": {
+    "start": "Start",
+    "settings": "Settings"
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "body": "The address is wrong or the page has been removed.",
+    "back": "Back to start"
+  },
+  "pwa": {
+    "updateAvailable": "A new version of the app is ready.",
+    "reload": "Reload",
+    "later": "Later"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "body": "This screen didn't work. It's our fault, not yours.",
+    "back": "Back to start"
+  },
+  "header": {
+    "actions": "Shortcuts",
+    "inbox": "Inbox",
+    "notifications": "Notifications"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Документи",
+  "kinds": {
+    "idCard": "Посвідчення особи",
+    "drivingLicence": "Посвідчення водія",
+    "familyCard": "Карта великої родини",
+    "vehicle": "Мої транспортні засоби"
+  },
+  "status": {
+    "idCard": "Дійсне до {date}",
+    "drivingLicence": "Дійсне до {date}",
+    "familyCard": "Безстрокова",
+    "vehicle": "Поліс OC до {date}"
+  },
+  "fields": {
+    "firstName": "Ім’я",
+    "lastName": "Прізвище",
+    "pesel": "PESEL",
+    "birthDate": "Дата народження",
+    "documentNumber": "Номер документа",
+    "validUntil": "Дійсний до",
+    "categories": "Категорії",
+    "penaltyPoints": "Штрафні бали",
+    "cardNumber": "Номер картки",
+    "model": "Транспортний засіб",
+    "plate": "Реєстраційний номер",
+    "insuranceUntil": "Страховка OC до",
+    "inspectionUntil": "Техогляд до"
+  },
+  "showData": "Показати дані",
+  "back": "Назад",
+  "details": "Дані",
+  "reminders": {
+    "title": "Що владнати",
+    "more": "{count, plural, one {і ще # справа} few {і ще # справи} many {і ще # справ} other {і ще # справи}}",
+    "urgent": "Терміново",
+    "hint": "Незабаром ти владнаєш ці справи тут, з допомогою асистента.",
+    "kinds": {
+      "taxLetter": "Лист з податкової",
+      "insuranceEnds": "Закінчується страховка OC",
+      "propertyTax": "Податок на нерухомість"
+    },
+    "due": {
+      "taxLetter": "Відповісти до {date}",
+      "insuranceEnds": "Страховка OC закінчується {date}",
+      "propertyTax": "Сплатити до {date}"
+    }
+  },
+  "ask": "Що потрібно владнати?"
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Doklady",
+  "kinds": {
+    "idCard": "Občiansky preukaz",
+    "drivingLicence": "Vodičský preukaz",
+    "familyCard": "Karta veľkej rodiny",
+    "vehicle": "Moje vozidlá"
+  },
+  "status": {
+    "idCard": "Platný do {date}",
+    "drivingLicence": "Platný do {date}",
+    "familyCard": "Platnosť neobmedzená",
+    "vehicle": "PZP do {date}"
+  },
+  "fields": {
+    "firstName": "Meno",
+    "lastName": "Priezvisko",
+    "pesel": "PESEL",
+    "birthDate": "Dátum narodenia",
+    "documentNumber": "Číslo dokladu",
+    "validUntil": "Platnosť do",
+    "categories": "Skupiny",
+    "penaltyPoints": "Trestné body",
+    "cardNumber": "Číslo karty",
+    "model": "Vozidlo",
+    "plate": "Evidenčné číslo",
+    "insuranceUntil": "PZP do",
+    "inspectionUntil": "Technická kontrola do"
+  },
+  "showData": "Zobraziť údaje",
+  "back": "Späť",
+  "details": "Údaje",
+  "reminders": {
+    "title": "Na vybavenie",
+    "more": "{count, plural, one {a # ďalšia vec} few {a # ďalšie veci} many {a # ďalšej veci} other {a # ďalších vecí}}",
+    "urgent": "Naliehavé",
+    "hint": "Čoskoro to tu vybavíš s pomocou asistenta.",
+    "kinds": {
+      "taxLetter": "List z daňového úradu",
+      "insuranceEnds": "Končí PZP",
+      "propertyTax": "Daň z nehnuteľnosti"
+    },
+    "due": {
+      "taxLetter": "Odpovedať do {date}",
+      "insuranceEnds": "PZP končí {date}",
+      "propertyTax": "Zaplatiť do {date}"
+    }
+  },
+  "ask": "Čo potrebuješ vybaviť?"
+}

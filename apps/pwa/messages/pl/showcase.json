@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "label": "Sekcje strony",
+    "prototype": "Prototyp",
+    "news": "Nowości"
+  },
+  "badge": "Nieoficjalny prototyp",
+  "lead": "Klikalny prototyp aplikacji do spraw urzędowych. Wypróbuj go w telefonie wyżej. Tu piszemy, co robimy inaczej.",
+  "phoneLabel": "Aplikacja {name} na ekranie telefonu",
+  "hero": {
+    "title": "ZUS i bilety miejskie w jednej aplikacji",
+    "lead": "Oprócz spraw urzędowych będzie tu też ZUS i bilety na komunikację miejską. Obie kategorie już są na ekranie startowym. Sprawy w nich właśnie dodajemy.",
+    "zus": {
+      "title": "ZUS",
+      "body": "Składki, emerytura i zwolnienia lekarskie obok Twoich innych spraw."
+    },
+    "tickets": {
+      "title": "Bilety miejskie",
+      "body": "Bilet na autobus i tramwaj w każdym mieście, bez osobnej aplikacji."
+    },
+    "open": "Otwórz {name} w telefonie",
+    "cta": "Wypróbuj prototyp"
+  },
+  "newTitle": "Co nowego w naszej wersji",
+  "tryLabel": "Sprawdź:",
+  "new": {
+    "categories": {
+      "title": "Sprawy w 14 kategoriach",
+      "body": "Na starcie widzisz wszystkie obszary, od bezpieczeństwa po podróże. Każdy dokument jest przy swojej sprawie, np. dowód w Bezpieczeństwie, a auto w Pojazdach.",
+      "try": "Otwórz kategorię Pojazdy."
+    },
+    "tickets": {
+      "title": "Bilety miejskie",
+      "body": "Bilety komunikacji miejskiej z każdego miasta w jednym miejscu, bez osobnej aplikacji dla każdego przewoźnika. Kategoria już jest na starcie, kupowanie dodamy wkrótce.",
+      "try": "Otwórz kategorię Podróż."
+    },
+    "zus": {
+      "title": "ZUS",
+      "body": "Składki, emerytura, zwolnienia lekarskie i wizyta w ZUS w jednej kategorii, obok innych spraw. Kategoria już jest na starcie, sprawy dodamy wkrótce.",
+      "try": "Otwórz kategorię ZUS."
+    },
+    "offline": {
+      "title": "Działa bez internetu",
+      "body": "Po pierwszym otwarciu aplikacja działa offline. Dodasz ją do ekranu telefonu jak zwykłą aplikację.",
+      "try": "Otwórz ten adres na telefonie i wyłącz internet."
+    },
+    "senior": {
+      "title": "Tryb dla seniora",
+      "body": "Większy tekst i przyciski, co najmniej 56 px. Aplikacja słucha też rozmiaru tekstu ustawionego w telefonie.",
+      "try": "Włącz go w Ustawieniach. Tam też zmienisz wygląd na ciemny."
+    },
+    "accessible": {
+      "title": "Dostępna dla każdego",
+      "body": "Każdy ekran przechodzi automatyczny test dostępności WCAG 2.2 AA, także w trybie dla seniora. Po każdym przejściu czytnik ekranu zaczyna od nagłówka.",
+      "try": "Przejdź aplikację samym klawiszem Tab."
+    },
+    "languages": {
+      "title": "8 języków",
+      "body": "Polski, angielski, ukraiński, niemiecki, czeski, słowacki, litewski i białoruski. Każdy w całości i bez internetu.",
+      "try": "Kliknij kod języka (PL) w nagłówku aplikacji."
+    },
+    "noLogin": {
+      "title": "Bez konta i bez kluczy AI",
+      "body": "Wszystko działa w przeglądarce. Nie musisz się logować ani podawać klucza do AI.",
+      "try": "Zresetuj demo w Ustawieniach i zacznij od nowa."
+    },
+    "unofficial": {
+      "title": "Wyraźnie nieoficjalna",
+      "body": "Własna ikona i kolory, bez godła i bez wzorów prawdziwych dokumentów. Dane są fikcyjne, a każdy dokument ma znak „PROTOTYP – nie jest dokumentem”.",
+      "try": "Otwórz dowód w kategorii Bezpieczeństwo."
+    }
+  },
+  "challenge": {
+    "eyebrow": "Konkurs mobywatel.ai",
+    "title": "Nasze zgłoszenie do konkursu",
+    "body": "Konkurs szuka prostszej aplikacji do spraw urzędowych. Autorzy 10 najlepszych prototypów pokażą je w Sejmie.",
+    "link": "Zobacz konkurs"
+  }
+}

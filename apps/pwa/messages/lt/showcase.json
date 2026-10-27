@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "label": "Puslapio skiltys",
+    "prototype": "Prototipas",
+    "news": "Naujienos"
+  },
+  "badge": "Neoficialus prototipas",
+  "lead": "Paspaudžiamas programėlės oficialiems reikalams prototipas. Išbandyk jį telefone aukščiau. Čia rašome, ką darome kitaip.",
+  "phoneLabel": "Programėlė {name} telefono ekrane",
+  "hero": {
+    "title": "ZUS ir miesto bilietai vienoje programėlėje",
+    "lead": "Be oficialių reikalų, čia bus ir ZUS (socialinis draudimas) bei viešojo transporto bilietai. Abi kategorijos jau yra pradžios ekrane. Reikalus jose kaip tik pridedame.",
+    "zus": {
+      "title": "ZUS",
+      "body": "Įmokos, pensija ir nedarbingumo pažymos šalia kitų jūsų reikalų."
+    },
+    "tickets": {
+      "title": "Miesto bilietai",
+      "body": "Autobuso ir tramvajaus bilietas bet kuriame mieste, be atskiros programėlės."
+    },
+    "open": "Atidaryti „{name}“ telefone",
+    "cta": "Išbandyti prototipą"
+  },
+  "newTitle": "Kas nauja mūsų versijoje",
+  "tryLabel": "Išbandyk:",
+  "new": {
+    "categories": {
+      "title": "Reikalai 14 kategorijų",
+      "body": "Pradžios ekrane matai visas sritis, nuo saugumo iki kelionių. Kiekvienas dokumentas yra prie savo reikalo, pvz., asmens tapatybės kortelė – Saugume, o automobilis – Transporte.",
+      "try": "Atidaryk kategoriją Transportas."
+    },
+    "tickets": {
+      "title": "Miesto bilietai",
+      "body": "Viešojo transporto bilietai iš kiekvieno miesto vienoje vietoje, be atskiros programėlės kiekvienam vežėjui. Kategorija jau yra pradžios ekrane, pirkimą pridėsime netrukus.",
+      "try": "Atidaryk kategoriją Kelionės."
+    },
+    "zus": {
+      "title": "ZUS",
+      "body": "Įmokos, pensija, nedarbingumas ir vizitas į ZUS vienoje kategorijoje, šalia kitų reikalų. Kategorija jau yra pradžios ekrane, reikalus pridėsime netrukus.",
+      "try": "Atidaryk kategoriją ZUS."
+    },
+    "offline": {
+      "title": "Veikia be interneto",
+      "body": "Po pirmo atidarymo programėlė veikia neprisijungus. Ją gali įsidėti į telefono pradžios ekraną kaip įprastą programėlę.",
+      "try": "Atidaryk šį adresą telefone ir išjunk internetą."
+    },
+    "senior": {
+      "title": "Senjoro režimas",
+      "body": "Didesnis tekstas ir mygtukai, ne mažiau kaip 56 px. Programėlė paiso ir telefone nustatyto teksto dydžio.",
+      "try": "Įjunk jį Nustatymuose. Ten taip pat įjungsi tamsią išvaizdą."
+    },
+    "accessible": {
+      "title": "Prieinama visiems",
+      "body": "Kiekvienas ekranas praeina automatinį WCAG 2.2 AA prieinamumo testą, taip pat ir senjoro režimu. Po kiekvieno perėjimo ekrano skaitytuvas pradeda nuo antraštės.",
+      "try": "Pereik programėlę tik Tab klavišu."
+    },
+    "languages": {
+      "title": "8 kalbos",
+      "body": "Lenkų, anglų, ukrainiečių, vokiečių, čekų, slovakų, lietuvių ir baltarusių. Kiekviena išversta pilnai ir veikia be interneto.",
+      "try": "Paspausk kalbos kodą programėlės antraštėje."
+    },
+    "noLogin": {
+      "title": "Be paskyros ir be DI raktų",
+      "body": "Viskas veikia naršyklėje. Nereikia prisijungti ar įvesti DI rakto.",
+      "try": "Atkurk demonstraciją Nustatymuose ir pradėk iš naujo."
+    },
+    "unofficial": {
+      "title": "Aiškiai neoficiali",
+      "body": "Sava piktograma ir spalvos, be valstybės herbo ir be tikrų dokumentų išvaizdos. Duomenys išgalvoti, o kiekvienas dokumentas turi žymą „PROTOTYP – nie jest dokumentem”.",
+      "try": "Atidaryk asmens tapatybės kortelę kategorijoje Saugumas."
+    }
+  },
+  "challenge": {
+    "eyebrow": "Konkursas mobywatel.ai",
+    "title": "Mūsų paraiška konkursui",
+    "body": "Konkursas ieško paprastesnės programėlės oficialiems reikalams. 10 geriausių prototipų autoriai juos pristatys Lenkijos Seime.",
+    "link": "Peržiūrėti konkursą"
+  }
+}

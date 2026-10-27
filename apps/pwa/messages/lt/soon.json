@@ -1,0 +1,16 @@
+{
+  "badge": "Netrukus",
+  "back": "Grįžti į pradžią",
+  "inbox": {
+    "title": "Pašto dėžutė",
+    "body": "Čia ateis laiškai iš įstaigų ir tavo reikalų patvirtinimai. Kol kas dėžutė tuščia."
+  },
+  "notifications": {
+    "title": "Pranešimai",
+    "body": "Čia matysi priminimus apie terminus, pavyzdžiui, kada baigiasi asmens tapatybės kortelės galiojimas. Kol kas nieko nėra."
+  },
+  "assistant": {
+    "title": "Asistentas",
+    "body": "Čia parašysi arba pasakysi, ką nori sutvarkyti. Asistentas ves tave žingsnis po žingsnio ir prieš ką nors siųsdamas paprašys patvirtinimo."
+  }
+}

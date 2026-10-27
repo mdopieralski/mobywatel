@@ -1,6 +1,8 @@
 {
   "skipToContent": "Przejdź do treści",
   "prototypeBadge": "Prototyp",
+  "appTitle": "{name} (prototyp)",
+  "changeLanguage": "Zmień język",
   "mainNavigation": "Menu główne",
   "nav": {
     "start": "Start",
@@ -20,5 +22,10 @@
     "title": "Coś poszło nie tak",
     "body": "Ten ekran nie zadziałał. To nasz błąd, nie Twój.",
     "back": "Wróć na start"
+  },
+  "header": {
+    "actions": "Na skróty",
+    "inbox": "Skrzynka",
+    "notifications": "Powiadomienia"
   }
 }

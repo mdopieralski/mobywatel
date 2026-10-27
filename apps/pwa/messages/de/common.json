@@ -1,0 +1,31 @@
+{
+  "skipToContent": "Zum Inhalt springen",
+  "prototypeBadge": "Prototyp",
+  "appTitle": "{name} (Prototyp)",
+  "changeLanguage": "Sprache ändern",
+  "mainNavigation": "Hauptmenü",
+  "nav": {
+    "start": "Start",
+    "settings": "Einstellungen"
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht",
+    "body": "Die Adresse ist falsch oder die Seite wurde entfernt.",
+    "back": "Zurück zum Start"
+  },
+  "pwa": {
+    "updateAvailable": "Es gibt eine neue Version der App.",
+    "reload": "Neu laden",
+    "later": "Später"
+  },
+  "error": {
+    "title": "Etwas ist schiefgelaufen",
+    "body": "Dieser Bildschirm hat nicht funktioniert. Das ist unser Fehler, nicht deiner.",
+    "back": "Zurück zum Start"
+  },
+  "header": {
+    "actions": "Schnellzugriff",
+    "inbox": "Postfach",
+    "notifications": "Benachrichtigungen"
+  }
+}

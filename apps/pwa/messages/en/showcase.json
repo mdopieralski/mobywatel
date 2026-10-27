@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "label": "Page sections",
+    "prototype": "Prototype",
+    "news": "What's new"
+  },
+  "badge": "Unofficial prototype",
+  "lead": "A clickable prototype of an app for official matters. Try it on the phone above. Here is what we do differently.",
+  "phoneLabel": "The {name} app on a phone screen",
+  "hero": {
+    "title": "ZUS and city tickets in one app",
+    "lead": "Besides official matters, the app will also cover ZUS (social insurance) and public transport tickets. Both categories are already on the start screen. We are adding their matters now.",
+    "zus": {
+      "title": "ZUS",
+      "body": "Contributions, pension and sick leave next to your other matters."
+    },
+    "tickets": {
+      "title": "City tickets",
+      "body": "A bus and tram ticket in any city, without a separate app."
+    },
+    "open": "Open {name} on the phone",
+    "cta": "Try the prototype"
+  },
+  "newTitle": "What's new in our version",
+  "tryLabel": "Try it:",
+  "new": {
+    "categories": {
+      "title": "Matters in 14 categories",
+      "body": "The start screen shows every area, from security to travel. Each document sits with its matter, e.g. the ID card in Security and the car in Vehicles.",
+      "try": "Open the Vehicles category."
+    },
+    "tickets": {
+      "title": "City tickets",
+      "body": "Public transport tickets from every city in one place, without a separate app for each operator. The category is already on the start screen; buying tickets is coming soon.",
+      "try": "Open the Travel category."
+    },
+    "zus": {
+      "title": "ZUS",
+      "body": "Contributions, pension, sick leave and visiting ZUS (social insurance) in one category, next to your other matters. The category is already on the start screen; the matters are coming soon.",
+      "try": "Open the ZUS category."
+    },
+    "offline": {
+      "title": "Works without internet",
+      "body": "After the first visit the app works offline. You can add it to your phone's home screen like any other app.",
+      "try": "Open this address on your phone and turn off the internet."
+    },
+    "senior": {
+      "title": "Senior mode",
+      "body": "Bigger text and buttons, at least 56 px. The app also follows the text size set on your phone.",
+      "try": "Turn it on in Settings. You can switch to the dark look there too."
+    },
+    "accessible": {
+      "title": "Accessible to everyone",
+      "body": "Every screen passes an automated WCAG 2.2 AA accessibility test, in senior mode too. After every step, the screen reader starts at the heading.",
+      "try": "Go through the app with the Tab key only."
+    },
+    "languages": {
+      "title": "8 languages",
+      "body": "Polish, English, Ukrainian, German, Czech, Slovak, Lithuanian and Belarusian. Each one complete and available offline.",
+      "try": "Tap the language code in the app's header."
+    },
+    "noLogin": {
+      "title": "No account, no AI keys",
+      "body": "Everything runs in the browser. You don't log in or enter an AI key.",
+      "try": "Reset the demo in Settings to start over."
+    },
+    "unofficial": {
+      "title": "Clearly unofficial",
+      "body": "Our own icon and colours, no state emblem and no real document designs. The data is fictional, and every document carries the mark „PROTOTYP – nie jest dokumentem”.",
+      "try": "Open the ID card in the Security category."
+    }
+  },
+  "challenge": {
+    "eyebrow": "mobywatel.ai challenge",
+    "title": "Our entry to the challenge",
+    "body": "The challenge is looking for a simpler app for official matters. The authors of the 10 best prototypes will present them in the Sejm, the Polish parliament.",
+    "link": "See the challenge"
+  }
+}

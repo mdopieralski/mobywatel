@@ -1,0 +1,26 @@
+{
+  "title": "Nustatymai",
+  "language": {
+    "title": "Kalba",
+    "hint": "Visa programėlė iš karto pakeis kalbą."
+  },
+  "senior": {
+    "title": "Didesnis tekstas",
+    "label": "Senjorų režimas",
+    "hint": "Didesnės raidės ir mygtukai."
+  },
+  "theme": {
+    "title": "Išvaizda",
+    "system": "Kaip telefone",
+    "light": "Šviesi",
+    "dark": "Tamsi"
+  },
+  "reset": {
+    "title": "Demonstracija iš naujo",
+    "body": "Ištrinsime pavyzdinius reikalus ir pažangą. Nustatymai liks.",
+    "button": "Atkurti demonstraciją",
+    "confirmQuestion": "Tikrai pradėti iš naujo?",
+    "confirm": "Taip, atkurti",
+    "cancel": "Atšaukti"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "Дакументы",
+  "kinds": {
+    "idCard": "Пасведчанне асобы",
+    "drivingLicence": "Вадзіцельскае пасведчанне",
+    "familyCard": "Карта вялікай сям’і",
+    "vehicle": "Мае транспартныя сродкі"
+  },
+  "status": {
+    "idCard": "Сапраўднае да {date}",
+    "drivingLicence": "Сапраўднае да {date}",
+    "familyCard": "Бестэрміновая",
+    "vehicle": "Поліс OC да {date}"
+  },
+  "fields": {
+    "firstName": "Імя",
+    "lastName": "Прозвішча",
+    "pesel": "PESEL",
+    "birthDate": "Дата нараджэння",
+    "documentNumber": "Нумар дакумента",
+    "validUntil": "Сапраўдны да",
+    "categories": "Катэгорыі",
+    "penaltyPoints": "Штрафныя балы",
+    "cardNumber": "Нумар карткі",
+    "model": "Транспартны сродак",
+    "plate": "Рэгістрацыйны нумар",
+    "insuranceUntil": "Страхоўка OC да",
+    "inspectionUntil": "Тэхагляд да"
+  },
+  "showData": "Паказаць даныя",
+  "back": "Назад",
+  "details": "Даныя",
+  "reminders": {
+    "title": "Што вырашыць",
+    "more": "{count, plural, one {і яшчэ # справа} few {і яшчэ # справы} many {і яшчэ # спраў} other {і яшчэ # справы}}",
+    "urgent": "Тэрмінова",
+    "hint": "Хутка ты вырашыш гэтыя справы тут з дапамогай асістэнта.",
+    "kinds": {
+      "taxLetter": "Ліст з падатковай",
+      "insuranceEnds": "Заканчваецца страхоўка OC",
+      "propertyTax": "Падатак на нерухомасць"
+    },
+    "due": {
+      "taxLetter": "Адказаць да {date}",
+      "insuranceEnds": "Страхоўка OC заканчваецца {date}",
+      "propertyTax": "Заплаціць да {date}"
+    }
+  },
+  "ask": "Што трэба вырашыць?"
+}

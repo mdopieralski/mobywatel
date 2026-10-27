@@ -1,0 +1,50 @@
+{
+  "title": "Documents",
+  "kinds": {
+    "idCard": "ID card",
+    "drivingLicence": "Driving licence",
+    "familyCard": "Large Family Card",
+    "vehicle": "My vehicles"
+  },
+  "status": {
+    "idCard": "Valid until {date}",
+    "drivingLicence": "Valid until {date}",
+    "familyCard": "No expiry date",
+    "vehicle": "OC insurance until {date}"
+  },
+  "fields": {
+    "firstName": "First name",
+    "lastName": "Surname",
+    "pesel": "PESEL number",
+    "birthDate": "Date of birth",
+    "documentNumber": "Document number",
+    "validUntil": "Valid until",
+    "categories": "Categories",
+    "penaltyPoints": "Penalty points",
+    "cardNumber": "Card number",
+    "model": "Vehicle",
+    "plate": "Registration number",
+    "insuranceUntil": "OC insurance until",
+    "inspectionUntil": "Technical inspection until"
+  },
+  "showData": "Show details",
+  "back": "Back",
+  "details": "Details",
+  "reminders": {
+    "title": "To do",
+    "more": "{count, plural, one {and # other matter} other {and # other matters}}",
+    "urgent": "Urgent",
+    "hint": "Soon you'll sort these out here, with the assistant's help.",
+    "kinds": {
+      "taxLetter": "Letter from the tax office",
+      "insuranceEnds": "Car insurance ends",
+      "propertyTax": "Property tax"
+    },
+    "due": {
+      "taxLetter": "Reply by {date}",
+      "insuranceEnds": "OC insurance ends on {date}",
+      "propertyTax": "Pay by {date}"
+    }
+  },
+  "ask": "What do you need to sort out?"
+}

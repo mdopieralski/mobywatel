@@ -1,5 +1,9 @@
 {
   "title": "Ustawienia",
+  "language": {
+    "title": "Język",
+    "hint": "Cała aplikacja zmieni język od razu."
+  },
   "senior": {
     "title": "Większy tekst",
     "label": "Tryb dla seniora",

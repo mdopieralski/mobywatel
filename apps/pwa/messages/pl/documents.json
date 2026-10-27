@@ -1,0 +1,50 @@
+{
+  "title": "Dokumenty",
+  "kinds": {
+    "idCard": "Dowód osobisty",
+    "drivingLicence": "Prawo jazdy",
+    "familyCard": "Karta Dużej Rodziny",
+    "vehicle": "Moje pojazdy"
+  },
+  "status": {
+    "idCard": "Ważny do {date}",
+    "drivingLicence": "Ważne do {date}",
+    "familyCard": "Ważna bezterminowo",
+    "vehicle": "OC do {date}"
+  },
+  "fields": {
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "pesel": "PESEL",
+    "birthDate": "Data urodzenia",
+    "documentNumber": "Numer dokumentu",
+    "validUntil": "Ważność do",
+    "categories": "Kategorie",
+    "penaltyPoints": "Punkty karne",
+    "cardNumber": "Numer karty",
+    "model": "Pojazd",
+    "plate": "Numer rejestracyjny",
+    "insuranceUntil": "Ubezpieczenie OC do",
+    "inspectionUntil": "Badanie techniczne do"
+  },
+  "showData": "Pokaż dane",
+  "back": "Wróć",
+  "details": "Dane",
+  "reminders": {
+    "title": "Do załatwienia",
+    "more": "{count, plural, one {i # inna sprawa} few {i # inne sprawy} many {i # innych spraw} other {i # innej sprawy}}",
+    "urgent": "Pilne",
+    "hint": "Wkrótce załatwisz te sprawy tutaj, z pomocą asystenta.",
+    "kinds": {
+      "taxLetter": "Pismo z urzędu skarbowego",
+      "insuranceEnds": "Koniec OC samochodu",
+      "propertyTax": "Podatek od nieruchomości"
+    },
+    "due": {
+      "taxLetter": "Odpowiedź do {date}",
+      "insuranceEnds": "OC kończy się {date}",
+      "propertyTax": "Zapłać do {date}"
+    }
+  },
+  "ask": "Co chcesz załatwić?"
+}

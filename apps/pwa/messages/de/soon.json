@@ -1,0 +1,16 @@
+{
+  "badge": "Bald verfügbar",
+  "back": "Zurück zum Start",
+  "inbox": {
+    "title": "Postfach",
+    "body": "Hier kommen Briefe von Behörden und Bestätigungen deiner Anliegen an. Im Moment ist dein Postfach leer."
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "body": "Hier siehst du Erinnerungen an Fristen, zum Beispiel wenn dein Personalausweis abläuft. Im Moment gibt es nichts Neues."
+  },
+  "assistant": {
+    "title": "Assistent",
+    "body": "Hier schreibst oder sagst du, was du erledigen möchtest. Der Assistent führt dich Schritt für Schritt und fragt nach deiner Bestätigung, bevor er etwas sendet."
+  }
+}

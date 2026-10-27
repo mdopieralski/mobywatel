@@ -1,0 +1,50 @@
+{
+  "title": "Doklady",
+  "kinds": {
+    "idCard": "Občanský průkaz",
+    "drivingLicence": "Řidičský průkaz",
+    "familyCard": "Karta velké rodiny",
+    "vehicle": "Moje vozidla"
+  },
+  "status": {
+    "idCard": "Platný do {date}",
+    "drivingLicence": "Platný do {date}",
+    "familyCard": "Platnost neomezená",
+    "vehicle": "Povinné ručení do {date}"
+  },
+  "fields": {
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "pesel": "PESEL",
+    "birthDate": "Datum narození",
+    "documentNumber": "Číslo dokladu",
+    "validUntil": "Platnost do",
+    "categories": "Skupiny",
+    "penaltyPoints": "Trestné body",
+    "cardNumber": "Číslo karty",
+    "model": "Vozidlo",
+    "plate": "Registrační značka",
+    "insuranceUntil": "Povinné ručení do",
+    "inspectionUntil": "Technická kontrola do"
+  },
+  "showData": "Zobrazit údaje",
+  "back": "Zpět",
+  "details": "Údaje",
+  "reminders": {
+    "title": "K vyřízení",
+    "more": "{count, plural, one {a # další záležitost} few {a # další záležitosti} many {a # další záležitosti} other {a # dalších záležitostí}}",
+    "urgent": "Naléhavé",
+    "hint": "Brzy to tady vyřídíš s pomocí asistenta.",
+    "kinds": {
+      "taxLetter": "Dopis z finančního úřadu",
+      "insuranceEnds": "Končí povinné ručení",
+      "propertyTax": "Daň z nemovitosti"
+    },
+    "due": {
+      "taxLetter": "Odpovědět do {date}",
+      "insuranceEnds": "Povinné ručení končí {date}",
+      "propertyTax": "Zaplatit do {date}"
+    }
+  },
+  "ask": "Co potřebuješ vyřídit?"
+}

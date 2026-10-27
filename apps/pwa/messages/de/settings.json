@@ -1,0 +1,26 @@
+{
+  "title": "Einstellungen",
+  "language": {
+    "title": "Sprache",
+    "hint": "Die ganze App wechselt sofort die Sprache."
+  },
+  "senior": {
+    "title": "Größerer Text",
+    "label": "Seniorenmodus",
+    "hint": "Größere Schrift und Schaltflächen."
+  },
+  "theme": {
+    "title": "Aussehen",
+    "system": "Wie auf dem Handy",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "reset": {
+    "title": "Demo neu starten",
+    "body": "Wir löschen die Beispielfälle und den Fortschritt. Die Einstellungen bleiben.",
+    "button": "Demo zurücksetzen",
+    "confirmQuestion": "Wirklich von vorn beginnen?",
+    "confirm": "Ja, zurücksetzen",
+    "cancel": "Abbrechen"
+  }
+}

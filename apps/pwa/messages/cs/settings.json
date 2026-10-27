@@ -1,0 +1,26 @@
+{
+  "title": "Nastavení",
+  "language": {
+    "title": "Jazyk",
+    "hint": "Celá aplikace hned změní jazyk."
+  },
+  "senior": {
+    "title": "Větší text",
+    "label": "Režim pro seniory",
+    "hint": "Větší písmo a tlačítka."
+  },
+  "theme": {
+    "title": "Vzhled",
+    "system": "Jako v telefonu",
+    "light": "Světlý",
+    "dark": "Tmavý"
+  },
+  "reset": {
+    "title": "Demo od začátku",
+    "body": "Smažeme ukázkové záležitosti a postup. Nastavení zůstane.",
+    "button": "Resetovat demo",
+    "confirmQuestion": "Opravdu začít znovu?",
+    "confirm": "Ano, resetovat",
+    "cancel": "Zrušit"
+  }
+}

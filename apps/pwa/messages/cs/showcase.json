@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "label": "Části stránky",
+    "prototype": "Prototyp",
+    "news": "Novinky"
+  },
+  "badge": "Neoficiální prototyp",
+  "lead": "Proklikávací prototyp aplikace pro úřední záležitosti. Vyzkoušej ho v telefonu výše. Tady píšeme, co děláme jinak.",
+  "phoneLabel": "Aplikace {name} na displeji telefonu",
+  "hero": {
+    "title": "ZUS a městské jízdenky v jedné aplikaci",
+    "lead": "Kromě úředních záležitostí tu bude také ZUS (sociální pojištění) a jízdenky na městskou dopravu. Obě kategorie už jsou na úvodní obrazovce. Záležitosti v nich právě přidáváme.",
+    "zus": {
+      "title": "ZUS",
+      "body": "Pojistné, důchod a neschopenky vedle vašich dalších záležitostí."
+    },
+    "tickets": {
+      "title": "Městské jízdenky",
+      "body": "Jízdenka na autobus a tramvaj v každém městě, bez zvláštní aplikace."
+    },
+    "open": "Otevřít {name} v telefonu",
+    "cta": "Vyzkoušet prototyp"
+  },
+  "newTitle": "Co je v naší verzi nového",
+  "tryLabel": "Vyzkoušej:",
+  "new": {
+    "categories": {
+      "title": "Záležitosti ve 14 kategoriích",
+      "body": "Na startu vidíš všechny oblasti, od bezpečnosti po cestování. Každý doklad je u své záležitosti, např. občanka v Bezpečnosti a auto ve Vozidlech.",
+      "try": "Otevři kategorii Vozidla."
+    },
+    "tickets": {
+      "title": "Městské jízdenky",
+      "body": "Jízdenky na městskou dopravu z každého města na jednom místě, bez zvláštní aplikace pro každého dopravce. Kategorie už je na startu, nákup přidáme brzy.",
+      "try": "Otevři kategorii Cestování."
+    },
+    "zus": {
+      "title": "ZUS",
+      "body": "Pojistné, důchod, nemocenská a návštěva ZUS v jedné kategorii, vedle ostatních záležitostí. Kategorie už je na startu, záležitosti přidáme brzy.",
+      "try": "Otevři kategorii ZUS."
+    },
+    "offline": {
+      "title": "Funguje bez internetu",
+      "body": "Po prvním otevření aplikace funguje offline. Přidáš si ji na plochu telefonu jako běžnou aplikaci.",
+      "try": "Otevři tuto adresu v telefonu a vypni internet."
+    },
+    "senior": {
+      "title": "Režim pro seniory",
+      "body": "Větší text a tlačítka, nejméně 56 px. Aplikace se řídí i velikostí textu nastavenou v telefonu.",
+      "try": "Zapni ho v Nastavení. Tam také přepneš na tmavý vzhled."
+    },
+    "accessible": {
+      "title": "Přístupná pro všechny",
+      "body": "Každá obrazovka projde automatickým testem přístupnosti WCAG 2.2 AA, i v režimu pro seniory. Po každém přechodu začne čtečka obrazovky od nadpisu.",
+      "try": "Projdi aplikaci jen klávesou Tab."
+    },
+    "languages": {
+      "title": "8 jazyků",
+      "body": "Polština, angličtina, ukrajinština, němčina, čeština, slovenština, litevština a běloruština. Každý celý a bez internetu.",
+      "try": "Klikni na kód jazyka v záhlaví aplikace."
+    },
+    "noLogin": {
+      "title": "Bez účtu a bez klíčů k AI",
+      "body": "Vše běží v prohlížeči. Nemusíš se přihlašovat ani zadávat klíč k AI.",
+      "try": "Resetuj demo v Nastavení a začni znovu."
+    },
+    "unofficial": {
+      "title": "Jasně neoficiální",
+      "body": "Vlastní ikona a barvy, bez státního znaku a bez vzhledu skutečných dokladů. Data jsou smyšlená a každý doklad nese značku „PROTOTYP – nie jest dokumentem”.",
+      "try": "Otevři občanku v kategorii Bezpečnost."
+    }
+  },
+  "challenge": {
+    "eyebrow": "Soutěž mobywatel.ai",
+    "title": "Náš příspěvek do soutěže",
+    "body": "Soutěž hledá jednodušší aplikaci pro úřední záležitosti. Autoři 10 nejlepších prototypů je představí v polském Sejmu.",
+    "link": "Zobrazit soutěž"
+  }
+}

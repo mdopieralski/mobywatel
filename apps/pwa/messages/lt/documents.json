@@ -1,0 +1,50 @@
+{
+  "title": "Dokumentai",
+  "kinds": {
+    "idCard": "Asmens tapatybės kortelė",
+    "drivingLicence": "Vairuotojo pažymėjimas",
+    "familyCard": "Didelės šeimos kortelė",
+    "vehicle": "Mano transporto priemonės"
+  },
+  "status": {
+    "idCard": "Galioja iki {date}",
+    "drivingLicence": "Galioja iki {date}",
+    "familyCard": "Galioja neterminuotai",
+    "vehicle": "Privalomasis draudimas iki {date}"
+  },
+  "fields": {
+    "firstName": "Vardas",
+    "lastName": "Pavardė",
+    "pesel": "PESEL",
+    "birthDate": "Gimimo data",
+    "documentNumber": "Dokumento numeris",
+    "validUntil": "Galioja iki",
+    "categories": "Kategorijos",
+    "penaltyPoints": "Baudos taškai",
+    "cardNumber": "Kortelės numeris",
+    "model": "Transporto priemonė",
+    "plate": "Valstybinis numeris",
+    "insuranceUntil": "Privalomasis draudimas iki",
+    "inspectionUntil": "Techninė apžiūra iki"
+  },
+  "showData": "Rodyti duomenis",
+  "back": "Atgal",
+  "details": "Duomenys",
+  "reminders": {
+    "title": "Reikia sutvarkyti",
+    "more": "{count, plural, one {ir dar # reikalas} few {ir dar # reikalai} many {ir dar # reikalo} other {ir dar # reikalų}}",
+    "urgent": "Skubu",
+    "hint": "Netrukus tai sutvarkysi čia, su asistento pagalba.",
+    "kinds": {
+      "taxLetter": "Laiškas iš mokesčių inspekcijos",
+      "insuranceEnds": "Baigiasi privalomasis draudimas",
+      "propertyTax": "Nekilnojamojo turto mokestis"
+    },
+    "due": {
+      "taxLetter": "Atsakyti iki {date}",
+      "insuranceEnds": "Privalomasis draudimas baigiasi {date}",
+      "propertyTax": "Sumokėti iki {date}"
+    }
+  },
+  "ask": "Ką nori sutvarkyti?"
+}

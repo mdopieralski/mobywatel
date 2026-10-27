@@ -1,0 +1,16 @@
+{
+  "badge": "Brzy",
+  "back": "Zpět na úvod",
+  "inbox": {
+    "title": "Schránka",
+    "body": "Sem přijdou dopisy z úřadů a potvrzení tvých záležitostí. Zatím je schránka prázdná."
+  },
+  "notifications": {
+    "title": "Oznámení",
+    "body": "Tady uvidíš připomínky termínů, třeba konec platnosti občanského průkazu. Zatím tu nic není."
+  },
+  "assistant": {
+    "title": "Asistent",
+    "body": "Tady napíšeš nebo řekneš, co potřebuješ vyřídit. Asistent tě provede krok za krokem a před odesláním čehokoli tě požádá o potvrzení."
+  }
+}

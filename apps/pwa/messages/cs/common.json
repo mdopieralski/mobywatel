@@ -1,0 +1,31 @@
+{
+  "skipToContent": "Přejít na obsah",
+  "prototypeBadge": "Prototyp",
+  "appTitle": "{name} (prototyp)",
+  "changeLanguage": "Změnit jazyk",
+  "mainNavigation": "Hlavní menu",
+  "nav": {
+    "start": "Úvod",
+    "settings": "Nastavení"
+  },
+  "notFound": {
+    "title": "Tahle stránka neexistuje",
+    "body": "Adresa je špatně, nebo byla stránka odstraněna.",
+    "back": "Zpět na úvod"
+  },
+  "pwa": {
+    "updateAvailable": "Je tu nová verze aplikace.",
+    "reload": "Obnovit",
+    "later": "Později"
+  },
+  "error": {
+    "title": "Něco se pokazilo",
+    "body": "Tahle obrazovka nefungovala. Je to naše chyba, ne tvoje.",
+    "back": "Zpět na úvod"
+  },
+  "header": {
+    "actions": "Rychlý přístup",
+    "inbox": "Schránka",
+    "notifications": "Oznámení"
+  }
+}

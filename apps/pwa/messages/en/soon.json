@@ -1,0 +1,16 @@
+{
+  "badge": "Coming soon",
+  "back": "Back to start",
+  "inbox": {
+    "title": "Inbox",
+    "body": "Letters from offices and confirmations of your matters will arrive here. Your inbox is empty for now."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "body": "Here you'll see reminders about deadlines, for example when your ID card expires. Nothing is waiting for now."
+  },
+  "assistant": {
+    "title": "Assistant",
+    "body": "Here you'll type or say what you need. The assistant will guide you step by step and ask you to confirm before it sends anything."
+  }
+}

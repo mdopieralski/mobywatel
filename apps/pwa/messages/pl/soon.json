@@ -1,0 +1,16 @@
+{
+  "badge": "Wkrótce",
+  "back": "Wróć na start",
+  "inbox": {
+    "title": "Skrzynka",
+    "body": "Tu przyjdą pisma z urzędów i potwierdzenia Twoich spraw. Na razie skrzynka jest pusta."
+  },
+  "notifications": {
+    "title": "Powiadomienia",
+    "body": "Tu zobaczysz przypomnienia o terminach, na przykład o końcu ważności dowodu. Na razie nic nie czeka."
+  },
+  "assistant": {
+    "title": "Asystent",
+    "body": "Tu napiszesz albo powiesz, co chcesz załatwić. Asystent poprowadzi Cię krok po kroku, a zanim cokolwiek wyśle, poprosi o potwierdzenie."
+  }
+}

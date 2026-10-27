@@ -1,0 +1,50 @@
+{
+  "title": "Dokumente",
+  "kinds": {
+    "idCard": "Personalausweis",
+    "drivingLicence": "Führerschein",
+    "familyCard": "Karte für große Familien",
+    "vehicle": "Meine Fahrzeuge"
+  },
+  "status": {
+    "idCard": "Gültig bis {date}",
+    "drivingLicence": "Gültig bis {date}",
+    "familyCard": "Unbefristet gültig",
+    "vehicle": "Haftpflicht bis {date}"
+  },
+  "fields": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "pesel": "PESEL-Nummer",
+    "birthDate": "Geburtsdatum",
+    "documentNumber": "Dokumentnummer",
+    "validUntil": "Gültig bis",
+    "categories": "Klassen",
+    "penaltyPoints": "Strafpunkte",
+    "cardNumber": "Kartennummer",
+    "model": "Fahrzeug",
+    "plate": "Kennzeichen",
+    "insuranceUntil": "Haftpflicht bis",
+    "inspectionUntil": "Hauptuntersuchung bis"
+  },
+  "showData": "Daten anzeigen",
+  "back": "Zurück",
+  "details": "Daten",
+  "reminders": {
+    "title": "Zu erledigen",
+    "more": "{count, plural, one {und # weitere Sache} other {und # weitere Sachen}}",
+    "urgent": "Dringend",
+    "hint": "Bald erledigst du das hier, mit Hilfe des Assistenten.",
+    "kinds": {
+      "taxLetter": "Brief vom Finanzamt",
+      "insuranceEnds": "Kfz-Haftpflicht läuft ab",
+      "propertyTax": "Grundsteuer"
+    },
+    "due": {
+      "taxLetter": "Antwort bis {date}",
+      "insuranceEnds": "Haftpflicht endet am {date}",
+      "propertyTax": "Zahlen bis {date}"
+    }
+  },
+  "ask": "Was möchtest du erledigen?"
+}

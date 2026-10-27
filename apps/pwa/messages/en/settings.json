@@ -1,0 +1,26 @@
+{
+  "title": "Settings",
+  "language": {
+    "title": "Language",
+    "hint": "The whole app switches language straight away."
+  },
+  "senior": {
+    "title": "Larger text",
+    "label": "Senior mode",
+    "hint": "Larger letters and buttons."
+  },
+  "theme": {
+    "title": "Appearance",
+    "system": "Same as my phone",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "reset": {
+    "title": "Start the demo over",
+    "body": "We'll remove the sample matters and your progress. Your settings stay.",
+    "button": "Reset demo",
+    "confirmQuestion": "Are you sure you want to start over?",
+    "confirm": "Yes, reset",
+    "cancel": "Cancel"
+  }
+}

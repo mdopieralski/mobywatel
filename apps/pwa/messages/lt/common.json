@@ -1,0 +1,31 @@
+{
+  "skipToContent": "Pereiti prie turinio",
+  "prototypeBadge": "Prototipas",
+  "appTitle": "{name} (prototipas)",
+  "changeLanguage": "Keisti kalbą",
+  "mainNavigation": "Pagrindinis meniu",
+  "nav": {
+    "start": "Pradžia",
+    "settings": "Nustatymai"
+  },
+  "notFound": {
+    "title": "Tokio puslapio nėra",
+    "body": "Adresas neteisingas arba puslapis pašalintas.",
+    "back": "Grįžti į pradžią"
+  },
+  "pwa": {
+    "updateAvailable": "Yra nauja programėlės versija.",
+    "reload": "Atnaujinti",
+    "later": "Vėliau"
+  },
+  "error": {
+    "title": "Kažkas nepavyko",
+    "body": "Šis ekranas neveikė. Tai mūsų klaida, ne tavo.",
+    "back": "Grįžti į pradžią"
+  },
+  "header": {
+    "actions": "Greita prieiga",
+    "inbox": "Pašto dėžutė",
+    "notifications": "Pranešimai"
+  }
+}

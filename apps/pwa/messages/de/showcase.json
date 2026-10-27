@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "label": "Abschnitte der Seite",
+    "prototype": "Prototyp",
+    "news": "Neuigkeiten"
+  },
+  "badge": "Inoffizieller Prototyp",
+  "lead": "Ein klickbarer Prototyp einer App für Behördengänge. Probier ihn im Handy oben aus. Hier steht, was wir anders machen.",
+  "phoneLabel": "Die App {name} auf einem Handybildschirm",
+  "hero": {
+    "title": "ZUS und Stadttickets in einer App",
+    "lead": "Neben Behördenangelegenheiten gibt es hier bald auch ZUS (Sozialversicherung) und Tickets für den Nahverkehr. Beide Kategorien sind schon auf dem Startbildschirm. Die Angelegenheiten darin fügen wir gerade hinzu.",
+    "zus": {
+      "title": "ZUS",
+      "body": "Beiträge, Rente und Krankschreibungen neben deinen anderen Angelegenheiten."
+    },
+    "tickets": {
+      "title": "Stadttickets",
+      "body": "Ein Bus- und Straßenbahnticket in jeder Stadt, ohne eigene App."
+    },
+    "open": "{name} im Telefon öffnen",
+    "cta": "Prototyp ausprobieren"
+  },
+  "newTitle": "Was in unserer Version neu ist",
+  "tryLabel": "Probier es aus:",
+  "new": {
+    "categories": {
+      "title": "Anliegen in 14 Kategorien",
+      "body": "Der Start zeigt alle Bereiche, von Sicherheit bis Reisen. Jedes Dokument liegt bei seinem Anliegen, z. B. der Ausweis bei Sicherheit und das Auto bei Fahrzeuge.",
+      "try": "Öffne die Kategorie Fahrzeuge."
+    },
+    "tickets": {
+      "title": "Stadttickets",
+      "body": "Nahverkehrstickets aus jeder Stadt an einem Ort, ohne eigene App für jeden Verkehrsbetrieb. Die Kategorie ist schon auf dem Start, der Kauf kommt bald.",
+      "try": "Öffne die Kategorie Reisen."
+    },
+    "zus": {
+      "title": "ZUS",
+      "body": "Beiträge, Rente, Krankschreibung und Termin bei der ZUS (Sozialversicherung) in einer Kategorie, neben deinen anderen Anliegen. Die Kategorie ist schon auf dem Start, die Anliegen kommen bald.",
+      "try": "Öffne die Kategorie ZUS."
+    },
+    "offline": {
+      "title": "Funktioniert ohne Internet",
+      "body": "Nach dem ersten Öffnen läuft die App offline. Du kannst sie wie eine normale App auf den Startbildschirm legen.",
+      "try": "Öffne diese Adresse auf dem Handy und schalte das Internet aus."
+    },
+    "senior": {
+      "title": "Seniorenmodus",
+      "body": "Größere Schrift und Tasten, mindestens 56 px. Die App folgt auch der Schriftgröße, die im Handy eingestellt ist.",
+      "try": "Schalte ihn in den Einstellungen ein. Dort stellst du auch das dunkle Design ein."
+    },
+    "accessible": {
+      "title": "Für alle zugänglich",
+      "body": "Jeder Bildschirm besteht einen automatischen Barrierefreiheitstest nach WCAG 2.2 AA, auch im Seniorenmodus. Nach jedem Schritt beginnt der Screenreader bei der Überschrift.",
+      "try": "Geh nur mit der Tab-Taste durch die App."
+    },
+    "languages": {
+      "title": "8 Sprachen",
+      "body": "Polnisch, Englisch, Ukrainisch, Deutsch, Tschechisch, Slowakisch, Litauisch und Belarussisch. Jede vollständig und ohne Internet.",
+      "try": "Tipp auf das Sprachkürzel oben in der App."
+    },
+    "noLogin": {
+      "title": "Kein Konto, keine KI-Schlüssel",
+      "body": "Alles läuft im Browser. Du musst dich nicht anmelden und keinen KI-Schlüssel eingeben.",
+      "try": "Setz die Demo in den Einstellungen zurück und fang neu an."
+    },
+    "unofficial": {
+      "title": "Klar inoffiziell",
+      "body": "Eigenes Symbol und eigene Farben, kein Staatswappen und keine echten Dokumentvorlagen. Die Daten sind erfunden, und jedes Dokument trägt den Vermerk „PROTOTYP – nie jest dokumentem”.",
+      "try": "Öffne den Ausweis in der Kategorie Sicherheit."
+    }
+  },
+  "challenge": {
+    "eyebrow": "Wettbewerb mobywatel.ai",
+    "title": "Unser Beitrag zum Wettbewerb",
+    "body": "Der Wettbewerb sucht eine einfachere App für Behördensachen. Die Teams der 10 besten Prototypen stellen sie im polnischen Sejm vor.",
+    "link": "Zum Wettbewerb"
+  }
+}
