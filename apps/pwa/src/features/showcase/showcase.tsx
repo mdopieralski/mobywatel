@@ -8,7 +8,8 @@ import { useAppLocale } from '../../platform/i18n.ts';
 import { useSectionSnap } from './section-snap.ts';
 import { PhoneFrame } from './phone-frame.tsx';
 import { ShowcaseHero } from './showcase-hero.tsx';
-import { AUDIENCE_ID, HERO_ID, navigatePhone, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
+import { DemoSection } from './demo-section.tsx';
+import { AUDIENCE_ID, DEMO_ID, HERO_ID, navigatePhone, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
 import { TechSection } from './tech-section.tsx';
 import { WhoItHelps } from './who-it-helps.tsx';
@@ -60,6 +61,7 @@ export function Showcase() {
   const frame = useRef<HTMLIFrameElement>(null);
   const heroSection = useRef<HTMLElement>(null);
   const trySection = useRef<HTMLElement>(null);
+  const demoSection = useRef<HTMLElement>(null);
   const audienceSection = useRef<HTMLElement>(null);
   const newsSection = useRef<HTMLDivElement>(null);
   const techSection = useRef<HTMLElement>(null);
@@ -75,6 +77,14 @@ export function Showcase() {
     target.focus({ preventScroll: true });
   };
   const goToPhone = () => goTo(trySection.current);
+  // Open `path` in the phone and bring it into view. False when the phone isn't there.
+  const showInPhone = (path: string) => {
+    if (!navigatePhone(frame.current, path)) {
+      return false;
+    }
+    goToPhone();
+    return true;
+  };
 
   // The section on screen: its header link is marked as the current one. A section counts once it
   // crosses a line 40% down the window.
@@ -83,6 +93,7 @@ export function Showcase() {
     const sections = [
       heroSection.current,
       trySection.current,
+      demoSection.current,
       audienceSection.current,
       newsSection.current,
       techSection.current,
@@ -111,7 +122,7 @@ export function Showcase() {
   useEffect(() => {
     const target = document.getElementById(window.location.hash.slice(1));
     if (
-      [heroSection, trySection, audienceSection, newsSection, techSection].some(
+      [heroSection, trySection, demoSection, audienceSection, newsSection, techSection].some(
         (section) => section.current === target
       )
     ) {
@@ -131,6 +142,7 @@ export function Showcase() {
   const sectionLinks = [
     { id: HERO_ID, label: t('nav.start') },
     { id: TRY_ID, label: t('nav.prototype') },
+    { id: DEMO_ID, label: t('nav.demo') },
     { id: AUDIENCE_ID, label: t('nav.audience') },
     { id: NEWS_ID, label: t('nav.news') },
     { id: TECH_ID, label: t('nav.tech') },
@@ -169,17 +181,11 @@ export function Showcase() {
           <PhoneFrame ref={frame} src={PATHS.start} />
         </section>
 
+        {/* The demo video; each chapter can open its screen in the phone above. */}
+        <DemoSection ref={demoSection} onShow={showInPhone} />
+
         {/* Example people it helps: each card can open its screen in the phone above. */}
-        <WhoItHelps
-          ref={audienceSection}
-          onShow={(path) => {
-            if (!navigatePhone(frame.current, path)) {
-              return false;
-            }
-            goToPhone();
-            return true;
-          }}
-        />
+        <WhoItHelps ref={audienceSection} onShow={showInPhone} />
 
         {/* What this is and what is new. */}
         <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>

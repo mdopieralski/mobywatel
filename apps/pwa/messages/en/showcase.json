@@ -3,6 +3,7 @@
     "label": "Page sections",
     "start": "Start",
     "prototype": "Prototype",
+    "demo": "Demo",
     "audience": "Who it helps",
     "news": "What's new",
     "tech": "Technology"
@@ -26,6 +27,61 @@
       "body": "The app speaks the languages of Poland's neighbours: German, Czech, Slovak, Ukrainian, Belarusian and Lithuanian."
     },
     "cta": "See the prototype"
+  },
+  "demo": {
+    "title": "Demo",
+    "lead": "A day with the app in 80 seconds. The video has no sound, and the captions are in your language.",
+    "videoLabel": "Video: a day with the app",
+    "captions": "Captions",
+    "chaptersLabel": "Video chapters",
+    "proposalNote": "Parts marked “Propozycja” (proposal) show how a matter is meant to work. They are not in the prototype yet.",
+    "offline": "You can watch the video once you are online.",
+    "transcript": "Video description",
+    "intro": "At the start: the name Sprawnie and a note that this is an unofficial prototype.",
+    "outro": "At the end: the prototype's address and a note that all data is fictional.",
+    "chapters": {
+      "zus": {
+        "name": "Mobile ZUS",
+        "time": "Morning",
+        "body": "ZUS is in the same app as your other matters. We will add booking a visit. Before sending, we show you what we send.",
+        "scene": "On screen: the app's start screen, the ZUS category and the “Wkrótce” (coming soon) screen. Then the proposal: choosing a matter and a time, a confirmation and the booked visit.",
+        "try": "Show ZUS in the prototype"
+      },
+      "tickets": {
+        "name": "City tickets",
+        "time": "On the way",
+        "body": "A bus and tram ticket in the city you choose, without a separate app. Choosing a city already works; we will add buying.",
+        "scene": "On screen: the Podróż (Travel) category and choosing a city. Typing “lodz” finds Łódź. Then the proposal: choosing a ticket, a confirmation and a ticket with a countdown.",
+        "try": "Show the city picker"
+      },
+      "languages": {
+        "name": "Neighbours' languages",
+        "time": "Evening",
+        "body": "The whole app in 8 languages, offline too. We translate the app's screens, not documents.",
+        "scene": "On screen: the PL button and the list of languages. After choosing Ukrainian, the whole screen changes. Then airplane mode and German, and finally “Your matters” in 8 languages.",
+        "try": "Change the language in the prototype"
+      }
+    },
+    "cues": {
+      "intro": "A day with the app. This is an unofficial prototype.",
+      "zus1": "In the morning, Katarzyna opens her ZUS matters.",
+      "zus2": "Contributions, pension and sick leave will be in one place.",
+      "zus3": "You can't book a ZUS visit in the prototype yet.",
+      "zus4": "Our proposal: you choose a matter and a free slot.",
+      "zus5": "Before sending, you see what we send.",
+      "zus6": "Booked. Nothing was sent in the prototype.",
+      "tickets1": "Katarzyna is going to Łódź. She needs a tram ticket.",
+      "tickets2": "Choose from 969 cities. No Polish letters or internet needed.",
+      "tickets3": "Our proposal: buy a ticket without a separate app.",
+      "tickets4": "You buy it only after confirming. The price is an example.",
+      "tickets5": "Nothing was paid in the prototype.",
+      "languages1": "In the evening, Katarzyna's neighbour picks Ukrainian.",
+      "languages2": "The whole app changes, not just the menu.",
+      "languages3": "It works offline too.",
+      "languages4": "8 languages, each one complete. Lithuanian and Belarusian too.",
+      "outro1": "Try the prototype. No login needed.",
+      "outro2": "Unofficial prototype. All people and data are fictional."
+    }
   },
   "audience": {
     "title": "Who is it for?",
@@ -92,7 +148,7 @@
     },
     "tickets": {
       "title": "City tickets",
-      "body": "Public transport tickets from every city in one place, without a separate app for each operator. The category is already on the start screen; buying tickets is coming soon.",
+      "body": "Public transport tickets from 969 cities in one place, without a separate app for each operator. The category is already on the start screen; buying tickets is coming soon.",
       "try": "Open the Travel category."
     },
     "zus": {

@@ -7,6 +7,7 @@ export default {
       [
         'pwa',
         'ui',
+        'video',
         'brand',
         'core',
         'assistant',

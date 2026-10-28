@@ -77,9 +77,16 @@ checks each line against the code (the `product-knowledge` skill).
 
 ## 5. Demo video (optional, recommended)
 
-60–120 seconds, screen recording on a real phone, one persona, one or two matters, senior mode toggled once.
-Burned-in Polish captions (people watch without sound). No real data on screen and no notifications from the
-recording phone. Hosted somewhere that stays up (unlisted YouTube or Vimeo).
+We have one: "Jeden dzień z aplikacją", built with Remotion in `apps/video` (plan and rules:
+`docs/product/demo-video.md`). The landing page's "Demo" section plays `apps/pwa/public/video/demo-v<n>.mp4`
+with captions in the page language. For the form, `pnpm run render:demo -- --napisy` also writes
+`apps/video/out/demo-v<n>-napisy.mp4` with Polish captions burned in. Host it somewhere that stays up
+(unlisted YouTube or Vimeo).
+
+- Re-render in the last week, so the screens match the final app. Bump the version in
+  `apps/video/scripts/render.mjs` and `DEMO_VIDEO` in `apps/pwa/src/features/showcase/demo.ts` together.
+- Watch every frame before upload: no official marks, the "PROTOTYP · nieoficjalny" badge always visible,
+  proposals marked "Propozycja". No script can look inside an MP4.
 
 ## 6. Final checklist and freeze
 
@@ -87,7 +94,7 @@ recording phone. Hosted somewhere that stays up (unlisted YouTube or Vimeo).
 - [ ] Production deploy of that commit; URL checked in a private window on two phones
 - [ ] Guardrails audit clean; disclaimer and watermark visible; no official marks anywhere
 - [ ] Description ≤ 4000 characters, claims verified, link inside correct
-- [ ] Video link works logged out
+- [ ] Video link works logged out; demo video re-rendered from the final app and watched frame by frame
 - [ ] Organisers confirmed entries are open
 
 **Freeze:** no production deploys in the last 48 hours before the deadline except fixes for a broken jury

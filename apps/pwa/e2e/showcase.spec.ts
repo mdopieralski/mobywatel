@@ -102,7 +102,7 @@ test.describe('desktop showcase', () => {
     await expect(page.getByRole('heading', { level: 1, name: /^ZUS i bilety/ })).toBeInViewport();
   });
 
-  test('the header lists Start, Prototyp, Dla kogo, Nowości and Technologia, in that order', async ({
+  test('the header lists Start, Prototyp, Demo, Dla kogo, Nowości and Technologia, in that order', async ({
     page,
   }) => {
     for (const path of ['/', '/prototype']) {
@@ -110,6 +110,7 @@ test.describe('desktop showcase', () => {
       await expect(page.getByRole('navigation', { name: 'Sekcje strony' }).getByRole('link')).toHaveText([
         'Start',
         'Prototyp',
+        'Demo',
         'Dla kogo',
         'Nowości',
         'Technologia',
@@ -149,21 +150,150 @@ test.describe('desktop showcase', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Technologia' })).toBeInViewport();
   });
 
-  test('the five header links fit on one row in a narrow desktop window', async ({ page }) => {
+  test('the six header links fit on one row in a narrow desktop window', async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 640 });
     await page.goto('/');
     const links = page.getByRole('navigation', { name: 'Sekcje strony' }).getByRole('link');
-    await expect(links).toHaveCount(5);
+    await expect(links).toHaveCount(6);
     const tops = await links.evaluateAll((els) =>
       els.map((el) => Math.round(el.getBoundingClientRect().top))
     );
     expect(new Set(tops).size).toBe(1);
   });
 
+  test('"Demo" comes right after the phone: a silent video with a poster, three chapters and a text version', async ({
+    page,
+  }) => {
+    const requests: string[] = [];
+    page.on('request', (r) => requests.push(new URL(r.url()).pathname));
+    await page.goto('/');
+    await expect(page.locator('#wyprobuj + #demo')).toHaveCount(1);
+    const demo = page.getByRole('region', { name: 'Demo' });
+    await expect(demo.getByRole('group', { name: 'Rozdziały filmu' }).getByRole('button')).toHaveText([
+      /Mobilny ZUS/,
+      /Bilety miejskie/,
+      /Języki sąsiedzkie/,
+    ]);
+    const video = demo.locator('video');
+    await expect(video).toHaveAttribute('poster', /\/video\/demo-v\d+-poster\.jpg$/);
+    await expect(video).toHaveAttribute('preload', 'none');
+    await expect(video).toHaveAttribute('controls', '');
+    // Planned screens are labelled as proposals, on the page as in the video.
+    await expect(demo).toContainText('Propozycja');
+    // It never starts on its own, and the file isn't fetched until someone plays it.
+    await demo.scrollIntoViewIfNeeded();
+    await page.waitForTimeout(500);
+    expect(await video.evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
+    expect(requests.some((p) => p.endsWith('.mp4'))).toBe(false);
+    // The text version tells the whole story, captions included.
+    await demo.getByText('Opis filmu').click();
+    await expect(demo.getByRole('heading', { level: 3 })).toHaveText([
+      'Mobilny ZUS',
+      'Bilety miejskie',
+      'Języki sąsiedzkie',
+    ]);
+    await expect(demo.locator('details')).toContainText('969 miast do wyboru');
+    await expect(demo.locator('details')).toContainText('W prototypie nic nie zapłacono.');
+  });
+
+  test('"Demo" in the header jumps to the video, and /prototype and #demo open it too', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.getByRole('navigation', { name: 'Sekcje strony' });
+    await nav.getByRole('link', { name: 'Demo' }).click();
+    await expect(page.locator('#demo')).toBeFocused();
+    await expect(page.getByRole('heading', { level: 2, name: 'Demo' })).toBeInViewport();
+    await expect(nav.getByRole('link', { name: 'Demo' })).toHaveAttribute('aria-current', 'location');
+    await page.goto('/prototype');
+    await nav.getByRole('link', { name: 'Demo' }).click();
+    await expect(page).toHaveURL(/\/#demo$/);
+    await expect(page.getByRole('heading', { level: 2, name: 'Demo' })).toBeInViewport();
+  });
+
+  test('a chapter button jumps the video to that chapter and shows its text', async ({ page }) => {
+    await page.goto('/#demo');
+    const demo = page.getByRole('region', { name: 'Demo' });
+    const tickets = demo.getByRole('button', { name: /Bilety miejskie/ });
+    await expect(tickets).toHaveAttribute('aria-pressed', 'false');
+    await tickets.click();
+    await expect(tickets).toHaveAttribute('aria-pressed', 'true');
+    expect(await demo.locator('video').evaluate((v: HTMLVideoElement) => v.currentTime)).toBeCloseTo(30, 0);
+    await expect(demo.getByRole('link', { name: 'Pokaż wybór miasta' })).toBeVisible();
+  });
+
+  test('once played, the demo video is stored and plays offline', async ({ page, context }) => {
+    await page.goto('/#demo');
+    await page.evaluate(async () => {
+      await navigator.serviceWorker.ready;
+    });
+    // The first load is not controlled by the service worker yet; a reload is.
+    await page.reload();
+    await expect.poll(() => page.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+    const demo = page.getByRole('region', { name: 'Demo' });
+    await demo.getByRole('button', { name: /Mobilny ZUS/ }).click();
+    await expect
+      .poll(() =>
+        page.evaluate(async () => {
+          const cache = await caches.open('demo-video');
+          return (await cache.keys()).some((r) => new URL(r.url).pathname.endsWith('.mp4'));
+        })
+      )
+      .toBe(true);
+    await context.setOffline(true);
+    await page.reload();
+    const video = page.locator('#demo video');
+    await video.evaluate(async (v: HTMLVideoElement) => {
+      v.currentTime = 40;
+      await v.play();
+    });
+    await expect.poll(() => video.evaluate((v: HTMLVideoElement) => v.currentTime)).toBeGreaterThan(40.5);
+    await expect(page.getByRole('status').filter({ hasText: 'połączeniu' })).toHaveCount(0);
+    await context.setOffline(false);
+  });
+
+  test('the captions are in the page language and change with it', async ({ page }) => {
+    const showing = () =>
+      page.locator('#demo video').evaluate((v: HTMLVideoElement) => {
+        const track = [...v.textTracks].find((t) => t.mode === 'showing');
+        return {
+          lang: track?.language,
+          count: track?.cues?.length,
+          first: (track?.cues?.[0] as VTTCue)?.text,
+        };
+      });
+    await page.goto('/');
+    await expect.poll(showing).toEqual({
+      lang: 'pl',
+      count: 18,
+      first: 'Jeden dzień z aplikacją. To nieoficjalny prototyp.',
+    });
+    await page.goto('/?lang=uk');
+    await expect.poll(async () => (await showing()).lang).toBe('uk');
+    expect((await showing()).first).toMatch(/[а-яіїє]/i);
+  });
+
+  for (const [chapter, button, heading] of [
+    [null, 'Pokaż ZUS w prototypie', 'ZUS'],
+    [/Bilety miejskie/, 'Pokaż wybór miasta', 'Bilet miejski'],
+  ] as const) {
+    test(`Demo: "${button}" opens ${heading} in the phone and pauses the video`, async ({ page }) => {
+      await page.goto('/#demo');
+      const phone = page.frameLocator('iframe[name="phone"]');
+      await phone.getByRole('heading', { level: 1 }).waitFor();
+      const demo = page.getByRole('region', { name: 'Demo' });
+      if (chapter) {
+        await demo.getByRole('button', { name: chapter }).click();
+      }
+      await demo.getByRole('link', { name: button }).click();
+      await expect(phone.getByRole('heading', { level: 1 })).toHaveText(heading);
+      await expect(page.locator('iframe[name="phone"]')).toBeInViewport({ ratio: 0.5 });
+      expect(await demo.locator('video').evaluate((v: HTMLVideoElement) => v.paused)).toBe(true);
+    });
+  }
+
   test('"Dla kogo" shows six fictional example people, each with something to try', async ({ page }) => {
     await page.goto('/');
     const audience = page.getByRole('region', { name: 'Dla kogo?' });
-    await expect(page.locator('#wyprobuj + #dla-kogo')).toHaveCount(1);
+    await expect(page.locator('#wyprobuj + #demo + #dla-kogo')).toHaveCount(1);
     await expect(audience.getByRole('listitem')).toHaveCount(6);
     await expect(audience.getByRole('heading', { level: 3 })).toHaveText([
       'Teresa',

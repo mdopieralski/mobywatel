@@ -114,7 +114,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
         // Inter Tight is only for the desktop pages' nav: phones should not download it on install. It is
         // cached the first time a desktop page uses it, and the system font stands in until then.
-        globIgnores: ['**/inter-tight-*.woff2'],
+        // The demo video (public/video) is a few MB and only for the desktop landing page: never precached.
+        globIgnores: ['**/inter-tight-*.woff2', 'video/**'],
         runtimeCaching: [
           {
             urlPattern: ({ url }) => /\/assets\/inter-tight-.*\.woff2$/.test(url.pathname),
@@ -126,6 +127,19 @@ export default defineConfig({
               // Font requests carry Origin (CORS) and the server answers Vary: Origin; the copies written
               // ahead of time were fetched without it. Same files either way.
               matchOptions: { ignoreVary: true },
+            },
+          },
+          {
+            // The poster, and the video once the page has stored it on the first play (demo-section.tsx:
+            // a player only asks for byte ranges, and a partial answer is never stored). The range
+            // plugin then answers every seek from the stored copy, also offline.
+            urlPattern: ({ url }) => url.pathname.startsWith('/video/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'demo-video',
+              expiration: { maxEntries: 4 },
+              cacheableResponse: { statuses: [200] },
+              rangeRequests: true,
             },
           },
         ],

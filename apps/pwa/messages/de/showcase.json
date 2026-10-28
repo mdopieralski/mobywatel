@@ -3,6 +3,7 @@
     "label": "Abschnitte der Seite",
     "start": "Start",
     "prototype": "Prototyp",
+    "demo": "Demo",
     "audience": "Für wen",
     "news": "Neuigkeiten",
     "tech": "Technologie"
@@ -26,6 +27,61 @@
       "body": "Die App spricht die Sprachen der Nachbarn Polens: Deutsch, Tschechisch, Slowakisch, Ukrainisch, Belarussisch und Litauisch."
     },
     "cta": "Prototyp ansehen"
+  },
+  "demo": {
+    "title": "Demo",
+    "lead": "Ein Tag mit der App in 80 Sekunden. Das Video ist ohne Ton, die Untertitel sind in deiner Sprache.",
+    "videoLabel": "Video: ein Tag mit der App",
+    "captions": "Untertitel",
+    "chaptersLabel": "Kapitel des Videos",
+    "proposalNote": "Abschnitte mit dem Hinweis „Propozycja“ (Vorschlag) zeigen, wie ein Anliegen funktionieren soll. Im Prototyp gibt es sie noch nicht.",
+    "offline": "Das Video kannst du ansehen, sobald du online bist.",
+    "transcript": "Beschreibung des Videos",
+    "intro": "Am Anfang: der Name Sprawnie und der Hinweis, dass dies ein inoffizieller Prototyp ist.",
+    "outro": "Am Ende: die Adresse des Prototyps und der Hinweis, dass alle Daten erfunden sind.",
+    "chapters": {
+      "zus": {
+        "name": "Mobiler ZUS",
+        "time": "Morgens",
+        "body": "ZUS ist in derselben App wie deine anderen Anliegen. Termine buchen fügen wir hinzu. Vor dem Senden zeigen wir dir, was wir senden.",
+        "scene": "Zu sehen: der Start der App, die Kategorie ZUS und der Bildschirm „Wkrótce“ (bald). Dann der Vorschlag: Anliegen und Termin wählen, Bestätigung und gebuchter Termin.",
+        "try": "ZUS im Prototyp zeigen"
+      },
+      "tickets": {
+        "name": "Stadttickets",
+        "time": "Unterwegs",
+        "body": "Ein Ticket für Bus und Straßenbahn in der gewählten Stadt, ohne eigene App. Die Stadtauswahl funktioniert schon, den Kauf fügen wir hinzu.",
+        "scene": "Zu sehen: die Kategorie Podróż (Reisen) und die Stadtauswahl. Die Eingabe „lodz“ findet Łódź. Dann der Vorschlag: Ticket wählen, Bestätigung und ein Ticket mit Countdown.",
+        "try": "Stadtauswahl zeigen"
+      },
+      "languages": {
+        "name": "Sprachen der Nachbarn",
+        "time": "Abends",
+        "body": "Die ganze App in 8 Sprachen, auch offline. Wir übersetzen die Bildschirme der App, keine Dokumente.",
+        "scene": "Zu sehen: der Knopf PL und die Liste der Sprachen. Nach der Wahl von Ukrainisch ändert sich der ganze Bildschirm. Dann Flugmodus und Deutsch, am Ende „Deine Anliegen“ in 8 Sprachen.",
+        "try": "Sprache im Prototyp ändern"
+      }
+    },
+    "cues": {
+      "intro": "Ein Tag mit der App. Das ist ein inoffizieller Prototyp.",
+      "zus1": "Morgens öffnet Katarzyna ihre ZUS-Anliegen.",
+      "zus2": "Beiträge, Rente und Krankschreibung bald an einem Ort.",
+      "zus3": "Einen ZUS-Termin buchst du im Prototyp noch nicht.",
+      "zus4": "Unser Vorschlag: Du wählst Anliegen und freien Termin.",
+      "zus5": "Vor dem Senden siehst du, was wir senden.",
+      "zus6": "Gebucht. Im Prototyp wurde nichts gesendet.",
+      "tickets1": "Katarzyna fährt nach Łódź. Sie braucht ein Straßenbahnticket.",
+      "tickets2": "969 Städte zur Wahl. Geht ohne polnische Buchstaben und offline.",
+      "tickets3": "Unser Vorschlag: Ticket kaufen ohne eigene App.",
+      "tickets4": "Du kaufst es erst nach Bestätigung. Preis nur als Beispiel.",
+      "tickets5": "Im Prototyp wurde nichts bezahlt.",
+      "languages1": "Abends wählt Katarzynas Nachbarin Ukrainisch.",
+      "languages2": "Die ganze App ändert sich, nicht nur das Menü.",
+      "languages3": "Es geht auch ohne Internet.",
+      "languages4": "8 Sprachen, jede vollständig. Auch Litauisch und Belarussisch.",
+      "outro1": "Probier den Prototyp aus. Ohne Anmeldung.",
+      "outro2": "Inoffizieller Prototyp. Alle Personen und Daten sind erfunden."
+    }
   },
   "audience": {
     "title": "Für wen?",
@@ -92,7 +148,7 @@
     },
     "tickets": {
       "title": "Stadttickets",
-      "body": "Nahverkehrstickets aus jeder Stadt an einem Ort, ohne eigene App für jeden Verkehrsbetrieb. Die Kategorie ist schon auf dem Start, der Kauf kommt bald.",
+      "body": "Nahverkehrstickets aus 969 Städten an einem Ort, ohne eigene App für jeden Verkehrsbetrieb. Die Kategorie ist schon auf dem Start, der Kauf kommt bald.",
       "try": "Öffne die Kategorie Reisen."
     },
     "zus": {
