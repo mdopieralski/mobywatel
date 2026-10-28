@@ -12,7 +12,31 @@ import { useTranslations } from 'use-intl';
 
 import { useAppLocale } from '../platform/i18n.ts';
 import { updateSettings } from '../platform/settings.ts';
-import styles from './language-switch.module.css';
+import { visuallyHidden } from './visually-hidden.ts';
+
+/* Looks like the globe in the phone's header. The current language and the open list: accent colour plus a
+   tint, so it isn't colour alone. */
+const buttonClass = {
+  page:
+    'inline-flex items-center justify-center gap-1 min-w-target min-h-target py-0 px-3 border border-border rounded-pill bg-surface text-text ' +
+    'font-compact text-sm font-semibold leading-[inherit] tracking-[0.06em] cursor-pointer ' +
+    'hover:bg-accent-soft hover:text-accent aria-expanded:bg-accent-soft aria-expanded:text-accent',
+  // Inside the app: the compact globe of the app header, no outline, like the shortcuts next to it.
+  app:
+    'inline-flex items-center justify-center gap-[2px] min-w-target min-h-target py-0 px-1 border-0 rounded-md bg-transparent text-text ' +
+    '[font-family:inherit] [font-size:inherit] font-semibold leading-[inherit] tracking-normal cursor-pointer ' +
+    'hover:text-accent aria-expanded:bg-accent-soft aria-expanded:text-accent',
+} as const;
+
+const iconClass =
+  '[&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-[1.75] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]';
+
+const listClass = {
+  page: 'min-w-[14rem]',
+  // In the phone (320 px, senior text) the list may be wider than the space left of the button: keep it on
+  // screen.
+  app: 'min-w-[min(14rem,calc(100vw_-_2_*_var(--space-4)))] max-w-[calc(100vw_-_2_*_var(--space-4))]',
+} as const;
 
 /**
  * Language switch for the app header and the desktop page header: a globe with the current code. It opens a
@@ -131,7 +155,8 @@ export function LanguageSwitch({
   return (
     <div
       ref={root}
-      className={`${styles.root} ${styles[variant]} ${className ?? ''}`}
+      // Inside the app: 40 px of space from the shortcuts before it.
+      className={`relative ${variant === 'app' ? 'ms-[calc(var(--space-7)_+_var(--space-2))]' : ''} ${className ?? ''}`}
       style={style}
       onBlur={(event) => {
         // Tabbing out of the open list closes it. Only when focus lands somewhere: Safari doesn't focus a
@@ -146,7 +171,7 @@ export function LanguageSwitch({
       <button
         ref={button}
         type="button"
-        className={styles.button}
+        className={`${buttonClass[variant]} ${iconClass}`}
         aria-expanded={open}
         aria-controls={listId}
         onClick={() => setOpen((was) => !was)}
@@ -156,9 +181,15 @@ export function LanguageSwitch({
           <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />
         </svg>
         <span>{locale.toUpperCase()}</span>
-        <span className={styles.visuallyHidden}> – {t('changeLanguage')}</span>
+        <span className={visuallyHidden}> – {t('changeLanguage')}</span>
       </button>
-      <ul ref={list} id={listId} className={styles.list} hidden={!open} onKeyDown={onListKey}>
+      <ul
+        ref={list}
+        id={listId}
+        className={`absolute top-[calc(100%_+_var(--space-2))] right-0 z-2 m-0 p-2 list-none border border-border rounded-md bg-surface-raised [box-shadow:0_8px_24px_color-mix(in_srgb,var(--text)_16%,transparent)] [&[hidden]]:hidden ${listClass[variant]}`}
+        hidden={!open}
+        onKeyDown={onListKey}
+      >
         {LOCALES.map((l) => (
           <li key={l}>
             <button
@@ -170,12 +201,19 @@ export function LanguageSwitch({
                 }
               }}
               type="button"
-              className={styles.item}
+              className={`flex items-center gap-3 w-full min-h-target py-0 px-3 border-0 rounded-sm text-md leading-[inherit] text-start cursor-pointer ${
+                l === locale
+                  ? 'bg-accent-soft text-accent font-semibold'
+                  : 'bg-transparent text-text [font-weight:inherit] hover:bg-accent-soft'
+              } [font-family:inherit] [font-style:inherit]`}
               lang={l}
               aria-current={l === locale ? 'true' : undefined}
               onClick={() => pick(l)}
             >
-              <span className={styles.code} aria-hidden="true">
+              <span
+                className={`min-w-[2ch] font-compact text-sm tracking-[0.06em] ${l === locale ? '' : 'text-text-muted'}`}
+                aria-hidden="true"
+              >
                 {l.toUpperCase()}
               </span>
               {LOCALE_NAMES[l]}

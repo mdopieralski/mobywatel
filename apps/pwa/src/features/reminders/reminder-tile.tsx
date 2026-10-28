@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { useTranslations } from 'use-intl';
 
 import { PATHS } from '../../app/paths.ts';
-import styles from './reminders.module.css';
+import { dueClass, dueUrgentClass, reminderBoxClass } from './reminder-classes.ts';
 import { useReminders } from './use-reminders.ts';
 
 /** Start-screen summary: the most urgent matter and how many more. The link name includes the deadline. */
@@ -14,19 +14,30 @@ export function ReminderTile() {
     return null;
   }
   return (
-    <Link className={styles.tile} to={PATHS.reminders}>
-      <span className={styles.count} aria-hidden="true">
+    <Link className={`${reminderBoxClass} min-h-target no-underline`} to={PATHS.reminders}>
+      <span
+        className="grid size-9 flex-none place-items-center rounded-[50%] bg-accent font-bold text-accent-text"
+        aria-hidden="true"
+      >
         {items.length}
       </span>
-      <span className={styles.text}>
-        <span className={styles.visuallyHidden}>{t('title')}: </span>
-        <b className={styles.tileTitle}>{first.title}</b>
-        <span className={styles.line}>
-          <span className={first.reminder.urgent ? styles.dueUrgent : undefined}>{first.due}</span>
+      <span className="flex min-w-0 flex-1 flex-col">
+        <span className="absolute h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)]">
+          {t('title')}:{' '}
+        </span>
+        <b className="text-md">{first.title}</b>
+        <span className={dueClass}>
+          <span className={first.reminder.urgent ? dueUrgentClass : undefined}>{first.due}</span>
           {items.length > 1 ? <> · {t('more', { count: items.length - 1 })}</> : null}
         </span>
       </span>
-      <svg aria-hidden="true" className={styles.chevron} viewBox="0 0 24 24" width="20" height="20">
+      <svg
+        aria-hidden="true"
+        className="flex-none fill-none stroke-text-muted stroke-2 [stroke-linecap:round] [stroke-linejoin:round]"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+      >
         <path d="m9.5 6 6 6-6 6" />
       </svg>
     </Link>

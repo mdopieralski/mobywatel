@@ -9,8 +9,8 @@ import { NotFound } from '../../app/not-found.tsx';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { parseIsoDate, usePersona } from '../../platform/persona.ts';
 import { categoryOfDocument } from '../categories/categories.tsx';
-import { cardStyles, DATE_FORMAT, DocumentFace } from './document-card.tsx';
-import styles from './document-screen.module.css';
+import { DATE_FORMAT, DocumentFace } from './document-card.tsx';
+import { cardClass, detailRowClass, detailsClass, documentClass } from './document-classes.ts';
 import { kindBySlug, KINDS } from './kinds.tsx';
 
 // Back to the category the document lives in (start screen if none).
@@ -31,26 +31,29 @@ export function DocumentScreen() {
     return <NotFound />;
   }
   return (
-    <div className={styles.stack}>
-      <Link className={styles.back} to={backTo(kind)}>
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-4 [&_h1]:m-0">
+      <Link
+        className="inline-flex min-h-target items-center gap-2 justify-self-start font-semibold"
+        to={backTo(kind)}
+      >
         <span aria-hidden="true">←</span> {t('back')}
       </Link>
       <h1>{t(`kinds.${KINDS[kind].key}`)}</h1>
       {/* The watermark ("PROTOTYP – nie jest dokumentem") is drawn by CSS from data-watermark, so no screenshot
           of this looks real. Polish on purpose (docs/decisions/languages-2026-10-25.md); the disclaimer below
           says the same in the UI language. */}
-      <div className={styles.document} data-watermark={DOCUMENT_WATERMARK}>
+      <div className={documentClass} data-watermark={DOCUMENT_WATERMARK}>
         <div
-          className={`${cardStyles.card} ${styles.card}`}
+          className={`${cardClass} min-h-28 overflow-hidden px-5 py-4`}
           style={{ '--card-color': KINDS[kind].color } as CSSProperties}
         >
           <DocumentFace doc={doc} persona={persona} full={false} proto />
         </div>
-        <section aria-labelledby="details-heading" className={styles.details}>
+        <section aria-labelledby="details-heading" className={detailsClass}>
           <h2 id="details-heading">{t('details')}</h2>
           <dl>
             {doc.fields.map(([key, value]) => (
-              <div key={key} className={styles.row}>
+              <div key={key} className={detailRowClass}>
                 <dt>{t(`fields.${key}`)}</dt>
                 <dd>
                   {'date' in value ? format.dateTime(parseIsoDate(value.date), DATE_FORMAT) : value.text}

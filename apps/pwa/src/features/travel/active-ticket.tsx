@@ -4,8 +4,8 @@ import { type Ref, useState } from 'react';
 import { useFormatter, useTranslations } from 'use-intl';
 
 import { useAppLocale } from '../../platform/i18n.ts';
-import docStyles from '../documents/document-screen.module.css';
-import styles from './city-picker.module.css';
+import { detailRowClass, detailsClass, documentClass } from '../documents/document-classes.ts';
+import { flowClass, mutedClass } from './picker-classes.ts';
 import { type BoughtTicket, TIME_FORMAT, validUntil } from './ticket-state.ts';
 
 /**
@@ -35,22 +35,22 @@ export function ActiveTicket({
     [t('active.validUntil'), until ? format.dateTime(until, TIME_FORMAT) : t('active.oneRide')],
   ];
   return (
-    <div className={styles.ticket}>
-      <div className={docStyles.document} data-watermark={DOCUMENT_WATERMARK}>
-        <section aria-labelledby="active-ticket" className={docStyles.details}>
+    <div className={flowClass}>
+      <div className={documentClass} data-watermark={DOCUMENT_WATERMARK}>
+        <section aria-labelledby="active-ticket" className={detailsClass}>
           <h2 id="active-ticket" ref={ref} tabIndex={-1}>
             {t('active.title')}
           </h2>
           <dl>
             {rows.map(([label, value]) => (
-              <div key={label} className={docStyles.row}>
+              <div key={label} className={detailRowClass}>
                 <dt>{label}</dt>
                 <dd>{value}</dd>
               </div>
             ))}
           </dl>
-          {expired ? <p className={styles.expired}>{t('active.expired')}</p> : null}
-          <p className={styles.note}>{t('active.note')}</p>
+          {expired ? <p className="font-bold text-danger">{t('active.expired')}</p> : null}
+          <p className={mutedClass}>{t('active.note')}</p>
         </section>
       </div>
       <Disclaimer variant="inline" locale={locale} />

@@ -1,59 +1,121 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/*
+ * Tailwind (docs/decisions/tailwind-2026-10-28.md): our theme from @mobywatel/brand and the utilities.
+ * No Tailwind preflight: the base styles below are ours, kept in the `base` layer so utilities win over them.
+ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import '@mobywatel/brand/tailwind.css';
+/* Shared components use utilities too. */
+@source '../../../../packages/ui/src';
+
+/* The app's animations: `animate-intro-reveal` etc. Each waits for its turn in the boot intro
+   (--intro-delay, set inline by boot-loader.ts); reduced motion turns them off (base layer below). */
+@theme {
+  --animate-intro-reveal: intro-reveal 900ms cubic-bezier(0.33, 1, 0.68, 1) var(--intro-delay, 0ms) forwards;
+  --animate-intro-rise: intro-rise 1000ms var(--easing-standard) var(--intro-delay, 0ms) forwards;
+  --animate-tick-draw: tick-draw 600ms var(--easing-standard) var(--intro-delay, 0ms) forwards;
+  --animate-brand-dot-blink: brand-dot-blink 1.2s steps(1, end) calc(var(--intro-delay, 0ms) + 900ms) 4
+    backwards;
+
+  @keyframes intro-reveal {
+    from {
+      opacity: 0;
+      translate: calc(-1 * var(--space-1)) 0;
+    }
+    to {
+      opacity: 1;
+      translate: none;
+    }
+  }
+  @keyframes intro-rise {
+    from {
+      opacity: 0;
+      translate: 0 var(--space-6);
+    }
+    to {
+      opacity: 1;
+      translate: none;
+    }
+  }
+  @keyframes tick-draw {
+    0% {
+      stroke-dashoffset: 1;
+      opacity: 1;
+    }
+    100% {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+  @keyframes brand-dot-blink {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  min-height: 100dvh;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-family);
-  font-size: var(--font-md);
-  line-height: var(--line-height-body);
-  -webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3 {
-  line-height: var(--line-height-tight);
-  margin: 0 0 var(--space-3);
-}
-
-h1 {
-  font-size: var(--font-2xl);
-}
-
-h2 {
-  font-size: var(--font-xl);
-}
-
-p {
-  margin: 0 0 var(--space-3);
-}
-
-a {
-  color: var(--accent);
-}
-
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   *,
   *::before,
   *::after {
-    animation-duration: 0ms !important;
-    transition-duration: 0ms !important;
-    scroll-behavior: auto !important;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-family);
+    font-size: var(--font-md);
+    line-height: var(--line-height-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--line-height-tight);
+    margin: 0 0 var(--space-3);
+  }
+
+  h1 {
+    font-size: var(--font-2xl);
+  }
+
+  h2 {
+    font-size: var(--font-xl);
+  }
+
+  p {
+    margin: 0 0 var(--space-3);
+  }
+
+  a {
+    color: var(--accent);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0ms !important;
+      transition-duration: 0ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

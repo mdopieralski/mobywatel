@@ -2,7 +2,14 @@ import { ZUS_OFFICES, type ZusOffice } from '@mobywatel/content';
 import type { Ref } from 'react';
 import { useTranslations } from 'use-intl';
 
-import styles from './zus.module.css';
+import {
+  optionClass,
+  optionListClass,
+  optionMetaClass,
+  optionNameClass,
+  panelTitleClass,
+} from '../travel/picker-classes.ts';
+import { hintClass, zusPanelClass } from './zus-classes.ts';
 
 /** Step 1: the invented offices, as big buttons. */
 export function OfficeList({
@@ -14,17 +21,17 @@ export function OfficeList({
 }) {
   const t = useTranslations('zus.offices');
   return (
-    <section className={styles.panel} aria-labelledby="zus-offices">
-      <h2 id="zus-offices" ref={headingRef} tabIndex={-1} className={styles.title}>
+    <section className={zusPanelClass} aria-labelledby="zus-offices">
+      <h2 id="zus-offices" ref={headingRef} tabIndex={-1} className={panelTitleClass}>
         {t('title')}
       </h2>
-      <p className={styles.hint}>{t('hint')}</p>
-      <ul className={styles.list}>
+      <p className={hintClass}>{t('hint')}</p>
+      <ul className={optionListClass}>
         {ZUS_OFFICES.map((office) => (
           <li key={office.id}>
-            <button type="button" className={styles.option} onClick={() => onChoose(office)}>
-              <span className={styles.optionName}>{t('name', { name: office.name })}</span>
-              <span className={styles.optionMeta}>{office.city}</span>
+            <button type="button" className={optionClass} onClick={() => onChoose(office)}>
+              <span className={optionNameClass}>{t('name', { name: office.name })}</span>
+              <span className={optionMetaClass}>{office.city}</span>
             </button>
           </li>
         ))}

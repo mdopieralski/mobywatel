@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import { useTranslations } from 'use-intl';
 
-import styles from './not-found.module.css';
 import { PATHS } from './paths.ts';
 
 export function NotFound() {
@@ -10,7 +9,8 @@ export function NotFound() {
     <>
       <h1>{t('title')}</h1>
       <p>{t('body')}</p>
-      <Link className={styles.back} to={PATHS.start}>
+      {/* A 48 px target, like the back links on the other screens. */}
+      <Link className="inline-flex items-center gap-2 min-h-target font-semibold" to={PATHS.start}>
         <span aria-hidden="true">←</span> {t('back')}
       </Link>
     </>
