@@ -15,7 +15,11 @@ that uses it.
 | Nieoficjalny prototyp | Unofficial prototype | Неофіційний прототип | Inoffizieller Prototyp | Neoficiální prototyp | Neoficiálny prototyp | Neoficialus prototipas | Неафіцыйны прататып |
 | Większy tekst         | Larger text          | Більший текст        | Größerer Text          | Větší text           | Väčší text           | Didesnis tekstas       | Большы тэкст        |
 | Bilety miejskie       | City tickets         | Міські квитки        | Stadttickets           | Městské jízdenky     | Mestské lístky       | Miesto bilietai        | Гарадскія білеты    |
+| bilet (komunikacji)   | ticket               | квиток               | Ticket                 | jízdenka             | lístok               | bilietas               | білет               |
 | Zmień język           | Change language      | Змінити мову         | Sprache ändern         | Změnit jazyk         | Zmeniť jazyk         | Keisti kalbą           | Змяніць мову        |
+| Wizyta w ZUS          | Visit ZUS            | Візит до ZUS         | Termin bei ZUS         | Návštěva ZUS         | Návšteva ZUS         | Vizitas į ZUS          | Візіт у ZUS         |
+| placówka (ZUS)        | office               | відділення           | Stelle (ZUS-Stelle)    | pobočka              | pobočka              | skyrius                | аддзяленне          |
+| umówić wizytę         | book a visit         | записатися на візит  | Termin vereinbaren     | objednat se          | objednať sa          | registruotis vizitui   | запісацца на візіт  |
 
 ## Kept in Polish
 

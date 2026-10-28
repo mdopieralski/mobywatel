@@ -1,0 +1,33 @@
+{
+  "offices": {
+    "title": "Wähle eine ZUS-Stelle",
+    "hint": "Die Stellen sind erfunden. Die Städte sind echt.",
+    "name": "Stelle „{name}“"
+  },
+  "slots": {
+    "title": "Wähle einen Termin",
+    "change": "Andere Stelle wählen"
+  },
+  "confirm": {
+    "title": "Du vereinbarst einen Termin bei ZUS",
+    "office": "Stelle",
+    "date": "Tag",
+    "time": "Uhrzeit",
+    "matter": "Anliegen",
+    "matterValue": "Persönliches Gespräch vor Ort",
+    "source": "Quelle: Beispiel-Terminplan des Prototyps. Stellen und Termine sind erfunden.",
+    "checkedOn": "Stand: {date}.",
+    "action": "Termin vereinbaren",
+    "cancel": "Abbrechen"
+  },
+  "cancelled": "Es wurde nichts gesendet. Du kannst einen anderen Termin wählen.",
+  "booked": {
+    "title": "Termin vereinbart",
+    "reference": "Terminnummer",
+    "office": "Stelle",
+    "date": "Tag",
+    "time": "Uhrzeit",
+    "note": "Das ist ein Termin aus dem Prototyp. Bei ZUS wartet niemand auf dich.",
+    "another": "Anderen Termin vereinbaren"
+  }
+}

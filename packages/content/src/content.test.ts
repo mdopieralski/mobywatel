@@ -60,3 +60,29 @@ describe('tickets', () => {
     }
   });
 });
+
+describe('ZUS offices and slots', () => {
+  it('has 6 to 8 offices with unique ids', async () => {
+    const { ZUS_OFFICES } = await import('./index.ts');
+    expect(ZUS_OFFICES.length).toBeGreaterThanOrEqual(6);
+    expect(ZUS_OFFICES.length).toBeLessThanOrEqual(8);
+    expect(new Set(ZUS_OFFICES.map((o) => o.id)).size).toBe(ZUS_OFFICES.length);
+  });
+
+  it('offers three slots on each of 8 working days, never at a weekend or on a holiday', async () => {
+    const { zusSlots } = await import('./index.ts');
+    // Wednesday 28.10.2026. Working days after it: 29, 30.10, 2 (the 3rd), 3, 4, 5, 6, 9, 10, 12.11 (the
+    // 10th); 11.11 is a holiday.
+    const slots = zusSlots(new Date(2026, 9, 28, 15, 0));
+    expect(slots).toHaveLength(24);
+    expect(slots[0]?.dateIso).toBe('2026-11-02');
+    expect(slots.at(-1)?.dateIso).toBe('2026-11-12');
+    expect(slots.some((s) => s.dateIso === '2026-11-11')).toBe(false);
+    expect(new Set(slots.map((s) => s.id)).size).toBe(24);
+    for (const slot of slots) {
+      const [y, m, d] = slot.dateIso.split('-').map(Number);
+      const day = new Date(y ?? 0, (m ?? 1) - 1, d).getDay();
+      expect(day === 0 || day === 6, slot.dateIso).toBe(false);
+    }
+  });
+});

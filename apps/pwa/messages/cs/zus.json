@@ -1,0 +1,33 @@
+{
+  "offices": {
+    "title": "Vyber pobočku",
+    "hint": "Pobočky jsou smyšlené. Města jsou skutečná.",
+    "name": "Pobočka „{name}“"
+  },
+  "slots": {
+    "title": "Vyber termín",
+    "change": "Změnit pobočku"
+  },
+  "confirm": {
+    "title": "Objednáváš se na návštěvu ZUS",
+    "office": "Pobočka",
+    "date": "Den",
+    "time": "Čas",
+    "matter": "Záležitost",
+    "matterValue": "Rozhovor s úředníkem na pobočce",
+    "source": "Zdroj: ukázkový rozpis prototypu. Pobočky a termíny jsou smyšlené.",
+    "checkedOn": "Stav k {date}.",
+    "action": "Objednat se",
+    "cancel": "Zrušit"
+  },
+  "cancelled": "Nic nebylo odesláno. Můžeš vybrat jiný termín.",
+  "booked": {
+    "title": "Návštěva objednána",
+    "reference": "Číslo návštěvy",
+    "office": "Pobočka",
+    "date": "Den",
+    "time": "Čas",
+    "note": "Tohle je návštěva z prototypu. Na ZUS na tebe nikdo nečeká.",
+    "another": "Objednat jinou návštěvu"
+  }
+}

@@ -7,12 +7,14 @@ import { NotFound } from '../../app/not-found.tsx';
 import { PATHS } from '../../app/paths.ts';
 import { LineIcon } from '../documents/kinds.tsx';
 import { CityPicker } from '../travel/city-picker.tsx';
+import { ZusVisit } from '../zus/zus-visit.tsx';
 import { categoryBySlug, MATTERS, matterBySlug } from './categories.tsx';
 import styles from './category-screen.module.css';
 
 /** Matters you can walk through to the end. Every other one says it is coming ("Wkrótce"). */
 const BUILT: Partial<Record<MatterId, () => ReactNode>> = {
   cityTicket: () => <CityPicker />,
+  zusVisit: () => <ZusVisit />,
 };
 
 /**

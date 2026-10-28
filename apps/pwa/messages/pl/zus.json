@@ -1,0 +1,33 @@
+{
+  "offices": {
+    "title": "Wybierz placówkę",
+    "hint": "Placówki są zmyślone. Miasta są prawdziwe.",
+    "name": "Placówka „{name}”"
+  },
+  "slots": {
+    "title": "Wybierz termin",
+    "change": "Zmień placówkę"
+  },
+  "confirm": {
+    "title": "Umawiasz wizytę w ZUS",
+    "office": "Placówka",
+    "date": "Dzień",
+    "time": "Godzina",
+    "matter": "Sprawa",
+    "matterValue": "Rozmowa z urzędnikiem w placówce",
+    "source": "Źródło: przykładowy grafik prototypu. Placówki i terminy są zmyślone.",
+    "checkedOn": "Stan na {date}.",
+    "action": "Umów wizytę",
+    "cancel": "Anuluj"
+  },
+  "cancelled": "Nic nie zostało wysłane. Możesz wybrać inny termin.",
+  "booked": {
+    "title": "Wizyta umówiona",
+    "reference": "Numer wizyty",
+    "office": "Placówka",
+    "date": "Dzień",
+    "time": "Godzina",
+    "note": "To wizyta z prototypu. Nikt na Ciebie nie czeka w ZUS.",
+    "another": "Umów inną wizytę"
+  }
+}

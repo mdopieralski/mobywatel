@@ -19,6 +19,18 @@ stamped as current against today's Polish.
 | lt     | machine (Claude) | none yet        | no          | review first (languages decision record)           |
 | be     | machine (Claude) | none yet        | no          | review first; official orthography (наркамаўка)    |
 
+## Notes for reviewers (2026-10-28, `zus` and showcase)
+
+- All: `zus.offices.name` wraps an invented Polish nickname (kept in Polish) in the locale's quotes; en puts
+  it before the noun ("“Pod Zegarem” office"). Check it reads naturally with a Polish name inside.
+- de: "Stelle" / "ZUS-Stelle" for a ZUS branch; "Geschäftsstelle" may be more natural. ZUS takes "bei ZUS" in
+  the flow but "bei der ZUS" in `showcase.new.zus.body` (existing): pick one.
+- cs, sk: the action buttons are "Objednat se" / "Objednať sa" (no object); check it is clear on its own.
+- lt: "Registruotis" as the button, "{date} duomenimis." for "Stan na".
+- uk, be: "Записатися" / "Запісацца" as the button; "Візит заплановано" vs "Візіт запісаны" for the result.
+- uk, cs, sk, lt, be: the `categories` matter descriptions use the formal "you" (vy, ви, jūs, вы), unlike the
+  rest of the UI. Not changed in this pass; align with the glossary register in a separate change.
+
 ## Outside the lock
 
 These strings are translated but not tracked by `i18n:check`. Check them by hand when the Polish changes:

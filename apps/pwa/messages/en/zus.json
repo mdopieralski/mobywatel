@@ -1,0 +1,33 @@
+{
+  "offices": {
+    "title": "Choose an office",
+    "hint": "The offices are made up. The towns are real.",
+    "name": "“{name}” office"
+  },
+  "slots": {
+    "title": "Choose a time",
+    "change": "Change office"
+  },
+  "confirm": {
+    "title": "You are booking a visit to ZUS",
+    "office": "Office",
+    "date": "Day",
+    "time": "Time",
+    "matter": "Matter",
+    "matterValue": "A talk with an officer at the office",
+    "source": "Source: a sample schedule made for the prototype. The offices and times are made up.",
+    "checkedOn": "As of {date}.",
+    "action": "Book visit",
+    "cancel": "Cancel"
+  },
+  "cancelled": "Nothing was sent. You can choose another time.",
+  "booked": {
+    "title": "Visit booked",
+    "reference": "Visit number",
+    "office": "Office",
+    "date": "Day",
+    "time": "Time",
+    "note": "This is a prototype visit. Nobody at ZUS is waiting for you.",
+    "another": "Book another visit"
+  }
+}

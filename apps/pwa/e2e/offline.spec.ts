@@ -27,4 +27,21 @@ test('works offline after the first load, including deep links', async ({ page, 
   await expect(page.getByRole('region', { name: 'Twój bilet' }).getByText('Gdynia')).toBeVisible();
   await page.reload();
   await expect(page.getByRole('region', { name: 'Twój bilet' }).getByText('Bilet dobowy')).toBeVisible();
+
+  // And so does booking a ZUS visit.
+  await page.goto('/prototype/kategorie/zus/wizyta-w-zus');
+  await page.getByRole('button', { name: /Pod Kopcem/ }).click();
+  await page.getByRole('listitem').getByRole('button').first().click();
+  await page.getByRole('button', { name: 'Umów wizytę' }).click();
+  await expect(page.getByRole('region', { name: 'Wizyta umówiona' }).getByText('Kraków')).toBeVisible();
+});
+
+test('the web app manifest is valid for install', async ({ request }) => {
+  const res = await request.get('/manifest.webmanifest');
+  expect(res.ok()).toBe(true);
+  const manifest = await res.json();
+  expect(manifest.lang).toBe('pl');
+  expect(manifest.display).toBe('standalone');
+  expect(manifest.name).not.toMatch(/^mObywatel$/i);
+  expect(manifest.icons.some((i: { purpose?: string }) => i.purpose === 'maskable')).toBe(true);
 });

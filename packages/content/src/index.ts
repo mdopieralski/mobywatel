@@ -10,3 +10,4 @@ export const DEFAULT_PERSONA: Persona = KATARZYNA;
 
 export { CATEGORIES, type Category, type CategoryId, type MatterId } from './categories.ts';
 export { TARIFF_CHECKED_ON, type TicketId, TICKETS, type TicketType, ticketById } from './tickets.ts';
+export { ZUS_OFFICES, type ZusOffice, type ZusSlot, zusOfficeById, zusSlots } from './zus-offices.ts';

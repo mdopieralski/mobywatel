@@ -1,0 +1,33 @@
+{
+  "offices": {
+    "title": "Pasirink skyrių",
+    "hint": "Skyriai išgalvoti. Miestai tikri.",
+    "name": "Skyrius „{name}“"
+  },
+  "slots": {
+    "title": "Pasirink laiką",
+    "change": "Keisti skyrių"
+  },
+  "confirm": {
+    "title": "Registruojiesi vizitui į ZUS",
+    "office": "Skyrius",
+    "date": "Diena",
+    "time": "Laikas",
+    "matter": "Reikalas",
+    "matterValue": "Pokalbis su darbuotoju skyriuje",
+    "source": "Šaltinis: pavyzdinis prototipo grafikas. Skyriai ir laikai išgalvoti.",
+    "checkedOn": "{date} duomenimis.",
+    "action": "Registruotis",
+    "cancel": "Atšaukti"
+  },
+  "cancelled": "Niekas nebuvo išsiųsta. Gali pasirinkti kitą laiką.",
+  "booked": {
+    "title": "Vizitas užregistruotas",
+    "reference": "Vizito numeris",
+    "office": "Skyrius",
+    "date": "Diena",
+    "time": "Laikas",
+    "note": "Tai prototipo vizitas. ZUS tavęs niekas nelaukia.",
+    "another": "Registruotis kitam vizitui"
+  }
+}
