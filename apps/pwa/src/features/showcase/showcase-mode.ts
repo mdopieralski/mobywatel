@@ -1,11 +1,14 @@
-// Desktop pages: on a desktop "/" is the landing page and /prototype/* shows the app inside a phone mockup
-// (an iframe of the same URL). Phones, tablets, installed apps and the framed copy itself get the app.
+// "/" is the landing page everywhere (user, 2026-10-28): on a desktop with the app in a phone mockup, on a
+// phone or tablet as one column with a button into the app. /prototype/* is the app itself, except on a
+// desktop, where it is the app inside the mockup (an iframe of the same URL). The installed app and the framed
+// copy always get the app.
 import { useSyncExternalStore } from 'react';
 
 import { isPrototypePath, PATHS } from '../../app/paths.ts';
 
 /** A desktop: a big window and a mouse or trackpad. Tablets (touch first) get the app full screen. */
-const SHOWCASE_QUERY = '(min-width: 64rem) and (min-height: 40rem) and (hover: hover) and (pointer: fine)';
+export const SHOWCASE_QUERY =
+  '(min-width: 64rem) and (min-height: 40rem) and (hover: hover) and (pointer: fine)';
 const STANDALONE_QUERY = '(display-mode: standalone)';
 const ROUTE_MESSAGE = 'sprawnie:route';
 const NAVIGATE_MESSAGE = 'sprawnie:navigate';
@@ -39,9 +42,23 @@ function wideScreen(): boolean {
   return window.matchMedia(SHOWCASE_QUERY).matches && !window.matchMedia(STANDALONE_QUERY).matches;
 }
 
+function standalone(): boolean {
+  return window.matchMedia(STANDALONE_QUERY).matches;
+}
+
 /** This document shows a desktop page (landing or phone mockup), not the bare app. */
 export function isDesktopPage(): boolean {
   return wideScreen() && !isEmbedded();
+}
+
+/** "/" shows the landing page: everywhere except in the installed app and inside the phone mockup. */
+export function showsLanding(): boolean {
+  return !standalone() && !isEmbedded();
+}
+
+/** A phone or tablet window: the landing page is one column and has no phone mockup. */
+export function useNarrowLanding(): boolean {
+  return !useSyncExternalStore(subscribe, wideScreen, () => true);
 }
 
 /** Re-render on a window resize across the breakpoint, on install (standalone), and on Back/Forward (the
@@ -70,13 +87,14 @@ export function usePageKind(): PageKind {
     () => window.location.pathname,
     () => PATHS.landing
   );
-  if (!wide || isEmbedded()) {
+  const installed = useSyncExternalStore(subscribe, standalone, () => false);
+  if (installed || isEmbedded()) {
     return 'app';
   }
   if (pathname === PATHS.landing) {
     return 'landing';
   }
-  return isPrototypePath(pathname) ? 'mockup' : 'app';
+  return wide && isPrototypePath(pathname) ? 'mockup' : 'app';
 }
 
 type Place = { location: { pathname: string; search: string; hash: string } };

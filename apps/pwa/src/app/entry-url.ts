@@ -1,7 +1,7 @@
 // Runs first (main.tsx imports it before the router reads the address), so the app starts on the right
-// URL: links from before /prototype existed (/kategorie/zus) move under it, and "/" on a phone, a tablet
-// or the installed app goes straight to the app. On a desktop, "/" stays the landing page.
-import { isDesktopPage } from '../features/showcase/showcase-mode.ts';
+// URL: links from before /prototype existed (/kategorie/zus) move under it, and "/" in the installed app goes
+// straight to the app. Everywhere else "/" stays the landing page (phones too).
+import { showsLanding } from '../features/showcase/showcase-mode.ts';
 import { isPrototypePath, PATHS, PROTOTYPE } from './paths.ts';
 
 const { search, hash } = window.location;
@@ -13,7 +13,7 @@ const pathname = raw === '/index.html' ? PATHS.landing : raw;
 /** Where this load should be: the clean path, moved under /prototype or to the landing page if needed. */
 function target(): string {
   if (pathname === PATHS.landing) {
-    return isDesktopPage() ? PATHS.landing : PROTOTYPE;
+    return showsLanding() ? PATHS.landing : PROTOTYPE;
   }
   if (pathname === PATHS.brandVoice || isPrototypePath(pathname)) {
     return pathname;

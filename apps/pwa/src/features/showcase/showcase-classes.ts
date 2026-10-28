@@ -11,14 +11,15 @@
 /**
  * The page. `--header-height` is for blocks that fill the rest of the first screen; `--section-inline` is the
  * side padding of every section below the hero: the same centred 9-of-12 column as the hero (48 px in, then
- * 1/8 of what is left on each side). Other sections (who-it-helps, demo) read both.
+ * 1/8 of what is left on each side). Other sections (who-it-helps, demo) read both. `--section-block` is
+ * the space above and below each section's content: 120 px, 48 px on a phone, where `--section-inline` is 16 px.
  *
  * On <html> while this page is shown: anything scrolled to (a section, a focused link) stops below the pinned
  * header, never under it (WCAG 2.4.11 Focus Not Obscured), and section links glide to their section unless
  * the visitor asked for less motion.
  */
 export const pageClass =
-  '[--header-height:calc(var(--target-min)_+_2*var(--space-4)_+_1px)] [--section-inline:calc(var(--space-8)_+_(100%_-_2*var(--space-8))_/_8)] min-h-dvh grid content-start bg-bg [html:has(&)]:scroll-pt-[calc(var(--target-min)_+_2*var(--space-4)_+_1px)] motion-safe:[html:has(&)]:scroll-smooth';
+  '[--section-block:var(--space-9)] narrow:[--section-block:var(--space-8)] narrow:[--section-inline:var(--space-4)] [--header-height:calc(var(--target-min)_+_2*var(--space-4)_+_1px)] [--section-inline:calc(var(--space-8)_+_(100%_-_2*var(--space-8))_/_8)] min-h-dvh grid content-start bg-bg [html:has(&)]:scroll-pt-[calc(var(--target-min)_+_2*var(--space-4)_+_1px)] motion-safe:[html:has(&)]:scroll-smooth';
 
 /** Skip link: hidden until focused, then above the header. */
 export const skipClass =
@@ -31,7 +32,7 @@ const titleType = 'leading-tight font-extrabold tracking-[-0.02em]';
 export const titleClass = `m-0 text-3xl ${titleType}`;
 
 /** Big section heading (Prototyp, Nowości, Technologia): twice the other titles, in the accent colour. */
-export const sectionHeadingClass = `text-accent text-[length:calc(2*var(--font-3xl))] ${titleType}`;
+export const sectionHeadingClass = `text-accent text-[length:calc(2*var(--font-3xl))] narrow:text-[length:calc(1.25*var(--font-3xl))] ${titleType}`;
 
 /** The lead paragraph under a section title. */
 export const leadClass = 'm-0 text-text-muted text-lg';

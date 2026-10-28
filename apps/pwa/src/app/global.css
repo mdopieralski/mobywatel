@@ -9,6 +9,9 @@
 /* Shared components use utilities too. */
 @source '../../../../packages/ui/src';
 
+/* The landing page on a phone or tablet (showcase.tsx sets data-landing="narrow"): one column, no mockup. */
+@custom-variant narrow (&:where([data-landing='narrow'], [data-landing='narrow'] *));
+
 /* The app's animations: `animate-intro-reveal` etc. Each waits for its turn in the boot intro
    (--intro-delay, set inline by boot-loader.ts); reduced motion turns them off (base layer below). */
 @theme {

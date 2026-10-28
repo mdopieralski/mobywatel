@@ -18,7 +18,16 @@ import {
 } from './showcase-classes.ts';
 import { ShowcaseHero } from './showcase-hero.tsx';
 import { DemoSection } from './demo-section.tsx';
-import { AUDIENCE_ID, DEMO_ID, HERO_ID, navigatePhone, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
+import {
+  AUDIENCE_ID,
+  DEMO_ID,
+  HERO_ID,
+  navigatePhone,
+  useNarrowLanding,
+  NEWS_ID,
+  TECH_ID,
+  TRY_ID,
+} from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
 import { TechSection } from './tech-section.tsx';
 import { WhoItHelps } from './who-it-helps.tsx';
@@ -85,8 +94,14 @@ export function Showcase() {
     target.focus({ preventScroll: true });
   };
   const goToPhone = () => goTo(trySection.current);
-  // Open `path` in the phone and bring it into view. False when the phone isn't there.
+  // A phone or tablet: one column, and the app opens full screen instead of in a phone mockup.
+  const narrow = useNarrowLanding();
+  // Open `path` in the phone and bring it into view. On a phone there is no mockup: open the app itself.
   const showInPhone = (path: string) => {
+    if (narrow) {
+      window.location.assign(path);
+      return true;
+    }
     if (!navigatePhone(frame.current, path)) {
       return false;
     }
@@ -157,7 +172,7 @@ export function Showcase() {
   ];
 
   return (
-    <div className={pageClass}>
+    <div className={pageClass} data-landing={narrow ? 'narrow' : 'wide'}>
       {/* Our own icon and name, never official marks (prototype-guardrails skill). */}
       <a className={skipClass} href="#main">
         {tCommon('skipToContent')}
@@ -181,13 +196,23 @@ export function Showcase() {
           id={TRY_ID}
           ref={trySection}
           tabIndex={-1}
-          className={`outline-none bg-bg grid justify-items-center gap-30 py-30 px-(--section-inline) text-center ${drawingGridClass}`}
+          className={`outline-none bg-bg grid justify-items-center gap-(--section-block) py-(--section-block) px-(--section-inline) text-center ${drawingGridClass}`}
           aria-labelledby="showcase-prototype"
         >
           <h2 id="showcase-prototype" className={`m-0 ${sectionHeadingClass}`}>
             {t('nav.prototype')}
           </h2>
-          <PhoneFrame ref={frame} src={PATHS.start} />
+          {narrow ? (
+            // A phone in a phone helps nobody: open the app full screen (Back returns here).
+            <a
+              href={PATHS.start}
+              className="inline-flex items-center gap-3 min-h-[calc(var(--target-min)_+_var(--space-3))] px-6 rounded-pill bg-accent text-accent-text text-lg font-bold no-underline"
+            >
+              {t('hero.cta')}
+            </a>
+          ) : (
+            <PhoneFrame ref={frame} src={PATHS.start} />
+          )}
         </section>
 
         {/* The demo video; each chapter can open its screen in the phone above. */}
@@ -202,12 +227,12 @@ export function Showcase() {
           id={NEWS_ID}
           ref={newsSection}
           tabIndex={-1}
-          className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] [@media(max-width:72rem)]:grid-cols-[minmax(0,1fr)] items-start gap-x-[clamp(var(--space-7),5vw,6rem)] gap-y-6 py-30 px-(--section-inline) border-t border-border outline-none"
+          className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] [@media(max-width:72rem)]:grid-cols-[minmax(0,1fr)] items-start gap-x-[clamp(var(--space-7),5vw,6rem)] gap-y-6 py-(--section-block) px-(--section-inline) border-t border-border outline-none"
         >
           {/* Same words as the header link, like "Prototyp" above. Across both columns, centred, with the same
               120 px below it as above (row gap + margin). */}
           <h2
-            className={`mx-0 mt-0 mb-[calc(var(--space-9)_-_var(--space-6))] col-span-full justify-self-center text-center ${sectionHeadingClass}`}
+            className={`mx-0 mt-0 mb-[calc(var(--section-block)_-_var(--space-6))] col-span-full justify-self-center text-center ${sectionHeadingClass}`}
           >
             {t('nav.news')}
           </h2>
@@ -258,7 +283,7 @@ export function Showcase() {
       </main>
       {/* Footer: the unofficial-prototype notice (prototype-guardrails skill), white like the header, with a
           line above. */}
-      <footer className="py-6 px-12 border-t border-border bg-surface">
+      <footer className="py-6 px-12 narrow:px-4 border-t border-border bg-surface">
         <Disclaimer variant="inline" locale={locale} />
       </footer>
     </div>

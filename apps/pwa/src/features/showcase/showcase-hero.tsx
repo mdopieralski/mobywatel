@@ -9,7 +9,7 @@ import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { CATEGORY_VIEWS, MATTERS } from '../categories/categories.tsx';
 import { drawingGridClass, strokeIconClass } from './showcase-classes.ts';
-import { HERO_ID, TRY_ID } from './showcase-mode.ts';
+import { HERO_ID, TRY_ID, useNarrowLanding } from './showcase-mode.ts';
 
 /** The globe from the header's language switch. */
 const GLOBE_ICON = (
@@ -50,7 +50,7 @@ const NARROW = '(max-width: 72rem)';
  * the other sections where the window is tall enough; less on short laptop screens, so the button and the
  * disclaimer stay on the first screen. White in the light theme, under the drawing grid.
  */
-const heroClass = `grid grid-cols-[minmax(0,calc(100%*9/12))] justify-center items-center content-center gap-12 min-h-[calc(100dvh_-_var(--header-height))] py-[clamp(var(--space-7),9vh,var(--space-9))] px-12 border-b border-border bg-surface ${drawingGridClass}`;
+const heroClass = `grid grid-cols-[minmax(0,calc(100%*9/12))] narrow:grid-cols-[minmax(0,1fr)] justify-center items-center content-center gap-12 min-h-[calc(100dvh_-_var(--header-height))] py-[clamp(var(--space-7),9vh,var(--space-9))] px-12 narrow:px-4 border-b border-border bg-surface ${drawingGridClass}`;
 
 /*
  * Icon on the left, as tall as the title and the description together (square); both texts start at the
@@ -94,7 +94,9 @@ function useShowPreview(): boolean {
 export function ShowcaseHero({ onTry, ref }: { onTry: () => void; ref?: Ref<HTMLElement> }) {
   const t = useTranslations('showcase.hero');
   const tShowcase = useTranslations('showcase');
-  const showPreview = useShowPreview();
+  // No app preview on a phone or tablet: there the app is one tap away, full screen.
+  const narrow = useNarrowLanding();
+  const showPreview = useShowPreview() && !narrow;
   const locale = useAppLocale();
   // Entrance after the header: each part rises in turn (INTRO.heroAt).
   const heroDelay = useIntroDelay(INTRO.heroAt);
