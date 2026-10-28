@@ -1,11 +1,16 @@
 ---
 title: The prototype website in all eight languages
-status: proposed (not started)
+status: done (phases 1–5, 2026-10-28); phase 6 waits for native reviewers
 date: 2026-10-28
 owner: main session (coordinates), language-engineer (translations)
 ---
 
 # The prototype website in all eight languages
+
+> **Done 2026-10-28 (phases 1–5).** Open questions answered by default: Polish on first visit with no hint,
+> German "du", no `?lang=` written into the address bar. The phone app's header got the same dropdown switch
+> as the page header (the user asked for it during the build). Phase 6 (native review) is still open:
+> `docs/i18n/review-status.md`.
 
 ## Goal
 

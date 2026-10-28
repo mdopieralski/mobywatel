@@ -86,8 +86,7 @@
   align-items: center;
 }
 
-.shortcut,
-.language {
+.shortcut {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -98,8 +97,7 @@
   text-decoration: none;
 }
 
-.shortcut svg,
-.language svg {
+.shortcut svg {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.75;
@@ -113,20 +111,12 @@
   background: var(--accent-soft);
 }
 
-.language {
-  gap: 2px;
-  padding: 0 var(--space-1);
-  font-weight: 600;
-}
-
-.shortcut:hover,
-.language:hover {
+.shortcut:hover {
   background: var(--accent-soft);
 }
 
 .home:focus-visible,
-.shortcut:focus-visible,
-.language:focus-visible {
+.shortcut:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
 }

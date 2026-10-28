@@ -287,6 +287,71 @@ test.describe('desktop showcase', () => {
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   });
 
+  test('the page header switch changes the page and the phone, and both persist after a reload', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const app = page.frameLocator('iframe[name="phone"]');
+    await expect(app.getByRole('heading', { level: 1 })).toHaveText('Twoje sprawy');
+    await expect(page).toHaveTitle('Sprawnie – Sprawy urzędowe prościej (prototyp)');
+
+    await page
+      .getByRole('banner')
+      .getByRole('button', { name: /Zmień język/ })
+      .click();
+    await page.getByRole('banner').getByRole('button', { name: 'Українська' }).click();
+
+    await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+    await expect(page.getByRole('navigation', { name: 'Розділи сторінки' })).toBeVisible();
+    await expect(page).toHaveTitle('Sprawnie – Офіційні справи – простіше (прототип)');
+    await expect(app.locator('html')).toHaveAttribute('lang', 'uk');
+    await expect(app.getByRole('heading', { level: 1 })).toHaveText('Твої справи');
+
+    await page.reload();
+    await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+    await expect(app.getByRole('heading', { level: 1 })).toHaveText('Твої справи');
+  });
+
+  test('from the header, the keyboard reaches Ukrainian in 3 key presses', async ({ page }) => {
+    await page.goto('/');
+    await page
+      .getByRole('banner')
+      .getByRole('button', { name: /Zmień język/ })
+      .focus();
+    await page.keyboard.press('Enter');
+    await page.keyboard.press('u');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'uk');
+    await expect(page.frameLocator('iframe[name="phone"]').locator('html')).toHaveAttribute('lang', 'uk');
+  });
+
+  test('/?lang=be opens the landing page and the phone in Belarusian', async ({ page }) => {
+    await page.goto('/?lang=be');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'be');
+    await expect(page).toHaveTitle('Sprawnie – Афіцыйныя справы – прасцей (прататып)');
+    await expect(page.frameLocator('iframe[name="phone"]').locator('html')).toHaveAttribute('lang', 'be');
+  });
+
+  for (const locale of ['de', 'lt']) {
+    test(`${locale}: the header and the page fit a 1024 px window without sideways scrolling`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 1024, height: 640 });
+      await page.addInitScript(
+        (l) => localStorage.setItem('settings:v1', JSON.stringify({ locale: l })),
+        locale
+      );
+      await page.goto('/');
+      await expect(page.locator('html')).toHaveAttribute('lang', locale);
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      );
+      expect(overflow).toBeLessThanOrEqual(0);
+      const header = await page.getByRole('banner').boundingBox();
+      expect(header?.height).toBeLessThan(120);
+    });
+  }
+
   test('the phone screen is a fixed 390×844, and a short window scrolls instead of clipping', async ({
     page,
   }) => {
@@ -297,6 +362,23 @@ test.describe('desktop showcase', () => {
     expect(Math.round(box?.height ?? 0)).toBe(844);
     expect(box?.y).toBeGreaterThanOrEqual(0);
   });
+
+  for (const locale of ['en', 'uk', 'de', 'cs', 'sk', 'lt', 'be']) {
+    test(`axe: no WCAG A/AA violations on the landing page in ${locale}`, async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.addInitScript(
+        (l) => localStorage.setItem('settings:v1', JSON.stringify({ locale: l })),
+        locale
+      );
+      await page.goto('/');
+      await expect(page.locator('html')).toHaveAttribute('lang', locale);
+      await page.frameLocator('iframe[name="phone"]').getByRole('heading', { level: 1 }).waitFor();
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+        .analyze();
+      expect(results.violations).toEqual([]);
+    });
+  }
 
   for (const path of ['/', '/prototype']) {
     test(`axe: no WCAG A/AA violations on ${path}`, async ({ page }) => {

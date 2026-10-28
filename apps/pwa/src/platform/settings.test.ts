@@ -1,7 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { DEMO_PREFIX, resetDemo } from './demo-state.ts';
-import { applySettings, readSettings, resetSettingsCache, SETTINGS_KEY, updateSettings } from './settings.ts';
+import {
+  applySettings,
+  readSettings,
+  resetSettingsCache,
+  SETTINGS_KEY,
+  updateSettings,
+  watchSettingsFromOtherDocuments,
+} from './settings.ts';
 
 describe('settings', () => {
   beforeEach(() => {
@@ -33,6 +40,20 @@ describe('settings', () => {
     expect(document.documentElement.lang).toBe('uk');
     applySettings({ senior: false, theme: 'system', locale: 'pl' });
     expect(document.documentElement.hasAttribute('data-theme')).toBe(false);
+  });
+
+  it('follows a change written by another document (the page or its phone frame)', () => {
+    expect(readSettings().locale).toBe('pl');
+    const stop = watchSettingsFromOtherDocuments();
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ locale: 'be' }));
+    window.dispatchEvent(new StorageEvent('storage', { key: SETTINGS_KEY }));
+    expect(readSettings().locale).toBe('be');
+    expect(document.documentElement.lang).toBe('be');
+
+    stop();
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ locale: 'lt' }));
+    window.dispatchEvent(new StorageEvent('storage', { key: SETTINGS_KEY }));
+    expect(readSettings().locale).toBe('be');
   });
 
   it('reset demo clears demo keys but keeps settings', async () => {

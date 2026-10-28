@@ -10,7 +10,12 @@ import { Root } from './app/root.tsx';
 import { router } from './app/router.tsx';
 import { isEmbedded, reportRouteToShowcase } from './features/showcase/showcase-mode.ts';
 import { localeFromSearch } from './platform/i18n.ts';
-import { applySettings, readSettings, updateSettings } from './platform/settings.ts';
+import {
+  applySettings,
+  readSettings,
+  updateSettings,
+  watchSettingsFromOtherDocuments,
+} from './platform/settings.ts';
 
 // Tokens as CSS variables, once, before first paint.
 const style = document.createElement('style');
@@ -43,6 +48,9 @@ const linkLocale = localeFromSearch(window.location.search);
 if (linkLocale) {
   updateSettings({ locale: linkLocale });
 }
+
+// The desktop page and the app in its phone frame follow each other's settings (both ways).
+watchSettingsFromOtherDocuments();
 
 // Inside the desktop showcase's phone frame: keep the page's address bar in step with the app.
 if (isEmbedded()) {

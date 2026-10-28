@@ -5,7 +5,6 @@ import { useTranslations } from 'use-intl';
 
 import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
-import { useFollowPhoneSettings } from './follow-phone-settings.ts';
 import { useSectionSnap } from './section-snap.ts';
 import { PhoneFrame } from './phone-frame.tsx';
 import { ShowcaseHero } from './showcase-hero.tsx';
@@ -120,7 +119,10 @@ export function Showcase() {
     }
   }, []);
 
-  useFollowPhoneSettings();
+  // The tab title follows the language (WCAG 2.4.2). Same text as the static title in index.html for Polish.
+  useEffect(() => {
+    document.title = tCommon('appTitle', { name: `${WORKING_NAME} – ${TAGLINES[locale]}` });
+  }, [tCommon, locale]);
 
   // Scrolling settles on the nearest section (GSAP ScrollTrigger snap).
   const main = useRef<HTMLElement>(null);

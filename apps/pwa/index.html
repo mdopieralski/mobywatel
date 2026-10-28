@@ -76,7 +76,17 @@
       <div class="ring"></div>
     </div>
     <div id="root"></div>
-    <noscript>Ta aplikacja wymaga włączonego JavaScriptu.</noscript>
+    <!-- Without JS the language setting can't be read, so every UI language is listed, each with its lang. -->
+    <noscript>
+      <p>Ta aplikacja wymaga włączonego JavaScriptu.</p>
+      <p lang="en">This app needs JavaScript turned on.</p>
+      <p lang="uk">Для цього застосунку потрібно ввімкнути JavaScript.</p>
+      <p lang="de">Diese App braucht aktiviertes JavaScript.</p>
+      <p lang="cs">Tato aplikace potřebuje zapnutý JavaScript.</p>
+      <p lang="sk">Táto aplikácia potrebuje zapnutý JavaScript.</p>
+      <p lang="lt">Šiai programėlei reikia įjungti JavaScript.</p>
+      <p lang="be">Для гэтай праграмы трэба ўключыць JavaScript.</p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -73,6 +73,21 @@ export function reloadSettings(): void {
   listeners.forEach((l) => l());
 }
 
+/**
+ * Follow changes made in another document of this site: the desktop page and the app in its phone frame
+ * share the setting, so a language (or theme, senior mode) picked in either shows in both. The storage
+ * event fires only in the other documents, never the one that wrote. Returns a stop function.
+ */
+export function watchSettingsFromOtherDocuments(target: Window = window): () => void {
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === SETTINGS_KEY || e.key === null) {
+      reloadSettings();
+    }
+  };
+  target.addEventListener('storage', onStorage);
+  return () => target.removeEventListener('storage', onStorage);
+}
+
 /** Test hook: forget the cached value. */
 export function resetSettingsCache(): void {
   current = null;

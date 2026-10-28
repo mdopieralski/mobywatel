@@ -23,7 +23,10 @@ Belarusian**: `pl`, `en`, `uk`, `de`, `cs`, `sk`, `lt`, `be`.
 - **Choosing a language:**
   - The language is a setting (`settings:v1` → `locale`) and defaults to Polish. It sets `<html lang>`.
   - It is picked at the top of Settings. Each language name is marked with its own `lang`.
-  - A globe + code link in the header ("🌐 UK") is findable without reading the current language.
+  - A globe + code button in the app header ("🌐 UK") opens a list of all 8 languages. It is findable without
+    reading the current language. The desktop page header has the same switch (2026-10-28).
+  - The desktop page and the app in its phone frame share the setting and follow each other's changes, both
+    ways (`watchSettingsFromOtherDocuments`).
   - `?lang=uk` in a link opens the app in that language and remembers it.
 - **Offline and dates:** all catalogues are bundled, so every language works offline. Dates and times use the
   locale with the `Europe/Warsaw` time zone.
@@ -49,6 +52,12 @@ Polish office is a real persona.
   - the manifest description;
   - the team page `/brand-voice` (English);
   - the route paths (`/ustawienia`).
+- **Static HTML stays Polish** (2026-10-28): `<html lang="pl">`, the meta description and link previews. The
+  static page can't know the setting, and the jury is Polish. The landing page's tab title follows the
+  language once the app runs, and `<noscript>` lists its line in all 8 languages.
+- **Stale translations** (2026-10-28): `pnpm run i18n:check` compares each translation with the Polish it was
+  made from (`apps/pwa/messages/translations.lock.json`) and runs in CI. Glossary and review status:
+  `docs/i18n/`.
 - **Future copy:** every new message key needs all 8 languages in the same PR, or the unit test fails.
   Scenario text in `packages/content` follows the same rule when the assistant arrives.
 - **Bundle:** about 2 KB per language today. Switch to one lazily loaded chunk per locale once the copy grows

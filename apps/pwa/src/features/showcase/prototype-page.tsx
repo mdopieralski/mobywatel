@@ -5,7 +5,6 @@ import { useTranslations } from 'use-intl';
 import { PATHS } from '../../app/paths.ts';
 import { router } from '../../app/router.tsx';
 import { useAppLocale } from '../../platform/i18n.ts';
-import { useFollowPhoneSettings } from './follow-phone-settings.ts';
 import { PhoneFrame } from './phone-frame.tsx';
 import { AUDIENCE_ID, HERO_ID, NEWS_ID, TECH_ID, onShowcaseRoute } from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
@@ -33,8 +32,6 @@ export function PrototypePage() {
       ),
     []
   );
-  useFollowPhoneSettings();
-
   return (
     <div className={styles.page}>
       <a className={styles.skip} href="#main">

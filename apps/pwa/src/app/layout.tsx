@@ -3,11 +3,11 @@ import { useEffect, useRef } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import { useTranslations } from 'use-intl';
 
-import { useAppLocale } from '../platform/i18n.ts';
 import { UpdatePrompt } from '../pwa/update-prompt.tsx';
 import { AppMark } from './app-mark.tsx';
 import { INTRO, introStyle, useIntroDelay } from './boot-loader.ts';
 import intro from './intro.module.css';
+import { LanguageSwitch } from './language-switch.tsx';
 import styles from './layout.module.css';
 import { PATHS } from './paths.ts';
 
@@ -27,7 +27,6 @@ const SHORTCUTS = [
 
 export function Layout() {
   const t = useTranslations('common');
-  const locale = useAppLocale();
   const main = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
   const shown = useRef(pathname);
@@ -93,18 +92,7 @@ export function Layout() {
             </NavLink>
           ))}
           {/* Visible in every language, so the switch is findable without reading the UI. */}
-          <Link
-            className={`${styles.language} ${intro.reveal}`}
-            to={PATHS.settings}
-            style={revealAt(SHORTCUTS.length)}
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />
-            </svg>
-            <span>{locale.toUpperCase()}</span>
-            <span className={styles.visuallyHidden}> – {t('changeLanguage')}</span>
-          </Link>
+          <LanguageSwitch variant="app" className={intro.reveal} style={revealAt(SHORTCUTS.length)} />
         </nav>
       </header>
       <main id="main" ref={main} className={styles.main} tabIndex={-1}>
