@@ -111,9 +111,9 @@
   white-space: nowrap;
 }
 
-/* Inside the app: 20 px of space from the shortcuts before it. */
+/* Inside the app: 40 px of space from the shortcuts before it. */
 .app {
-  margin-inline-start: var(--space-5);
+  margin-inline-start: calc(var(--space-7) + var(--space-2));
 }
 
 /* Inside the app: the compact globe of the app header, no outline, like the shortcuts next to it. */
