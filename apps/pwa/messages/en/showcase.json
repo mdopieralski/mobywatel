@@ -8,14 +8,19 @@
   "phoneLabel": "The {name} app on a phone screen",
   "hero": {
     "title": "ZUS and city tickets in <name>mObywatel</name>",
+    "badge": "Unofficial prototype",
     "lead": "ZUS (social insurance) and public transport tickets on your phone. These are our key proposals in the mObywatel.ai challenge, and many more.",
     "zus": {
-      "title": "ZUS",
+      "title": "Mobile ZUS",
       "body": "Contributions, pension and sick leave next to your other matters."
     },
     "tickets": {
       "title": "City tickets",
       "body": "A bus and tram ticket in any city, without a separate app."
+    },
+    "languages": {
+      "title": "Neighbours' languages",
+      "body": "The app speaks the languages of Poland's neighbours: German, Czech, Slovak, Ukrainian, Belarusian and Lithuanian."
     },
     "cta": "See the prototype"
   },

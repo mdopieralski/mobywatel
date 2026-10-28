@@ -8,14 +8,19 @@
   "phoneLabel": "Aplikacja {name} na ekranie telefonu",
   "hero": {
     "title": "ZUS i bilety miejskie w <name>mObywatel</name>",
+    "badge": "Nieoficjalny prototyp",
     "lead": "ZUS i bilety na komunikację miejską w telefonie. Oto nasze kluczowe propozycje w mObywatel.ai challenge oraz wiele innych.",
     "zus": {
-      "title": "ZUS",
+      "title": "Mobilny ZUS",
       "body": "Składki, emerytura i zwolnienia lekarskie obok Twoich innych spraw."
     },
     "tickets": {
       "title": "Bilety miejskie",
       "body": "Bilet na autobus i tramwaj w każdym mieście, bez osobnej aplikacji."
+    },
+    "languages": {
+      "title": "Języki sąsiedzkie",
+      "body": "Aplikacja mówi w językach naszych sąsiadów: niemieckim, czeskim, słowackim, ukraińskim, białoruskim i litewskim."
     },
     "cta": "Zobacz prototyp"
   },

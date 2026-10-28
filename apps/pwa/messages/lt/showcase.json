@@ -8,14 +8,19 @@
   "phoneLabel": "Programėlė {name} telefono ekrane",
   "hero": {
     "title": "ZUS ir miesto bilietai programėlėje <name>mObywatel</name>",
+    "badge": "Neoficialus prototipas",
     "lead": "ZUS (socialinis draudimas) ir viešojo transporto bilietai telefone. Tai mūsų pagrindiniai pasiūlymai konkurse mObywatel.ai challenge ir daug kitų.",
     "zus": {
-      "title": "ZUS",
+      "title": "Mobilusis ZUS",
       "body": "Įmokos, pensija ir nedarbingumo pažymos šalia kitų jūsų reikalų."
     },
     "tickets": {
       "title": "Miesto bilietai",
       "body": "Autobuso ir tramvajaus bilietas bet kuriame mieste, be atskiros programėlės."
+    },
+    "languages": {
+      "title": "Kaimynų kalbos",
+      "body": "Programėlė kalba Lenkijos kaimynų kalbomis: vokiečių, čekų, slovakų, ukrainiečių, baltarusių ir lietuvių."
     },
     "cta": "Peržiūrėti prototipą"
   },

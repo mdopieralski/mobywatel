@@ -8,14 +8,19 @@
   "phoneLabel": "Die App {name} auf einem Handybildschirm",
   "hero": {
     "title": "ZUS und Stadttickets in <name>mObywatel</name>",
+    "badge": "Inoffizieller Prototyp",
     "lead": "ZUS (Sozialversicherung) und Tickets für den Nahverkehr auf dem Handy. Das sind unsere wichtigsten Vorschläge in der mObywatel.ai challenge – und viele mehr.",
     "zus": {
-      "title": "ZUS",
+      "title": "Mobiler ZUS",
       "body": "Beiträge, Rente und Krankschreibungen neben deinen anderen Angelegenheiten."
     },
     "tickets": {
       "title": "Stadttickets",
       "body": "Ein Bus- und Straßenbahnticket in jeder Stadt, ohne eigene App."
+    },
+    "languages": {
+      "title": "Sprachen der Nachbarn",
+      "body": "Die App spricht die Sprachen der Nachbarn Polens: Deutsch, Tschechisch, Slowakisch, Ukrainisch, Belarussisch und Litauisch."
     },
     "cta": "Prototyp ansehen"
   },

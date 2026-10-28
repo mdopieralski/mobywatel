@@ -8,14 +8,19 @@
   "phoneLabel": "Aplikácia {name} na displeji telefónu",
   "hero": {
     "title": "ZUS a mestské lístky v <name>mObywatel</name>",
+    "badge": "Neoficiálny prototyp",
     "lead": "ZUS (sociálne poistenie) a lístky na mestskú dopravu v telefóne. To sú naše hlavné návrhy v súťaži mObywatel.ai challenge a mnoho ďalších.",
     "zus": {
-      "title": "ZUS",
+      "title": "Mobilný ZUS",
       "body": "Odvody, dôchodok a PN vedľa vašich ďalších vecí."
     },
     "tickets": {
       "title": "Mestské lístky",
       "body": "Lístok na autobus a električku v každom meste, bez samostatnej aplikácie."
+    },
+    "languages": {
+      "title": "Jazyky susedov",
+      "body": "Aplikácia hovorí jazykmi susedov Poľska: nemecky, česky, slovensky, ukrajinsky, bielorusky a litovsky."
     },
     "cta": "Pozrieť prototyp"
   },

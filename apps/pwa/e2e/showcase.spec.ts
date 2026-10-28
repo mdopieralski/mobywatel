@@ -47,10 +47,15 @@ test.describe('desktop showcase', () => {
     await expect(page.getByRole('heading', { name: 'Co nowego w naszej wersji' })).toBeInViewport();
   });
 
-  test('the hero leads with ZUS and city tickets', async ({ page }) => {
+  test('the hero leads with ZUS, city tickets and neighbouring languages', async ({ page }) => {
     await page.goto('/');
     const hero = page.getByRole('region', { name: 'ZUS i bilety miejskie w mObywatel' });
-    await expect(hero.getByRole('heading', { level: 2 })).toHaveText(['ZUS', 'Bilety miejskie']);
+    await expect(hero.getByText('Nieoficjalny prototyp', { exact: true })).toBeVisible();
+    await expect(hero.getByRole('heading', { level: 2 })).toHaveText([
+      'Mobilny ZUS',
+      'Bilety miejskie',
+      'Języki sąsiedzkie',
+    ]);
   });
 
   test('the "Zobacz prototyp" button in the hero brings the working phone into view and moves focus there', async ({

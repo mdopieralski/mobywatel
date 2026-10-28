@@ -240,12 +240,35 @@
   margin: 0;
 }
 
-.heroTitle {
-  margin: 0;
+/* The headline and the "unofficial prototype" label under it. */
+.heroHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
   /* Centred across the whole hero, like the button at the bottom. */
   justify-self: center;
   max-width: 100%;
   padding-block: var(--space-7);
+}
+
+.heroBadge {
+  /* 80 px above the label, on top of the gap under the headline. */
+  margin: calc(var(--space-8) + var(--space-7)) 0 0;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  background-color: var(--surface);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  max-width: 100%;
   text-align: center;
   /* Larger than the type scale on purpose: the one headline of the page. */
   font-size: clamp(var(--font-3xl), 4.2vw, 4rem);

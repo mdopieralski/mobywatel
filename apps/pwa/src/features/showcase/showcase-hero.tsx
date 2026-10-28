@@ -1,6 +1,6 @@
 import type { CategoryId, MatterId } from '@mobywatel/content';
 import { WORKING_NAME } from '@mobywatel/brand';
-import { useSyncExternalStore } from 'react';
+import { type ReactNode, useSyncExternalStore } from 'react';
 import { useTranslations } from 'use-intl';
 
 import { INTRO, introStyle, useIntroDelay } from '../../app/boot-loader.ts';
@@ -11,11 +11,34 @@ import { CATEGORY_VIEWS, MATTERS } from '../categories/categories.tsx';
 import { TRY_ID } from './showcase-mode.ts';
 import styles from './showcase.module.css';
 
-/** What the hero puts first: a category, or one matter in it (its icon). */
-const HIGHLIGHTS: readonly { id: 'zus' | 'tickets'; category: CategoryId; matter?: MatterId }[] = [
+/** The globe from the header's language switch. */
+const GLOBE_ICON = (
+  <>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" />
+  </>
+);
+
+type Highlight = { id: 'zus' | 'tickets' | 'languages' } & (
+  { category: CategoryId; matter?: MatterId } | { icon: ReactNode }
+);
+
+/** What the hero puts first: a category, one matter in it (its icon), or a feature with its own icon. */
+const HIGHLIGHTS: readonly Highlight[] = [
   { id: 'zus', category: 'zus' },
   { id: 'tickets', category: 'travel', matter: 'cityTicket' },
+  { id: 'languages', icon: GLOBE_ICON },
 ];
+
+function highlightIcon(highlight: Highlight): ReactNode {
+  if ('icon' in highlight) {
+    return highlight.icon;
+  }
+  if (highlight.matter) {
+    return MATTERS[highlight.matter].icon;
+  }
+  return CATEGORY_VIEWS.find((c) => c.id === highlight.category)?.icon ?? null;
+}
 
 /** Same breakpoint as the CSS that drops the preview: below it, the preview is not even loaded. */
 const NARROW = '(max-width: 72rem)';
@@ -46,19 +69,24 @@ export function ShowcaseHero({ onTry }: { onTry: () => void }) {
   const rise = (step: number) => introStyle(heroDelay + step * INTRO.heroStepMs);
   return (
     <section className={`${styles.hero} ${styles.drawingGrid}`} aria-labelledby="showcase-hero">
-      {/* Centred across the whole hero, above the text and the preview. */}
-      <h1 id="showcase-hero" className={`${styles.heroTitle} ${intro.rise}`} style={rise(0)}>
-        {t.rich('title', { name: (chunks) => <span className={styles.heroName}>{chunks}</span> })}
-      </h1>
+      {/* Centred across the whole hero, above the text and the preview. The label right under the
+          headline says up front that this is not the official app. */}
+      <div className={`${styles.heroHeading} ${intro.rise}`} style={rise(0)}>
+        <h1 id="showcase-hero" className={styles.heroTitle}>
+          {t.rich('title', { name: (chunks) => <span className={styles.heroName}>{chunks}</span> })}
+        </h1>
+        <p className={styles.heroBadge}>{t('badge')}</p>
+      </div>
       <div className={styles.heroInner}>
         <div className={styles.heroText}>
           <p className={`${styles.heroLead} ${intro.rise}`} style={rise(1)}>
             {t('lead')}
           </p>
           <ul className={styles.highlights}>
-            {HIGHLIGHTS.map(({ id, category: categoryId, matter }, index) => {
-              const category = CATEGORY_VIEWS.find((c) => c.id === categoryId);
-              if (!category) {
+            {HIGHLIGHTS.map((highlight, index) => {
+              const { id } = highlight;
+              const icon = highlightIcon(highlight);
+              if (!icon) {
                 return null;
               }
               return (
@@ -70,7 +98,7 @@ export function ShowcaseHero({ onTry }: { onTry: () => void }) {
                     width="28"
                     height="28"
                   >
-                    {matter ? MATTERS[matter].icon : category.icon}
+                    {icon}
                   </svg>
                   <h2 className={styles.highlightTitle}>{t(`${id}.title`)}</h2>
                   <p className={styles.highlightBody}>{t(`${id}.body`)}</p>
