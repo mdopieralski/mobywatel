@@ -7,7 +7,7 @@ import { router } from '../../app/router.tsx';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { useFollowPhoneSettings } from './follow-phone-settings.ts';
 import { PhoneFrame } from './phone-frame.tsx';
-import { NEWS_ID, onShowcaseRoute } from './showcase-mode.ts';
+import { HERO_ID, NEWS_ID, TECH_ID, onShowcaseRoute } from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
 import './compact-font.css';
 import styles from './showcase.module.css';
@@ -42,8 +42,10 @@ export function PrototypePage() {
       </a>
       <SiteHeader
         links={[
+          { href: `${PATHS.landing}#${HERO_ID}`, label: t('nav.start') },
           { href: PATHS.start, label: t('nav.prototype'), current: 'page' },
           { href: `${PATHS.landing}#${NEWS_ID}`, label: t('nav.news') },
+          { href: `${PATHS.landing}#${TECH_ID}`, label: t('nav.tech') },
         ]}
       />
       <main id="main" tabIndex={-1} className={styles.mockup}>

@@ -1,8 +1,10 @@
 {
   "nav": {
     "label": "Sekcje strony",
+    "start": "Start",
     "prototype": "Prototyp",
-    "news": "Nowości"
+    "news": "Nowości",
+    "tech": "Technologia"
   },
   "lead": "Klikalny prototyp aplikacji do spraw urzędowych. Wypróbuj go w telefonie wyżej. Tu piszemy, co robimy inaczej.",
   "phoneLabel": "Aplikacja {name} na ekranie telefonu",
@@ -71,6 +73,27 @@
       "title": "Wyraźnie nieoficjalna",
       "body": "Własna ikona i kolory, bez godła i bez wzorów prawdziwych dokumentów. Dane są fikcyjne, a każdy dokument ma znak „PROTOTYP – nie jest dokumentem”.",
       "try": "Otwórz dowód w kategorii Bezpieczeństwo."
+    }
+  },
+  "tech": {
+    "lead": "Krótko o tym, z czego i jak zbudowaliśmy ten prototyp.",
+    "items": {
+      "link": "To aplikacja internetowa (PWA). Otwierasz link i działa, bez logowania i bez zakładania konta.",
+      "install": "Możesz ją dodać do ekranu telefonu. Po pierwszym otwarciu działa też bez internetu.",
+      "data": "Nie ma serwera z danymi. Zmyślone dane przykładowe zostają w Twojej przeglądarce.",
+      "noNetwork": "Aplikacja nie łączy się z żadnym rejestrem państwowym. Nie wysyła nigdzie Twoich danych.",
+      "tools": "Zbudowaliśmy ją w Vite 8, React 19 i TypeScript 6. Działanie bez internetu zapewnia vite-plugin-pwa (Workbox).",
+      "repo": "Wszystko jest w jednym repozytorium (pnpm i Turborepo): aplikacja i cztery wspólne pakiety.",
+      "logic": "Reguły, np. liczenie terminów i sprawdzanie numeru PESEL, są osobno od ekranów. Mają własne testy.",
+      "design": "Kolory, odstępy i pismo są w jednym pakiecie. Gotowe elementy ekranu pokazujemy w Storybooku.",
+      "wcag": "Naszym minimum jest standard dostępności WCAG 2.2 AA. W testach każdy ekran sprawdza narzędzie axe.",
+      "senior": "Tryb seniora daje większy tekst i większe przyciski: 56 pikseli zamiast 48.",
+      "motion": "Jeśli w telefonie włączysz ograniczenie ruchu, wyłączamy zbędne animacje.",
+      "languages": "Aplikacja działa w 8 językach. Test pilnuje, żeby w żadnym nie brakowało tekstu.",
+      "tests": "Testy Playwright klikają aplikację na ekranie iPhone'a, Pixela i komputera.",
+      "checks": "Każda zmiana przechodzi automatyczne testy. Audyt sprawdza, czy nie ma znaków urzędowych i czy widać ostrzeżenie o prototypie.",
+      "agents": "Pomaga nam zespół agentów AI (Claude Code): projektanci, inżynierowie, audytorzy i recenzenci.",
+      "human": "Każdą zmianę na końcu sprawdza i zatwierdza człowiek."
     }
   }
 }

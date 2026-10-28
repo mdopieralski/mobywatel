@@ -13,11 +13,17 @@ const NAVIGATE_MESSAGE = 'sprawnie:navigate';
 /** The phone's iframe name: a link with this target opens its page inside the phone. */
 export const PHONE_FRAME = 'phone';
 
+/** Id of the landing page's first section (the hero): the header's "Start" link goes there. */
+export const HERO_ID = 'section-hero';
+
 /** Id of the section with the working phone: the hero's button scrolls there. */
 export const TRY_ID = 'wyprobuj';
 
-/** Id of the landing page's third section (what is new). */
+/** Id of the landing page's section on what is new. */
 export const NEWS_ID = 'nowosci';
+
+/** Id of the landing page's last section (how the prototype is built). */
+export const TECH_ID = 'technologia';
 
 export function isEmbedded(): boolean {
   return typeof window !== 'undefined' && window.self !== window.top;

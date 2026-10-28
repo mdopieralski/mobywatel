@@ -1,8 +1,10 @@
 {
   "nav": {
     "label": "Puslapio skiltys",
+    "start": "Pradžia",
     "prototype": "Prototipas",
-    "news": "Naujienos"
+    "news": "Naujienos",
+    "tech": "Technologijos"
   },
   "lead": "Paspaudžiamas programėlės oficialiems reikalams prototipas. Išbandyk jį telefone aukščiau. Čia rašome, ką darome kitaip.",
   "phoneLabel": "Programėlė {name} telefono ekrane",
@@ -71,6 +73,27 @@
       "title": "Aiškiai neoficiali",
       "body": "Sava piktograma ir spalvos, be valstybės herbo ir be tikrų dokumentų išvaizdos. Duomenys išgalvoti, o kiekvienas dokumentas turi žymą „PROTOTYP – nie jest dokumentem”.",
       "try": "Atidaryk asmens tapatybės kortelę kategorijoje Saugumas."
+    }
+  },
+  "tech": {
+    "lead": "Trumpai apie tai, iš ko ir kaip sukūrėme šį prototipą.",
+    "items": {
+      "link": "Tai interneto programa (PWA). Atidarote nuorodą ir ji veikia, be prisijungimo ir be paskyros.",
+      "install": "Galite ją pridėti prie telefono ekrano. Po pirmo atidarymo ji veikia ir be interneto.",
+      "data": "Nėra serverio su duomenimis. Išgalvoti pavyzdiniai duomenys lieka jūsų naršyklėje.",
+      "noNetwork": "Programa nesijungia prie jokio valstybės registro. Ji niekur nesiunčia jūsų duomenų.",
+      "tools": "Sukūrėme ją su Vite 8, React 19 ir TypeScript 6. Veikimą be interneto užtikrina vite-plugin-pwa (Workbox).",
+      "repo": "Viskas vienoje saugykloje (pnpm ir Turborepo): programa ir keturi bendri paketai.",
+      "logic": "Taisyklės, pvz., terminų skaičiavimas ir PESEL numerio tikrinimas, atskirtos nuo ekranų. Jos turi savo testus.",
+      "design": "Spalvos, tarpai ir šriftas yra viename pakete. Paruoštus ekrano elementus rodome Storybook.",
+      "wcag": "Mūsų minimumas yra prieinamumo standartas WCAG 2.2 AA. Testuose kiekvieną ekraną tikrina įrankis axe.",
+      "senior": "Senjorų režimas suteikia didesnį tekstą ir didesnius mygtukus: 56 pikseliai vietoj 48.",
+      "motion": "Jei telefone įjungsite judesio mažinimą, išjungsime nereikalingas animacijas.",
+      "languages": "Programa veikia 8 kalbomis. Testas prižiūri, kad nė vienoje netrūktų teksto.",
+      "tests": "Playwright testai išbando programą iPhone, Pixel ir kompiuterio ekranuose.",
+      "checks": "Kiekvienas pakeitimas praeina automatinius testus. Auditas tikrina, kad nebūtų valstybės ženklų ir matytųsi įspėjimas apie prototipą.",
+      "agents": "Mums padeda DI agentų komanda (Claude Code): dizaineriai, inžinieriai, auditoriai ir recenzentai.",
+      "human": "Galiausiai kiekvieną pakeitimą patikrina ir patvirtina žmogus."
     }
   }
 }

@@ -1,8 +1,10 @@
 {
   "nav": {
     "label": "Abschnitte der Seite",
+    "start": "Start",
     "prototype": "Prototyp",
-    "news": "Neuigkeiten"
+    "news": "Neuigkeiten",
+    "tech": "Technologie"
   },
   "lead": "Ein klickbarer Prototyp einer App für Behördengänge. Probier ihn im Handy oben aus. Hier steht, was wir anders machen.",
   "phoneLabel": "Die App {name} auf einem Handybildschirm",
@@ -71,6 +73,27 @@
       "title": "Klar inoffiziell",
       "body": "Eigenes Symbol und eigene Farben, kein Staatswappen und keine echten Dokumentvorlagen. Die Daten sind erfunden, und jedes Dokument trägt den Vermerk „PROTOTYP – nie jest dokumentem”.",
       "try": "Öffne den Ausweis in der Kategorie Sicherheit."
+    }
+  },
+  "tech": {
+    "lead": "Kurz erklärt: womit und wie wir diesen Prototyp gebaut haben.",
+    "items": {
+      "link": "Es ist eine Web-App (PWA). Link öffnen und los, ohne Anmeldung und ohne Konto.",
+      "install": "Sie können sie zum Startbildschirm hinzufügen. Nach dem ersten Öffnen läuft sie auch offline.",
+      "data": "Es gibt keinen Server mit Daten. Die erfundenen Beispieldaten bleiben in Ihrem Browser.",
+      "noNetwork": "Die App verbindet sich mit keinem staatlichen Register. Sie sendet Ihre Daten nirgendwohin.",
+      "tools": "Gebaut mit Vite 8, React 19 und TypeScript 6. Dass sie ohne Internet läuft, sorgt vite-plugin-pwa (Workbox).",
+      "repo": "Alles liegt in einem Repository (pnpm und Turborepo): die App und vier gemeinsame Pakete.",
+      "logic": "Regeln, etwa Fristen berechnen und eine PESEL-Nummer prüfen, sind von den Bildschirmen getrennt. Sie haben eigene Tests.",
+      "design": "Farben, Abstände und Schrift liegen in einem Paket. Die Bausteine zeigen wir in Storybook.",
+      "wcag": "Unser Minimum ist der Barrierefreiheitsstandard WCAG 2.2 AA. In den Tests prüft das Werkzeug axe jeden Bildschirm.",
+      "senior": "Der Seniorenmodus bietet größere Schrift und größere Schaltflächen: 56 statt 48 Pixel.",
+      "motion": "Wenn Sie am Telefon „Bewegung reduzieren“ einschalten, schalten wir unnötige Animationen ab.",
+      "languages": "Die App gibt es in 8 Sprachen. Ein Test sorgt dafür, dass in keiner Text fehlt.",
+      "tests": "Playwright-Tests klicken die App auf iPhone-, Pixel- und Computerbildschirmen durch.",
+      "checks": "Jede Änderung besteht automatische Tests. Eine Prüfung stellt sicher, dass keine Amtszeichen da sind und der Prototyp-Hinweis sichtbar ist.",
+      "agents": "Uns hilft ein Team aus KI-Agenten (Claude Code): Designer, Entwickler, Prüfer und Reviewer.",
+      "human": "Am Ende prüft und genehmigt ein Mensch jede Änderung."
     }
   }
 }

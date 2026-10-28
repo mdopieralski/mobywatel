@@ -1,8 +1,10 @@
 {
   "nav": {
     "label": "Page sections",
+    "start": "Start",
     "prototype": "Prototype",
-    "news": "What's new"
+    "news": "What's new",
+    "tech": "Technology"
   },
   "lead": "A clickable prototype of an app for official matters. Try it on the phone above. Here is what we do differently.",
   "phoneLabel": "The {name} app on a phone screen",
@@ -71,6 +73,27 @@
       "title": "Clearly unofficial",
       "body": "Our own icon and colours, no state emblem and no real document designs. The data is fictional, and every document carries the mark „PROTOTYP – nie jest dokumentem”.",
       "try": "Open the ID card in the Security category."
+    }
+  },
+  "tech": {
+    "lead": "A short look at what we built this prototype with, and how.",
+    "items": {
+      "link": "It's a web app (PWA). Open the link and it works, with no login and no account.",
+      "install": "You can add it to your phone's home screen. After the first visit it also works offline.",
+      "data": "There's no server holding data. The made-up sample data stays in your browser.",
+      "noNetwork": "The app doesn't connect to any government registry. It doesn't send your data anywhere.",
+      "tools": "We built it with Vite 8, React 19 and TypeScript 6. vite-plugin-pwa (Workbox) makes it work without internet.",
+      "repo": "Everything lives in one repository (pnpm and Turborepo): the app and four shared packages.",
+      "logic": "Rules, such as counting deadlines and checking a PESEL number, live apart from the screens. They have their own tests.",
+      "design": "Colours, spacing and type live in one package. We show the screen components in Storybook.",
+      "wcag": "Our floor is the WCAG 2.2 AA accessibility standard. In tests, the axe tool checks every screen.",
+      "senior": "Senior mode gives larger text and larger buttons: 56 pixels instead of 48.",
+      "motion": "If you turn on reduce motion on your phone, we switch off animations you don't need.",
+      "languages": "The app works in 8 languages. A test makes sure no language is missing any text.",
+      "tests": "Playwright tests click through the app on iPhone, Pixel and desktop screens.",
+      "checks": "Every change passes automated tests. An audit checks there are no official marks and the prototype warning shows.",
+      "agents": "A team of AI agents (Claude Code) helps us: designers, engineers, auditors and reviewers.",
+      "human": "In the end, a person checks and approves every change."
     }
   }
 }

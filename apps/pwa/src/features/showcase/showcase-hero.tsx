@@ -1,6 +1,6 @@
 import type { CategoryId, MatterId } from '@mobywatel/content';
 import { WORKING_NAME } from '@mobywatel/brand';
-import { type ReactNode, useSyncExternalStore } from 'react';
+import { type ReactNode, type Ref, useSyncExternalStore } from 'react';
 import { useTranslations } from 'use-intl';
 
 import { INTRO, introStyle, useIntroDelay } from '../../app/boot-loader.ts';
@@ -8,7 +8,7 @@ import intro from '../../app/intro.module.css';
 import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { CATEGORY_VIEWS, MATTERS } from '../categories/categories.tsx';
-import { TRY_ID } from './showcase-mode.ts';
+import { HERO_ID, TRY_ID } from './showcase-mode.ts';
 import styles from './showcase.module.css';
 
 /** The globe from the header's language switch. */
@@ -59,7 +59,7 @@ function useShowPreview(): boolean {
  * First screen of the showcase: ZUS and city tickets are what is new in this prototype, next to a preview
  * of the app.  `onTry` brings the phone into view.
  */
-export function ShowcaseHero({ onTry }: { onTry: () => void }) {
+export function ShowcaseHero({ onTry, ref }: { onTry: () => void; ref?: Ref<HTMLElement> }) {
   const t = useTranslations('showcase.hero');
   const tShowcase = useTranslations('showcase');
   const showPreview = useShowPreview();
@@ -68,7 +68,13 @@ export function ShowcaseHero({ onTry }: { onTry: () => void }) {
   const heroDelay = useIntroDelay(INTRO.heroAt);
   const rise = (step: number) => introStyle(heroDelay + step * INTRO.heroStepMs);
   return (
-    <section className={`${styles.hero} ${styles.drawingGrid}`} aria-labelledby="showcase-hero">
+    <section
+      id={HERO_ID}
+      ref={ref}
+      tabIndex={-1}
+      className={`${styles.hero} ${styles.drawingGrid}`}
+      aria-labelledby="showcase-hero"
+    >
       {/* Centred across the whole hero, above the text and the preview. The label right under the
           headline says up front that this is not the official app. */}
       <div className={`${styles.heroHeading} ${intro.rise}`} style={rise(0)}>

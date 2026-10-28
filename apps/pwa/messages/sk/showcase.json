@@ -1,8 +1,10 @@
 {
   "nav": {
     "label": "Časti stránky",
+    "start": "Úvod",
     "prototype": "Prototyp",
-    "news": "Novinky"
+    "news": "Novinky",
+    "tech": "Technológie"
   },
   "lead": "Klikateľný prototyp aplikácie na úradné veci. Vyskúšaj ho v telefóne vyššie. Tu píšeme, čo robíme inak.",
   "phoneLabel": "Aplikácia {name} na displeji telefónu",
@@ -71,6 +73,27 @@
       "title": "Jasne neoficiálna",
       "body": "Vlastná ikona a farby, bez štátneho znaku a bez vzhľadu skutočných dokladov. Údaje sú vymyslené a každý doklad nesie značku „PROTOTYP – nie jest dokumentem”.",
       "try": "Otvor občiansky preukaz v kategórii Bezpečnosť."
+    }
+  },
+  "tech": {
+    "lead": "Krátko o tom, z čoho a ako sme tento prototyp postavili.",
+    "items": {
+      "link": "Je to internetová aplikácia (PWA). Otvoríte odkaz a funguje, bez prihlásenia a bez účtu.",
+      "install": "Môžete si ju pridať na plochu telefónu. Po prvom otvorení funguje aj bez internetu.",
+      "data": "Nie je tu server s údajmi. Vymyslené ukážkové údaje zostávajú vo vašom prehliadači.",
+      "noNetwork": "Aplikácia sa nepripája k žiadnemu štátnemu registru. Nikam neposiela vaše údaje.",
+      "tools": "Postavili sme ju vo Vite 8, React 19 a TypeScript 6. Fungovanie bez internetu zabezpečuje vite-plugin-pwa (Workbox).",
+      "repo": "Všetko je v jednom repozitári (pnpm a Turborepo): aplikácia a štyri spoločné balíky.",
+      "logic": "Pravidlá, napr. počítanie lehôt a kontrola čísla PESEL, sú oddelene od obrazoviek. Majú vlastné testy.",
+      "design": "Farby, medzery a písmo sú v jednom balíku. Hotové prvky obrazovky ukazujeme v Storybooku.",
+      "wcag": "Naším minimom je štandard prístupnosti WCAG 2.2 AA. V testoch každú obrazovku kontroluje nástroj axe.",
+      "senior": "Režim pre seniorov dáva väčší text a väčšie tlačidlá: 56 pixelov namiesto 48.",
+      "motion": "Ak v telefóne zapnete obmedzenie pohybu, vypneme zbytočné animácie.",
+      "languages": "Aplikácia funguje v 8 jazykoch. Test stráži, aby v žiadnom nechýbal text.",
+      "tests": "Testy Playwright preklikajú aplikáciu na obrazovke iPhonu, Pixelu aj počítača.",
+      "checks": "Každá zmena prejde automatickými testami. Audit kontroluje, že nie sú použité štátne znaky a že je vidieť upozornenie na prototyp.",
+      "agents": "Pomáha nám tím agentov AI (Claude Code): dizajnéri, inžinieri, audítori a recenzenti.",
+      "human": "Každú zmenu napokon skontroluje a schváli človek."
     }
   }
 }

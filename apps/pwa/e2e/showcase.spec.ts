@@ -73,10 +73,11 @@ test.describe('desktop showcase', () => {
     await expect(phone).toBeInViewport({ ratio: 0.5 });
   });
 
-  test('the header links jump to the prototype and to what is new', async ({ page }) => {
+  test('the header links jump to the start, the prototype and what is new', async ({ page }) => {
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Sekcje strony' });
-    await expect(nav.locator('[aria-current]')).toHaveCount(0);
+    await expect(nav.getByRole('link').first()).toHaveText('Start');
+    await expect(nav.getByRole('link', { name: 'Start' })).toHaveAttribute('aria-current', 'location');
     await nav.getByRole('link', { name: 'Nowości' }).click();
     await expect(nav.getByRole('link', { name: 'Nowości' })).toHaveAttribute('aria-current', 'location');
     await expect(page.locator('#nowosci')).toBeFocused();
@@ -86,6 +87,74 @@ test.describe('desktop showcase', () => {
     await expect(page.locator('iframe[name="phone"]')).toBeInViewport({ ratio: 0.5 });
     await expect(nav.getByRole('link', { name: 'Prototyp' })).toHaveAttribute('aria-current', 'location');
     await expect(nav.getByRole('link', { name: 'Nowości' })).not.toHaveAttribute('aria-current');
+    await nav.getByRole('link', { name: 'Start' }).click();
+    await expect(page.locator('#section-hero')).toBeFocused();
+    await expect(nav.getByRole('link', { name: 'Start' })).toHaveAttribute('aria-current', 'location');
+  });
+
+  test('"Start" on /prototype goes back to the hero of the landing page', async ({ page }) => {
+    await page.goto('/prototype');
+    await page
+      .getByRole('navigation', { name: 'Sekcje strony' })
+      .getByRole('link', { name: 'Start' })
+      .click();
+    await expect(page).toHaveURL(/\/#section-hero$/);
+    await expect(page.getByRole('heading', { level: 1, name: /^ZUS i bilety/ })).toBeInViewport();
+  });
+
+  test('the header lists Start, Prototyp, Nowości and Technologia, in that order', async ({ page }) => {
+    for (const path of ['/', '/prototype']) {
+      await page.goto(path);
+      await expect(page.getByRole('navigation', { name: 'Sekcje strony' }).getByRole('link')).toHaveText([
+        'Start',
+        'Prototyp',
+        'Nowości',
+        'Technologia',
+      ]);
+    }
+  });
+
+  test('the Technologia section comes last and shows its points as one list', async ({ page }) => {
+    await page.goto('/');
+    const tech = page.getByRole('region', { name: 'Technologia' });
+    await expect(page.locator('main > *').last()).toHaveAttribute('id', 'technologia');
+    await expect(tech.getByRole('list')).toHaveCount(1);
+    await expect(tech.getByRole('listitem')).toHaveCount(16);
+    await expect(tech.getByRole('listitem').first()).toContainText('PWA');
+  });
+
+  test('"Technologia" in the header jumps to the last section and marks it as current', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.getByRole('navigation', { name: 'Sekcje strony' });
+    await nav.getByRole('link', { name: 'Technologia' }).click();
+    await expect(page.locator('#technologia')).toBeFocused();
+    await expect(page.getByRole('heading', { level: 2, name: 'Technologia' })).toBeInViewport();
+    await expect(nav.getByRole('link', { name: 'Technologia' })).toHaveAttribute('aria-current', 'location');
+    await expect(nav.getByRole('link', { name: 'Nowości' })).not.toHaveAttribute('aria-current');
+  });
+
+  test('"Technologia" on /prototype, and a direct #technologia link, open that section', async ({ page }) => {
+    await page.goto('/prototype');
+    await page
+      .getByRole('navigation', { name: 'Sekcje strony' })
+      .getByRole('link', { name: 'Technologia' })
+      .click();
+    await expect(page).toHaveURL(/\/#technologia$/);
+    await expect(page.getByRole('heading', { level: 2, name: 'Technologia' })).toBeInViewport();
+    await page.goto('/');
+    await page.goto('/#technologia');
+    await expect(page.getByRole('heading', { level: 2, name: 'Technologia' })).toBeInViewport();
+  });
+
+  test('the four header links fit on one row in a narrow desktop window', async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 640 });
+    await page.goto('/');
+    const links = page.getByRole('navigation', { name: 'Sekcje strony' }).getByRole('link');
+    await expect(links).toHaveCount(4);
+    const tops = await links.evaluateAll((els) =>
+      els.map((el) => Math.round(el.getBoundingClientRect().top))
+    );
+    expect(new Set(tops).size).toBe(1);
   });
 
   test('the page and the app in the phone say it is an unofficial prototype', async ({ page }) => {

@@ -9,8 +9,9 @@ import { useFollowPhoneSettings } from './follow-phone-settings.ts';
 import { useSectionSnap } from './section-snap.ts';
 import { PhoneFrame } from './phone-frame.tsx';
 import { ShowcaseHero } from './showcase-hero.tsx';
-import { NEWS_ID, TRY_ID } from './showcase-mode.ts';
+import { HERO_ID, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
+import { TechSection } from './tech-section.tsx';
 import './compact-font.css';
 import styles from './showcase.module.css';
 
@@ -57,8 +58,10 @@ export function Showcase() {
   const t = useTranslations('showcase');
   const tCommon = useTranslations('common');
   const frame = useRef<HTMLIFrameElement>(null);
+  const heroSection = useRef<HTMLElement>(null);
   const trySection = useRef<HTMLElement>(null);
   const newsSection = useRef<HTMLDivElement>(null);
+  const techSection = useRef<HTMLElement>(null);
   const locale = useAppLocale();
 
   // Bring a section into view and move focus there, so the next Tab continues from it.
@@ -73,10 +76,15 @@ export function Showcase() {
   const goToPhone = () => goTo(trySection.current);
 
   // The section on screen: its header link is marked as the current one. A section counts once it
-  // crosses a line 40% down the window; above the first one (the hero), neither link is current.
+  // crosses a line 40% down the window.
   const [current, setCurrent] = useState<string | null>(null);
   useEffect(() => {
-    const sections = [trySection.current, newsSection.current].filter((el) => el !== null);
+    const sections = [
+      heroSection.current,
+      trySection.current,
+      newsSection.current,
+      techSection.current,
+    ].filter((el) => el !== null);
     const crossing = new Set<string>();
     const observer = new IntersectionObserver(
       (entries) => {
@@ -97,10 +105,10 @@ export function Showcase() {
     return () => observer.disconnect();
   }, []);
 
-  // Arriving with #nowosci (the link on /prototype): the page renders after load, so scroll here.
+  // Arriving with #nowosci, #technologia or #section-hero (the links on /prototype): the page renders after load, so scroll here.
   useEffect(() => {
     const target = document.getElementById(window.location.hash.slice(1));
-    if (target === trySection.current || target === newsSection.current) {
+    if ([heroSection, trySection, newsSection, techSection].some((section) => section.current === target)) {
       target?.scrollIntoView({ block: 'start' });
     }
   }, []);
@@ -112,8 +120,10 @@ export function Showcase() {
   useSectionSnap(main, () => document.querySelector('header'));
 
   const sectionLinks = [
+    { id: HERO_ID, label: t('nav.start') },
     { id: TRY_ID, label: t('nav.prototype') },
     { id: NEWS_ID, label: t('nav.news') },
+    { id: TECH_ID, label: t('nav.tech') },
   ];
 
   return (
@@ -134,7 +144,7 @@ export function Showcase() {
         }))}
       />
       <main id="main" ref={main} tabIndex={-1} className={styles.main}>
-        <ShowcaseHero onTry={goToPhone} />
+        <ShowcaseHero ref={heroSection} onTry={goToPhone} />
         {/* Second section: the working prototype under its heading. */}
         <section
           id={TRY_ID}
@@ -149,7 +159,7 @@ export function Showcase() {
           <PhoneFrame ref={frame} src={PATHS.start} />
         </section>
 
-        {/* Third section: what this is and what is new. */}
+        {/* What this is and what is new. */}
         <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>
           {/* Our name as the section heading, like "Prototyp" above. A name, so the same in every language. */}
           <h2 className={`${styles.title} ${styles.sectionHeading} ${styles.panelHeading}`}>
@@ -188,6 +198,9 @@ export function Showcase() {
             </ul>
           </section>
         </div>
+
+        {/* Fourth section: how it is built. */}
+        <TechSection ref={techSection} />
       </main>
       {/* Footer: the unofficial-prototype notice (prototype-guardrails skill). */}
       <footer className={styles.footer}>
