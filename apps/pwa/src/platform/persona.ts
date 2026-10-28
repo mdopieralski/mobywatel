@@ -17,5 +17,7 @@ export function useToday(): Date {
 /** ISO yyyy-mm-dd as a local calendar date (no time-zone shift). */
 export function parseIsoDate(iso: string): Date {
   const [y, m, d] = iso.split('-').map(Number);
-  return new Date(y ?? 1970, (m ?? 1) - 1, d ?? 1);
+  // Local noon, not midnight: dates are shown in Europe/Warsaw time, and midnight on a phone east of Warsaw
+  // is still the day before there. Noon keeps the same calendar day in every time zone within ±11 h.
+  return new Date(y ?? 1970, (m ?? 1) - 1, d ?? 1, 12);
 }
