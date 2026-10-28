@@ -106,7 +106,7 @@ const AVATARS: Record<AudienceId, { hue: string; art: ReactNode }> = {
 // About one window tall so the section snap stays calm; 120 px above the heading and from it to the cards,
 // like the other sections. --section-inline and --header-height come from the landing page.
 const audienceClass =
-  'grid justify-items-center content-start gap-6 min-h-[calc(100dvh_-_var(--header-height))] py-30 px-(--section-inline) border-t border-border outline-none';
+  'grid justify-items-center content-start gap-6 min-h-[calc(100dvh_-_var(--header-height))] py-(--section-block) px-(--section-inline) border-t border-border outline-none';
 
 /**
  * "Dla kogo": seven fictional example people and the improvement that already works for each (plan:
@@ -137,7 +137,7 @@ export function WhoItHelps({
       className={audienceClass}
       aria-labelledby="showcase-audience"
     >
-      <div className="grid gap-3 max-w-[64rem] mb-[calc(var(--space-9)_-_var(--space-6))] text-center">
+      <div className="grid gap-3 max-w-[64rem] mb-[calc(var(--section-block)_-_var(--space-6))] text-center">
         <h2
           id="showcase-audience"
           className="m-0 text-accent text-[length:calc(2*var(--font-3xl))] leading-tight font-extrabold tracking-[-0.02em]"

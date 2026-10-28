@@ -18,7 +18,7 @@ export function TechSection({ ref }: { ref?: Ref<HTMLElement> }) {
       id={TECH_ID}
       ref={ref}
       tabIndex={-1}
-      className="grid justify-items-center content-start gap-3 min-h-[calc(100dvh_-_var(--header-height))] py-30 px-(--section-inline) border-t border-border bg-surface text-center outline-none"
+      className="grid justify-items-center content-start gap-3 min-h-[calc(100dvh_-_var(--header-height))] py-(--section-block) px-(--section-inline) border-t border-border bg-surface text-center outline-none"
       aria-labelledby="showcase-tech"
     >
       <h2 id="showcase-tech" className={`m-0 ${sectionHeadingClass}`}>
@@ -26,7 +26,7 @@ export function TechSection({ ref }: { ref?: Ref<HTMLElement> }) {
       </h2>
       <p className={leadClass}>{t('tech.lead')}</p>
       {/* One list, no cards, one column. The width keeps lines short enough to read. */}
-      <ul className="w-full mt-[calc(var(--space-9)_-_var(--space-3))] mx-0 mb-0 ps-5 text-text-muted text-md text-start">
+      <ul className="w-full mt-[calc(var(--section-block)_-_var(--space-3))] mx-0 mb-0 ps-5 text-text-muted text-md text-start">
         {TECH_ITEMS.map((item) => (
           <li key={item} className="pt-1 pb-2">
             {t(`tech.items.${item}`)}

@@ -3,6 +3,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { RefObject } from 'react';
 
+import { SHOWCASE_QUERY } from './showcase-mode.ts';
+
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /** A stop this close to a section's start (share of the window height) settles on that section. */
@@ -12,13 +14,14 @@ const PULL = 0.35;
  * Landing page: when scrolling stops near the start of a section (a child of `container`), the page glides
  * so that section sits right under the pinned header. Far from any start (inside the long "what is new"
  * section) it stays where the visitor left it, so nothing is ever out of reach. Off with
- * prefers-reduced-motion.
+ * prefers-reduced-motion and on phones and tablets.
  */
 export function useSectionSnap(container: RefObject<HTMLElement | null>, header: () => HTMLElement | null) {
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
+      // Desktop only: on a phone the page scrolls freely.
+      mm.add(`(prefers-reduced-motion: no-preference) and ${SHOWCASE_QUERY}`, () => {
         ScrollTrigger.create({
           start: 0,
           end: 'max',

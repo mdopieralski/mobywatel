@@ -45,7 +45,7 @@ export function SiteHeader({ links }: { links: readonly HeaderLink[] }) {
   const navDelay = useIntroDelay(INTRO.navAt);
   useEffect(warmCompactFontCache, []);
   return (
-    <header className="sticky top-0 z-1 flex flex-wrap items-center justify-between gap-4 py-4 px-12 border-b border-border bg-surface">
+    <header className="sticky top-0 z-1 flex flex-wrap items-center justify-between gap-4 py-4 px-12 narrow:px-4 border-b border-border bg-surface">
       <a
         className="inline-flex items-center gap-3 min-h-target text-text no-underline rounded-md"
         href={PATHS.landing}
@@ -59,7 +59,7 @@ export function SiteHeader({ links }: { links: readonly HeaderLink[] }) {
       {/* The section links, then the language switch. */}
       <div className="flex flex-wrap items-center justify-end gap-4">
         {/* Pulled out by the links' padding, so the text lines up 48 px in. */}
-        <nav className="flex gap-2 -mr-4" aria-label={t('nav.label')}>
+        <nav className="flex gap-2 -mr-4 narrow:hidden" aria-label={t('nav.label')}>
           {links.map(({ href, label, current, onClick }, index) => (
             <a
               key={href}

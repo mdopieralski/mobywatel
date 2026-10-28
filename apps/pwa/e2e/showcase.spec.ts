@@ -525,16 +525,66 @@ test.describe('desktop showcase', () => {
   }
 });
 
-// A tablet is a big screen with touch: it gets the app full screen, like a phone.
+// A tablet is a big screen with touch: /prototype is the app full screen, like a phone, and "/" is the
+// one-column landing page (no phone mockup).
 test.describe('tablet', () => {
   test.use({ viewport: { width: 1180, height: 820 }, hasTouch: true });
 
-  test('/prototype and "/" open the app itself, not the phone mockup', async ({ page }) => {
+  test('/prototype opens the app itself and "/" the landing page, both without the phone mockup', async ({
+    page,
+  }) => {
     await page.goto('/prototype');
     await expect(page.locator('iframe')).toHaveCount(0);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Twoje sprawy');
     await page.goto('/');
-    await expect(page).toHaveURL(/\/prototype$/);
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator('#section-hero')).toBeVisible();
     await expect(page.locator('iframe')).toHaveCount(0);
+  });
+});
+
+// A phone opening the link: the landing page in one column, and the app one tap away (user, 2026-10-28).
+test.describe('phone', () => {
+  test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+
+  test('"/" is the one-column landing page: no section links, no sideways scrolling', async ({ page }) => {
+    await page.goto('/');
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator('#section-hero')).toBeVisible();
+    await expect(page.locator('iframe')).toHaveCount(0);
+    await expect(page.getByRole('navigation', { name: 'Sekcje strony' })).toBeHidden();
+    await expect(page.getByRole('banner').locator('button[aria-expanded]')).toBeVisible();
+    for (const id of ['#wyprobuj', '#demo', '#dla-kogo', '#nowosci', '#technologia']) {
+      await expect(page.locator(id)).toBeAttached();
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBe(0);
+  });
+
+  test('"Zobacz prototyp" opens the app full screen', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#wyprobuj').getByRole('link', { name: 'Zobacz prototyp' }).click();
+    await expect(page).toHaveURL(/\/prototype$/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Twoje sprawy');
+  });
+
+  test('"Pokaż wybór miasta" opens that screen of the app in the same tab', async ({ page }) => {
+    await page.goto('/#dla-kogo');
+    await page
+      .getByRole('region', { name: 'Dla kogo?' })
+      .getByRole('link', { name: 'Pokaż wybór miasta' })
+      .click();
+    await expect(page).toHaveURL(/\/prototype\/kategorie\/podroz\/bilet-miejski$/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bilet miejski');
+  });
+
+  test('axe: no WCAG A/AA violations on the phone landing page', async ({ page }) => {
+    // Like the desktop scan: without the entrance animation, so nothing is caught mid-fade.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+    await page.locator('#section-hero').waitFor();
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(results.violations).toEqual([]);
   });
 });

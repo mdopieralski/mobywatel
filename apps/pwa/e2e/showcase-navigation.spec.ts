@@ -5,13 +5,17 @@ test.describe('desktop page navigation', () => {
   test('Back to "/" after resizing across the breakpoint shows the landing page again', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('iframe[name="phone"]')).toBeAttached();
-    // Narrow: the bare app at "/"; open a category there.
+    // Narrow: the one-column landing page; its button opens the app full screen, then a category there.
     await page.setViewportSize({ width: 700, height: 900 });
+    await expect(page.locator('iframe[name="phone"]')).toHaveCount(0);
+    await page.locator('#wyprobuj').getByRole('link', { name: 'Zobacz prototyp' }).click();
+    await expect(page).toHaveURL(/\/prototype$/);
     await page.getByRole('main').getByRole('link').first().click();
     await expect(page).toHaveURL(/\/prototype\/kategorie\//);
     // Wide again: the mockup for that screen. Back to "/" must be the landing page, not the mockup.
     await page.setViewportSize({ width: 1440, height: 900 });
     await expect(page.getByRole('heading', { level: 1, name: 'Prototyp' })).toBeAttached();
+    await page.goBack();
     await page.goBack();
     await expect(page).toHaveURL(/\/$/);
     await expect(page.getByRole('heading', { level: 1, name: 'Prototyp' })).not.toBeAttached();

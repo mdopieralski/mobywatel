@@ -32,7 +32,7 @@ const LAST = DEMO_CHAPTERS.at(-1)?.to ?? 0;
 // Title on top; then the chapter buttons on the left, the video on the right; stacked in a narrower window. Same padding as
 // the other sections (--section-inline comes from the page; 48 px if it isn't there).
 const demoClass =
-  'grid grid-cols-[minmax(20rem,1fr)_minmax(0,2fr)] items-center content-start gap-x-[clamp(var(--space-7),4vw,var(--space-8))] gap-y-6 min-h-[calc(100dvh_-_var(--header-height))] py-30 px-[var(--section-inline,var(--space-8))] border-t border-border outline-none [@media(max-width:72rem)]:grid-cols-1';
+  'grid grid-cols-[minmax(20rem,1fr)_minmax(0,2fr)] items-center content-start gap-x-[clamp(var(--space-7),4vw,var(--space-8))] gap-y-6 min-h-[calc(100dvh_-_var(--header-height))] py-(--section-block) px-[var(--section-inline,var(--space-8))] border-t border-border outline-none [@media(max-width:72rem)]:grid-cols-1';
 
 // Pressed = the chapter on screen, shown by the fill and a bar, not by colour alone.
 const chapterClass =
@@ -135,7 +135,7 @@ export function DemoSection({
     <section id={DEMO_ID} ref={ref} tabIndex={-1} className={demoClass} aria-labelledby="showcase-demo">
       {/* Title and lead like every other section: centred over the whole width, 120 px above the content
           (24 px row gap + the margin). */}
-      <div className="col-span-full justify-self-center grid gap-3 max-w-[64rem] mb-[calc(var(--space-9)_-_var(--space-6))] text-center">
+      <div className="col-span-full justify-self-center grid gap-3 max-w-[64rem] mb-[calc(var(--section-block)_-_var(--space-6))] text-center">
         <h2 id="showcase-demo" className={`m-0 ${sectionHeadingClass}`}>
           {t('demo.title')}
         </h2>
