@@ -72,6 +72,7 @@ apps/pwa/                 @mobywatel/pwa: the PWA
   e2e/                    Playwright flows (phone viewports, axe)
   api/                    optional serverless LLM proxy (keys server-side only)
 apps/design-system/       @mobywatel/design-system: Storybook for @mobywatel/ui (stories in src/)
+apps/video/               @mobywatel/video: the Remotion demo video (docs/product/demo-video.md)
 packages/core/            @mobywatel/core: domain, no React
 packages/content/         @mobywatel/content: fictional personas + scenario scripts
 packages/brand/           @mobywatel/brand: tokens, copy, UNOFFICIAL_DISCLAIMER
@@ -116,6 +117,8 @@ pnpm dev                     # https://mobywatel.local (PWA dev, no SW) + /desig
 pnpm run build && pnpm preview   # same URLs, the real PWA: service worker, offline, install
 PORTLESS=0 pnpm dev          # without portless: plain Vite on localhost
 pnpm run dev:design-system   # Storybook alone on http://127.0.0.1:6006
+pnpm run dev:video           # Remotion Studio for the demo video
+pnpm run render:demo         # render the demo video into apps/pwa/public/video (local only)
 pnpm run typecheck           # tsc in every workspace (turbo)
 pnpm test                    # unit tests (turbo) + tool tests
 pnpm run test:e2e            # Playwright flows on phone viewports

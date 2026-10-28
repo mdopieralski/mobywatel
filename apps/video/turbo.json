@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "typecheck": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/pwa/messages/**",
+        "$TURBO_ROOT$/apps/pwa/src/features/categories/**"
+      ]
+    }
+  }
+}

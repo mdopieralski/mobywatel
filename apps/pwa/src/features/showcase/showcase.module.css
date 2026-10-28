@@ -2,6 +2,9 @@
 .page {
   /* For blocks that fill the rest of the first screen. */
   --header-height: calc(var(--target-min) + 2 * var(--space-4) + 1px);
+  /* Side padding of every section below the hero: the same centred 9-of-12 column as the hero
+     (48 px in, then 1/8 of what is left on each side). */
+  --section-inline: calc(var(--space-8) + (100% - 2 * var(--space-8)) / 8);
   min-height: 100dvh;
   display: grid;
   align-content: start;
@@ -253,8 +256,8 @@
 }
 
 .heroBadge {
-  /* 80 px above the label, on top of the gap under the headline. */
-  margin: calc(var(--space-8) + var(--space-7)) 0 0;
+  /* 40 px above the label, on top of the gap under the headline. */
+  margin: calc(var(--space-7) + var(--space-2)) 0 0;
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
@@ -468,7 +471,7 @@
   justify-items: center;
   /* Same space above the heading (section padding) as between it and the phone. */
   gap: var(--space-9);
-  padding: var(--space-9) var(--space-8);
+  padding: var(--space-9) var(--section-inline);
   text-align: center;
 }
 
@@ -581,7 +584,7 @@
   align-items: start;
   column-gap: clamp(var(--space-7), 5vw, 6rem);
   row-gap: var(--space-6);
-  padding: var(--space-9) var(--space-8);
+  padding: var(--space-9) var(--section-inline);
   border-top: 1px solid var(--border);
   outline: none;
 }
@@ -733,10 +736,11 @@
 .tech {
   display: grid;
   justify-items: center;
-  align-content: center;
-  gap: var(--space-6);
+  align-content: start;
+  gap: var(--space-3);
   min-height: calc(100dvh - var(--header-height));
-  padding: clamp(var(--space-7), 9vh, var(--space-9)) var(--space-8);
+  /* Same as the other sections: 120 px above the heading and 120 px from the heading and lead to the list. */
+  padding: var(--space-9) var(--section-inline);
   border-top: 1px solid var(--border);
   background-color: var(--surface);
   text-align: center;
@@ -750,8 +754,7 @@
 /* One list, no cards, one column. The width keeps lines short enough to read. */
 .techList {
   width: 100%;
-  max-width: 48rem;
-  margin: var(--space-4) 0 0;
+  margin: calc(var(--space-9) - var(--space-3)) 0 0;
   padding-inline-start: var(--space-5);
   color: var(--text-muted);
   font-size: var(--font-md);

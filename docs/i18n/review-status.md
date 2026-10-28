@@ -19,6 +19,17 @@ stamped as current against today's Polish.
 | lt     | machine (Claude) | none yet        | no          | review first (languages decision record)           |
 | be     | machine (Claude) | none yet        | no          | review first; official orthography (наркамаўка)    |
 
+## Open notes per key
+
+- `showcase.demo.*` (2026-10-28, machine draft, all 7 locales): video captions kept to about 60 characters.
+  Persona name kept in Latin ("Katarzyna"); in uk, be and lt the cue `languages1` says "her neighbour" to
+  avoid declining it. Łódź is an exonym in running text (uk/be Лодзь, lt Lodzė, cs/sk Lodž) but stays "Łódź"
+  where it is what the screen shows.
+- Register: older `showcase` keys (`hero.zus.body`, `tech.*`) use the plural/polite "you" in uk, cs, sk, lt,
+  be ("ваш", "váš", "jūsų"); the new demo keys use the informal one. Native reviewers: flag which reads right.
+- lt `nav.demo` is "Demo": "Demonstracija" wrapped the 6-link header at 1024 px (e2e). The section heading
+  `demo.title` stays "Demonstracija".
+
 ## Notes for reviewers (2026-10-28, `zus` and showcase)
 
 - All: `zus.offices.name` wraps an invented Polish nickname (kept in Polish) in the locale's quotes; en puts

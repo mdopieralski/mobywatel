@@ -44,3 +44,26 @@ test('guardrails audit catches an emblem file and a missing disclaimer', () => {
   assert.ok(files.includes('apps/pwa/public/godlo.svg'));
   assert.ok(files.includes('apps/pwa/src'));
 });
+
+test('guardrails audit wants the video to look unofficial and the page video to have a poster and captions', () => {
+  const root = fixture({
+    'apps/pwa/src/main.tsx': 'UNOFFICIAL_DISCLAIMER',
+    'apps/pwa/src/demo.tsx': 'export const D = () => <video src="/v.mp4" controls />;',
+    'apps/video/src/demo.tsx': 'export const Demo = () => null;',
+  });
+  const msgs = auditGuardrails(root).map((f) => `${f.file}: ${f.message}`);
+  assert.ok(msgs.some((m) => m.startsWith('apps/pwa/src/demo.tsx') && m.includes('poster')));
+  assert.ok(msgs.some((m) => m.startsWith('apps/pwa/src/demo.tsx') && m.includes('captions')));
+  assert.ok(msgs.some((m) => m.startsWith('apps/video/src') && m.includes('PrototypeBadge')));
+});
+
+test('guardrails audit accepts a video with a poster, captions, the badge and the disclaimer', () => {
+  const root = fixture({
+    'apps/pwa/src/main.tsx': 'UNOFFICIAL_DISCLAIMER',
+    'apps/pwa/src/demo.tsx':
+      'export const D = () => <video src="/v.mp4" poster="/p.jpg" controls />; v.addTextTrack("captions");',
+    'apps/video/src/demo.tsx': 'export const Demo = () => <PrototypeBadge />;',
+    'apps/video/src/scenes.tsx': 'UNOFFICIAL_DISCLAIMER',
+  });
+  assert.deepEqual(auditGuardrails(root), []);
+});

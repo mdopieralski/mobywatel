@@ -5,7 +5,8 @@
     "prototype": "Prototipas",
     "audience": "Kam skirta",
     "news": "Naujienos",
-    "tech": "Technologijos"
+    "tech": "Technologijos",
+    "demo": "Demo"
   },
   "lead": "Paspaudžiamas programėlės oficialiems reikalams prototipas. Išbandyk jį telefone aukščiau. Čia rašome, ką darome kitaip.",
   "phoneLabel": "Programėlė {name} telefono ekrane",
@@ -100,7 +101,7 @@
     },
     "tickets": {
       "title": "Miesto bilietai",
-      "body": "Viešojo transporto bilietai iš kiekvieno miesto vienoje vietoje, be atskiros programėlės kiekvienam vežėjui. Bilietą nusipirksi per kelis žingsnius.",
+      "body": "Viešojo transporto bilietai iš 969 miestų vienoje vietoje, be atskiros programėlės kiekvienam vežėjui. Bilietą nusipirksi per kelis žingsnius.",
       "try": "Atidaryk kategoriją Kelionės."
     },
     "zus": {
@@ -158,6 +159,61 @@
       "checks": "Kiekvienas pakeitimas praeina automatinius testus. Auditas tikrina, kad nebūtų valstybės ženklų ir matytųsi įspėjimas apie prototipą.",
       "agents": "Mums padeda DI agentų komanda (Claude Code): dizaineriai, inžinieriai, auditoriai ir recenzentai.",
       "human": "Galiausiai kiekvieną pakeitimą patikrina ir patvirtina žmogus."
+    }
+  },
+  "demo": {
+    "title": "Demonstracija",
+    "lead": "Viena diena su programėle per 80 sekundžių. Vaizdo įrašas be garso, o subtitrai – tavo kalba.",
+    "videoLabel": "Vaizdo įrašas: viena diena su programėle",
+    "captions": "Subtitrai",
+    "chaptersLabel": "Vaizdo įrašo skyriai",
+    "proposalNote": "Dalys su užrašu „Propozycja“ (pasiūlymas) rodo, kaip reikalas turėtų veikti. Prototipe jų dar nėra.",
+    "offline": "Vaizdo įrašą pažiūrėsi, kai prisijungsi prie interneto.",
+    "transcript": "Vaizdo įrašo aprašymas",
+    "intro": "Pradžioje: pavadinimas Sprawnie ir pranešimas, kad tai neoficialus prototipas.",
+    "outro": "Pabaigoje: prototipo adresas ir pranešimas, kad visi duomenys išgalvoti.",
+    "chapters": {
+      "zus": {
+        "name": "Mobilusis ZUS",
+        "time": "Rytą",
+        "body": "ZUS yra toje pačioje programėlėje kaip ir kiti reikalai. Vizito registraciją pridėsime. Prieš siųsdami parodysime, ką siunčiame.",
+        "scene": "Ekrane: programėlės pradžia, ZUS kategorija ir ekranas „Wkrótce“ (netrukus). Tada pasiūlymas: reikalo ir laiko pasirinkimas, patvirtinimas ir užregistruotas vizitas.",
+        "try": "Rodyti ZUS prototipe"
+      },
+      "tickets": {
+        "name": "Miesto bilietai",
+        "time": "Kelyje",
+        "body": "Autobuso ir tramvajaus bilietas pasirinktame mieste, be atskiros programėlės. Miesto pasirinkimas jau veikia, pirkimą pridėsime.",
+        "scene": "Ekrane: kategorija Podróż (kelionės) ir miesto pasirinkimas. Įvedus „lodz“, randama Łódź. Tada pasiūlymas: bilieto pasirinkimas, patvirtinimas ir bilietas su laiko atskaita.",
+        "try": "Rodyti miesto pasirinkimą"
+      },
+      "languages": {
+        "name": "Kaimynų kalbos",
+        "time": "Vakare",
+        "body": "Visa programėlė 8 kalbomis, taip pat be interneto. Verčiame programėlės ekranus, ne dokumentus.",
+        "scene": "Ekrane: mygtukas PL ir kalbų sąrašas. Pasirinkus ukrainiečių kalbą, pasikeičia visas ekranas. Tada lėktuvo režimas ir vokiečių kalba, o pabaigoje „Tavo reikalai“ 8 kalbomis.",
+        "try": "Keisti kalbą prototipe"
+      }
+    },
+    "cues": {
+      "intro": "Viena diena su programėle. Tai neoficialus prototipas.",
+      "zus1": "Rytą Katarzyna atsidaro ZUS reikalus.",
+      "zus2": "Įmokos, pensija ir nedarbingumas bus vienoje vietoje.",
+      "zus3": "Prototipe vizito į ZUS dar neužsiregistruosi.",
+      "zus4": "Siūlome: pasirenki reikalą ir laisvą laiką.",
+      "zus5": "Prieš siunčiant pamatysi, ką siunčiame.",
+      "zus6": "Užregistruota. Prototipe nieko neišsiųsta.",
+      "tickets1": "Katarzyna važiuoja į Lodzę. Jai reikia tramvajaus bilieto.",
+      "tickets2": "Rinkis iš 969 miestų. Veikia be lenkiškų raidžių ir interneto.",
+      "tickets3": "Siūlome: bilietą pirksi be atskiros programėlės.",
+      "tickets4": "Pirksi tik po patvirtinimo. Kaina pavyzdinė.",
+      "tickets5": "Prototipe nieko nesumokėta.",
+      "languages1": "Vakare jos kaimynė pasirenka ukrainiečių kalbą.",
+      "languages2": "Pasikeičia visa programėlė, ne tik meniu.",
+      "languages3": "Veikia ir be interneto.",
+      "languages4": "8 kalbos, visos išverstos visiškai. Ir lietuvių, ir baltarusių.",
+      "outro1": "Išbandyk prototipą. Veikia be prisijungimo.",
+      "outro2": "Neoficialus prototipas. Visi asmenys ir duomenys išgalvoti."
     }
   }
 }

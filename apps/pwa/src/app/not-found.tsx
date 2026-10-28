@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 import { useTranslations } from 'use-intl';
 
+import styles from './not-found.module.css';
 import { PATHS } from './paths.ts';
 
 export function NotFound() {
@@ -9,7 +10,9 @@ export function NotFound() {
     <>
       <h1>{t('title')}</h1>
       <p>{t('body')}</p>
-      <Link to={PATHS.start}>{t('back')}</Link>
+      <Link className={styles.back} to={PATHS.start}>
+        <span aria-hidden="true">←</span> {t('back')}
+      </Link>
     </>
   );
 }

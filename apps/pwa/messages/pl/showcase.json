@@ -5,7 +5,8 @@
     "prototype": "Prototyp",
     "audience": "Dla kogo",
     "news": "Nowości",
-    "tech": "Technologia"
+    "tech": "Technologia",
+    "demo": "Demo"
   },
   "lead": "Klikalny prototyp aplikacji do spraw urzędowych. Wypróbuj go w telefonie wyżej. Tu piszemy, co robimy inaczej.",
   "phoneLabel": "Aplikacja {name} na ekranie telefonu",
@@ -100,7 +101,7 @@
     },
     "tickets": {
       "title": "Bilety miejskie",
-      "body": "Bilety komunikacji miejskiej z każdego miasta w jednym miejscu, bez osobnej aplikacji dla każdego przewoźnika. Bilet kupisz w kilku krokach.",
+      "body": "Bilety komunikacji miejskiej z 969 miast w jednym miejscu, bez osobnej aplikacji dla każdego przewoźnika. Bilet kupisz w kilku krokach.",
       "try": "Otwórz kategorię Podróż."
     },
     "zus": {
@@ -158,6 +159,61 @@
       "checks": "Każda zmiana przechodzi automatyczne testy. Audyt sprawdza, czy nie ma znaków urzędowych i czy widać ostrzeżenie o prototypie.",
       "agents": "Pomaga nam zespół agentów AI (Claude Code): projektanci, inżynierowie, audytorzy i recenzenci.",
       "human": "Każdą zmianę na końcu sprawdza i zatwierdza człowiek."
+    }
+  },
+  "demo": {
+    "title": "Demo",
+    "lead": "Jeden dzień z aplikacją w 80 sekund. Film jest bez dźwięku, a napisy są w Twoim języku.",
+    "videoLabel": "Film: jeden dzień z aplikacją",
+    "captions": "Napisy",
+    "chaptersLabel": "Rozdziały filmu",
+    "proposalNote": "Fragmenty z napisem „Propozycja” pokazują, jak sprawa ma działać. W prototypie jeszcze ich nie ma.",
+    "offline": "Film obejrzysz po połączeniu z internetem.",
+    "transcript": "Opis filmu",
+    "intro": "Na początku: nazwa Sprawnie i informacja, że to nieoficjalny prototyp.",
+    "outro": "Na końcu: adres prototypu i informacja, że wszystkie dane są fikcyjne.",
+    "chapters": {
+      "zus": {
+        "name": "Mobilny ZUS",
+        "time": "Rano",
+        "body": "ZUS jest w tej samej aplikacji co inne sprawy. Umawianie wizyty dodamy. Przed wysłaniem pokażemy, co wysyłamy.",
+        "scene": "Na ekranie: start aplikacji, kategoria ZUS i ekran „Wkrótce”. Potem propozycja: wybór sprawy i terminu, potwierdzenie i umówiona wizyta.",
+        "try": "Pokaż ZUS w prototypie"
+      },
+      "tickets": {
+        "name": "Bilety miejskie",
+        "time": "W drodze",
+        "body": "Bilet na autobus i tramwaj w wybranym mieście, bez osobnej aplikacji. Wybór miasta już działa, kupowanie dodamy.",
+        "scene": "Na ekranie: kategoria Podróż i wybór miasta. Wpisane „lodz” znajduje Łódź. Potem propozycja: wybór biletu, potwierdzenie i bilet z odliczaniem czasu.",
+        "try": "Pokaż wybór miasta"
+      },
+      "languages": {
+        "name": "Języki sąsiedzkie",
+        "time": "Wieczorem",
+        "body": "Cała aplikacja w 8 językach, także bez internetu. Tłumaczymy ekrany aplikacji, nie dokumenty.",
+        "scene": "Na ekranie: przycisk PL i lista języków. Po wybraniu ukraińskiego zmienia się cały ekran. Potem tryb samolotowy i niemiecki, a na końcu „Twoje sprawy” w 8 językach.",
+        "try": "Zmień język w prototypie"
+      }
+    },
+    "cues": {
+      "intro": "Jeden dzień z aplikacją. To nieoficjalny prototyp.",
+      "zus1": "Rano Katarzyna otwiera sprawy z ZUS.",
+      "zus2": "Składki, emerytura i zwolnienia będą w jednym miejscu.",
+      "zus3": "Wizyty w ZUS w prototypie jeszcze nie umówisz.",
+      "zus4": "Proponujemy: wybierasz sprawę i wolny termin.",
+      "zus5": "Przed wysłaniem zobaczysz, co wysyłamy.",
+      "zus6": "Umówione. W prototypie nic nie wysłano.",
+      "tickets1": "Katarzyna jedzie do Łodzi. Potrzebuje biletu na tramwaj.",
+      "tickets2": "969 miast do wyboru. Działa bez polskich liter i internetu.",
+      "tickets3": "Proponujemy: kupisz bilet bez osobnej aplikacji.",
+      "tickets4": "Kupisz go dopiero po potwierdzeniu. Cena jest przykładowa.",
+      "tickets5": "W prototypie nic nie zapłacono.",
+      "languages1": "Wieczorem sąsiadka Katarzyny wybiera ukraiński.",
+      "languages2": "Zmienia się cała aplikacja, nie tylko menu.",
+      "languages3": "Bez internetu też działa.",
+      "languages4": "8 języków, każdy w całości. Także litewski i białoruski.",
+      "outro1": "Sprawdź prototyp. Działa bez logowania.",
+      "outro2": "Nieoficjalny prototyp. Wszystkie osoby i dane są fikcyjne."
     }
   }
 }

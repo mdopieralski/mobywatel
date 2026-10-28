@@ -17,18 +17,42 @@
   }
 }
 
-/* Wide screen without the showcase (installed on a desktop, or the showcase is off): a fixed phone-sized
-   preview, 390×844 like an iPhone 13–16 screen, centred. A short window scrolls the page instead of
-   clipping the frame (WCAG 1.4.10). */
-@media (min-width: 64rem) and (min-height: 40rem) {
+/* Tablets (touch, wide): a wider column, so the app doesn't look like a phone stretched onto a tablet. The
+   category grid takes three columns once it has the room (category-stack.module.css). */
+@media (min-width: 48rem) {
+  .frame {
+    max-width: 45rem;
+  }
+}
+
+/* Desktop with a mouse, without the showcase (installed on a desktop, or the showcase is off): a
+   phone-sized preview, 390×844 like an iPhone 13–16 screen, centred. Same pointer test as the showcase
+   (showcase-mode.ts), so a touch tablet keeps the full-height column above. Never taller than the window,
+   so the tab bar is always on screen. */
+@media (min-width: 64rem) and (min-height: 40rem) and (hover: hover) and (pointer: fine) {
   .frame {
     width: 390px;
     max-width: none;
-    height: 844px;
+    height: min(844px, calc(100dvh - 2 * var(--space-6)));
     margin: var(--space-6) auto;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
+  }
+}
+
+/* Short windows (a phone on its side, 400% zoom): a pinned header and tab bar would leave almost no room
+   for the screen. Here the whole page scrolls instead, header and tab bar with it (WCAG 1.4.10). */
+@media (max-height: 30rem) {
+  .frame {
+    height: auto;
+    min-height: 100dvh;
+    max-width: 48rem;
+  }
+
+  .main {
+    flex: none;
+    overflow: visible;
   }
 }
 
@@ -79,6 +103,19 @@
   font-weight: 700;
   line-height: var(--line-height-tight);
   letter-spacing: -0.01em;
+}
+
+/* Very narrow (320 px, or senior text): the name hides visually, so the header stays one row. It still
+   names the home link for screen readers. */
+@media (max-width: 23rem) {
+  .name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
 
 .shortcuts {

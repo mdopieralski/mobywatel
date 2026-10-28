@@ -30,6 +30,7 @@ export function Layout() {
   const main = useRef<HTMLElement>(null);
   const { pathname } = useLocation();
   const shown = useRef(pathname);
+  const onSettings = pathname === PATHS.settings || pathname.startsWith(`${PATHS.settings}/`);
 
   // Title per screen (WCAG 2.4.2), also after a language switch.
   useEffect(() => {
@@ -50,7 +51,8 @@ export function Layout() {
     shown.current = pathname;
     const heading = main.current?.querySelector<HTMLElement>('h1');
     heading?.setAttribute('tabindex', '-1');
-    heading?.focus();
+    // Inside the landing page's phone, focusing must not scroll the outer page down to the phone.
+    heading?.focus({ preventScroll: window.self !== window.top });
   }, [pathname]);
 
   // Header entrance after the boot loader: name, then each shortcut in turn (INTRO).
@@ -99,9 +101,14 @@ export function Layout() {
         <Outlet />
       </main>
       <nav className={styles.nav} aria-label={t('mainNavigation')}>
-        <NavLink to={PATHS.start} end className={navClass}>
+        {/* Start stays marked on every screen but Settings, so the tab bar always shows where you are. */}
+        <Link
+          to={PATHS.start}
+          className={navClass({ isActive: !onSettings })}
+          aria-current={pathname === PATHS.start ? 'page' : onSettings ? undefined : 'true'}
+        >
           {t('nav.start')}
-        </NavLink>
+        </Link>
         <NavLink to={PATHS.settings} className={navClass}>
           {t('nav.settings')}
         </NavLink>

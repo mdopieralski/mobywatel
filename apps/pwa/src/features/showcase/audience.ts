@@ -19,7 +19,8 @@ export type AudienceMember = {
   soon?: true;
 };
 
-function matterPath(category: CategoryId, matter: MatterId): string {
+/** The address of a matter's screen inside the app. */
+export function matterPath(category: CategoryId, matter: MatterId): string {
   const categorySlug = CATEGORY_VIEWS.find((c) => c.id === category)?.slug;
   return `${PATHS.categories}/${categorySlug}/${MATTERS[matter].slug}`;
 }

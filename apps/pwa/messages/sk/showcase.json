@@ -5,7 +5,8 @@
     "prototype": "Prototyp",
     "audience": "Pre koho",
     "news": "Novinky",
-    "tech": "Technológie"
+    "tech": "Technológie",
+    "demo": "Demo"
   },
   "lead": "Klikateľný prototyp aplikácie na úradné veci. Vyskúšaj ho v telefóne vyššie. Tu píšeme, čo robíme inak.",
   "phoneLabel": "Aplikácia {name} na displeji telefónu",
@@ -100,7 +101,7 @@
     },
     "tickets": {
       "title": "Mestské lístky",
-      "body": "Lístky na mestskú dopravu z každého mesta na jednom mieste, bez osobitnej aplikácie pre každého dopravcu. Lístok kúpiš v niekoľkých krokoch.",
+      "body": "Lístky na mestskú dopravu z 969 miest na jednom mieste, bez osobitnej aplikácie pre každého dopravcu. Lístok kúpiš v niekoľkých krokoch.",
       "try": "Otvor kategóriu Cestovanie."
     },
     "zus": {
@@ -158,6 +159,61 @@
       "checks": "Každá zmena prejde automatickými testami. Audit kontroluje, že nie sú použité štátne znaky a že je vidieť upozornenie na prototyp.",
       "agents": "Pomáha nám tím agentov AI (Claude Code): dizajnéri, inžinieri, audítori a recenzenti.",
       "human": "Každú zmenu napokon skontroluje a schváli človek."
+    }
+  },
+  "demo": {
+    "title": "Demo",
+    "lead": "Jeden deň s aplikáciou za 80 sekúnd. Video je bez zvuku a titulky sú v tvojom jazyku.",
+    "videoLabel": "Video: jeden deň s aplikáciou",
+    "captions": "Titulky",
+    "chaptersLabel": "Kapitoly videa",
+    "proposalNote": "Časti s nápisom „Propozycja“ (návrh) ukazujú, ako má vec fungovať. V prototype ešte nie sú.",
+    "offline": "Video si pozrieš po pripojení na internet.",
+    "transcript": "Popis videa",
+    "intro": "Na začiatku: názov Sprawnie a informácia, že ide o neoficiálny prototyp.",
+    "outro": "Na konci: adresa prototypu a informácia, že všetky údaje sú vymyslené.",
+    "chapters": {
+      "zus": {
+        "name": "Mobilný ZUS",
+        "time": "Ráno",
+        "body": "ZUS je v tej istej aplikácii ako ostatné veci. Objednanie návštevy pridáme. Pred odoslaním ukážeme, čo posielame.",
+        "scene": "Na obrazovke: štart aplikácie, kategória ZUS a obrazovka „Wkrótce“ (čoskoro). Potom návrh: výber veci a termínu, potvrdenie a dohodnutá návšteva.",
+        "try": "Zobraziť ZUS v prototype"
+      },
+      "tickets": {
+        "name": "Mestské lístky",
+        "time": "Na ceste",
+        "body": "Lístok na autobus a električku vo vybranom meste, bez osobitnej aplikácie. Výber mesta už funguje, nákup pridáme.",
+        "scene": "Na obrazovke: kategória Podróż (cestovanie) a výber mesta. Zadanie „lodz“ nájde Łódź. Potom návrh: výber lístka, potvrdenie a lístok s odpočítavaním času.",
+        "try": "Zobraziť výber mesta"
+      },
+      "languages": {
+        "name": "Jazyky susedov",
+        "time": "Večer",
+        "body": "Celá aplikácia v 8 jazykoch, aj bez internetu. Prekladáme obrazovky aplikácie, nie dokumenty.",
+        "scene": "Na obrazovke: tlačidlo PL a zoznam jazykov. Po výbere ukrajinčiny sa zmení celá obrazovka. Potom režim lietadla a nemčina a na konci „Tvoje veci“ v 8 jazykoch.",
+        "try": "Zmeniť jazyk v prototype"
+      }
+    },
+    "cues": {
+      "intro": "Jeden deň s aplikáciou. Je to neoficiálny prototyp.",
+      "zus1": "Ráno si Katarzyna otvára veci zo ZUS.",
+      "zus2": "Odvody, dôchodok a PN budú na jednom mieste.",
+      "zus3": "Návštevu v ZUS si v prototype zatiaľ neobjednáš.",
+      "zus4": "Navrhujeme: vyberieš si vec a voľný termín.",
+      "zus5": "Pred odoslaním uvidíš, čo posielame.",
+      "zus6": "Objednané. V prototype sa nič neodoslalo.",
+      "tickets1": "Katarzyna ide do Lodže. Potrebuje lístok na električku.",
+      "tickets2": "969 miest na výber. Funguje bez poľských znakov aj internetu.",
+      "tickets3": "Navrhujeme: kúpiš lístok bez osobitnej aplikácie.",
+      "tickets4": "Kúpiš ho až po potvrdení. Cena je len príklad.",
+      "tickets5": "V prototype sa nič nezaplatilo.",
+      "languages1": "Večer si susedka Katarzyny vyberá ukrajinčinu.",
+      "languages2": "Zmení sa celá aplikácia, nielen menu.",
+      "languages3": "Funguje aj bez internetu.",
+      "languages4": "8 jazykov, každý kompletný. Aj litovčina a bieloruština.",
+      "outro1": "Vyskúšaj prototyp. Funguje bez prihlásenia.",
+      "outro2": "Neoficiálny prototyp. Všetky osoby a údaje sú vymyslené."
     }
   }
 }

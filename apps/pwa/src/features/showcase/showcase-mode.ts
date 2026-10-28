@@ -19,6 +19,9 @@ export const HERO_ID = 'section-hero';
 /** Id of the section with the working phone: the hero's button scrolls there. */
 export const TRY_ID = 'wyprobuj';
 
+/** Id of the landing page's "Demo" section (the video, right after the phone). */
+export const DEMO_ID = 'demo';
+
 /** Id of the landing page's "Dla kogo" section (example people it helps). */
 export const AUDIENCE_ID = 'dla-kogo';
 
@@ -41,10 +44,20 @@ export function isDesktopPage(): boolean {
   return wideScreen() && !isEmbedded();
 }
 
+/** Re-render on a window resize across the breakpoint, on install (standalone), and on Back/Forward (the
+ *  page kind also depends on the path: Back to "/" must show the landing page again). */
 function subscribe(listener: () => void): () => void {
-  const mql = window.matchMedia(SHOWCASE_QUERY);
-  mql.addEventListener('change', listener);
-  return () => mql.removeEventListener('change', listener);
+  const queries = [window.matchMedia(SHOWCASE_QUERY), window.matchMedia(STANDALONE_QUERY)];
+  for (const mql of queries) {
+    mql.addEventListener('change', listener);
+  }
+  window.addEventListener('popstate', listener);
+  return () => {
+    for (const mql of queries) {
+      mql.removeEventListener('change', listener);
+    }
+    window.removeEventListener('popstate', listener);
+  };
 }
 
 export type PageKind = 'landing' | 'mockup' | 'app';
@@ -52,7 +65,11 @@ export type PageKind = 'landing' | 'mockup' | 'app';
 /** What this document renders; follows the window across the desktop breakpoint. */
 export function usePageKind(): PageKind {
   const wide = useSyncExternalStore(subscribe, wideScreen, () => false);
-  const { pathname } = window.location;
+  const pathname = useSyncExternalStore(
+    subscribe,
+    () => window.location.pathname,
+    () => PATHS.landing
+  );
   if (!wide || isEmbedded()) {
     return 'app';
   }

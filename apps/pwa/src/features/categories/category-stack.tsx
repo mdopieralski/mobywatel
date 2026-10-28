@@ -15,21 +15,24 @@ import styles from './category-stack.module.css';
 export function CategoryStack() {
   const t = useTranslations('categories');
   return (
-    <ul className={styles.stack} aria-label={t('title')}>
-      {CATEGORY_VIEWS.map((category) => (
-        <li key={category.id} className={styles.item}>
-          <Link
-            to={`${PATHS.categories}/${category.slug}`}
-            className={`${cardStyles.card} ${styles.card}`}
-            style={{ '--card-color': category.color } as CSSProperties}
-          >
-            <span className={cardStyles.icon}>
-              <LineIcon size={28}>{category.icon}</LineIcon>
-            </span>
-            <span className={`${cardStyles.title} ${styles.name}`}>{t(`names.${category.id}`)}</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    // The wrapper is the size container: a container query can't restyle the container itself.
+    <div className={styles.wrap}>
+      <ul className={styles.stack} aria-label={t('title')}>
+        {CATEGORY_VIEWS.map((category) => (
+          <li key={category.id} className={styles.item}>
+            <Link
+              to={`${PATHS.categories}/${category.slug}`}
+              className={`${cardStyles.card} ${styles.card}`}
+              style={{ '--card-color': category.color } as CSSProperties}
+            >
+              <span className={cardStyles.icon}>
+                <LineIcon size={28}>{category.icon}</LineIcon>
+              </span>
+              <span className={`${cardStyles.title} ${styles.name}`}>{t(`names.${category.id}`)}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

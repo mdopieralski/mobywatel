@@ -1,4 +1,7 @@
+import { Link } from 'react-router';
 import { useTranslations } from 'use-intl';
+
+import { PATHS } from '../../app/paths.ts';
 
 import { LineIcon, REMINDERS } from '../documents/kinds.tsx';
 import styles from './reminders.module.css';
@@ -7,6 +10,7 @@ import { useReminders } from './use-reminders.ts';
 /** Everything waiting for the persona, soonest first. Urgency is a word, not only a colour. */
 export function RemindersScreen() {
   const t = useTranslations('documents.reminders');
+  const tSoon = useTranslations('soon');
   const items = useReminders();
   return (
     <div className={styles.stack}>
@@ -26,6 +30,10 @@ export function RemindersScreen() {
         ))}
       </ul>
       <p className={styles.hint}>{t('hint')}</p>
+      {/* A way back, and a keyboard stop inside the scroll area, so arrow keys can scroll a long list. */}
+      <Link className={styles.back} to={PATHS.start}>
+        <span aria-hidden="true">←</span> {tSoon('back')}
+      </Link>
     </div>
   );
 }

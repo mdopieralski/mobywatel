@@ -3,6 +3,8 @@
 //   1. no state emblem / mObywatel marks / official document art / reference photos (by file name)
 //   2. no reuse of the reference prototype's excluded assets (by path in source)
 //   3. once the app exists, the "unofficial prototype, fictional data" disclaimer is in the source
+//   4. the demo video (apps/video) shows the disclaimer and the "PROTOTYP" badge in every frame, and a
+//      <video> on the site has a poster and captions (docs/product/demo-video.md)
 // Usage: node tools/guardrails-audit.mjs [--root <dir>]   exit 1 on findings.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
@@ -40,6 +42,8 @@ export function auditGuardrails(root) {
   const findings = [];
   let disclaimerFound = false;
   const appSrc = join(root, 'apps/pwa/src');
+  const videoSrc = join(root, 'apps/video/src');
+  const video = { disclaimer: false, badge: false };
   for (const abs of walk(root)) {
     const rel = relative(root, abs).split('\\').join('/');
     const content = TEXT.test(rel) && statSync(abs).size < 2_000_000 ? readFileSync(abs, 'utf8') : '';
@@ -52,6 +56,31 @@ export function auditGuardrails(root) {
     ) {
       disclaimerFound = true;
     }
+    if (rel.startsWith('apps/video/src/')) {
+      video.disclaimer ||= /UNOFFICIAL_DISCLAIMER/.test(content);
+      video.badge ||= /<PrototypeBadge\b/.test(content);
+    }
+    if (/^apps\/pwa\/src\/.*\.tsx$/.test(rel) && /<video\b/.test(content)) {
+      if (!/<video\b[^>]*\bposter=/.test(content)) {
+        findings.push({
+          file: rel,
+          message: 'A <video> needs a poster, so nothing moves before someone presses play.',
+        });
+      }
+      if (!/addTextTrack|<track\b[^>]*kind="captions"/.test(content)) {
+        findings.push({
+          file: rel,
+          message: 'A <video> needs captions (a captions <track> or addTextTrack).',
+        });
+      }
+    }
+  }
+  if (existsSync(videoSrc) && !(video.disclaimer && video.badge)) {
+    findings.push({
+      file: 'apps/video/src',
+      message:
+        'The demo video must show UNOFFICIAL_DISCLAIMER (intro and outro) and render <PrototypeBadge> over every frame.',
+    });
   }
   if (existsSync(appSrc) && !disclaimerFound) {
     findings.push({

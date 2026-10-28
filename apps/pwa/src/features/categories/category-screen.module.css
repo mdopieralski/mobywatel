@@ -65,6 +65,8 @@
 
 .list {
   display: grid;
+  /* A long word (German, senior text) wraps instead of widening the column past the screen. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
   margin: 0;
   padding: 0;
@@ -94,6 +96,8 @@ a.row:focus-visible {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .rowText span {
