@@ -53,7 +53,7 @@ export function SiteHeader({ links }: { links: readonly HeaderLink[] }) {
         </nav>
         {/* The page's own language switch: also changes the app in the phone (shared setting). */}
         <LanguageSwitch
-          className={intro.reveal}
+          className={`${intro.reveal} ${headerStyles.lang}`}
           style={introStyle(navDelay + links.length * INTRO.navStepMs)}
         />
       </div>

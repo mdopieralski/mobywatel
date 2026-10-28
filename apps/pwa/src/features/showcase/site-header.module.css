@@ -7,3 +7,8 @@
   justify-content: flex-end;
   gap: var(--space-4);
 }
+
+/* 40 px between the section links and the language switch: the 16 px gap plus 24 px. */
+.lang {
+  margin-inline-start: var(--space-6);
+}
