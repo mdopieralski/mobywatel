@@ -4,6 +4,7 @@ import { useTranslations } from 'use-intl';
 
 import { DEMO_PREFIX } from '../../platform/demo-state.ts';
 import styles from './city-picker.module.css';
+import { TicketShop } from './ticket-list.tsx';
 
 type CitiesModule = typeof import('@mobywatel/content/cities');
 
@@ -29,8 +30,8 @@ function saveCityId(id: string): void {
 
 /**
  * Bilet miejski: pick your town from every Polish town. The list ships with the app (loaded when this
- * screen opens), so search works offline and nothing typed leaves the phone. Buying a ticket is not built
- * yet; the screen says so for the chosen town.
+ * screen opens), so search works offline and nothing typed leaves the phone. Then the tickets for that
+ * town (ticket-list.tsx).
  */
 export function CityPicker() {
   const t = useTranslations('categories.cityPicker');
@@ -83,24 +84,26 @@ export function CityPicker() {
 
   if (!picking && chosen) {
     return (
-      <section className={styles.chosen} aria-labelledby="city-chosen">
-        <p className={styles.label}>{t('chosen')}</p>
-        <h2 id="city-chosen" ref={chosenHeading} tabIndex={-1} className={styles.cityName}>
-          {chosen.name}
-        </h2>
-        <p className={styles.voivodeship}>{t('voivodeship', { name: chosen.voivodeship })}</p>
-        <p className={styles.note}>{t('soon', { city: chosen.name })}</p>
-        <button
-          type="button"
-          className={styles.change}
-          onClick={() => {
-            setChanging(true);
-            moveFocus.current = 'input';
-          }}
-        >
-          {t('change')}
-        </button>
-      </section>
+      <div className={styles.flow}>
+        <section className={styles.chosen} aria-labelledby="city-chosen">
+          <p className={styles.label}>{t('chosen')}</p>
+          <h2 id="city-chosen" ref={chosenHeading} tabIndex={-1} className={styles.cityName}>
+            {chosen.name}
+          </h2>
+          <p className={styles.voivodeship}>{t('voivodeship', { name: chosen.voivodeship })}</p>
+          <button
+            type="button"
+            className={styles.change}
+            onClick={() => {
+              setChanging(true);
+              moveFocus.current = 'input';
+            }}
+          >
+            {t('change')}
+          </button>
+        </section>
+        <TicketShop cityId={chosen.id} cityName={chosen.name} nameOf={(id) => cities.cityById(id)?.name} />
+      </div>
     );
   }
 

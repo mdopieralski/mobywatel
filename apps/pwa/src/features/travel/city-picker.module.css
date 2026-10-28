@@ -1,4 +1,10 @@
 /* City picker for Bilet miejski: one search field and up to 8 towns as big buttons. */
+.flow,
+.ticket {
+  display: grid;
+  gap: var(--space-4);
+}
+
 .picker,
 .chosen {
   display: grid;
@@ -121,4 +127,9 @@
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+}
+
+.expired {
+  font-weight: 700;
+  color: var(--danger);
 }

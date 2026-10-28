@@ -101,7 +101,6 @@
     "none": "Nie ma takiego miasta na liście. Sprawdź pisownię.",
     "chosen": "Twoje miasto",
     "voivodeship": "Województwo {name}",
-    "soon": "Bilety na autobus i tramwaj w mieście {city} dodamy wkrótce.",
     "change": "Zmień miasto"
   }
 }

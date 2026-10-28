@@ -1,4 +1,5 @@
-import type { CSSProperties } from 'react';
+import type { MatterId } from '@mobywatel/content';
+import type { CSSProperties, ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
 import { useTranslations } from 'use-intl';
 
@@ -9,10 +10,15 @@ import { CityPicker } from '../travel/city-picker.tsx';
 import { categoryBySlug, MATTERS, matterBySlug } from './categories.tsx';
 import styles from './category-screen.module.css';
 
+/** Matters you can walk through to the end. Every other one says it is coming ("Wkrótce"). */
+const BUILT: Partial<Record<MatterId, () => ReactNode>> = {
+  cityTicket: () => <CityPicker />,
+};
+
 /**
- * One matter from a category's submenu. None is built yet, so the screen says what it will do and that
- * it is coming, with a way back to the category. Never a look-alike of an official flow (e.g. no ID
- * verification screen; prototype-guardrails skill).
+ * One matter from a category's submenu. A built one shows its flow; the rest say what they will do and
+ * that they are coming, with a way back to the category. Never a look-alike of an official flow (e.g. no
+ * ID verification screen; prototype-guardrails skill).
  */
 export function MatterScreen() {
   const t = useTranslations('categories');
@@ -23,6 +29,7 @@ export function MatterScreen() {
   if (!category || !matter) {
     return <NotFound />;
   }
+  const built = BUILT[matter];
   return (
     <div className={styles.stack} style={{ '--card-color': category.color } as CSSProperties}>
       <Link className={styles.back} to={`${PATHS.categories}/${category.slug}`}>
@@ -34,10 +41,9 @@ export function MatterScreen() {
         </span>
         <h1>{t(`matters.names.${matter}`)}</h1>
       </div>
-      <p className={styles.badge}>{tSoon('badge')}</p>
+      {built ? null : <p className={styles.badge}>{tSoon('badge')}</p>}
       <p className={styles.description}>{t(`matters.descriptions.${matter}`)}</p>
-      {/* Bilet miejski already lets you pick your town; the rest only says it is coming. */}
-      {matter === 'cityTicket' ? <CityPicker /> : <p className={styles.soon}>{t('matters.soon')}</p>}
+      {built ? built() : <p className={styles.soon}>{t('matters.soon')}</p>}
     </div>
   );
 }

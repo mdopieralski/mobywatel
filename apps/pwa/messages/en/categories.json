@@ -101,7 +101,6 @@
     "none": "There is no such city on the list. Check the spelling.",
     "chosen": "Your city",
     "voivodeship": "Voivodeship: {name}",
-    "soon": "Bus and tram tickets for {city} are coming soon.",
     "change": "Change city"
   }
 }

@@ -101,7 +101,6 @@
     "none": "Tokio miesto sąraše nėra. Patikrinkite rašybą.",
     "chosen": "Jūsų miestas",
     "voivodeship": "Vaivadija: {name}",
-    "soon": "Autobuso ir tramvajaus bilietus mieste {city} pridėsime netrukus.",
     "change": "Keisti miestą"
   }
 }

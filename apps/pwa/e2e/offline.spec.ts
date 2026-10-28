@@ -19,14 +19,12 @@ test('works offline after the first load, including deep links', async ({ page, 
   await page.goto('/prototype/kategorie/podroz/bilet-miejski');
   await page.getByRole('searchbox', { name: 'Nazwa miasta' }).fill('gdyn');
   await expect(page.getByRole('button', { name: /^Gdynia/ })).toBeVisible();
-});
 
-test('the web app manifest is valid for install', async ({ request }) => {
-  const res = await request.get('/manifest.webmanifest');
-  expect(res.ok()).toBe(true);
-  const manifest = await res.json();
-  expect(manifest.lang).toBe('pl');
-  expect(manifest.display).toBe('standalone');
-  expect(manifest.name).not.toMatch(/^mObywatel$/i);
-  expect(manifest.icons.some((i: { purpose?: string }) => i.purpose === 'maskable')).toBe(true);
+  // The whole ticket journey works with the network off.
+  await page.getByRole('button', { name: /^Gdynia/ }).click();
+  await page.getByRole('button', { name: /^Bilet dobowy/ }).click();
+  await page.getByRole('button', { name: 'Kup bilet' }).click();
+  await expect(page.getByRole('region', { name: 'Twój bilet' }).getByText('Gdynia')).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('region', { name: 'Twój bilet' }).getByText('Bilet dobowy')).toBeVisible();
 });

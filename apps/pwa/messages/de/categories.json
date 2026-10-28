@@ -101,7 +101,6 @@
     "none": "Diese Stadt ist nicht auf der Liste. Prüf die Schreibweise.",
     "chosen": "Deine Stadt",
     "voivodeship": "Woiwodschaft: {name}",
-    "soon": "Bus- und Straßenbahntickets für {city} kommen bald.",
     "change": "Stadt ändern"
   }
 }

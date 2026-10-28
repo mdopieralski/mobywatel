@@ -1,0 +1,40 @@
+{
+  "listTitle": "Choose a ticket",
+  "anotherTitle": "Buy another ticket",
+  "names": {
+    "single": "Single ticket",
+    "time20": "20-minute ticket",
+    "time75": "75-minute ticket",
+    "daily": "24-hour ticket"
+  },
+  "validity": {
+    "single": "One ride",
+    "time20": "20 minutes from purchase",
+    "time75": "75 minutes from purchase",
+    "daily": "24 hours from purchase"
+  },
+  "confirm": {
+    "title": "You are buying a ticket for {city}",
+    "city": "City",
+    "ticket": "Ticket",
+    "validity": "Valid for",
+    "price": "Price",
+    "payment": "Payment",
+    "paymentValue": "You pay nothing. This is a prototype.",
+    "source": "Source: a sample price list made for the prototype. The prices are made up.",
+    "checkedOn": "As of {date}.",
+    "action": "Buy ticket",
+    "cancel": "Cancel"
+  },
+  "cancelled": "Nothing was sent. You can choose another ticket.",
+  "active": {
+    "title": "Your ticket",
+    "city": "City",
+    "ticket": "Ticket",
+    "boughtAt": "Bought",
+    "validUntil": "Valid until",
+    "oneRide": "Valid for one ride",
+    "expired": "This ticket is no longer valid.",
+    "note": "This is a prototype ticket. You don't pay for it, and you can't ride a bus with it."
+  }
+}

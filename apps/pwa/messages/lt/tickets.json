@@ -1,0 +1,40 @@
+{
+  "listTitle": "Pasirink bilietą",
+  "anotherTitle": "Pirk kitą bilietą",
+  "names": {
+    "single": "Vienkartinis bilietas",
+    "time20": "20 minučių bilietas",
+    "time75": "75 minučių bilietas",
+    "daily": "Paros bilietas"
+  },
+  "validity": {
+    "single": "Viena kelionė",
+    "time20": "20 minučių nuo pirkimo",
+    "time75": "75 minutės nuo pirkimo",
+    "daily": "24 valandos nuo pirkimo"
+  },
+  "confirm": {
+    "title": "Perki bilietą mieste {city}",
+    "city": "Miestas",
+    "ticket": "Bilietas",
+    "validity": "Galioja",
+    "price": "Kaina",
+    "payment": "Mokėjimas",
+    "paymentValue": "Nieko nemoki. Tai prototipas.",
+    "source": "Šaltinis: pavyzdinis prototipo kainoraštis. Kainos išgalvotos.",
+    "checkedOn": "{date} duomenimis.",
+    "action": "Pirkti bilietą",
+    "cancel": "Atšaukti"
+  },
+  "cancelled": "Niekas nebuvo išsiųsta. Gali pasirinkti kitą bilietą.",
+  "active": {
+    "title": "Tavo bilietas",
+    "city": "Miestas",
+    "ticket": "Bilietas",
+    "boughtAt": "Nupirktas",
+    "validUntil": "Galioja iki",
+    "oneRide": "Galioja vienai kelionei",
+    "expired": "Šis bilietas jau nebegalioja.",
+    "note": "Tai prototipo bilietas. Už jį nemoki ir juo nevažiuosi autobusu."
+  }
+}

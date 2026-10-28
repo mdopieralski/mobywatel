@@ -1,0 +1,40 @@
+{
+  "listTitle": "Wybierz bilet",
+  "anotherTitle": "Kup inny bilet",
+  "names": {
+    "single": "Bilet jednorazowy",
+    "time20": "Bilet 20-minutowy",
+    "time75": "Bilet 75-minutowy",
+    "daily": "Bilet dobowy"
+  },
+  "validity": {
+    "single": "Jeden przejazd",
+    "time20": "20 minut od zakupu",
+    "time75": "75 minut od zakupu",
+    "daily": "24 godziny od zakupu"
+  },
+  "confirm": {
+    "title": "Kupujesz bilet w mieście {city}",
+    "city": "Miasto",
+    "ticket": "Bilet",
+    "validity": "Ważny",
+    "price": "Cena",
+    "payment": "Płatność",
+    "paymentValue": "Nic nie płacisz. To prototyp.",
+    "source": "Źródło: przykładowy cennik prototypu. Ceny są zmyślone.",
+    "checkedOn": "Stan na {date}.",
+    "action": "Kup bilet",
+    "cancel": "Anuluj"
+  },
+  "cancelled": "Nic nie zostało wysłane. Możesz wybrać inny bilet.",
+  "active": {
+    "title": "Twój bilet",
+    "city": "Miasto",
+    "ticket": "Bilet",
+    "boughtAt": "Kupiony",
+    "validUntil": "Ważny do",
+    "oneRide": "Ważny na jeden przejazd",
+    "expired": "Ten bilet już nie jest ważny.",
+    "note": "To bilet z prototypu. Nie płacisz za niego i nie pojedziesz z nim autobusem."
+  }
+}

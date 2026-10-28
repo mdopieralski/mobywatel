@@ -101,7 +101,6 @@
     "none": "Takové město v seznamu není. Zkontrolujte pravopis.",
     "chosen": "Vaše město",
     "voivodeship": "Vojvodství: {name}",
-    "soon": "Jízdenky na autobus a tramvaj pro město {city} brzy přidáme.",
     "change": "Změnit město"
   }
 }

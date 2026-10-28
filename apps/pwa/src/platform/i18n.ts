@@ -11,10 +11,11 @@ import home from '../../messages/pl/home.json';
 import settings from '../../messages/pl/settings.json';
 import showcase from '../../messages/pl/showcase.json';
 import soon from '../../messages/pl/soon.json';
+import tickets from '../../messages/pl/tickets.json';
 
 export const TIME_ZONE = 'Europe/Warsaw';
 
-const SOURCE = { categories, common, documents, home, settings, showcase, soon };
+const SOURCE = { categories, common, documents, home, settings, showcase, soon, tickets };
 
 export type Messages = typeof SOURCE;
 export type Namespace = keyof Messages;

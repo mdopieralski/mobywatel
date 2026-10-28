@@ -48,3 +48,15 @@ describe('categories', () => {
     expect(new Set(all).size).toBe(all.length);
   });
 });
+
+describe('tickets', () => {
+  it('has four tickets with unique ids and positive whole-grosz prices', async () => {
+    const { TICKETS } = await import('./index.ts');
+    expect(TICKETS).toHaveLength(4);
+    expect(new Set(TICKETS.map((t) => t.id)).size).toBe(4);
+    for (const ticket of TICKETS) {
+      expect(Number.isInteger(ticket.priceGrosz), ticket.id).toBe(true);
+      expect(ticket.priceGrosz, ticket.id).toBeGreaterThan(0);
+    }
+  });
+});

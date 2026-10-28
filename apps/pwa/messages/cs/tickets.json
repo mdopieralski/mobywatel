@@ -1,0 +1,40 @@
+{
+  "listTitle": "Vyber jízdenku",
+  "anotherTitle": "Kup jinou jízdenku",
+  "names": {
+    "single": "Jednorázová jízdenka",
+    "time20": "20minutová jízdenka",
+    "time75": "75minutová jízdenka",
+    "daily": "24hodinová jízdenka"
+  },
+  "validity": {
+    "single": "Jedna jízda",
+    "time20": "20 minut od nákupu",
+    "time75": "75 minut od nákupu",
+    "daily": "24 hodin od nákupu"
+  },
+  "confirm": {
+    "title": "Kupuješ jízdenku ve městě {city}",
+    "city": "Město",
+    "ticket": "Jízdenka",
+    "validity": "Platí",
+    "price": "Cena",
+    "payment": "Platba",
+    "paymentValue": "Nic neplatíš. Je to prototyp.",
+    "source": "Zdroj: ukázkový ceník prototypu. Ceny jsou smyšlené.",
+    "checkedOn": "Stav k {date}.",
+    "action": "Koupit jízdenku",
+    "cancel": "Zrušit"
+  },
+  "cancelled": "Nic nebylo odesláno. Můžeš vybrat jinou jízdenku.",
+  "active": {
+    "title": "Tvoje jízdenka",
+    "city": "Město",
+    "ticket": "Jízdenka",
+    "boughtAt": "Koupeno",
+    "validUntil": "Platí do",
+    "oneRide": "Platí na jednu jízdu",
+    "expired": "Tahle jízdenka už neplatí.",
+    "note": "Je to jízdenka z prototypu. Neplatíš za ni a autobusem s ní nepojedeš."
+  }
+}

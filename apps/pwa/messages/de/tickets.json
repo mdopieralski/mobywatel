@@ -1,0 +1,40 @@
+{
+  "listTitle": "Wähl ein Ticket",
+  "anotherTitle": "Kauf ein anderes Ticket",
+  "names": {
+    "single": "Einzelticket",
+    "time20": "20-Minuten-Ticket",
+    "time75": "75-Minuten-Ticket",
+    "daily": "24-Stunden-Ticket"
+  },
+  "validity": {
+    "single": "Eine Fahrt",
+    "time20": "20 Minuten ab Kauf",
+    "time75": "75 Minuten ab Kauf",
+    "daily": "24 Stunden ab Kauf"
+  },
+  "confirm": {
+    "title": "Du kaufst ein Ticket für {city}",
+    "city": "Stadt",
+    "ticket": "Ticket",
+    "validity": "Gültig",
+    "price": "Preis",
+    "payment": "Zahlung",
+    "paymentValue": "Du zahlst nichts. Das ist ein Prototyp.",
+    "source": "Quelle: Beispiel-Preisliste des Prototyps. Die Preise sind erfunden.",
+    "checkedOn": "Stand: {date}.",
+    "action": "Ticket kaufen",
+    "cancel": "Abbrechen"
+  },
+  "cancelled": "Es wurde nichts gesendet. Du kannst ein anderes Ticket wählen.",
+  "active": {
+    "title": "Dein Ticket",
+    "city": "Stadt",
+    "ticket": "Ticket",
+    "boughtAt": "Gekauft",
+    "validUntil": "Gültig bis",
+    "oneRide": "Gültig für eine Fahrt",
+    "expired": "Dieses Ticket ist nicht mehr gültig.",
+    "note": "Das ist ein Ticket aus dem Prototyp. Du zahlst nichts dafür und kannst damit nicht Bus fahren."
+  }
+}

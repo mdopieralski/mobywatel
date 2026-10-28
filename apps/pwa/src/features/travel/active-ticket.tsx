@@ -1,0 +1,59 @@
+import { DOCUMENT_WATERMARK } from '@mobywatel/brand';
+import { Disclaimer } from '@mobywatel/ui';
+import { type Ref, useState } from 'react';
+import { useFormatter, useTranslations } from 'use-intl';
+
+import { useAppLocale } from '../../platform/i18n.ts';
+import docStyles from '../documents/document-screen.module.css';
+import styles from './city-picker.module.css';
+import { type BoughtTicket, TIME_FORMAT, validUntil } from './ticket-state.ts';
+
+/**
+ * The bought ticket, on the same screen. Treated like a document view: the "PROTOTYP – nie jest dokumentem"
+ * watermark and the disclaimer, so it can never be shown to a ticket inspector as a real one.
+ */
+export function ActiveTicket({
+  ticket,
+  cityName,
+  ref,
+}: {
+  ticket: BoughtTicket;
+  cityName: string;
+  ref?: Ref<HTMLHeadingElement>;
+}) {
+  const t = useTranslations('tickets');
+  const format = useFormatter();
+  const locale = useAppLocale();
+  // Checked when the ticket is shown; enough for a demo (no live countdown).
+  const [now] = useState(() => Date.now());
+  const until = validUntil(ticket);
+  const expired = until !== null && until.getTime() < now;
+  const rows: [string, string][] = [
+    [t('active.city'), cityName],
+    [t('active.ticket'), t(`names.${ticket.ticketId}`)],
+    [t('active.boughtAt'), format.dateTime(new Date(ticket.boughtAtIso), TIME_FORMAT)],
+    [t('active.validUntil'), until ? format.dateTime(until, TIME_FORMAT) : t('active.oneRide')],
+  ];
+  return (
+    <div className={styles.ticket}>
+      <div className={docStyles.document} data-watermark={DOCUMENT_WATERMARK}>
+        <section aria-labelledby="active-ticket" className={docStyles.details}>
+          <h2 id="active-ticket" ref={ref} tabIndex={-1}>
+            {t('active.title')}
+          </h2>
+          <dl>
+            {rows.map(([label, value]) => (
+              <div key={label} className={docStyles.row}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+          {expired ? <p className={styles.expired}>{t('active.expired')}</p> : null}
+          <p className={styles.note}>{t('active.note')}</p>
+        </section>
+      </div>
+      <Disclaimer variant="inline" locale={locale} />
+    </div>
+  );
+}
