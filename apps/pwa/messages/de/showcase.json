@@ -3,6 +3,7 @@
     "label": "Abschnitte der Seite",
     "start": "Start",
     "prototype": "Prototyp",
+    "audience": "Für wen",
     "news": "Neuigkeiten",
     "tech": "Technologie"
   },
@@ -25,6 +26,61 @@
       "body": "Die App spricht die Sprachen der Nachbarn Polens: Deutsch, Tschechisch, Slowakisch, Ukrainisch, Belarussisch und Litauisch."
     },
     "cta": "Prototyp ansehen"
+  },
+  "audience": {
+    "title": "Für wen?",
+    "lead": "Beispielpersonen und was der Prototyp ihnen leichter macht. Bei jeder gibt es etwas zum Ausprobieren.",
+    "fictionNote": "Diese Figuren haben wir erfunden. Sie sind keine Konten in der App. Im Prototyp siehst du immer die Daten der erfundenen Katarzyna.",
+    "tryLabel": "Probier es aus:",
+    "people": {
+      "senior": {
+        "name": "Teresa",
+        "meta": "74 Jahre, Kalisz",
+        "need": "Ich mag große Schrift. Ich wähle lieber ein Anliegen aus einer Liste, als mir zu überlegen, was ich fragen soll.",
+        "helps": "Der Seniorenmodus macht Text und Tasten größer, und die App merkt ihn sich. Der Start zeigt 14 beschriftete Kategorien.",
+        "try": "Öffne die Einstellungen und schalte den Seniorenmodus ein.",
+        "open": "Seniorenmodus zeigen"
+      },
+      "screenReader": {
+        "name": "Marek",
+        "meta": "41 Jahre, Gdańsk",
+        "need": "Ich nutze einen Screenreader und die Tastatur. Nach jedem Schritt will ich wissen, wo ich bin.",
+        "helps": "Jeder Bildschirm besteht einen automatischen Barrierefreiheitstest nach WCAG 2.2 AA. Nach jedem Schritt beginnt der Screenreader bei der Überschrift.",
+        "try": "Geh nur mit der Tab-Taste durch die App. Wähle in den Einstellungen das Aussehen Dunkel.",
+        "open": "Einstellungen zum Aussehen zeigen"
+      },
+      "languages": {
+        "name": "Oksana",
+        "meta": "36 Jahre, Wrocław",
+        "need": "Ich spreche Polnisch, aber Behördensachen lese ich lieber auf Ukrainisch.",
+        "helps": "Die App hat 8 Sprachen, jede vollständig und offline. Wir übersetzen die Bildschirme der App, keine Dokumente.",
+        "try": "Tippe oben in der App auf „PL“ und wähle Українська.",
+        "open": "Startbildschirm zeigen"
+      },
+      "offline": {
+        "name": "Krzysztof",
+        "meta": "58 Jahre, Dorf bei Sanok",
+        "need": "Zu Hause ist das Internet mal da, mal nicht.",
+        "helps": "Nach dem ersten Öffnen läuft die App ohne Internet. Du kannst sie wie eine normale App auf den Startbildschirm legen.",
+        "try": "Öffne diese Adresse auf dem Handy, schalte den Flugmodus ein und lade die Seite neu."
+      },
+      "noLogin": {
+        "name": "Ewa",
+        "meta": "47 Jahre, Lublin",
+        "need": "Ich lege ungern ein Konto an, wenn ich nur etwas nachsehen will.",
+        "helps": "Kein Konto, kein KI-Schlüssel. Alles läuft im Browser. Die Demo startest du neu, wann du willst.",
+        "try": "Öffne die Einstellungen und wähle Demo zurücksetzen.",
+        "open": "Einstellungen zeigen"
+      },
+      "cityTicket": {
+        "name": "Kuba",
+        "meta": "23 Jahre, Olsztyn",
+        "need": "Ich fahre oft in andere Städte. Jedes Mal suche ich eine neue App für das Ticket.",
+        "helps": "Du wählst eine von 969 Städten. Du kannst ohne polnische Buchstaben tippen, z. B. „lodz“. Den Ticketkauf fügen wir bald hinzu.",
+        "try": "Öffne Reisen, dann Stadtticket. Tippe „lodz“ ein.",
+        "open": "Stadtauswahl zeigen"
+      }
+    }
   },
   "newTitle": "Was in unserer Version neu ist",
   "tryLabel": "Probier es aus:",

@@ -3,6 +3,7 @@
     "label": "Puslapio skiltys",
     "start": "Pradžia",
     "prototype": "Prototipas",
+    "audience": "Kam skirta",
     "news": "Naujienos",
     "tech": "Technologijos"
   },
@@ -25,6 +26,61 @@
       "body": "Programėlė kalba Lenkijos kaimynų kalbomis: vokiečių, čekų, slovakų, ukrainiečių, baltarusių ir lietuvių."
     },
     "cta": "Peržiūrėti prototipą"
+  },
+  "audience": {
+    "title": "Kam skirta?",
+    "lead": "Pavyzdiniai žmonės ir tai, ką prototipas jiems palengvina. Prie kiekvieno yra ką išbandyti.",
+    "fictionNote": "Šiuos veikėjus sugalvojome mes. Tai ne paskyros programėlėje. Prototipe visada matai išgalvotos veikėjos, vardu Katarzyna, duomenis.",
+    "tryLabel": "Išbandyk:",
+    "people": {
+      "senior": {
+        "name": "Teresa",
+        "meta": "74 metai, Kališas",
+        "need": "Man patinka didelės raidės. Mieliau renkuosi reikalą iš sąrašo, nei galvoju, ko paklausti.",
+        "helps": "Senjorų režimas padidina tekstą ir mygtukus, o programėlė jį įsimena. Pradžios ekrane matai 14 pavadintų reikalų kategorijų.",
+        "try": "Atidaryk Nustatymus ir įjunk Senjorų režimą.",
+        "open": "Rodyti senjorų režimą"
+      },
+      "screenReader": {
+        "name": "Marek",
+        "meta": "41 metai, Gdanskas",
+        "need": "Naudojuosi ekrano skaitytuvu ir klaviatūra. Po kiekvieno žingsnio noriu žinoti, kur esu.",
+        "helps": "Kiekvienas ekranas praeina automatinį WCAG 2.2 AA prieinamumo testą. Po kiekvieno žingsnio ekrano skaitytuvas pradeda nuo antraštės.",
+        "try": "Pereik programėlę vien Tab klavišu. Nustatymuose pasirink išvaizdą „Tamsi“.",
+        "open": "Rodyti išvaizdos nustatymus"
+      },
+      "languages": {
+        "name": "Oksana",
+        "meta": "36 metai, Vroclavas",
+        "need": "Kalbu lenkiškai, bet oficialius reikalus mieliau skaitau ukrainiečių kalba.",
+        "helps": "Programėlėje yra 8 kalbos, kiekviena visa ir veikia be interneto. Verčiame programėlės ekranus, ne dokumentus.",
+        "try": "Paspausk „PL“ programėlės antraštėje ir pasirink Українська.",
+        "open": "Rodyti pradžios ekraną"
+      },
+      "offline": {
+        "name": "Krzysztof",
+        "meta": "58 metai, kaimas prie Sanoko",
+        "need": "Namie internetas tai yra, tai nėra.",
+        "helps": "Po pirmo atidarymo programėlė veikia be interneto. Ją gali įsidėti į telefono pradžios ekraną kaip įprastą programėlę.",
+        "try": "Atidaryk šį adresą telefone, įjunk lėktuvo režimą ir atnaujink puslapį."
+      },
+      "noLogin": {
+        "name": "Ewa",
+        "meta": "47 metai, Liublinas",
+        "need": "Nemėgstu kurti paskyros, kai noriu tik kai ką patikrinti.",
+        "helps": "Nereikia kurti paskyros ar įvesti DI rakto. Viskas veikia naršyklėje. Demonstraciją gali pradėti iš naujo, kada nori.",
+        "try": "Atidaryk Nustatymus ir pasirink „Atkurti demonstraciją“.",
+        "open": "Rodyti Nustatymus"
+      },
+      "cityTicket": {
+        "name": "Kuba",
+        "meta": "23 metai, Olštynas",
+        "need": "Dažnai važinėju į kitus miestus. Kaskart ieškau naujos programėlės bilietui.",
+        "helps": "Pasirenki vieną iš 969 miestų. Gali rašyti be lenkiškų raidžių, pvz., „lodz“. Bilietų pirkimą pridėsime netrukus.",
+        "try": "Atidaryk Keliones, tada Miesto bilietą. Įrašyk „lodz“.",
+        "open": "Rodyti miesto pasirinkimą"
+      }
+    }
   },
   "newTitle": "Kas nauja mūsų versijoje",
   "tryLabel": "Išbandyk:",

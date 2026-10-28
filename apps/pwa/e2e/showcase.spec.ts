@@ -102,12 +102,15 @@ test.describe('desktop showcase', () => {
     await expect(page.getByRole('heading', { level: 1, name: /^ZUS i bilety/ })).toBeInViewport();
   });
 
-  test('the header lists Start, Prototyp, Nowości and Technologia, in that order', async ({ page }) => {
+  test('the header lists Start, Prototyp, Dla kogo, Nowości and Technologia, in that order', async ({
+    page,
+  }) => {
     for (const path of ['/', '/prototype']) {
       await page.goto(path);
       await expect(page.getByRole('navigation', { name: 'Sekcje strony' }).getByRole('link')).toHaveText([
         'Start',
         'Prototyp',
+        'Dla kogo',
         'Nowości',
         'Technologia',
       ]);
@@ -146,16 +149,73 @@ test.describe('desktop showcase', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Technologia' })).toBeInViewport();
   });
 
-  test('the four header links fit on one row in a narrow desktop window', async ({ page }) => {
+  test('the five header links fit on one row in a narrow desktop window', async ({ page }) => {
     await page.setViewportSize({ width: 1024, height: 640 });
     await page.goto('/');
     const links = page.getByRole('navigation', { name: 'Sekcje strony' }).getByRole('link');
-    await expect(links).toHaveCount(4);
+    await expect(links).toHaveCount(5);
     const tops = await links.evaluateAll((els) =>
       els.map((el) => Math.round(el.getBoundingClientRect().top))
     );
     expect(new Set(tops).size).toBe(1);
   });
+
+  test('"Dla kogo" shows six fictional example people, each with something to try', async ({ page }) => {
+    await page.goto('/');
+    const audience = page.getByRole('region', { name: 'Dla kogo?' });
+    await expect(page.locator('#wyprobuj + #dla-kogo')).toHaveCount(1);
+    await expect(audience.getByRole('listitem')).toHaveCount(6);
+    await expect(audience.getByRole('heading', { level: 3 })).toHaveText([
+      'Teresa',
+      'Marek',
+      'Oksana',
+      'Krzysztof',
+      'Ewa',
+      'Kuba',
+    ]);
+    await expect(audience).toContainText('To postacie fikcyjne');
+    // City tickets: picking a town works, buying does not yet, and the card says so in words.
+    await expect(audience.getByRole('listitem').filter({ hasText: 'Kuba' })).toContainText('Wkrótce');
+    await expect(audience.getByRole('link')).toHaveCount(5);
+  });
+
+  test('"Dla kogo" in the header jumps to that section and marks it as current', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.getByRole('navigation', { name: 'Sekcje strony' });
+    await nav.getByRole('link', { name: 'Dla kogo' }).click();
+    await expect(page.locator('#dla-kogo')).toBeFocused();
+    await expect(page.getByRole('heading', { level: 2, name: 'Dla kogo?' })).toBeInViewport();
+    await expect(nav.getByRole('link', { name: 'Dla kogo' })).toHaveAttribute('aria-current', 'location');
+  });
+
+  test('"Dla kogo" on /prototype, and a direct #dla-kogo link, open that section', async ({ page }) => {
+    await page.goto('/prototype');
+    await page
+      .getByRole('navigation', { name: 'Sekcje strony' })
+      .getByRole('link', { name: 'Dla kogo' })
+      .click();
+    await expect(page).toHaveURL(/\/#dla-kogo$/);
+    await expect(page.getByRole('heading', { level: 2, name: 'Dla kogo?' })).toBeInViewport();
+    await page.goto('/');
+    await page.goto('/#dla-kogo');
+    await expect(page.getByRole('heading', { level: 2, name: 'Dla kogo?' })).toBeInViewport();
+  });
+
+  for (const [button, heading] of [
+    ['Pokaż tryb dla seniora', 'Ustawienia'],
+    ['Pokaż wybór miasta', 'Bilet miejski'],
+  ] as const) {
+    test(`"${button}" opens ${heading} in the phone and brings the phone into view`, async ({ page }) => {
+      await page.goto('/#dla-kogo');
+      const phone = page.frameLocator('iframe[name="phone"]');
+      await phone.getByRole('heading', { level: 1 }).waitFor();
+      await page.getByRole('region', { name: 'Dla kogo?' }).getByRole('link', { name: button }).click();
+      await expect(phone.getByRole('heading', { level: 1 })).toHaveText(heading);
+      await expect(page.locator('iframe[name="phone"]')).toBeInViewport({ ratio: 0.5 });
+      // The page stays the landing page; only the phone changed screen.
+      await expect(page).toHaveURL(/\/(#dla-kogo)?$/);
+    });
+  }
 
   test('the page and the app in the phone say it is an unofficial prototype', async ({ page }) => {
     await page.goto('/');

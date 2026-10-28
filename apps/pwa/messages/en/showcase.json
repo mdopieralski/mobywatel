@@ -3,6 +3,7 @@
     "label": "Page sections",
     "start": "Start",
     "prototype": "Prototype",
+    "audience": "Who it helps",
     "news": "What's new",
     "tech": "Technology"
   },
@@ -25,6 +26,61 @@
       "body": "The app speaks the languages of Poland's neighbours: German, Czech, Slovak, Ukrainian, Belarusian and Lithuanian."
     },
     "cta": "See the prototype"
+  },
+  "audience": {
+    "title": "Who is it for?",
+    "lead": "Example people and what the prototype makes easier for them. Each one has something to try.",
+    "fictionNote": "These are fictional characters we made up. They aren't accounts in the app. The prototype always shows fictional Katarzyna's data.",
+    "tryLabel": "Try it:",
+    "people": {
+      "senior": {
+        "name": "Teresa",
+        "meta": "74, Kalisz",
+        "need": "I like large print. I'd rather pick a matter from a list than work out what to ask.",
+        "helps": "Senior mode makes text and buttons bigger, and the app remembers it. The start screen shows 14 labelled categories.",
+        "try": "Open Settings and turn on Senior mode.",
+        "open": "Show senior mode"
+      },
+      "screenReader": {
+        "name": "Marek",
+        "meta": "41, Gdańsk",
+        "need": "I use a screen reader and a keyboard. After each step I want to know where I am.",
+        "helps": "Every screen passes an automated WCAG 2.2 AA accessibility test. After each step, the screen reader starts at the heading.",
+        "try": "Go through the app with the Tab key only. In Settings, choose the Dark appearance.",
+        "open": "Show appearance settings"
+      },
+      "languages": {
+        "name": "Oksana",
+        "meta": "36, Wrocław",
+        "need": "I speak Polish, but I'd rather read official matters in Ukrainian.",
+        "helps": "The app has 8 languages, each complete and offline. We translate the app's screens, not documents.",
+        "try": "Tap \"PL\" in the app header and choose Українська.",
+        "open": "Show the start screen"
+      },
+      "offline": {
+        "name": "Krzysztof",
+        "meta": "58, a village near Sanok",
+        "need": "At home the internet comes and goes.",
+        "helps": "After the first visit the app works without internet. Add it to your home screen like any other app.",
+        "try": "Open this address on your phone, turn on airplane mode and reload the page."
+      },
+      "noLogin": {
+        "name": "Ewa",
+        "meta": "47, Lublin",
+        "need": "I don't like creating an account when I only want to check something.",
+        "helps": "No account, no AI key. Everything runs in your browser. Start the demo again whenever you like.",
+        "try": "Open Settings and choose Reset demo.",
+        "open": "Show Settings"
+      },
+      "cityTicket": {
+        "name": "Kuba",
+        "meta": "23, Olsztyn",
+        "need": "I often travel to other towns. Each time I look for a new ticket app.",
+        "helps": "Pick any of 969 towns. You can type without Polish letters, e.g. \"lodz\". Buying tickets is coming soon.",
+        "try": "Open Travel, then City ticket. Type \"lodz\".",
+        "open": "Show city choice"
+      }
+    }
   },
   "newTitle": "What's new in our version",
   "tryLabel": "Try it:",

@@ -3,6 +3,7 @@
     "label": "Sekcje strony",
     "start": "Start",
     "prototype": "Prototyp",
+    "audience": "Dla kogo",
     "news": "Nowości",
     "tech": "Technologia"
   },
@@ -25,6 +26,61 @@
       "body": "Aplikacja mówi w językach naszych sąsiadów: niemieckim, czeskim, słowackim, ukraińskim, białoruskim i litewskim."
     },
     "cta": "Zobacz prototyp"
+  },
+  "audience": {
+    "title": "Dla kogo?",
+    "lead": "Przykładowe osoby i to, co w prototypie ułatwia im sprawy. Przy każdej jest coś do wypróbowania.",
+    "fictionNote": "To postacie fikcyjne, wymyślone przez nas. Nie są kontami w aplikacji. W prototypie zawsze widzisz dane fikcyjnej Katarzyny.",
+    "tryLabel": "Wypróbuj:",
+    "people": {
+      "senior": {
+        "name": "Teresa",
+        "meta": "74 lata, Kalisz",
+        "need": "Lubię duże litery. Wolę wybrać sprawę z listy, niż wymyślać, o co zapytać.",
+        "helps": "Tryb dla seniora powiększa tekst i przyciski, a aplikacja go zapamięta. Na starcie widzisz 14 podpisanych kategorii spraw.",
+        "try": "Otwórz Ustawienia i włącz Tryb dla seniora.",
+        "open": "Pokaż tryb dla seniora"
+      },
+      "screenReader": {
+        "name": "Marek",
+        "meta": "41 lat, Gdańsk",
+        "need": "Korzystam z czytnika ekranu i klawiatury. Po każdym kroku chcę wiedzieć, gdzie jestem.",
+        "helps": "Każdy ekran przechodzi automatyczny test dostępności WCAG 2.2 AA. Po każdym kroku czytnik zaczyna od nagłówka.",
+        "try": "Przejdź aplikację samym klawiszem Tab. W Ustawieniach wybierz wygląd Ciemny.",
+        "open": "Pokaż ustawienia wyglądu"
+      },
+      "languages": {
+        "name": "Oksana",
+        "meta": "36 lat, Wrocław",
+        "need": "Mówię po polsku, ale sprawy urzędowe wolę czytać po ukraińsku.",
+        "helps": "Aplikacja ma 8 języków, każdy w całości i bez internetu. Tłumaczymy ekrany aplikacji, nie dokumenty.",
+        "try": "Naciśnij „PL” w nagłówku aplikacji i wybierz Українська.",
+        "open": "Pokaż ekran startowy"
+      },
+      "offline": {
+        "name": "Krzysztof",
+        "meta": "58 lat, wieś koło Sanoka",
+        "need": "W domu internet raz jest, a raz go nie ma.",
+        "helps": "Po pierwszym otwarciu aplikacja działa bez internetu. Dodasz ją do ekranu telefonu jak zwykłą aplikację.",
+        "try": "Otwórz ten adres w telefonie, włącz tryb samolotowy i odśwież stronę."
+      },
+      "noLogin": {
+        "name": "Ewa",
+        "meta": "47 lat, Lublin",
+        "need": "Nie lubię zakładać konta, gdy chcę tylko coś sprawdzić.",
+        "helps": "Nie zakładasz konta i nie podajesz klucza do AI. Wszystko działa w przeglądarce. Demo zaczniesz od nowa, kiedy chcesz.",
+        "try": "Otwórz Ustawienia i wybierz Zresetuj demo.",
+        "open": "Pokaż Ustawienia"
+      },
+      "cityTicket": {
+        "name": "Kuba",
+        "meta": "23 lata, Olsztyn",
+        "need": "Często jeżdżę do innych miast. Za każdym razem szukam nowej aplikacji na bilet.",
+        "helps": "Wybierasz jedno z 969 miast. Możesz pisać bez polskich liter, np. „lodz”. Kupowanie biletów dodamy wkrótce.",
+        "try": "Otwórz Podróż, potem Bilet miejski. Wpisz „lodz”.",
+        "open": "Pokaż wybór miasta"
+      }
+    }
   },
   "newTitle": "Co nowego w naszej wersji",
   "tryLabel": "Sprawdź:",

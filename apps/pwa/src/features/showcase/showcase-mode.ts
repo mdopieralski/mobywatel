@@ -19,6 +19,9 @@ export const HERO_ID = 'section-hero';
 /** Id of the section with the working phone: the hero's button scrolls there. */
 export const TRY_ID = 'wyprobuj';
 
+/** Id of the landing page's "Dla kogo" section (example people it helps). */
+export const AUDIENCE_ID = 'dla-kogo';
+
 /** Id of the landing page's section on what is new. */
 export const NEWS_ID = 'nowosci';
 

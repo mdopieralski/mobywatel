@@ -3,6 +3,7 @@
     "label": "Části stránky",
     "start": "Úvod",
     "prototype": "Prototyp",
+    "audience": "Pro koho",
     "news": "Novinky",
     "tech": "Technologie"
   },
@@ -25,6 +26,61 @@
       "body": "Aplikace mluví jazyky sousedů Polska: německy, česky, slovensky, ukrajinsky, bělorusky a litevsky."
     },
     "cta": "Zobrazit prototyp"
+  },
+  "audience": {
+    "title": "Pro koho?",
+    "lead": "Příklady lidí a co jim prototyp usnadní. U každého je něco k vyzkoušení.",
+    "fictionNote": "Jsou to postavy, které jsme si vymysleli. Nejsou to účty v aplikaci. V prototypu vždy vidíš údaje smyšlené postavy Katarzyna.",
+    "tryLabel": "Vyzkoušej:",
+    "people": {
+      "senior": {
+        "name": "Teresa",
+        "meta": "74 let, Kalisz",
+        "need": "Mám ráda velká písmena. Radši vyberu záležitost ze seznamu, než abych vymýšlela, na co se zeptat.",
+        "helps": "Režim pro seniory zvětší text a tlačítka a aplikace si ho zapamatuje. Na startu vidíš 14 popsaných kategorií záležitostí.",
+        "try": "Otevři Nastavení a zapni Režim pro seniory.",
+        "open": "Zobrazit režim pro seniory"
+      },
+      "screenReader": {
+        "name": "Marek",
+        "meta": "41 let, Gdaňsk",
+        "need": "Používám čtečku obrazovky a klávesnici. Po každém kroku chci vědět, kde jsem.",
+        "helps": "Každá obrazovka projde automatickým testem přístupnosti WCAG 2.2 AA. Po každém kroku začne čtečka obrazovky od nadpisu.",
+        "try": "Projdi aplikaci jen klávesou Tab. V Nastavení zvol vzhled Tmavý.",
+        "open": "Zobrazit nastavení vzhledu"
+      },
+      "languages": {
+        "name": "Oksana",
+        "meta": "36 let, Vratislav",
+        "need": "Mluvím polsky, ale úřední záležitosti radši čtu ukrajinsky.",
+        "helps": "Aplikace má 8 jazyků, každý celý a bez internetu. Překládáme obrazovky aplikace, ne doklady.",
+        "try": "Klepni na „PL“ v záhlaví aplikace a vyber Українська.",
+        "open": "Zobrazit úvodní obrazovku"
+      },
+      "offline": {
+        "name": "Krzysztof",
+        "meta": "58 let, vesnice u Sanoku",
+        "need": "Doma internet chvíli je a chvíli není.",
+        "helps": "Po prvním otevření aplikace funguje bez internetu. Přidáš si ji na plochu telefonu jako běžnou aplikaci.",
+        "try": "Otevři tuto adresu v telefonu, zapni režim letadlo a obnov stránku."
+      },
+      "noLogin": {
+        "name": "Ewa",
+        "meta": "47 let, Lublin",
+        "need": "Nerada si zakládám účet, když chci jen něco zkontrolovat.",
+        "helps": "Nezakládáš účet a nezadáváš klíč k AI. Všechno běží v prohlížeči. Demo můžeš kdykoli spustit znovu.",
+        "try": "Otevři Nastavení a zvol Resetovat demo.",
+        "open": "Zobrazit Nastavení"
+      },
+      "cityTicket": {
+        "name": "Kuba",
+        "meta": "23 let, Olštýn",
+        "need": "Často jezdím do jiných měst. Pokaždé hledám novou aplikaci na jízdenku.",
+        "helps": "Vybereš si jedno z 969 měst. Můžeš psát bez polských písmen, např. „lodz“. Nákup jízdenek přidáme brzy.",
+        "try": "Otevři Cestování, pak Městská jízdenka. Napiš „lodz“.",
+        "open": "Zobrazit výběr města"
+      }
+    }
   },
   "newTitle": "Co je v naší verzi nového",
   "tryLabel": "Vyzkoušej:",

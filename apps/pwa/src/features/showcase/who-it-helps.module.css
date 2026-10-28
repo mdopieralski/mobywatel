@@ -1,0 +1,161 @@
+/* "Dla kogo": six example people in a 3×2 grid, about one window tall so the section snap stays calm. */
+.audience {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: var(--space-6);
+  min-height: calc(100dvh - var(--header-height));
+  padding: var(--space-7) var(--space-8);
+  border-top: 1px solid var(--border);
+  outline: none;
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 64rem;
+  text-align: center;
+}
+
+/* Same look as the other big section headings (Prototyp, Technologia). */
+.heading {
+  margin: 0;
+  color: var(--accent);
+  font-size: calc(2 * var(--font-3xl));
+  line-height: var(--line-height-tight);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-lg);
+}
+
+.people {
+  width: 100%;
+  max-width: 80rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.person p {
+  margin: 0;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.avatar {
+  flex: none;
+  border-radius: 50%;
+  color: var(--card-text);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--font-xl);
+  line-height: var(--line-height-tight);
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+/* In their own words: a quote. */
+.need {
+  font-style: italic;
+}
+
+.need::before {
+  content: '„';
+}
+
+.need::after {
+  content: '”';
+}
+
+.soon {
+  margin-inline-start: auto;
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: var(--font-sm);
+  font-weight: 600;
+}
+
+.try {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+/* Opens the screen in the phone: pushed to the bottom so the buttons line up across a row. */
+.show {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min);
+  padding: 0 var(--space-4);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-pill);
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.show:hover {
+  background: var(--accent-soft);
+}
+
+.show:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.note {
+  margin: 0;
+  max-width: 48rem;
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+  text-align: center;
+}
+
+/* Narrower desktop windows: two columns, then one. */
+@media (max-width: 80rem) {
+  .people {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 52rem) {
+  .people {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

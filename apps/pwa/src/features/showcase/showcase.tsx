@@ -9,9 +9,10 @@ import { useFollowPhoneSettings } from './follow-phone-settings.ts';
 import { useSectionSnap } from './section-snap.ts';
 import { PhoneFrame } from './phone-frame.tsx';
 import { ShowcaseHero } from './showcase-hero.tsx';
-import { HERO_ID, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
+import { AUDIENCE_ID, HERO_ID, navigatePhone, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
 import { TechSection } from './tech-section.tsx';
+import { WhoItHelps } from './who-it-helps.tsx';
 import './compact-font.css';
 import styles from './showcase.module.css';
 
@@ -60,6 +61,7 @@ export function Showcase() {
   const frame = useRef<HTMLIFrameElement>(null);
   const heroSection = useRef<HTMLElement>(null);
   const trySection = useRef<HTMLElement>(null);
+  const audienceSection = useRef<HTMLElement>(null);
   const newsSection = useRef<HTMLDivElement>(null);
   const techSection = useRef<HTMLElement>(null);
   const locale = useAppLocale();
@@ -82,6 +84,7 @@ export function Showcase() {
     const sections = [
       heroSection.current,
       trySection.current,
+      audienceSection.current,
       newsSection.current,
       techSection.current,
     ].filter((el) => el !== null);
@@ -108,7 +111,11 @@ export function Showcase() {
   // Arriving with #nowosci, #technologia or #section-hero (the links on /prototype): the page renders after load, so scroll here.
   useEffect(() => {
     const target = document.getElementById(window.location.hash.slice(1));
-    if ([heroSection, trySection, newsSection, techSection].some((section) => section.current === target)) {
+    if (
+      [heroSection, trySection, audienceSection, newsSection, techSection].some(
+        (section) => section.current === target
+      )
+    ) {
       target?.scrollIntoView({ block: 'start' });
     }
   }, []);
@@ -122,6 +129,7 @@ export function Showcase() {
   const sectionLinks = [
     { id: HERO_ID, label: t('nav.start') },
     { id: TRY_ID, label: t('nav.prototype') },
+    { id: AUDIENCE_ID, label: t('nav.audience') },
     { id: NEWS_ID, label: t('nav.news') },
     { id: TECH_ID, label: t('nav.tech') },
   ];
@@ -158,6 +166,18 @@ export function Showcase() {
           </h2>
           <PhoneFrame ref={frame} src={PATHS.start} />
         </section>
+
+        {/* Example people it helps: each card can open its screen in the phone above. */}
+        <WhoItHelps
+          ref={audienceSection}
+          onShow={(path) => {
+            if (!navigatePhone(frame.current, path)) {
+              return false;
+            }
+            goToPhone();
+            return true;
+          }}
+        />
 
         {/* What this is and what is new. */}
         <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>
