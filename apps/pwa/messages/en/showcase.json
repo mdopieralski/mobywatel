@@ -76,9 +76,17 @@
         "name": "Kuba",
         "meta": "23, Olsztyn",
         "need": "I often travel to other towns. Each time I look for a new ticket app.",
-        "helps": "Pick any of 969 towns. You can type without Polish letters, e.g. \"lodz\". Buying tickets is coming soon.",
-        "try": "Open Travel, then City ticket. Type \"lodz\".",
+        "helps": "Pick any of 969 towns. You can type without Polish letters, e.g. \"lodz\". Then you buy a ticket, and you still see it after reloading the page.",
+        "try": "Open Travel, then City ticket. Type \"lodz\" and buy a ticket.",
         "open": "Show city choice"
+      },
+      "zusVisit": {
+        "name": "Zbigniew",
+        "meta": "64, Płock",
+        "need": "Before I retire, I want to talk to someone at ZUS. I don't want to wait in a queue.",
+        "helps": "Pick an office and a time, check the details and book the visit. Before anything is sent, the app asks if everything is right.",
+        "try": "Open ZUS, then Visit ZUS. Book any time.",
+        "open": "Show the ZUS visit"
       }
     }
   },
@@ -92,12 +100,12 @@
     },
     "tickets": {
       "title": "City tickets",
-      "body": "Public transport tickets from every city in one place, without a separate app for each operator. The category is already on the start screen; buying tickets is coming soon.",
+      "body": "Public transport tickets from every city in one place, without a separate app for each operator. You buy a ticket in a few steps.",
       "try": "Open the Travel category."
     },
     "zus": {
       "title": "ZUS",
-      "body": "Contributions, pension, sick leave and visiting ZUS (social insurance) in one category, next to your other matters. The category is already on the start screen; the matters are coming soon.",
+      "body": "Contributions, pension, sick leave and visiting ZUS (social insurance) in one category, next to your other matters. You can already book a ZUS visit. The other matters are coming soon.",
       "try": "Open the ZUS category."
     },
     "offline": {

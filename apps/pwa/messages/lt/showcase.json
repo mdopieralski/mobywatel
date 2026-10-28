@@ -76,9 +76,17 @@
         "name": "Kuba",
         "meta": "23 metai, Olštynas",
         "need": "Dažnai važinėju į kitus miestus. Kaskart ieškau naujos programėlės bilietui.",
-        "helps": "Pasirenki vieną iš 969 miestų. Gali rašyti be lenkiškų raidžių, pvz., „lodz“. Bilietų pirkimą pridėsime netrukus.",
-        "try": "Atidaryk Keliones, tada Miesto bilietą. Įrašyk „lodz“.",
+        "helps": "Pasirenki vieną iš 969 miestų. Gali rašyti be lenkiškų raidžių, pvz., „lodz“. Tada perki bilietą ir matai jį net atnaujinęs puslapį.",
+        "try": "Atidaryk Keliones, tada Miesto bilietą. Įrašyk „lodz“ ir nusipirk bilietą.",
         "open": "Rodyti miesto pasirinkimą"
+      },
+      "zusVisit": {
+        "name": "Zbigniew",
+        "meta": "64 metai, Plockas",
+        "need": "Prieš pensiją noriu pasikalbėti su kuo nors ZUS. Nenoriu laukti eilėje.",
+        "helps": "Pasirenki skyrių ir laiką, patikrini duomenis ir užsiregistruoji vizitui. Prieš išsiunčiant programėlė paklausia, ar viskas teisinga.",
+        "try": "Atidaryk ZUS, tada Vizitą į ZUS. Užsiregistruok bet kuriam laikui.",
+        "open": "Rodyti vizitą į ZUS"
       }
     }
   },
@@ -92,12 +100,12 @@
     },
     "tickets": {
       "title": "Miesto bilietai",
-      "body": "Viešojo transporto bilietai iš kiekvieno miesto vienoje vietoje, be atskiros programėlės kiekvienam vežėjui. Kategorija jau yra pradžios ekrane, pirkimą pridėsime netrukus.",
+      "body": "Viešojo transporto bilietai iš kiekvieno miesto vienoje vietoje, be atskiros programėlės kiekvienam vežėjui. Bilietą nusipirksi per kelis žingsnius.",
       "try": "Atidaryk kategoriją Kelionės."
     },
     "zus": {
       "title": "ZUS",
-      "body": "Įmokos, pensija, nedarbingumas ir vizitas į ZUS vienoje kategorijoje, šalia kitų reikalų. Kategorija jau yra pradžios ekrane, reikalus pridėsime netrukus.",
+      "body": "Įmokos, pensija, nedarbingumas ir vizitas į ZUS vienoje kategorijoje, šalia kitų reikalų. Užsiregistruoti vizitui į ZUS gali jau dabar. Kitus reikalus pridėsime netrukus.",
       "try": "Atidaryk kategoriją ZUS."
     },
     "offline": {

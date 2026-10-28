@@ -76,9 +76,17 @@
         "name": "Kuba",
         "meta": "23 rokov, Olštýn",
         "need": "Často cestujem do iných miest. Zakaždým hľadám novú aplikáciu na lístok.",
-        "helps": "Vyberieš si jedno z 969 miest. Môžeš písať bez poľských písmen, napr. „lodz“. Nákup lístkov pridáme čoskoro.",
-        "try": "Otvor Cestovanie, potom Mestský lístok. Napíš „lodz“.",
+        "helps": "Vyberieš si jedno z 969 miest. Môžeš písať bez poľských písmen, napr. „lodz“. Potom kúpiš lístok a uvidíš ho aj po obnovení stránky.",
+        "try": "Otvor Cestovanie, potom Mestský lístok. Napíš „lodz“ a kúp lístok.",
         "open": "Zobraziť výber mesta"
+      },
+      "zusVisit": {
+        "name": "Zbigniew",
+        "meta": "64 rokov, Płock",
+        "need": "Pred dôchodkom sa chcem s niekým porozprávať v ZUS. Nechcem čakať v rade.",
+        "helps": "Vyberieš pobočku a čas, skontroluješ údaje a objednáš sa. Pred odoslaním sa aplikácia opýta, či je všetko v poriadku.",
+        "try": "Otvor ZUS, potom Návšteva ZUS. Objednaj sa na ľubovoľný termín.",
+        "open": "Zobraziť návštevu ZUS"
       }
     }
   },
@@ -92,12 +100,12 @@
     },
     "tickets": {
       "title": "Mestské lístky",
-      "body": "Lístky na mestskú dopravu z každého mesta na jednom mieste, bez osobitnej aplikácie pre každého dopravcu. Kategória už je na štarte, nákup pridáme čoskoro.",
+      "body": "Lístky na mestskú dopravu z každého mesta na jednom mieste, bez osobitnej aplikácie pre každého dopravcu. Lístok kúpiš v niekoľkých krokoch.",
       "try": "Otvor kategóriu Cestovanie."
     },
     "zus": {
       "title": "ZUS",
-      "body": "Odvody, dôchodok, PN a návšteva ZUS v jednej kategórii, vedľa ostatných vecí. Kategória už je na štarte, veci pridáme čoskoro.",
+      "body": "Odvody, dôchodok, PN a návšteva ZUS v jednej kategórii, vedľa ostatných vecí. Na návštevu ZUS sa môžeš objednať už teraz. Ostatné veci pridáme čoskoro.",
       "try": "Otvor kategóriu ZUS."
     },
     "offline": {

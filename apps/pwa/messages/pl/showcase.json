@@ -76,9 +76,17 @@
         "name": "Kuba",
         "meta": "23 lata, Olsztyn",
         "need": "Często jeżdżę do innych miast. Za każdym razem szukam nowej aplikacji na bilet.",
-        "helps": "Wybierasz jedno z 969 miast. Możesz pisać bez polskich liter, np. „lodz”. Kupowanie biletów dodamy wkrótce.",
-        "try": "Otwórz Podróż, potem Bilet miejski. Wpisz „lodz”.",
+        "helps": "Wybierasz jedno z 969 miast. Możesz pisać bez polskich liter, np. „lodz”. Potem kupujesz bilet i widzisz go także po odświeżeniu strony.",
+        "try": "Otwórz Podróż, potem Bilet miejski. Wpisz „lodz” i kup bilet.",
         "open": "Pokaż wybór miasta"
+      },
+      "zusVisit": {
+        "name": "Zbigniew",
+        "meta": "64 lata, Płock",
+        "need": "Przed emeryturą chcę porozmawiać z kimś w ZUS. Nie chcę czekać w kolejce.",
+        "helps": "Wybierasz placówkę i godzinę, sprawdzasz dane i umawiasz wizytę. Przed wysłaniem aplikacja pyta, czy wszystko się zgadza.",
+        "try": "Otwórz ZUS, potem Wizyta w ZUS. Umów dowolny termin.",
+        "open": "Pokaż wizytę w ZUS"
       }
     }
   },
@@ -92,12 +100,12 @@
     },
     "tickets": {
       "title": "Bilety miejskie",
-      "body": "Bilety komunikacji miejskiej z każdego miasta w jednym miejscu, bez osobnej aplikacji dla każdego przewoźnika. Kategoria już jest na starcie, kupowanie dodamy wkrótce.",
+      "body": "Bilety komunikacji miejskiej z każdego miasta w jednym miejscu, bez osobnej aplikacji dla każdego przewoźnika. Bilet kupisz w kilku krokach.",
       "try": "Otwórz kategorię Podróż."
     },
     "zus": {
       "title": "ZUS",
-      "body": "Składki, emerytura, zwolnienia lekarskie i wizyta w ZUS w jednej kategorii, obok innych spraw. Kategoria już jest na starcie, sprawy dodamy wkrótce.",
+      "body": "Składki, emerytura, zwolnienia lekarskie i wizyta w ZUS w jednej kategorii, obok innych spraw. Wizytę w ZUS umówisz już teraz. Resztę spraw dodamy wkrótce.",
       "try": "Otwórz kategorię ZUS."
     },
     "offline": {

@@ -8,7 +8,8 @@ import { CATEGORY_VIEWS, MATTERS } from '../categories/categories.tsx';
  * prototype already serves, with one thing to try. They are not app personas: the app always shows Katarzyna,
  * so a button names the screen it opens, never "see it as Teresa".
  */
-export type AudienceId = 'senior' | 'screenReader' | 'languages' | 'offline' | 'noLogin' | 'cityTicket';
+export type AudienceId =
+  'senior' | 'screenReader' | 'languages' | 'offline' | 'noLogin' | 'cityTicket' | 'zusVisit';
 
 export type AudienceMember = {
   id: AudienceId;
@@ -31,5 +32,6 @@ export const AUDIENCE: readonly AudienceMember[] = [
   { id: 'languages', to: PATHS.start },
   { id: 'offline' },
   { id: 'noLogin', to: PATHS.settings },
-  { id: 'cityTicket', to: matterPath('travel', 'cityTicket'), soon: true },
+  { id: 'cityTicket', to: matterPath('travel', 'cityTicket') },
+  { id: 'zusVisit', to: matterPath('zus', 'zusVisit') },
 ];

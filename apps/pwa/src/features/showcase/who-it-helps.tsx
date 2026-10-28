@@ -90,10 +90,22 @@ const AVATARS: Record<AudienceId, { hue: string; art: ReactNode }> = {
       </>
     ),
   },
+  // Zbigniew: a calendar page with one day ticked.
+  zusVisit: {
+    hue: 'green',
+    art: (
+      <>
+        <circle cx="17" cy="17" r="6.5" />
+        <path d="M7 41c1-7 4.5-11 10-11s9 4 10 11" />
+        <rect x="28" y="10" width="14" height="14" rx="1.5" />
+        <path d="M28 15h14M32 8v4M38 8v4M32 19.5l2 2 3.5-3.5" />
+      </>
+    ),
+  },
 };
 
 /**
- * "Dla kogo": six fictional example people and the improvement that already works for each (plan:
+ * "Dla kogo": seven fictional example people and the improvement that already works for each (plan:
  * docs/product/who-it-helps.md). `onShow` opens a screen in the phone and brings the phone into view.
  */
 export function WhoItHelps({

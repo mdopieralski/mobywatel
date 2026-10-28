@@ -160,11 +160,11 @@ test.describe('desktop showcase', () => {
     expect(new Set(tops).size).toBe(1);
   });
 
-  test('"Dla kogo" shows six fictional example people, each with something to try', async ({ page }) => {
+  test('"Dla kogo" shows seven fictional example people, each with something to try', async ({ page }) => {
     await page.goto('/');
     const audience = page.getByRole('region', { name: 'Dla kogo?' });
     await expect(page.locator('#wyprobuj + #dla-kogo')).toHaveCount(1);
-    await expect(audience.getByRole('listitem')).toHaveCount(6);
+    await expect(audience.getByRole('listitem')).toHaveCount(7);
     await expect(audience.getByRole('heading', { level: 3 })).toHaveText([
       'Teresa',
       'Marek',
@@ -172,11 +172,12 @@ test.describe('desktop showcase', () => {
       'Krzysztof',
       'Ewa',
       'Kuba',
+      'Zbigniew',
     ]);
     await expect(audience).toContainText('To postacie fikcyjne');
-    // City tickets: picking a town works, buying does not yet, and the card says so in words.
-    await expect(audience.getByRole('listitem').filter({ hasText: 'Kuba' })).toContainText('Wkrótce');
-    await expect(audience.getByRole('link')).toHaveCount(5);
+    // Every card describes something that works now: none says "Wkrótce".
+    await expect(audience).not.toContainText('Wkrótce');
+    await expect(audience.getByRole('link')).toHaveCount(6);
   });
 
   test('"Dla kogo" in the header jumps to that section and marks it as current', async ({ page }) => {

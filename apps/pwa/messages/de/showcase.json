@@ -76,9 +76,17 @@
         "name": "Kuba",
         "meta": "23 Jahre, Olsztyn",
         "need": "Ich fahre oft in andere Städte. Jedes Mal suche ich eine neue App für das Ticket.",
-        "helps": "Du wählst eine von 969 Städten. Du kannst ohne polnische Buchstaben tippen, z. B. „lodz“. Den Ticketkauf fügen wir bald hinzu.",
-        "try": "Öffne Reisen, dann Stadtticket. Tippe „lodz“ ein.",
+        "helps": "Du wählst eine von 969 Städten. Du kannst ohne polnische Buchstaben tippen, z. B. „lodz“. Dann kaufst du ein Ticket und siehst es auch nach dem Neuladen der Seite.",
+        "try": "Öffne Reisen, dann Stadtticket. Tippe „lodz“ ein und kauf ein Ticket.",
         "open": "Stadtauswahl zeigen"
+      },
+      "zusVisit": {
+        "name": "Zbigniew",
+        "meta": "64 Jahre, Płock",
+        "need": "Vor der Rente will ich mit jemandem bei ZUS sprechen. Ich will nicht in der Schlange warten.",
+        "helps": "Du wählst Stelle und Uhrzeit, prüfst die Angaben und vereinbarst den Termin. Vor dem Senden fragt die App, ob alles stimmt.",
+        "try": "Öffne ZUS, dann Termin bei ZUS. Vereinbare einen beliebigen Termin.",
+        "open": "Termin bei ZUS zeigen"
       }
     }
   },
@@ -92,12 +100,12 @@
     },
     "tickets": {
       "title": "Stadttickets",
-      "body": "Nahverkehrstickets aus jeder Stadt an einem Ort, ohne eigene App für jeden Verkehrsbetrieb. Die Kategorie ist schon auf dem Start, der Kauf kommt bald.",
+      "body": "Nahverkehrstickets aus jeder Stadt an einem Ort, ohne eigene App für jeden Verkehrsbetrieb. Ein Ticket kaufst du in wenigen Schritten.",
       "try": "Öffne die Kategorie Reisen."
     },
     "zus": {
       "title": "ZUS",
-      "body": "Beiträge, Rente, Krankschreibung und Termin bei der ZUS (Sozialversicherung) in einer Kategorie, neben deinen anderen Anliegen. Die Kategorie ist schon auf dem Start, die Anliegen kommen bald.",
+      "body": "Beiträge, Rente, Krankschreibung und Termin bei der ZUS (Sozialversicherung) in einer Kategorie, neben deinen anderen Anliegen. Einen Termin bei ZUS kannst du schon jetzt vereinbaren. Die anderen Anliegen kommen bald.",
       "try": "Öffne die Kategorie ZUS."
     },
     "offline": {

@@ -76,9 +76,17 @@
         "name": "Kuba",
         "meta": "23 let, Olštýn",
         "need": "Často jezdím do jiných měst. Pokaždé hledám novou aplikaci na jízdenku.",
-        "helps": "Vybereš si jedno z 969 měst. Můžeš psát bez polských písmen, např. „lodz“. Nákup jízdenek přidáme brzy.",
-        "try": "Otevři Cestování, pak Městská jízdenka. Napiš „lodz“.",
+        "helps": "Vybereš si jedno z 969 měst. Můžeš psát bez polských písmen, např. „lodz“. Pak koupíš jízdenku a uvidíš ji i po obnovení stránky.",
+        "try": "Otevři Cestování, pak Městská jízdenka. Napiš „lodz“ a kup jízdenku.",
         "open": "Zobrazit výběr města"
+      },
+      "zusVisit": {
+        "name": "Zbigniew",
+        "meta": "64 let, Płock",
+        "need": "Před důchodem chci mluvit s někým v ZUS. Nechci čekat ve frontě.",
+        "helps": "Vybereš pobočku a čas, zkontroluješ údaje a objednáš se. Před odesláním se aplikace zeptá, jestli je všechno v pořádku.",
+        "try": "Otevři ZUS, pak Návštěva ZUS. Objednej se na libovolný termín.",
+        "open": "Zobrazit návštěvu ZUS"
       }
     }
   },
@@ -92,12 +100,12 @@
     },
     "tickets": {
       "title": "Městské jízdenky",
-      "body": "Jízdenky na městskou dopravu z každého města na jednom místě, bez zvláštní aplikace pro každého dopravce. Kategorie už je na startu, nákup přidáme brzy.",
+      "body": "Jízdenky na městskou dopravu z každého města na jednom místě, bez zvláštní aplikace pro každého dopravce. Jízdenku koupíš v několika krocích.",
       "try": "Otevři kategorii Cestování."
     },
     "zus": {
       "title": "ZUS",
-      "body": "Pojistné, důchod, nemocenská a návštěva ZUS v jedné kategorii, vedle ostatních záležitostí. Kategorie už je na startu, záležitosti přidáme brzy.",
+      "body": "Pojistné, důchod, nemocenská a návštěva ZUS v jedné kategorii, vedle ostatních záležitostí. Na návštěvu ZUS se můžeš objednat už teď. Ostatní záležitosti přidáme brzy.",
       "try": "Otevři kategorii ZUS."
     },
     "offline": {
