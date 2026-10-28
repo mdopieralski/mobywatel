@@ -8,6 +8,7 @@ import {
   THEME_COLOR,
   WORKING_NAME,
 } from '../../packages/brand/src/index.ts';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { BOOT_LOADER } from './src/app/boot-loader.ts';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -79,6 +80,7 @@ export default defineConfig({
   server: { allowedHosts, proxy: designSystemProxy },
   preview: { allowedHosts, proxy: designSystemProxy },
   plugins: [
+    tailwindcss(),
     react(),
     brandHtml(),
     designSystemSlash(),

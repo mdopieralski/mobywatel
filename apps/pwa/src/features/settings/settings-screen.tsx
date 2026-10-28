@@ -7,9 +7,14 @@ import { useTranslations } from 'use-intl';
 import { PATHS } from '../../app/paths.ts';
 import { resetDemo } from '../../platform/demo-state.ts';
 import { updateSettings, useSettings, type ThemeChoice } from '../../platform/settings.ts';
-import styles from './settings-screen.module.css';
 
 const THEMES: readonly ThemeChoice[] = ['system', 'light', 'dark'];
+
+const cardClass = 'm-0 rounded-lg border border-border bg-surface p-4 [&_legend]:px-1';
+/** A whole row is the label, at least one touch target high. */
+const choiceRowClass =
+  'flex min-h-target cursor-pointer items-center gap-3 [&_input]:size-[1.5em] [&_input]:accent-accent';
+const hintClass = 'mt-2 mb-0 text-sm text-text-muted';
 
 export function SettingsScreen() {
   const t = useTranslations('settings');
@@ -32,28 +37,28 @@ export function SettingsScreen() {
   }, [confirmReset]);
 
   return (
-    <div className={styles.stack}>
+    <div className="grid gap-4">
       <h1>{t('title')}</h1>
 
       {/* First, so someone who can't read the current language finds it. Each name is in its own
           language and marked with lang, so screen readers pronounce it right (WCAG 3.1.2). */}
-      <fieldset className={styles.card} aria-describedby={languageHint}>
+      <fieldset className={cardClass} aria-describedby={languageHint}>
         <legend>
-          <h2 className={styles.legendHeading}>
+          <h2 className="m-0">
             {t('language.title')}
             {settings.locale === 'en' ? null : (
-              <span className={styles.legendAlt} lang="en">
+              <span className="font-normal text-text-muted" lang="en">
                 {' '}
                 · Language
               </span>
             )}
           </h2>
         </legend>
-        <p id={languageHint} className={styles.hint}>
+        <p id={languageHint} className={hintClass}>
           {t('language.hint')}
         </p>
         {LOCALES.map((locale) => (
-          <label key={locale} className={styles.radioRow}>
+          <label key={locale} className={choiceRowClass}>
             <input
               type="radio"
               name="locale"
@@ -66,9 +71,9 @@ export function SettingsScreen() {
         ))}
       </fieldset>
 
-      <section className={styles.card} aria-labelledby="senior-heading">
+      <section className={cardClass} aria-labelledby="senior-heading">
         <h2 id="senior-heading">{t('senior.title')}</h2>
-        <label className={styles.switchRow}>
+        <label className={choiceRowClass}>
           <input
             type="checkbox"
             role="switch"
@@ -78,17 +83,17 @@ export function SettingsScreen() {
           />
           <span>{t('senior.label')}</span>
         </label>
-        <p id={seniorHint} className={styles.hint}>
+        <p id={seniorHint} className={hintClass}>
           {t('senior.hint')}
         </p>
       </section>
 
-      <fieldset className={styles.card}>
+      <fieldset className={cardClass}>
         <legend>
-          <h2 className={styles.legendHeading}>{t('theme.title')}</h2>
+          <h2 className="m-0">{t('theme.title')}</h2>
         </legend>
         {THEMES.map((theme) => (
-          <label key={theme} className={styles.radioRow}>
+          <label key={theme} className={choiceRowClass}>
             <input
               type="radio"
               name="theme"
@@ -101,11 +106,11 @@ export function SettingsScreen() {
         ))}
       </fieldset>
 
-      <section className={styles.card} aria-labelledby="reset-heading">
+      <section className={cardClass} aria-labelledby="reset-heading">
         <h2 id="reset-heading">{t('reset.title')}</h2>
         <p>{t('reset.body')}</p>
         {confirmReset ? (
-          <div className={styles.confirm}>
+          <div className="flex flex-wrap items-center gap-2 [&_p]:basis-full [&_p:focus]:outline-none">
             <p ref={confirmQuestion} tabIndex={-1}>
               <strong>{t('reset.confirmQuestion')}</strong>
             </p>

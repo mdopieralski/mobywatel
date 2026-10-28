@@ -4,8 +4,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useFormatter, useTranslations } from 'use-intl';
 
 import { parseIsoDate } from '../../platform/persona.ts';
-import docStyles from '../documents/document-screen.module.css';
 import { DATE_FORMAT } from '../documents/document-card.tsx';
+import { detailRowClass } from '../documents/document-classes.ts';
+import { changeButtonClass, flowClass, panelTitleClass } from '../travel/picker-classes.ts';
 import { OfficeList } from './office-list.tsx';
 import { SlotList } from './slot-list.tsx';
 import {
@@ -16,7 +17,7 @@ import {
   saveBooking,
   type ZusBooking,
 } from './zus-state.ts';
-import styles from './zus.module.css';
+import { noteClass, zusPanelClass } from './zus-classes.ts';
 
 type Step =
   | { step: 'office' }
@@ -69,24 +70,24 @@ export function ZusVisit() {
       [t('booked.time'), booking.time],
     ];
     body = (
-      <section className={styles.panel} aria-labelledby="zus-booked">
-        <h2 id="zus-booked" ref={heading} tabIndex={-1} className={styles.title}>
+      <section className={zusPanelClass} aria-labelledby="zus-booked">
+        <h2 id="zus-booked" ref={heading} tabIndex={-1} className={panelTitleClass}>
           {t('booked.title')}
         </h2>
-        <p className={styles.note}>{t('booked.reference')}</p>
-        <p className={styles.reference}>{booking.reference}</p>
+        <p className={noteClass}>{t('booked.reference')}</p>
+        <p className="text-xl font-extrabold tracking-[0.04em]">{booking.reference}</p>
         <dl>
           {rows.map(([label, value]) => (
-            <div key={label} className={docStyles.row}>
+            <div key={label} className={detailRowClass}>
               <dt>{label}</dt>
               <dd>{value}</dd>
             </div>
           ))}
         </dl>
-        <p className={styles.note}>{t('booked.note')}</p>
+        <p className={noteClass}>{t('booked.note')}</p>
         <button
           type="button"
-          className={styles.change}
+          className={changeButtonClass}
           onClick={() => {
             clearBooking();
             setBooking(null);
@@ -159,10 +160,10 @@ export function ZusVisit() {
   }
 
   return (
-    <div className={styles.flow}>
+    <div className={flowClass}>
       {body}
       {/* One live region that stays mounted, so "Nic nie zostało wysłane" is announced after cancel. */}
-      <p role="status" className={styles.note}>
+      <p role="status" className={noteClass}>
         {cancelled ? t('cancelled') : ''}
       </p>
     </div>

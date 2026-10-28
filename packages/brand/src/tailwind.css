@@ -1,0 +1,94 @@
+/*
+ * Tailwind theme from our tokens (docs/decisions/tailwind-2026-10-28.md). The values stay in tokens.ts and
+ * reach the page as CSS variables (themeCss() in css.ts), which switch for dark and senior mode. Here every
+ * Tailwind name only points at one of them, so `bg-surface`, `text-text-muted`, `text-lg` and `rounded-lg`
+ * change with the theme and there is still one source of truth. No literal colours.
+ *
+ * Spacing keeps Tailwind's 4 px step: p-1 … p-6 = our --space-1 … --space-6, p-8 = --space-7 (32 px),
+ * p-12 = --space-8 (48 px), p-30 = --space-9 (120 px). Prefer those; `p-(--space-7)` also works.
+ *
+ * Imported by apps/pwa/src/app/global.css and the design system's Storybook.
+ */
+
+@theme inline {
+  /* Only our colours: no Tailwind palette, so a stray `bg-red-500` doesn't exist. */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-watermark: var(--watermark);
+  --color-card-blue: var(--card-blue);
+  --color-card-plum: var(--card-plum);
+  --color-card-green: var(--card-green);
+  --color-card-brown: var(--card-brown);
+  --color-card-teal: var(--card-teal);
+  --color-card-indigo: var(--card-indigo);
+  --color-card-olive: var(--card-olive);
+  --color-card-slate: var(--card-slate);
+  --color-card-text: var(--card-text);
+  --color-logo-tile: var(--logo-tile);
+  --color-logo-tick: var(--logo-tick);
+
+  --font-*: initial;
+  --font-sans: var(--font-family);
+  --font-compact: var(--font-family-compact);
+
+  /* Type scale: grows in senior mode. No built-in line height: text inherits the body's unless set. */
+  --text-*: initial;
+  --text-xs: var(--font-xs);
+  --text-sm: var(--font-sm);
+  --text-md: var(--font-md);
+  --text-lg: var(--font-lg);
+  --text-xl: var(--font-xl);
+  --text-2xl: var(--font-2xl);
+  --text-3xl: var(--font-3xl);
+
+  --leading-*: initial;
+  --leading-tight: var(--line-height-tight);
+  --leading-body: var(--line-height-body);
+
+  --radius-*: initial;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* The 4 px grid in px, like --space-*: p-3 is exactly 12 px, as before (Tailwind's default is rem). */
+  --spacing: 4px;
+
+  /* Touch targets: 48 px, 56 px in senior mode. `min-h-target`, `size-target`. */
+  --spacing-target: var(--target-min);
+
+  --ease-standard: var(--easing-standard);
+}
+
+/* Our dark theme: the system's, unless the user picked light; or the user picked dark. */
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) & {
+      @slot;
+    }
+  }
+  :root[data-theme='dark'] & {
+    @slot;
+  }
+}
+
+/* Senior mode (larger text and targets). */
+@custom-variant senior (:root[data-senior='true'] &);
+
+/* After the boot intro has played once (boot-loader.ts). */
+@custom-variant intro-done (:root[data-intro-done] &);

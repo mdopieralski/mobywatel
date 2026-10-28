@@ -39,13 +39,13 @@ export function useIntroDelay(atMs: number): number {
   return delay;
 }
 
-/** Sets `--intro-delay` (read by intro.module.css and app-mark.module.css). */
+/** Sets `--intro-delay` (read by the intro classes in intro.ts and app-mark.tsx). */
 export function introStyle(delayMs: number): CSSProperties {
   return { '--intro-delay': `${delayMs}ms` } as CSSProperties;
 }
 
 /**
- * Ends the entrance for good: everything shows in its final state (intro.module.css, app-mark.module.css).
+ * Ends the entrance for good: everything shows in its final state (intro.ts, app-mark.tsx).
  * Called on the first key press or click, so a keyboard user never tabs onto something still invisible,
  * and at once inside the phone frames, which have no loader to wait for.
  */

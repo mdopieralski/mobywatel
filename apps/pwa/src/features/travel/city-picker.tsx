@@ -3,7 +3,20 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { useTranslations } from 'use-intl';
 
 import { DEMO_PREFIX } from '../../platform/demo-state.ts';
-import styles from './city-picker.module.css';
+import {
+  changeButtonClass,
+  flowClass,
+  hintClass,
+  inputClass,
+  labelClass,
+  mutedClass,
+  optionClass,
+  optionListClass,
+  optionMetaClass,
+  optionNameClass,
+  panelClass,
+  panelTitleClass,
+} from './picker-classes.ts';
 import { TicketShop } from './ticket-list.tsx';
 
 type CitiesModule = typeof import('@mobywatel/content/cities');
@@ -71,7 +84,7 @@ export function CityPicker() {
   }, [picking]);
 
   if (!cities) {
-    return <p className={styles.note}>{t('loading')}</p>;
+    return <p className={mutedClass}>{t('loading')}</p>;
   }
 
   const choose = (city: City) => {
@@ -84,16 +97,21 @@ export function CityPicker() {
 
   if (!picking && chosen) {
     return (
-      <div className={styles.flow}>
-        <section className={styles.chosen} aria-labelledby="city-chosen">
-          <p className={styles.label}>{t('chosen')}</p>
-          <h2 id="city-chosen" ref={chosenHeading} tabIndex={-1} className={styles.cityName}>
+      <div className={flowClass}>
+        <section className={panelClass} aria-labelledby="city-chosen">
+          <p className={labelClass}>{t('chosen')}</p>
+          <h2
+            id="city-chosen"
+            ref={chosenHeading}
+            tabIndex={-1}
+            className="text-2xl font-extrabold wrap-anywhere focus:outline-none"
+          >
             {chosen.name}
           </h2>
-          <p className={styles.voivodeship}>{t('voivodeship', { name: chosen.voivodeship })}</p>
+          <p className={mutedClass}>{t('voivodeship', { name: chosen.voivodeship })}</p>
           <button
             type="button"
-            className={styles.change}
+            className={changeButtonClass}
             onClick={() => {
               setChanging(true);
               moveFocus.current = 'input';
@@ -112,20 +130,20 @@ export function CityPicker() {
   const searching = query.trim() !== '';
 
   return (
-    <section className={styles.picker} aria-labelledby="city-picker">
-      <h2 id="city-picker" className={styles.title}>
+    <section className={panelClass} aria-labelledby="city-picker">
+      <h2 id="city-picker" className={panelTitleClass}>
         {t('title')}
       </h2>
-      <label className={styles.label} htmlFor={inputId}>
+      <label className={labelClass} htmlFor={inputId}>
         {t('label')}
       </label>
-      <p id={hintId} className={styles.hint}>
+      <p id={hintId} className={hintClass}>
         {t('hint')}
       </p>
       <input
         ref={input}
         id={inputId}
-        className={styles.input}
+        className={inputClass}
         type="search"
         autoComplete="off"
         autoCorrect="off"
@@ -136,7 +154,7 @@ export function CityPicker() {
         onChange={(event) => setQuery(event.target.value)}
       />
       {/* Announced as the list changes: how many towns match. */}
-      <p role="status" className={styles.count}>
+      <p role="status" className={hintClass}>
         {searching
           ? all.length === 0
             ? t('none')
@@ -144,12 +162,12 @@ export function CityPicker() {
           : t('biggest')}
       </p>
       {shown.length > 0 ? (
-        <ul className={styles.list}>
+        <ul className={optionListClass}>
           {shown.map((city) => (
             <li key={city.id}>
-              <button type="button" className={styles.option} onClick={() => choose(city)}>
-                <span className={styles.optionName}>{city.name}</span>
-                <span className={styles.optionVoivodeship}>{city.voivodeship}</span>
+              <button type="button" className={optionClass} onClick={() => choose(city)}>
+                <span className={optionNameClass}>{city.name}</span>
+                <span className={optionMetaClass}>{city.voivodeship}</span>
               </button>
             </li>
           ))}

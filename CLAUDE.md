@@ -45,9 +45,9 @@ Decision record: `docs/decisions/stack-2026-10-24.md`.
 
 - **Repo**: pnpm workspaces + Turborepo (`apps/*`, `packages/*`), Node 22, pnpm 10 (pinned in
   `packageManager`).
-- **App** `apps/pwa` (`@mobywatel/pwa`): Vite + React + TypeScript strict, `vite-plugin-pwa` (Workbox) for the
-  manifest and service worker, client-side routing, mobile-first layout that also reads well on a desktop
-  (phone frame).
+- **App** `apps/pwa` (`@mobywatel/pwa`): Vite + React + TypeScript strict, Tailwind CSS 4 on our tokens
+  (`docs/decisions/tailwind-2026-10-28.md`), `vite-plugin-pwa` (Workbox) for the manifest and service worker,
+  client-side routing, mobile-first layout that also reads well on a desktop (phone frame).
 - **Shared packages**: `@mobywatel/core` (pure TS: matters as state machines, reminders, assistant scenario
   engine, ports; no React), `@mobywatel/content` (fictional personas, scenario scripts, service knowledge in
   plain Polish), `@mobywatel/brand` (tokens, copy, disclaimer), `@mobywatel/ui` (accessible React components).

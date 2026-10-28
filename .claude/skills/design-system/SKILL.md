@@ -73,13 +73,15 @@ switches on `<html>` (`data-theme`, `data-senior`). Components never branch on t
    imports, no fetching, no i18n lookups inside `packages/ui`.
 3. **Accessible by construction.** Native elements first; every interactive element has an accessible name;
    visible focus ring from `--focus`; targets from `--target-min`. Details: the `accessibility` skill.
-4. **Styling.** CSS Modules + CSS variables. No runtime CSS-in-JS.
+4. **Styling.** Tailwind CSS 4 utility classes on our tokens (`packages/brand/src/tailwind.css`):
+   `bg-surface`, `text-lg`, `min-h-target`, `dark:`, `senior:`. No literal colours, no `@apply`, no runtime
+   CSS-in-JS. Rules: `docs/decisions/tailwind-2026-10-28.md`.
 5. **Tests.** Testing Library: render, query by role and name, check keyboard behaviour. Add an axe check
    (`vitest-axe` or equivalent) per component.
 
 ## Adding a component
 
-1. `packages/ui/src/<name>/<name>.tsx`, `<name>.module.css`, `<name>.test.tsx`. Export it from
+1. `packages/ui/src/<name>/<name>.tsx` (Tailwind classes) and `<name>.test.tsx`. Export it from
    `packages/ui/src/index.ts`.
 2. Cover default, senior and dark rendering in tests or a demo route (`/__ui` in dev only).
 3. Use it in a feature. Run the `verify-change` skill's UI checks (screenshots at 390×844 and 360×800, senior

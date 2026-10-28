@@ -8,8 +8,21 @@ import { usePersona } from '../../platform/persona.ts';
 import { useDocumentStatus } from '../documents/document-card.tsx';
 import { KINDS, LineIcon, REMINDERS } from '../documents/kinds.tsx';
 import { useReminders } from '../reminders/use-reminders.ts';
+import {
+  backLinkClass,
+  chevronClass,
+  descriptionClass,
+  headingClass,
+  iconClass,
+  listClass,
+  rowClass,
+  rowIconClass,
+  rowTextClass,
+  screenClass,
+  sectionHeadingClass,
+  soonClass,
+} from './category-classes.ts';
 import { categoryBySlug, MATTERS } from './categories.tsx';
-import styles from './category-screen.module.css';
 
 /** One category: what it covers, the persona's documents and matters in it, and what comes next. */
 export function CategoryScreen() {
@@ -25,41 +38,37 @@ export function CategoryScreen() {
   const docs = persona.documents.filter((d) => category.documents.includes(d.kind));
   const matters = reminders.filter((r) => category.reminders.includes(r.reminder.kind));
   return (
-    <div className={styles.stack} style={{ '--card-color': category.color } as CSSProperties}>
-      <Link className={styles.back} to={PATHS.start}>
+    <div className={screenClass} style={{ '--card-color': category.color } as CSSProperties}>
+      <Link className={backLinkClass} to={PATHS.start}>
         <span aria-hidden="true">←</span> {t('back')}
       </Link>
-      <div className={styles.heading}>
-        <span className={styles.icon}>
+      <div className={headingClass}>
+        <span className={iconClass}>
           <LineIcon size={28}>{category.icon}</LineIcon>
         </span>
         <h1>{t(`names.${category.id}`)}</h1>
       </div>
-      <p className={styles.description}>{t(`descriptions.${category.id}`)}</p>
+      <p className={descriptionClass}>{t(`descriptions.${category.id}`)}</p>
 
       {category.matters.length ? (
         <nav aria-labelledby="category-matters">
-          <h2 id="category-matters">{t('matters.title')}</h2>
-          <ul className={styles.list}>
+          <h2 id="category-matters" className={sectionHeadingClass}>
+            {t('matters.title')}
+          </h2>
+          <ul className={listClass}>
             {category.matters.map((matter) => (
               <li key={matter}>
                 <Link
-                  className={styles.row}
+                  className={rowClass}
                   to={`${PATHS.categories}/${category.slug}/${MATTERS[matter].slug}`}
                 >
-                  <span className={styles.rowIcon}>
+                  <span className={rowIconClass}>
                     <LineIcon>{MATTERS[matter].icon}</LineIcon>
                   </span>
-                  <span className={styles.rowText}>
+                  <span className={rowTextClass}>
                     <b>{t(`matters.names.${matter}`)}</b>
                   </span>
-                  <svg
-                    aria-hidden="true"
-                    className={styles.chevron}
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                  >
+                  <svg aria-hidden="true" className={chevronClass} viewBox="0 0 24 24" width="20" height="20">
                     <path d="m9.5 6 6 6-6 6" />
                   </svg>
                 </Link>
@@ -71,28 +80,24 @@ export function CategoryScreen() {
 
       {docs.length ? (
         <section aria-labelledby="category-documents">
-          <h2 id="category-documents">{t('documents')}</h2>
-          <ul className={styles.list}>
+          <h2 id="category-documents" className={sectionHeadingClass}>
+            {t('documents')}
+          </h2>
+          <ul className={listClass}>
             {docs.map((doc) => (
               <li key={doc.kind}>
-                <Link className={styles.row} to={`${PATHS.documents}/${KINDS[doc.kind].slug}`}>
+                <Link className={rowClass} to={`${PATHS.documents}/${KINDS[doc.kind].slug}`}>
                   <span
-                    className={styles.rowIcon}
+                    className={rowIconClass}
                     style={{ '--card-color': KINDS[doc.kind].color } as CSSProperties}
                   >
                     <LineIcon>{KINDS[doc.kind].icon}</LineIcon>
                   </span>
-                  <span className={styles.rowText}>
+                  <span className={rowTextClass}>
                     <b>{td(`kinds.${KINDS[doc.kind].key}`)}</b>
                     <span>{status(doc)}</span>
                   </span>
-                  <svg
-                    aria-hidden="true"
-                    className={styles.chevron}
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                  >
+                  <svg aria-hidden="true" className={chevronClass} viewBox="0 0 24 24" width="20" height="20">
                     <path d="m9.5 6 6 6-6 6" />
                   </svg>
                 </Link>
@@ -104,14 +109,16 @@ export function CategoryScreen() {
 
       {matters.length ? (
         <section aria-labelledby="category-reminders">
-          <h2 id="category-reminders">{t('reminders')}</h2>
-          <ul className={styles.list}>
+          <h2 id="category-reminders" className={sectionHeadingClass}>
+            {t('reminders')}
+          </h2>
+          <ul className={listClass}>
             {matters.map(({ reminder, title, due }) => (
-              <li key={reminder.id} className={styles.row}>
-                <span className={styles.rowIcon}>
+              <li key={reminder.id} className={rowClass}>
+                <span className={rowIconClass}>
                   <LineIcon>{REMINDERS[reminder.kind].icon}</LineIcon>
                 </span>
-                <span className={styles.rowText}>
+                <span className={rowTextClass}>
                   <b>{title}</b>
                   <span>{due}</span>
                 </span>
@@ -121,7 +128,7 @@ export function CategoryScreen() {
         </section>
       ) : null}
 
-      {category.matters.length ? null : <p className={styles.soon}>{t('soon')}</p>}
+      {category.matters.length ? null : <p className={soonClass}>{t('soon')}</p>}
     </div>
   );
 }

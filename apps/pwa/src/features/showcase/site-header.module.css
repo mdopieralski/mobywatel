@@ -1,9 +1,0 @@
-/* Right side of the desktop page header: the section links, then the language switch. Kept out of
-   showcase.module.css so the header's own layout stays in one small file. */
-.end {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-4);
-}

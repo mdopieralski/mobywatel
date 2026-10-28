@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite';
 import type { StorybookConfig } from '@storybook/react-vite';
 
 // In dev, Storybook sits behind the PWA dev server at /design-system (see apps/pwa/vite.config.ts).
@@ -9,7 +10,9 @@ const config: StorybookConfig = {
   framework: '@storybook/react-vite',
   // The browser's Origin is mobywatel.local (portless), not 127.0.0.1. Storybook rejects unknown origins.
   core: { allowedHosts: ['mobywatel.local', '.localhost'], disableTelemetry: true },
-  viteFinal: (vite, { configType }) => {
+  viteFinal: (base, { configType }) => {
+    // Tailwind, like the PWA (the classes in @mobywatel/ui come from global.css's theme).
+    const vite = { ...base, plugins: [...(base.plugins ?? []), tailwindcss()] };
     if (configType !== 'DEVELOPMENT') {
       return vite; // static build keeps relative paths, so it can be hosted under any path
     }

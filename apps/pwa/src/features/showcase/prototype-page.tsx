@@ -4,12 +4,13 @@ import { useTranslations } from 'use-intl';
 
 import { PATHS } from '../../app/paths.ts';
 import { router } from '../../app/router.tsx';
+import { visuallyHidden } from '../../app/visually-hidden.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { PhoneFrame } from './phone-frame.tsx';
+import { pageClass, skipClass } from './showcase-classes.ts';
 import { AUDIENCE_ID, DEMO_ID, HERO_ID, NEWS_ID, TECH_ID, onShowcaseRoute } from './showcase-mode.ts';
 import { SiteHeader } from './site-header.tsx';
 import './compact-font.css';
-import styles from './showcase.module.css';
 
 /**
  * Desktop /prototype/*: the app in a phone mockup and nothing else. The phone opens the URL the visitor
@@ -33,8 +34,8 @@ export function PrototypePage() {
     []
   );
   return (
-    <div className={styles.page}>
-      <a className={styles.skip} href="#main">
+    <div className={pageClass}>
+      <a className={skipClass} href="#main">
         {tCommon('skipToContent')}
       </a>
       <SiteHeader
@@ -47,8 +48,13 @@ export function PrototypePage() {
           { href: `${PATHS.landing}#${TECH_ID}`, label: t('nav.tech') },
         ]}
       />
-      <main id="main" tabIndex={-1} className={styles.mockup}>
-        <h1 className={styles.visuallyHidden}>{t('nav.prototype')}</h1>
+      {/* The phone mockup alone, centred, with the disclaimer. */}
+      <main
+        id="main"
+        tabIndex={-1}
+        className="grid justify-items-center content-center gap-6 min-h-[calc(100dvh_-_var(--header-height))] p-12"
+      >
+        <h1 className={visuallyHidden}>{t('nav.prototype')}</h1>
         {/* Above the phone, so it is on the first screen at every desktop size. */}
         <Disclaimer variant="inline" locale={locale} />
         <PhoneFrame ref={frame} src={src} onTitle={(title) => (document.title = title)} />

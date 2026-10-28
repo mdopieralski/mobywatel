@@ -1,7 +1,6 @@
 import { type KeyboardEvent, useEffect, useId, useRef } from 'react';
 
 import { Button } from '../button/button.tsx';
-import styles from './confirm-card.module.css';
 
 export interface ConfirmRow {
   label: string;
@@ -69,22 +68,36 @@ export function ConfirmCard({
   };
 
   return (
-    <section className={styles.card} aria-labelledby={headingId} onKeyDown={onKeyDown} data-confirm-card="">
-      <Heading id={headingId} ref={heading} tabIndex={-1} className={styles.title}>
+    <section
+      // One card style for every confirmation.
+      className="grid gap-4 p-5 border-2 border-accent rounded-lg bg-surface text-text"
+      aria-labelledby={headingId}
+      onKeyDown={onKeyDown}
+      data-confirm-card=""
+    >
+      <Heading
+        id={headingId}
+        ref={heading}
+        tabIndex={-1} // No ring on the programmatic focus when it opens; a keyboard user gets the ring, further out.
+        className="m-0 text-lg leading-tight [overflow-wrap:anywhere] [&:focus:not(:focus-visible)]:outline-none focus-visible:outline-offset-4"
+      >
         {title}
       </Heading>
-      <dl className={styles.rows}>
+      <dl className="grid m-0">
         {rows.map((row) => (
-          <div key={row.label} className={styles.row}>
-            <dt>{row.label}</dt>
-            <dd>{row.value}</dd>
+          <div
+            key={row.label}
+            className="flex flex-wrap justify-between gap-y-1 gap-x-4 py-3 px-0 border-t border-border"
+          >
+            <dt className="text-text-muted">{row.label}</dt>
+            <dd className="m-0 font-semibold [overflow-wrap:anywhere]">{row.value}</dd>
           </div>
         ))}
       </dl>
-      <p className={styles.source} data-source="">
+      <p className="flex flex-wrap gap-y-0 gap-x-2 m-0 text-text-muted text-sm" data-source="">
         <span>{source.name}</span> <span>{source.checkedOn}</span>
       </p>
-      <div className={styles.actions}>
+      <div className="grid gap-3">
         <Button variant="primary" fullWidth onClick={onConfirm}>
           {actionLabel}
         </Button>
