@@ -91,6 +91,7 @@ The ownership map with paths is in the `add-feature` skill (§2). In short:
 | ----------------------- | --------------------------------------------------------------------------------- |
 | `product-manager`       | concept, competition strategy, pitch and submission text (`docs/product/`)        |
 | `service-designer`      | matter journeys (`docs/services/`), Polish copy (`messages/`), voice and tone     |
+| `language-engineer`     | Polish → en uk de cs sk lt be (`messages/<locale>/`), glossary, native review     |
 | `conversation-designer` | assistant persona and dialogue, scenario text (`packages/content/src/scenarios/`) |
 | `brand-designer`        | `packages/brand`, name, icons, visual identity without official marks             |
 | `pwa-architect`         | plans only (read-only)                                                            |

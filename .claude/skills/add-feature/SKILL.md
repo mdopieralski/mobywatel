@@ -39,7 +39,8 @@ its own code.
 | `apps/pwa/src/{app,pwa,platform}/`, `apps/pwa/vite.config.ts`, `apps/pwa/index.html`, `apps/pwa/public/` (except `icons/`), `apps/pwa/vercel.json`, app `package.json`           | `pwa-engineer`                              | pwa-platform, scaffold-app                |
 | `packages/ui/`, `apps/pwa/src/features/*` (except `assistant/`)                                                                                                                  | `ui-engineer`                               | design-system, accessibility              |
 | `packages/brand/`, `apps/pwa/public/icons/`                                                                                                                                      | `brand-designer`                            | design-system, prototype-guardrails       |
-| `docs/services/`, `apps/pwa/messages/` (wording), voice sections of `docs/product/brand-voice.md`                                                                                | `service-designer`                          | service-journeys, plain-polish            |
+| `docs/services/`, `apps/pwa/messages/pl/` (wording), voice sections of `docs/product/brand-voice.md`                                                                             | `service-designer`                          | service-journeys, plain-polish            |
+| `apps/pwa/messages/{en,uk,de,cs,sk,lt,be}/`, `apps/pwa/messages/translations.lock.json`, `docs/i18n/`                                                                            | `language-engineer`                         | plain-polish, prototype-guardrails        |
 | `packages/content/src/scenarios/` (text), `packages/content/src/assistant/` (persona, prompt text)                                                                               | `conversation-designer`                     | ai-assistant, plain-polish                |
 | `docs/product/`                                                                                                                                                                  | `product-manager`                           | product-knowledge, competition-submission |
 | `apps/pwa/e2e/`, `docs/quality/`                                                                                                                                                 | `qa-engineer`                               | verify-change, accessibility              |
@@ -59,7 +60,7 @@ Shared seams:
   agent. `docs/product/visual-identity.md` belongs to the `brand-designer` agent. Each edits only its own
   part.
 - **Message keys:** engineers add keys with a draft Polish text. The `service-designer` agent owns the final
-  wording.
+  wording. The `language-engineer` agent then carries it into the other 7 locales in the same change.
 - **Integration** (commit, PR) is done by the main session (the `ship-branch` skill); the user merges.
 - If an agent is unavailable, follow its skills directly in the main session.
 
