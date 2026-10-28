@@ -95,7 +95,8 @@ export default defineConfig({
         start_url: '/prototype',
         scope: '/',
         display: 'standalone',
-        orientation: 'portrait',
+        // Any: the layout works on its side too, and an installed tablet shouldn't be locked upright.
+        orientation: 'any',
         theme_color: THEME_COLOR,
         background_color: BACKGROUND_COLOR,
         icons: [

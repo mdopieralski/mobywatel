@@ -44,19 +44,28 @@ export function LanguageSwitch({
   const items = useRef(new Map<Locale, HTMLButtonElement>());
 
   // The list hangs from the button's right edge. Where that would cross the window's edge (a narrow phone,
-  // senior text, a wrapped header), shift it back on screen.
+  // senior text, a wrapped header), shift it back on screen. On a short window (a phone on its side) it
+  // scrolls inside itself, so every language stays reachable by touch.
   useLayoutEffect(() => {
     const el = list.current;
     if (!open || !el) {
       return;
     }
     el.style.transform = '';
+    el.style.maxHeight = '';
+    el.style.overflowY = '';
     const margin = 8;
-    const { left, right } = el.getBoundingClientRect();
+    const { left, right, top } = el.getBoundingClientRect();
     const width = document.documentElement.clientWidth;
     const shift = left < margin ? margin - left : right > width - margin ? width - margin - right : 0;
     if (shift) {
       el.style.transform = `translateX(${Math.round(shift)}px)`;
+    }
+    // At least three rows, even when the button sits near the bottom of a tiny window.
+    const room = Math.max(window.innerHeight - top - margin, 160);
+    if (el.scrollHeight > room) {
+      el.style.maxHeight = `${Math.round(room)}px`;
+      el.style.overflowY = 'auto';
     }
   }, [open]);
 

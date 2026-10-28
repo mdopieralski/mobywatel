@@ -1,3 +1,8 @@
+/* Size container for the grid below (and for 100cqi in the card height). */
+.wrap {
+  container-type: inline-size;
+}
+
 /* Two columns of square cards, 20 px apart (user choice 2026-10-26). */
 .stack {
   display: grid;
@@ -6,7 +11,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  container-type: inline-size;
 }
 
 .item {
@@ -30,7 +34,19 @@
   margin-top: auto;
   min-width: 0;
   overflow-wrap: anywhere;
+  hyphens: auto;
   font-size: var(--font-md);
+}
+
+/* Tablet width: three columns, so the tiles stay card-sized. Senior mode keeps two bigger ones. */
+@container (min-width: 36rem) {
+  :root:not([data-senior='true']) .stack {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  :root:not([data-senior='true']) .card {
+    min-height: calc((100cqi - 2 * var(--space-5)) / 3);
+  }
 }
 
 .card:focus-visible {

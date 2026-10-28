@@ -32,6 +32,14 @@
   background: var(--bg);
 }
 
+/* Short windows (phone on its side, 400% zoom): the bar scrolls with the page, so it never covers the
+   categories (layout.module.css lets the whole page scroll there). */
+@media (max-height: 30rem) {
+  .dock {
+    position: static;
+  }
+}
+
 /* Prompt-like bar; a link, not a field (see ask-bar.tsx). */
 .ask {
   display: flex;

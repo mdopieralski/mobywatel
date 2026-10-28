@@ -183,9 +183,9 @@ export function Showcase() {
 
         {/* What this is and what is new. */}
         <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>
-          {/* Our name as the section heading, like "Prototyp" above. A name, so the same in every language. */}
+          {/* Same words as the header link, like "Prototyp" above. */}
           <h2 className={`${styles.title} ${styles.sectionHeading} ${styles.panelHeading}`}>
-            {WORKING_NAME}
+            {t('nav.news')}
           </h2>
           <div className={styles.intro}>
             <h2 className={styles.title}>{TAGLINES[locale]}</h2>
