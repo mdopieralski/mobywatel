@@ -123,7 +123,7 @@ test.describe('desktop showcase', () => {
     const tech = page.getByRole('region', { name: 'Technologia' });
     await expect(page.locator('main > *').last()).toHaveAttribute('id', 'technologia');
     await expect(tech.getByRole('list')).toHaveCount(1);
-    await expect(tech.getByRole('listitem')).toHaveCount(16);
+    await expect(tech.getByRole('listitem')).toHaveCount(18);
     await expect(tech.getByRole('listitem').first()).toContainText('PWA');
   });
 

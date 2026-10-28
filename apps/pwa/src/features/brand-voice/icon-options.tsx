@@ -1,8 +1,6 @@
 import { COLORS } from '@mobywatel/brand';
 import { useEffect, useState, type CSSProperties } from 'react';
 
-import styles from './icon-options.module.css';
-
 // App icon candidates drawn by the brand-designer agent (apps/pwa/public/icons/options/).
 // Temporary: remove this section once an icon is chosen.
 interface IconOption {
@@ -22,6 +20,12 @@ const PREVIEW_BG = {
   '--icon-preview-dark': COLORS.dark.bg,
 } as CSSProperties;
 
+// Fixed light and dark backgrounds, whatever the page theme, to judge the icon on both.
+const SWATCH_BG = {
+  light: 'bg-(--icon-preview-light) border border-border',
+  dark: 'bg-(--icon-preview-dark)',
+} as const;
+
 export function IconOptions() {
   const [options, setOptions] = useState<IconOption[] | null>(null);
   const [failed, setFailed] = useState(false);
@@ -38,7 +42,11 @@ export function IconOptions() {
   }, []);
 
   return (
-    <section className={styles.section} style={PREVIEW_BG} aria-labelledby="icon-options-heading">
+    <section
+      className="mb-12 pb-6 border-b border-border"
+      style={PREVIEW_BG}
+      aria-labelledby="icon-options-heading"
+    >
       <h2 id="icon-options-heading">App icon: pick one</h2>
       <p>
         Four candidates for our app icon, shown at home-screen size (96 px), app size (48 px) and favicon size
@@ -48,15 +56,21 @@ export function IconOptions() {
       {failed && <p role="alert">The icon options could not be loaded.</p>}
       {!options && !failed && <p>Loading the options…</p>}
       {options && (
-        <ol className={styles.grid}>
+        <ol className="grid grid-cols-[repeat(auto-fit,minmax(17rem,1fr))] gap-4 mx-0 mt-4 mb-0 p-0 list-none">
           {options.map((o, i) => (
-            <li key={o.id} className={styles.card}>
+            <li
+              key={o.id}
+              className="p-4 border border-border rounded-lg bg-surface [&_h3]:m-0 [&_h3]:mb-3 [&_h3]:text-lg"
+            >
               <h3>
                 {i + 1}. {o.name}
               </h3>
-              <div className={styles.previews}>
+              <div className="grid gap-2 mb-3">
                 {(['light', 'dark'] as const).map((bg) => (
-                  <div key={bg} className={`${styles.swatch} ${styles[bg]}`}>
+                  <div
+                    key={bg}
+                    className={`flex items-end gap-4 p-3 rounded-md [&_img]:block [&_img]:flex-none ${SWATCH_BG[bg]}`}
+                  >
                     {SIZES.map((s) => (
                       <img key={s} src={`${BASE}/${o.id}.svg`} alt="" width={s} height={s} />
                     ))}
@@ -64,13 +78,13 @@ export function IconOptions() {
                 ))}
               </div>
               <p>{o.idea}</p>
-              <dl className={styles.facts}>
+              <dl className="grid grid-cols-[auto_1fr] gap-y-1 gap-x-3 m-0 mb-3 text-sm [&_dt]:font-semibold [&_dd]:m-0">
                 <dt>Pros</dt>
                 <dd>{o.pros}</dd>
                 <dt>Cons</dt>
                 <dd>{o.cons}</dd>
               </dl>
-              <p className={styles.file}>
+              <p className="m-0 text-text-muted text-sm">
                 <code>
                   {BASE}/{o.id}.svg
                 </code>

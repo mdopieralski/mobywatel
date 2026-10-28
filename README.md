@@ -234,7 +234,7 @@ The full version, for people and for Claude Code: [`CLAUDE.md`](CLAUDE.md).
 | **App**      | [React 19](https://react.dev/), [Vite 8](https://vite.dev/), [React Router](https://reactrouter.com/), [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) (Workbox)                                                               |
 | **Language** | [TypeScript 6.0](https://www.typescriptlang.org/), strict. Packages are source-only `.ts`, no build step                                                                                                                            |
 | **i18n**     | [use-intl](https://next-intl.dev/docs/environments/core-library), 8 locales                                                                                                                                                         |
-| **UI**       | CSS modules on `@mobywatel/brand` tokens, [Inter Tight](https://fontsource.org/fonts/inter-tight), [GSAP](https://gsap.com/) for the showcase                                                                                       |
+| **UI**       | [Tailwind CSS 4](https://tailwindcss.com/) on `@mobywatel/brand` tokens, [Inter Tight](https://fontsource.org/fonts/inter-tight), [GSAP](https://gsap.com/) for the showcase                                                        |
 | **Quality**  | [oxlint](https://oxc.rs/docs/guide/usage/linter), [Prettier](https://prettier.io/), [Commitlint](https://commitlint.js.org/), [Husky](https://typicode.github.io/husky/), [lint-staged](https://github.com/lint-staged/lint-staged) |
 | **Tests**    | [Vitest](https://vitest.dev/) + Testing Library, [Playwright](https://playwright.dev/) + [axe](https://github.com/dequelabs/axe-core-npm), `node:test`                                                                              |
 | **Hosting**  | [Vercel](https://vercel.com/), static build                                                                                                                                                                                         |
@@ -334,6 +334,10 @@ is public: preview deployments sit behind Vercel login, so never hand one to the
 | Build command  | `cd ../.. && pnpm turbo run build --filter=@mobywatel/pwa` |
 | Output         | `dist`                                                     |
 | Production URL | https://sprawnie-prototype.vercel.app                      |
+| Deployed from  | `main` only: `pnpm run deploy:prod`                        |
+
+`pnpm run deploy:prod` deploys the current `main` to production. It stops unless you are on `main` with no
+uncommitted changes and in step with `origin/main`, so production is always a commit on GitHub.
 
 [`apps/pwa/vercel.json`](apps/pwa/vercel.json) adds:
 

@@ -6,7 +6,15 @@ import { useFormatter, useTranslations } from 'use-intl';
 import { parseIsoDate } from '../../platform/persona.ts';
 import { DATE_FORMAT } from '../documents/document-card.tsx';
 import { ActiveTicket } from './active-ticket.tsx';
-import styles from './city-picker.module.css';
+import {
+  mutedClass,
+  optionClass,
+  optionListClass,
+  optionMetaClass,
+  optionNameClass,
+  panelClass,
+  panelTitleClass,
+} from './picker-classes.ts';
 import { type BoughtTicket, readTicket, saveTicket } from './ticket-state.ts';
 
 type Focus = { to: 'ticket'; id: TicketId } | { to: 'active' } | null;
@@ -50,7 +58,7 @@ export function TicketShop({
 
   // One live region that stays mounted, so "Nic nie zostało wysłane" is announced after cancel.
   const status = (
-    <p role="status" className={styles.note}>
+    <p role="status" className={mutedClass}>
       {cancelled ? t('cancelled') : ''}
     </p>
   );
@@ -91,16 +99,16 @@ export function TicketShop({
       {bought ? (
         <ActiveTicket ref={activeHeading} ticket={bought} cityName={nameOf(bought.cityId) ?? cityName} />
       ) : null}
-      <section className={styles.picker} aria-labelledby="ticket-list">
-        <h2 id="ticket-list" className={styles.title}>
+      <section className={panelClass} aria-labelledby="ticket-list">
+        <h2 id="ticket-list" className={panelTitleClass}>
           {bought ? t('anotherTitle') : t('listTitle')}
         </h2>
-        <ul className={styles.list}>
+        <ul className={optionListClass}>
           {TICKETS.map((ticket) => (
             <li key={ticket.id}>
               <button
                 type="button"
-                className={styles.option}
+                className={optionClass}
                 ref={(el) => {
                   if (el) buttons.current.set(ticket.id, el);
                   else buttons.current.delete(ticket.id);
@@ -110,8 +118,8 @@ export function TicketShop({
                   setChoosing(ticket);
                 }}
               >
-                <span className={styles.optionName}>{t(`names.${ticket.id}`)}</span>
-                <span className={styles.optionVoivodeship}>
+                <span className={optionNameClass}>{t(`names.${ticket.id}`)}</span>
+                <span className={optionMetaClass}>
                   {t(`validity.${ticket.id}`)} · {price(ticket)}
                 </span>
               </button>

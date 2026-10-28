@@ -7,6 +7,15 @@ import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
 import { useSectionSnap } from './section-snap.ts';
 import { PhoneFrame } from './phone-frame.tsx';
+import {
+  drawingGridClass,
+  leadClass,
+  pageClass,
+  sectionHeadingClass,
+  skipClass,
+  strokeIconClass,
+  titleClass,
+} from './showcase-classes.ts';
 import { ShowcaseHero } from './showcase-hero.tsx';
 import { DemoSection } from './demo-section.tsx';
 import { AUDIENCE_ID, DEMO_ID, HERO_ID, navigatePhone, NEWS_ID, TECH_ID, TRY_ID } from './showcase-mode.ts';
@@ -14,7 +23,6 @@ import { SiteHeader } from './site-header.tsx';
 import { TechSection } from './tech-section.tsx';
 import { WhoItHelps } from './who-it-helps.tsx';
 import './compact-font.css';
-import styles from './showcase.module.css';
 
 /**
  * What is new compared with the reference prototype (docs/product/reference-analysis.md §5). Only claims
@@ -149,9 +157,9 @@ export function Showcase() {
   ];
 
   return (
-    <div className={styles.page}>
+    <div className={pageClass}>
       {/* Our own icon and name, never official marks (prototype-guardrails skill). */}
-      <a className={styles.skip} href="#main">
+      <a className={skipClass} href="#main">
         {tCommon('skipToContent')}
       </a>
       <SiteHeader
@@ -165,17 +173,18 @@ export function Showcase() {
           },
         }))}
       />
-      <main id="main" ref={main} tabIndex={-1} className={styles.main}>
+      <main id="main" ref={main} tabIndex={-1} className="grid focus:outline-none">
         <ShowcaseHero ref={heroSection} onTry={goToPhone} />
-        {/* Second section: the working prototype under its heading. */}
+        {/* Second section: the working prototype under its heading, centred above the phone, with the same
+            space above the heading (section padding) as between it and the phone. */}
         <section
           id={TRY_ID}
           ref={trySection}
           tabIndex={-1}
-          className={`${styles.prototype} ${styles.drawingGrid}`}
+          className={`outline-none bg-bg grid justify-items-center gap-30 py-30 px-(--section-inline) text-center ${drawingGridClass}`}
           aria-labelledby="showcase-prototype"
         >
-          <h2 id="showcase-prototype" className={`${styles.title} ${styles.sectionHeading}`}>
+          <h2 id="showcase-prototype" className={`m-0 ${sectionHeadingClass}`}>
             {t('nav.prototype')}
           </h2>
           <PhoneFrame ref={frame} src={PATHS.start} />
@@ -187,26 +196,43 @@ export function Showcase() {
         {/* Example people it helps: each card can open its screen in the phone above. */}
         <WhoItHelps ref={audienceSection} onShow={showInPhone} />
 
-        {/* What this is and what is new. */}
-        <div id={NEWS_ID} ref={newsSection} tabIndex={-1} className={styles.panel}>
-          {/* Same words as the header link, like "Prototyp" above. */}
-          <h2 className={`${styles.title} ${styles.sectionHeading} ${styles.panelHeading}`}>
+        {/* What this is and what is new: heading and description on the left (they stay in view), the full
+            list on the right, one card per row. One column on narrow desktop windows. */}
+        <div
+          id={NEWS_ID}
+          ref={newsSection}
+          tabIndex={-1}
+          className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] [@media(max-width:72rem)]:grid-cols-[minmax(0,1fr)] items-start gap-x-[clamp(var(--space-7),5vw,6rem)] gap-y-6 py-30 px-(--section-inline) border-t border-border outline-none"
+        >
+          {/* Same words as the header link, like "Prototyp" above. Across both columns, centred, with the same
+              120 px below it as above (row gap + margin). */}
+          <h2
+            className={`mx-0 mt-0 mb-[calc(var(--space-9)_-_var(--space-6))] col-span-full justify-self-center text-center ${sectionHeadingClass}`}
+          >
             {t('nav.news')}
           </h2>
-          <div className={styles.intro}>
-            <h2 className={styles.title}>{TAGLINES[locale]}</h2>
-            <p className={styles.lead}>{t('lead')}</p>
+          {/* Sticky below the pinned header, with a gap. */}
+          <div className="sticky [@media(max-width:72rem)]:static top-[calc(var(--target-min)_+_2*var(--space-4)_+_1px_+_var(--space-6))] flex flex-col items-start gap-4">
+            <h2 className={titleClass}>{TAGLINES[locale]}</h2>
+            <p className={leadClass}>{t('lead')}</p>
           </div>
 
-          <section className={styles.news} aria-labelledby="showcase-new">
-            <h2 id="showcase-new" className={styles.eyebrow}>
+          <section className="w-full" aria-labelledby="showcase-new">
+            <h2
+              id="showcase-new"
+              className="mx-0 mt-0 mb-3 text-text-muted text-xs font-bold tracking-[0.08em] uppercase"
+            >
               {t('newTitle')}
             </h2>
-            <ul className={styles.features}>
+            {/* Icon tile, title, one or two sentences and what to tap in the phone. One card per row. */}
+            <ul className="grid grid-cols-[minmax(0,1fr)] gap-3 m-0 p-0 list-none">
               {NEW.map(({ key, icon }) => (
-                <li key={key} className={styles.feature}>
+                <li
+                  key={key}
+                  className="grid grid-cols-[auto_minmax(0,1fr)] gap-4 p-4 border border-border rounded-lg bg-surface"
+                >
                   <svg
-                    className={styles.featureIcon}
+                    className={`box-content p-2 rounded-md bg-accent-soft text-accent ${strokeIconClass}`}
                     aria-hidden="true"
                     viewBox="0 0 24 24"
                     width="24"
@@ -214,11 +240,11 @@ export function Showcase() {
                   >
                     {icon}
                   </svg>
-                  <div className={styles.featureText}>
-                    <h3 className={styles.featureTitle}>{t(`new.${key}.title`)}</h3>
-                    <p>{t(`new.${key}.body`)}</p>
-                    <p className={styles.featureTry}>
-                      <strong>{t('tryLabel')}</strong> {t(`new.${key}.try`)}
+                  <div className="flex flex-col gap-1 text-text-muted">
+                    <h3 className="m-0 text-text text-md">{t(`new.${key}.title`)}</h3>
+                    <p className="m-0">{t(`new.${key}.body`)}</p>
+                    <p className="m-0 text-sm">
+                      <strong className="text-text">{t('tryLabel')}</strong> {t(`new.${key}.try`)}
                     </p>
                   </div>
                 </li>
@@ -230,8 +256,9 @@ export function Showcase() {
         {/* Fourth section: how it is built. */}
         <TechSection ref={techSection} />
       </main>
-      {/* Footer: the unofficial-prototype notice (prototype-guardrails skill). */}
-      <footer className={styles.footer}>
+      {/* Footer: the unofficial-prototype notice (prototype-guardrails skill), white like the header, with a
+          line above. */}
+      <footer className="py-6 px-12 border-t border-border bg-surface">
         <Disclaimer variant="inline" locale={locale} />
       </footer>
     </div>

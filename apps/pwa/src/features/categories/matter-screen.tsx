@@ -8,8 +8,16 @@ import { PATHS } from '../../app/paths.ts';
 import { LineIcon } from '../documents/kinds.tsx';
 import { CityPicker } from '../travel/city-picker.tsx';
 import { ZusVisit } from '../zus/zus-visit.tsx';
+import {
+  backLinkClass,
+  badgeClass,
+  descriptionClass,
+  headingClass,
+  rowIconClass,
+  screenClass,
+  soonClass,
+} from './category-classes.ts';
 import { categoryBySlug, MATTERS, matterBySlug } from './categories.tsx';
-import styles from './category-screen.module.css';
 
 /** Matters you can walk through to the end. Every other one says it is coming ("Wkrótce"). */
 const BUILT: Partial<Record<MatterId, () => ReactNode>> = {
@@ -33,19 +41,19 @@ export function MatterScreen() {
   }
   const built = BUILT[matter];
   return (
-    <div className={styles.stack} style={{ '--card-color': category.color } as CSSProperties}>
-      <Link className={styles.back} to={`${PATHS.categories}/${category.slug}`}>
+    <div className={screenClass} style={{ '--card-color': category.color } as CSSProperties}>
+      <Link className={backLinkClass} to={`${PATHS.categories}/${category.slug}`}>
         <span aria-hidden="true">←</span> {t(`names.${category.id}`)}
       </Link>
-      <div className={styles.heading}>
-        <span className={styles.rowIcon}>
+      <div className={headingClass}>
+        <span className={rowIconClass}>
           <LineIcon size={28}>{MATTERS[matter].icon}</LineIcon>
         </span>
         <h1>{t(`matters.names.${matter}`)}</h1>
       </div>
-      {built ? null : <p className={styles.badge}>{tSoon('badge')}</p>}
-      <p className={styles.description}>{t(`matters.descriptions.${matter}`)}</p>
-      {built ? built() : <p className={styles.soon}>{t('matters.soon')}</p>}
+      {built ? null : <p className={badgeClass}>{tSoon('badge')}</p>}
+      <p className={descriptionClass}>{t(`matters.descriptions.${matter}`)}</p>
+      {built ? built() : <p className={soonClass}>{t('matters.soon')}</p>}
     </div>
   );
 }

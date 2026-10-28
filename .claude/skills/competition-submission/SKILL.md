@@ -18,10 +18,14 @@ user confirms with the organisers that entries are open.
 
 ## 1. Deploy (Vercel)
 
-- Every PR gets a **preview** URL. Use it for review and for testing on phones.
-- The submission link is a **production** deploy of `main` on a stable domain (a `*.vercel.app` name we
-  choose, or our own domain). The `pre-bash` hook asks before any production deploy, because it changes what
-  the jury sees.
+- **Production = `main`.** `main` is the only branch and GitHub's default (2026-10-28). Deploy it with
+  `pnpm run deploy:prod` (`tools/deploy-prod.mjs`): it refuses anything but a clean `main` that matches
+  `origin/main`, then runs `vercel deploy --prod`. The `pre-bash` hook asks before it, because it changes what
+  the jury sees. Production URL: https://sprawnie-prototype.vercel.app.
+- **Not connected to GitHub yet:** Vercel builds only when someone runs the deploy. Once the user connects the
+  repo (Vercel → Project → Settings → Git, production branch `main`), every push to `main` deploys production
+  by itself and other branches get preview URLs; `deploy:prod` then stays as the manual fallback.
+- Preview URLs sit behind Vercel login: use them for review, never hand one to the jury.
 - Vercel project settings: root `apps/pwa`, build `pnpm run build`, output `dist`, Node 22. Turn off
   **Deployment Protection** on production so the link works without login, and check it in a private window.
 - LLM proxy env vars only if the live assistant is part of the demo. Without them the app must still be

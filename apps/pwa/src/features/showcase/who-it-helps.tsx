@@ -3,7 +3,6 @@ import { useTranslations } from 'use-intl';
 
 import { AUDIENCE, type AudienceId } from './audience.ts';
 import { AUDIENCE_ID, PHONE_FRAME } from './showcase-mode.ts';
-import styles from './who-it-helps.module.css';
 
 /**
  * Avatars: our own line drawings on a 48 px grid, one prop each that hints at the need. No faces that could
@@ -104,6 +103,11 @@ const AVATARS: Record<AudienceId, { hue: string; art: ReactNode }> = {
   },
 };
 
+// About one window tall so the section snap stays calm; 120 px above the heading and from it to the cards,
+// like the other sections. --section-inline and --header-height come from the landing page.
+const audienceClass =
+  'grid justify-items-center content-start gap-6 min-h-[calc(100dvh_-_var(--header-height))] py-30 px-(--section-inline) border-t border-border outline-none';
+
 /**
  * "Dla kogo": seven fictional example people and the improvement that already works for each (plan:
  * docs/product/who-it-helps.md). `onShow` opens a screen in the phone and brings the phone into view.
@@ -130,21 +134,27 @@ export function WhoItHelps({
       id={AUDIENCE_ID}
       ref={ref}
       tabIndex={-1}
-      className={styles.audience}
+      className={audienceClass}
       aria-labelledby="showcase-audience"
     >
-      <div className={styles.intro}>
-        <h2 id="showcase-audience" className={styles.heading}>
+      <div className="grid gap-3 max-w-[64rem] mb-[calc(var(--space-9)_-_var(--space-6))] text-center">
+        <h2
+          id="showcase-audience"
+          className="m-0 text-accent text-[length:calc(2*var(--font-3xl))] leading-tight font-extrabold tracking-[-0.02em]"
+        >
           {t('audience.title')}
         </h2>
-        <p className={styles.lead}>{t('audience.lead')}</p>
+        <p className="m-0 text-text-muted text-lg">{t('audience.lead')}</p>
       </div>
-      <ul className={styles.people}>
+      <ul className="w-full grid grid-cols-3 gap-10 m-0 p-0 list-none [@media(52rem<width<=80rem)]:grid-cols-2 [@media(max-width:52rem)]:grid-cols-1">
         {AUDIENCE.map(({ id, to, soon }) => (
-          <li key={id} className={styles.person}>
-            <div className={styles.top}>
+          <li
+            key={id}
+            className="flex flex-col gap-4 py-8 px-5 border border-border rounded-lg bg-surface [&_p]:m-0"
+          >
+            <div className="flex items-center gap-4">
               <svg
-                className={styles.avatar}
+                className="flex-none rounded-[50%] text-card-text fill-none stroke-current stroke-[1.75] [stroke-linecap:round] [stroke-linejoin:round]"
                 style={{ background: `var(--card-${AVATARS[id].hue})` }}
                 aria-hidden="true"
                 viewBox="0 0 48 48"
@@ -154,25 +164,36 @@ export function WhoItHelps({
                 {AVATARS[id].art}
               </svg>
               <div>
-                <h3 className={styles.name}>{t(`audience.people.${id}.name`)}</h3>
-                <p className={styles.meta}>{t(`audience.people.${id}.meta`)}</p>
+                <h3 className="m-0 text-xl leading-tight">{t(`audience.people.${id}.name`)}</h3>
+                <p className="text-text-muted text-sm">{t(`audience.people.${id}.meta`)}</p>
               </div>
-              {soon ? <p className={styles.soon}>{tSoon('badge')}</p> : null}
+              {soon ? (
+                <p className="ms-auto self-start py-1 px-3 rounded-pill bg-accent-soft text-accent text-sm font-semibold">
+                  {tSoon('badge')}
+                </p>
+              ) : null}
             </div>
-            <p className={styles.need}>{t(`audience.people.${id}.need`)}</p>
+            <p className="italic before:content-['„'] after:content-['”']">
+              {t(`audience.people.${id}.need`)}
+            </p>
             <p>{t(`audience.people.${id}.helps`)}</p>
-            <p className={styles.try}>
+            <p className="text-text-muted text-sm">
               <strong>{t('audience.tryLabel')}</strong> {t(`audience.people.${id}.try`)}
             </p>
             {to ? (
-              <a className={styles.show} href={to} target={PHONE_FRAME} onClick={show(to)}>
+              <a
+                className="mt-auto self-start inline-flex items-center min-h-target px-4 border-2 border-accent rounded-pill text-accent font-bold no-underline hover:bg-accent-soft focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-focus focus-visible:outline-offset-2"
+                href={to}
+                target={PHONE_FRAME}
+                onClick={show(to)}
+              >
                 {t(`audience.people.${id}.open`)}
               </a>
             ) : null}
           </li>
         ))}
       </ul>
-      <p className={styles.note}>{t('audience.fictionNote')}</p>
+      <p className="m-0 max-w-[48rem] text-text-muted text-sm text-center">{t('audience.fictionNote')}</p>
     </section>
   );
 }

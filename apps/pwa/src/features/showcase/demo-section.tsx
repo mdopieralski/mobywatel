@@ -4,7 +4,7 @@ import { useTranslations } from 'use-intl';
 
 import { useAppLocale } from '../../platform/i18n.ts';
 import { DEMO_TRY, DEMO_VIDEO } from './demo.ts';
-import styles from './demo-section.module.css';
+import { leadClass, sectionHeadingClass } from './showcase-classes.ts';
 import { DEMO_ID, PHONE_FRAME } from './showcase-mode.ts';
 
 /**
@@ -28,6 +28,23 @@ function keepForOffline() {
 
 const FIRST = DEMO_CHAPTERS[0]?.from ?? 0;
 const LAST = DEMO_CHAPTERS.at(-1)?.to ?? 0;
+
+// Title on top; then the chapter buttons on the left, the video on the right; stacked in a narrower window. Same padding as
+// the other sections (--section-inline comes from the page; 48 px if it isn't there).
+const demoClass =
+  'grid grid-cols-[minmax(20rem,1fr)_minmax(0,2fr)] items-center content-start gap-x-[clamp(var(--space-7),4vw,var(--space-8))] gap-y-6 min-h-[calc(100dvh_-_var(--header-height))] py-30 px-[var(--section-inline,var(--space-8))] border-t border-border outline-none [@media(max-width:72rem)]:grid-cols-1';
+
+// Pressed = the chapter on screen, shown by the fill and a bar, not by colour alone.
+const chapterClass =
+  'grid justify-items-start min-h-target py-2 px-4 border-2 border-border rounded-lg bg-surface text-text [font-family:inherit] [font-size:inherit] [line-height:inherit] font-bold text-start cursor-pointer hover:border-accent aria-pressed:border-accent aria-pressed:bg-accent-soft aria-pressed:text-accent aria-pressed:[box-shadow:inset_0_-4px_0_var(--accent)] focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-focus focus-visible:outline-offset-2';
+
+// Captions (::cue): a solid plate for contrast over any frame (a pair checked in CONTRAST_PAIRS), a little
+// larger than the browser default.
+const videoClass =
+  'block w-full h-auto aspect-video rounded-lg border border-border bg-surface [&::cue]:bg-card-slate [&::cue]:text-card-text [&::cue]:text-[1.15em] [&::cue]:leading-[1.35]';
+
+const transcriptClass =
+  '[&_summary]:min-h-target [&_summary]:flex [&_summary]:items-center [&_summary]:font-bold [&_summary]:cursor-pointer [&_summary]:focus-visible:outline-3 [&_summary]:focus-visible:outline-solid [&_summary]:focus-visible:outline-focus [&_summary]:focus-visible:outline-offset-2 [&_h3]:mt-4 [&_h3]:mx-0 [&_h3]:mb-1 [&_h3]:text-md [&_:is(p,ul)]:mt-0 [&_:is(p,ul)]:mx-0 [&_:is(p,ul)]:mb-2 [&_:is(p,ul)]:text-text-muted';
 
 /**
  * "Demo": the silent 80-second video "Jeden dzień z aplikacją" (docs/product/demo-video.md). Chapter buttons
@@ -115,23 +132,27 @@ export function DemoSection({
   };
 
   return (
-    <section id={DEMO_ID} ref={ref} tabIndex={-1} className={styles.demo} aria-labelledby="showcase-demo">
-      <div className={styles.text}>
-        <h2 id="showcase-demo" className={styles.heading}>
+    <section id={DEMO_ID} ref={ref} tabIndex={-1} className={demoClass} aria-labelledby="showcase-demo">
+      {/* Title and lead like every other section: centred over the whole width, 120 px above the content
+          (24 px row gap + the margin). */}
+      <div className="col-span-full justify-self-center grid gap-3 max-w-[64rem] mb-[calc(var(--space-9)_-_var(--space-6))] text-center">
+        <h2 id="showcase-demo" className={`m-0 ${sectionHeadingClass}`}>
           {t('demo.title')}
         </h2>
-        <p className={styles.lead}>{t('demo.lead')}</p>
+        <p className={leadClass}>{t('demo.lead')}</p>
+      </div>
 
-        <div className={styles.chapters} role="group" aria-label={t('demo.chaptersLabel')}>
+      <div className="grid gap-5 [&_p]:m-0">
+        <div className="grid grid-cols-1 gap-3" role="group" aria-label={t('demo.chaptersLabel')}>
           {DEMO_CHAPTERS.map(({ id }, i) => (
             <button
               key={id}
               type="button"
-              className={styles.chapter}
+              className={chapterClass}
               aria-pressed={chapter === id}
               onClick={() => jump(id)}
             >
-              <span className={styles.chapterTime}>
+              <span className="text-text-muted text-sm font-semibold">
                 {i + 1}. {t(`demo.chapters.${id}.time`)}
               </span>
               {t(`demo.chapters.${id}.name`)}
@@ -139,20 +160,25 @@ export function DemoSection({
           ))}
         </div>
 
-        <div className={styles.detail}>
+        <div className="grid justify-items-start gap-3 py-4 px-5 rounded-lg bg-surface border border-border">
           <p>{t(`demo.chapters.${shown}.body`)}</p>
-          <a className={styles.try} href={DEMO_TRY[shown]} target={PHONE_FRAME} onClick={tryIt}>
+          <a
+            className="inline-flex items-center min-h-target px-4 border-2 border-accent rounded-pill text-accent font-bold no-underline hover:bg-accent-soft focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-focus focus-visible:outline-offset-2"
+            href={DEMO_TRY[shown]}
+            target={PHONE_FRAME}
+            onClick={tryIt}
+          >
             {t(`demo.chapters.${shown}.try`)}
           </a>
         </div>
-        <p className={styles.note}>{t('demo.proposalNote')}</p>
+        <p className="text-text-muted text-sm">{t('demo.proposalNote')}</p>
       </div>
 
-      <div className={styles.media}>
+      <div className="grid gap-3 min-w-0">
         {/* Silent (no audio track), so `muted` changes nothing but lets phones play it inline. */}
         <video
           ref={video}
-          className={styles.video}
+          className={videoClass}
           src={DEMO_VIDEO.src}
           poster={DEMO_VIDEO.poster}
           aria-label={t('demo.videoLabel')}
@@ -167,11 +193,11 @@ export function DemoSection({
           onError={() => setFailed(true)}
         />
         {/* Always in the page, so a screen reader announces the message when it appears. */}
-        <p className={styles.offline} role="status">
+        <p className="m-0 text-text-muted" role="status">
           {failed ? t('demo.offline') : null}
         </p>
 
-        <details className={styles.transcript}>
+        <details className={transcriptClass}>
           <summary>{t('demo.transcript')}</summary>
           <p>{t('demo.intro')}</p>
           <ul>

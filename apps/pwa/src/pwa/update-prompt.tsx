@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import { useTranslations } from 'use-intl';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 
-import styles from './update-prompt.module.css';
-
 const UPDATE_CHECK_MS = 60 * 60 * 1000;
 
 // registerType 'prompt': a new version never swaps code under someone mid-matter (pwa-platform skill).
@@ -44,11 +42,15 @@ export function UpdatePrompt() {
   }, [offlineReady]);
 
   return (
-    <div className={styles.region} role="status" aria-live="polite">
+    <div
+      className="fixed left-1/2 bottom-[calc(var(--target-min)_+_env(safe-area-inset-bottom)_+_var(--space-3))] -translate-x-1/2 w-[min(28rem,calc(100%_-_var(--space-6)))] z-20"
+      role="status"
+      aria-live="polite"
+    >
       {needRefresh && (
-        <div className={styles.toast}>
-          <p>{t('updateAvailable')}</p>
-          <div className={styles.actions}>
+        <div className="flex flex-wrap items-center justify-between gap-2 py-3 px-4 border border-border-strong rounded-md bg-surface-raised text-text">
+          <p className="m-0">{t('updateAvailable')}</p>
+          <div className="flex gap-2">
             <Button onClick={() => void updateServiceWorker(true)}>{t('reload')}</Button>
             <Button variant="ghost" onClick={() => setNeedRefresh(false)}>
               {t('later')}
