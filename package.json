@@ -10,6 +10,7 @@
     "dev:video": "pnpm --filter @mobywatel/video studio",
     "render:demo": "pnpm --filter @mobywatel/video render",
     "preview": "turbo run serve --filter=@mobywatel/pwa --filter=@mobywatel/design-system",
+    "deploy:prod": "node tools/deploy-prod.mjs",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",

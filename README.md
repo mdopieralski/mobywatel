@@ -334,6 +334,10 @@ is public: preview deployments sit behind Vercel login, so never hand one to the
 | Build command  | `cd ../.. && pnpm turbo run build --filter=@mobywatel/pwa` |
 | Output         | `dist`                                                     |
 | Production URL | https://sprawnie-prototype.vercel.app                      |
+| Deployed from  | `main` only: `pnpm run deploy:prod`                        |
+
+`pnpm run deploy:prod` deploys the current `main` to production. It stops unless you are on `main` with no
+uncommitted changes and in step with `origin/main`, so production is always a commit on GitHub.
 
 [`apps/pwa/vercel.json`](apps/pwa/vercel.json) adds:
 
