@@ -17,9 +17,11 @@
     "test:tools": "node --test tools/__tests__/*.test.mjs",
     "audit:harness": "node tools/harness-audit.mjs",
     "audit:guardrails": "node tools/guardrails-audit.mjs",
+    "i18n:check": "node tools/i18n/sync.mjs check",
+    "i18n:stamp": "node tools/i18n/sync.mjs stamp",
     "format": "prettier --check --ignore-path .gitignore --ignore-path .prettierignore .",
     "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore .",
-    "ci:quality": "pnpm run format && turbo run lint typecheck test:unit build && pnpm run test:tools && pnpm run audit:harness && pnpm run audit:guardrails",
+    "ci:quality": "pnpm run format && turbo run lint typecheck test:unit build && pnpm run test:tools && pnpm run audit:harness && pnpm run audit:guardrails && pnpm run i18n:check",
     "cache:clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules .turbo apps/*/.turbo packages/*/.turbo apps/*/dist && echo 'Caches cleared. Run pnpm install.'",
     "prepare": "husky"
   },
