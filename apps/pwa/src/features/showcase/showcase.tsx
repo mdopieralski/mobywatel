@@ -5,6 +5,7 @@ import { useTranslations } from 'use-intl';
 
 import { PATHS } from '../../app/paths.ts';
 import { useAppLocale } from '../../platform/i18n.ts';
+import { LandingUpdater } from '../../pwa/landing-updater.tsx';
 import { useSectionSnap } from './section-snap.ts';
 import { PhoneFrame } from './phone-frame.tsx';
 import {
@@ -173,6 +174,7 @@ export function Showcase() {
 
   return (
     <div className={pageClass} data-landing={narrow ? 'narrow' : 'wide'}>
+      <LandingUpdater />
       {/* Our own icon and name, never official marks (prototype-guardrails skill). */}
       <a className={skipClass} href="#main">
         {tCommon('skipToContent')}
