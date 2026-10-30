@@ -5,6 +5,7 @@
   "description": "Clickable PWA prototype of a new mObywatel app for the mobywatel.ai challenge (unofficial, fictional data).",
   "type": "module",
   "scripts": {
+    "start:dev": "pnpm run dev",
     "dev": "turbo run dev --filter=@mobywatel/pwa --filter=@mobywatel/design-system",
     "dev:design-system": "pnpm --filter @mobywatel/design-system dev",
     "dev:video": "pnpm --filter @mobywatel/video studio",
@@ -25,7 +26,7 @@
     "format": "prettier --check --ignore-path .gitignore --ignore-path .prettierignore .",
     "format:fix": "prettier --write --ignore-path .gitignore --ignore-path .prettierignore .",
     "ci:quality": "pnpm run format && turbo run lint typecheck test:unit build && pnpm run test:tools && pnpm run audit:harness && pnpm run audit:guardrails && pnpm run i18n:check",
-    "cache:clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules .turbo apps/*/.turbo packages/*/.turbo apps/*/dist && echo 'Caches cleared. Run pnpm install.'",
+    "cache:clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules .turbo apps/*/.turbo packages/*/.turbo apps/*/dist apps/*/dev-dist apps/*/storybook-static && echo 'Caches cleared. Run pnpm install to reinstall.'",
     "prepare": "husky"
   },
   "engines": {

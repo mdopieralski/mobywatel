@@ -112,6 +112,7 @@ Workflow: `add-feature` (plan → build → verify → review), `verify-change` 
 ## Commands
 
 ```bash
+pnpm cache:clean && pnpm install && pnpm start:dev   # fresh start, same chain as our other repos
 pnpm install
 pnpm dev                     # https://mobywatel.local (PWA dev, no SW) + /design-system (Storybook)
 pnpm run build && pnpm preview   # same URLs, the real PWA: service worker, offline, install
